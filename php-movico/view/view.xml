@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE note SYSTEM "../dtd/view.dtd">
+<view>
+	<outputText value="HelloBean_message"/>
+	<form>
+		<panelGrid columns="2">
+			<outputLabel for="name" value="Naam: "/>
+			<inputText id="name" value="HelloBean_name"/>
+			
+			<outputLabel value="Reactie: " for="comments"/>
+			<inputTextArea id="comments" value="HelloBean_comments"/>
+			
+			<commandButton action="HelloBean_sayHello" value="Say Hello!"/>
+		</panelGrid>
+	</form>
+</view>

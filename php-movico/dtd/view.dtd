@@ -1,0 +1,29 @@
+<!ELEMENT view ANY>
+
+<!ELEMENT form ANY>
+
+<!ELEMENT commandButton EMPTY>
+<!ATTLIST commandButton value CDATA #REQUIRED>
+<!ATTLIST commandButton action CDATA #REQUIRED>
+
+<!ELEMENT inputSecret EMPTY>
+<!ATTLIST inputText value CDATA #REQUIRED>
+<!ATTLIST inputText id CDATA #IMPLIED>
+
+<!ELEMENT inputText EMPTY>
+<!ATTLIST inputText value CDATA #REQUIRED>
+<!ATTLIST inputText id CDATA #IMPLIED>
+
+<!ELEMENT inputTextArea EMPTY>
+<!ATTLIST inputTextArea value CDATA #REQUIRED>
+<!ATTLIST inputTextArea id CDATA #IMPLIED>
+
+<!ELEMENT outputLabel EMPTY>
+<!ATTLIST outputLabel value CDATA #REQUIRED>
+<!ATTLIST outputLabel for CDATA #REQUIRED>
+
+<!ELEMENT outputText EMPTY>
+<!ATTLIST outputText value CDATA #REQUIRED>
+
+<!ELEMENT panelGrid ANY>
+<!ATTLIST panelGrid columns CDATA #REQUIRED>

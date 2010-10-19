@@ -1,0 +1,5 @@
+<?
+class InvalidComponentHierarchyException extends Exception {
+	
+}
+?>

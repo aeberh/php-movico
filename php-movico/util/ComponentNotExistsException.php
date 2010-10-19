@@ -1,0 +1,5 @@
+<?
+class ComponentNotExistsException extends Exception {
+	
+}
+?>
