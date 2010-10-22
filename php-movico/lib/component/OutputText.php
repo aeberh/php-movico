@@ -6,11 +6,7 @@ class OutputText extends Component {
 	public function setValue($value) {
 		$this->value = $value;
 	}
-	
-	public function getValue() {
-		return $this->value;
-	}
-	
+
 	public function render() {
 		$val = BeanUtil::getProperty($this->value);
 		return "<span>$val</span>";

@@ -13,11 +13,7 @@ class PanelGrid extends Component {
 		}
 		return $result;
 	}
-	
-	public function getColumns() {
-		return $this->columns;
-	}
-	
+
 	public function setColumns($columns) {
 		$this->columns = $columns;
 	}

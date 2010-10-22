@@ -14,10 +14,16 @@ abstract class Component {
 	
 	public abstract function render();
 	
-	protected function renderChildren() {
+	protected function renderChildren($include=array(), $exclude=array()) {
 		$result = "";
+		$includeAll = empty($include);
 		foreach($this->children as $child) {
-			$result .= $child->render();
+			$childClass = get_class($child);
+			$childInInclude = in_array($childClass, $include);
+			$childInExclude = in_array($childClass, $exclude);
+			if(($includeAll && !$childInExclude) || $childInInclude) {
+				$result .= $child->render();
+			}
 		}
 		return $result;
 	}
@@ -28,10 +34,16 @@ abstract class Component {
 	
 	protected abstract function getValidParents();
 	
-	public function getId() {
-		return $this->id;
+	protected function getChildrenOfType($class) {
+		$result = array();
+		foreach($this->children as $child) {
+			if($child instanceof $class) {
+				$result[] = $child;
+			}
+		}
+		return $result;
 	}
-	
+
 	public function setId($id) {
 		$this->id = $id;
 	}

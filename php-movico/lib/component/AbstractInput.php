@@ -1,12 +1,8 @@
 <?
-class InputTextArea extends Component {
+abstract class AbstractInput extends Component {
 	
 	private $value;
-	
-	public function getValue() {
-		return $this->value;
-	}
-	
+
 	public function setValue($value) {
 		$this->value = $value;
 	}
@@ -14,8 +10,11 @@ class InputTextArea extends Component {
 	public function render() {
 		$name = $this->value;
 		$val = BeanUtil::getProperty($name);
-		return "<textarea id=\"".$this->id."\" name=\"$name\">$val</textarea>";
+		$type = $this->getType();
+		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"/>";
 	}
+	
+	public abstract function getType();
 	
 	public function getValidParents() {
 		return array("View", "Form", "PanelGrid");

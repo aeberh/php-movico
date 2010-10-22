@@ -3,8 +3,8 @@ class XmlToComponentParser {
 	
 	public function parse(SimpleXMLElement $node) {
 		$className = ucfirst($node->getName());
-		if(!class_exists($className)) {
-			throw new ComponentNotExistsException();
+		if(!ClassUtil::isSubclassOf($className, "Component")) {
+			throw new ComponentNotExistsException($className);
 		}
 //		if(!class_exists($className)) {
 //			$instance = new HtmlComponent($node->getName(), strval($node), $node->attributes());

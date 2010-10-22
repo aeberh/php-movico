@@ -1,5 +1,0 @@
-<?
-class ComponentNotExistsException extends Exception {
-	
-}
-?>

@@ -7,19 +7,11 @@ class OutputLabel extends Component {
 	public function render() {
 		return "<label for=\"".$this->for."\">".$this->value."</label>";
 	}
-	
-	public function getValue() {
-		return $this->value;
-	}
-	
+
 	public function setValue($value) {
 		$this->value = $value;
 	}
-	
-	public function getFor() {
-		return $this->for;
-	}
-	
+
 	public function setFor($for) {
 		$this->for = $for;
 	}

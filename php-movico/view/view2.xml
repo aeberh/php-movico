@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE note SYSTEM "../lib/dtd/view.dtd">
+<view>
+    <outputText value="HelloBean_message"/>
+    <form>
+        <commandButton action="HelloBean_goBack" value="Go back"/>
+    </form>
+</view>

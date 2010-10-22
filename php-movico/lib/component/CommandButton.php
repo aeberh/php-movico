@@ -7,11 +7,7 @@ class CommandButton extends Component {
 	public function setAction($action) {
 		$this->action = $action;
 	}
-	
-	public function getAction() {
-		return $this->action;
-	}
-	
+
 	public function setValue($value) {
 		$this->value = $value;
 	}

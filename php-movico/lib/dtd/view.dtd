@@ -2,6 +2,12 @@
 
 <!ELEMENT form ANY>
 
+<!ELEMENT css EMPTY>
+<!ATTLIST css src CDATA #REQUIRED>
+
+<!ELEMENT js EMPTY>
+<!ATTLIST js src CDATA #REQUIRED>
+
 <!ELEMENT commandButton EMPTY>
 <!ATTLIST commandButton value CDATA #REQUIRED>
 <!ATTLIST commandButton action CDATA #REQUIRED>
@@ -25,5 +31,15 @@
 <!ELEMENT outputText EMPTY>
 <!ATTLIST outputText value CDATA #REQUIRED>
 
+<!ELEMENT selectOneMenu EMPTY>
+<!ATTLIST selectOneMenu options CDATA #REQUIRED>
+<!ATTLIST selectOneMenu value CDATA #REQUIRED>
+
 <!ELEMENT panelGrid ANY>
 <!ATTLIST panelGrid columns CDATA #REQUIRED>
+
+<!ELEMENT dataTable (column*)>
+<!ATTLIST dataTable value CDATA #REQUIRED>
+<!ATTLIST dataTable var CDATA #REQUIRED>
+
+<!ELEMENT column ANY>

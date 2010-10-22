@@ -1,27 +1,16 @@
 <?
+require_once("path.php");
+
+session_start();
+
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once("util/BeanLocator.php");
-require_once("util/ComponentNotExistsException.php");
-require_once("util/InvalidComponentHierarchyException.php");
-require_once("util/XmlToComponentParser.php");
-require_once("util/BeanUtil.php");
-require_once("bean/HelloBean.php");
-require_once("components/Component.php");
-require_once("components/View.php");
-require_once("components/Form.php");
-require_once("components/AbstractInput.php");
-require_once("components/OutputText.php");
-require_once("components/InputText.php");
-require_once("components/InputTextArea.php");
-require_once("components/PanelGrid.php");
-require_once("components/OutputLabel.php");
-require_once("components/InputSecret.php");
-require_once("components/CommandButton.php");
-require_once("components/HtmlComponent.php");
+$view = "view1";
 
-$view = "view";
+// Validate
+//TODO
 
 // Update model
 foreach($_POST as $key=>$val) {
@@ -43,6 +32,8 @@ $parser = new XmlToComponentParser();
 $result = $parser->parse($doc);
 
 echo $result->render();
+
+out($_SESSION);
 
 function out($var) {
 	echo "<pre>";
