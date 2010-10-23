@@ -3,7 +3,7 @@ class PanelGrid extends Component {
 	
 	private $columns;
 	
-	public function render() {
+	public function render($index=null) {
 		$result = "<table cellspacing=\"0\" cellpadding=\"0\"><tr>";
 		for($i=0; $i<count($this->children); $i++) {
 			$result .= "<td>".$this->children[$i]->render()."</td>";

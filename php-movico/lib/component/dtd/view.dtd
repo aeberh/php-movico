@@ -1,0 +1,63 @@
+<!ELEMENT view ANY>
+
+<!ELEMENT form ANY>
+
+<!ELEMENT css EMPTY>
+<!ATTLIST css src CDATA #REQUIRED>
+
+<!ELEMENT js EMPTY>
+<!ATTLIST js src CDATA #REQUIRED>
+
+<!ELEMENT commandButton EMPTY>
+<!ATTLIST commandButton
+	value CDATA #REQUIRED
+	action CDATA #REQUIRED
+>
+
+<!ELEMENT inputSecret EMPTY>
+<!ATTLIST inputText 
+	value CDATA #REQUIRED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT inputText EMPTY>
+<!ATTLIST inputText
+	value CDATA #REQUIRED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT inputTextArea EMPTY>
+<!ATTLIST inputTextArea
+	value CDATA #REQUIRED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT outputLabel EMPTY>
+<!ATTLIST outputLabel
+	value CDATA #REQUIRED
+	for CDATA #REQUIRED
+>
+
+<!ELEMENT outputText EMPTY>
+<!ATTLIST outputText value CDATA #REQUIRED>
+
+<!ELEMENT selectOneMenu EMPTY>
+<!ATTLIST selectOneMenu
+	options CDATA #REQUIRED
+	value CDATA #REQUIRED
+>
+
+<!ELEMENT panelGrid ANY>
+<!ATTLIST panelGrid 
+	columns CDATA #REQUIRED
+>
+
+<!ELEMENT dataTable (column*)>
+<!ATTLIST dataTable
+	value CDATA #REQUIRED
+	var CDATA #REQUIRED
+>
+
+<!ELEMENT column ANY>
+
+<!ELEMENT colHeader ANY>

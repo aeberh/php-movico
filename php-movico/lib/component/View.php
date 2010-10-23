@@ -7,7 +7,7 @@ class View extends Component {
 		$this->title = $title;
 	}
 	
-	public function render() {
+	public function render($index=null) {
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n";
 		$result .= $this->renderChildren(array("Css", "Js"));
 		$result .= "\t</head>\n\t<body>\n";

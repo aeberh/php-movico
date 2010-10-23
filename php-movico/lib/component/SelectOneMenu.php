@@ -4,7 +4,7 @@ class SelectOneMenu extends Component {
 	private $value;
 	private $options;
 	
-	public function render() {
+	public function render($index=null) {
 		$name = $this->value;
 		$val = BeanUtil::getProperty($name);
 		$result = "<select";
@@ -29,7 +29,7 @@ class SelectOneMenu extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid");
+		return array("View", "Form", "PanelGrid", "Column");
 	}
 	
 }

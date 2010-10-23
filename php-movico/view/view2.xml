@@ -1,8 +1,21 @@
 <?xml version="1.0"?>
-<!DOCTYPE note SYSTEM "../lib/dtd/view.dtd">
+<!DOCTYPE view SYSTEM "../lib/component/dtd/view.dtd">
 <view>
-    <outputText value="HelloBean_message"/>
-    <form>
-        <commandButton action="HelloBean_goBack" value="Go back"/>
-    </form>
+	<dataTable var="user" value="HelloBean.users">
+		<column>
+			<colHeader>
+				<outputText value="Voornaam"/>
+			</colHeader>
+			<outputText value="user.firstName"/>
+		</column>
+		<column>
+			<colHeader>
+				<outputText value="Achternaam"/>
+			</colHeader>
+			<outputText value="user.lastName"/>
+		</column>
+		<column>
+			<commandButton action="HelloBean.edit" value="Edit"/>
+		</column>
+	</dataTable>
 </view>

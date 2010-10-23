@@ -7,9 +7,9 @@ abstract class AbstractInput extends Component {
 		$this->value = $value;
 	}
 	
-	public function render() {
+	public function render($index=null) {
 		$name = $this->value;
-		$val = BeanUtil::getProperty($name);
+		$val = $this->getConvertedValue($this->value);
 		$type = $this->getType();
 		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"/>";
 	}
@@ -17,7 +17,7 @@ abstract class AbstractInput extends Component {
 	public abstract function getType();
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid");
+		return array("View", "Form", "PanelGrid", "Column");
 	}
 	
 }

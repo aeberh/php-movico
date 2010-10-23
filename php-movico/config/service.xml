@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder SYSTEM "../lib/servicebuilder/dtd/service.dtd">
+<service-builder>
+	<entity name="User">
+		<column name="id" type="int" primary="true" auto-increment="true"/>
+		<column name="firstName" type="String" size="25"/>
+		<column name="lastName" type="String" size="25"/>
+	</entity>
+</service-builder>

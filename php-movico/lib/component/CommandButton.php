@@ -12,12 +12,12 @@ class CommandButton extends Component {
 		$this->value = $value;
 	}
 	
-	public function render() {
+	public function render($index=null) {
 		return "<button type=\"submit\" onclick=\"this.form.ACTION.value='".$this->action."';\">".$this->value."</button>";
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid");
+		return array("View", "Form", "PanelGrid", "Column");
 	}
 	
 }

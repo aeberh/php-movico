@@ -7,13 +7,12 @@ class OutputText extends Component {
 		$this->value = $value;
 	}
 
-	public function render() {
-		$val = BeanUtil::getProperty($this->value);
-		return "<span>$val</span>";
+	public function render($row=null) {
+		return "<span>".$this->getConvertedValue($this->value, $row)."</span>";
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid");
+		return array("View", "Form", "PanelGrid", "Column", "ColHeader");
 	}
 	
 }

@@ -1,18 +1,11 @@
 <?xml version="1.0"?>
-<!DOCTYPE note SYSTEM "../lib/dtd/view.dtd">
+<!DOCTYPE view SYSTEM "../lib/component/dtd/view.dtd">
 <view>
 	<css src="test.css"/>
-    <outputText value="HelloBean_message"/>
+    <outputText value="Dit is een #{HelloBean.message}"/>
     <form>
-    	<selectOneMenu options="HelloBean_names" value="HelloBean_name"/>
-        <commandLink action="HelloBean_sayHello" value="Say Hello!"/>
-        <dataTable var="test" value="HelloBean_bla_cool">
-        	<column>
-        		<header>
-        			Blabla
-        		</header>
-        		<inputText value="HelloBean_test"/>
-        	</column>
-        </dataTable>
+    	<inputText value="#{HelloBean.name}"/>
+    	<!--<selectOneMenu options="HelloBean.users" value="HelloBean.name"/>-->
+        <commandButton action="#{HelloBean.sayHello}" value="Say Hello!"/>
     </form>
 </view>

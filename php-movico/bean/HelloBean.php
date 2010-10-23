@@ -2,8 +2,7 @@
 class HelloBean extends RequestBean {
         
     private $name;
-    private $names = array("Peter"=>"Peter", "Sandra"=>"Sandra");
-    private $message;
+    private $message = "testje";
 
     public function sayHello() {
         $this->message = "Hello, ".$this->name."!";
@@ -26,8 +25,8 @@ class HelloBean extends RequestBean {
         return $this->message;
     }
     
-    public function getNames() {
-    	return $this->names;
+    public function getUsers() {
+    	return UserServiceUtil::getUsers();
     }
         
 }

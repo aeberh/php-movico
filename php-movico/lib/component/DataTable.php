@@ -12,27 +12,39 @@ class DataTable extends Component {
 		$this->var = $var;
 	}
 	
-	public function render() {
-		$result = "<table cellspacing=\"0\" cellpadding=\"0\">";
-		$result .= $this->renderHeader();
-		$result .= $this->renderRows();
-		return $result."</table>";
+	public function getVar() {
+		return $this->var;
 	}
 	
-	private function renderHeader() {
+	public function getValue() {
+		return $this->value;
+	}
+	
+	public function render($index=null) {
 		$cols = $this->getChildrenOfType("Column");
+		$result = "<table cellspacing=\"0\" cellpadding=\"0\">";
+		$result .= $this->renderHeader($cols);
+		$result .= $this->renderRows($cols);
+		return $result."</table>";
+	}
+
+	private function renderHeader($cols) {
 		$result = "<tr>";
 		foreach($cols as $col) {
-			$result .= $col->renderChildren("ColHeader");
+			$result .= $col->renderChildren(array("ColHeader"));
 		}
 		return $result."</tr>";
 	}
 	
-	private function renderRows() {
+	private function renderRows($cols) {
 		$rows = BeanUtil::getProperty($this->value);
 		$result = "";
 		foreach($rows as $row) {
-			$result .= "<tr></tr>";
+			$result .= "<tr>";
+			foreach($cols as $col) {
+				$result .= "<td>".$col->render($row)."</td>";
+			}
+			$result .= "</tr>";
 		}
 		return $result;
 	}

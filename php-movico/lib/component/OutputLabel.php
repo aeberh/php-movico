@@ -4,7 +4,7 @@ class OutputLabel extends Component {
 	private $value;
 	private $for;
 	
-	public function render() {
+	public function render($index=null) {
 		return "<label for=\"".$this->for."\">".$this->value."</label>";
 	}
 
@@ -17,7 +17,7 @@ class OutputLabel extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid");
+		return array("View", "Form", "PanelGrid", "Column", "ColHeader");
 	}
 	
 }
