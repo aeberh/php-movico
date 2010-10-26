@@ -18,7 +18,7 @@ abstract class Component {
 	
 	public abstract function render($index=null);
 	
-	protected function renderChildren($include=array(), $exclude=array(), $index=null) {
+	public function renderChildren($include=array(), $exclude=array(), $index=null) {
 		$result = "";
 		$includeAll = empty($include);
 		foreach($this->children as $child) {

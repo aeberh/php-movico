@@ -44,5 +44,10 @@ $parser = new XmlToComponentParser();
 $viewRoot = $parser->parse($doc);
 
 $viewRoot->setPage($view);
-echo $viewRoot->render();
+
+if(isset($_GET["jquery"])) {
+	echo json_encode(array("body"=>$viewRoot->renderBodyChildren()));
+} else {
+	echo $viewRoot->render();
+}
 ?>

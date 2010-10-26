@@ -17,6 +17,10 @@ class SettingsUtil {
 		return self::getConfig()->getParam("context_path")->getValue();
 	}
 	
+	public static function isAjaxEnabled() {
+		return self::getConfig()->getParam("ajax_enabled")->getValue();
+	}
+	
 	private static function getConfig() {
 		return new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
 	}
