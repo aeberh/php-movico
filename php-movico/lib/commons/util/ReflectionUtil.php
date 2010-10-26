@@ -11,6 +11,9 @@ class ReflectionUtil {
 			throw new InvalidTypeException("Should be called on object");
 		}
 		foreach($properties as $property) {
+			if(is_null($object)) {
+				throw new NullPointerException();
+			}
 			$className = get_class($object);
 			$getterMethod = new ReflectionMethod($className, StringUtil::getter($property));
 			$object = $getterMethod->invoke($object);
@@ -23,12 +26,16 @@ class ReflectionUtil {
 		$properties = explode(".", $nestedProperty);
 		$setterProperty = ArrayUtil::getLastValue($properties);
 		$getterProperties = ArrayUtil::getAllExceptLast($properties);
+		$objToSet = $object;
 		if(!ArrayUtil::isEmpty($getterProperties)) {
-			$getterProps = implode(".", ArrayUtil::getAllExceptLast($properties));
-			$object = self::callNestedGetter($object, $getterProperties);
+			$getterProps = implode(".", $getterProperties);
+			$objToSet = self::callNestedGetter($objToSet, $getterProps);
 		}
-		$setterMethod = new ReflectionMethod(get_class($object), StringUtil::setter($setterProperty));
-		$setterMethod->invokeArgs($object, array($value));
+		if(is_null($objToSet)) {
+			throw new NullPointerException();
+		}
+		$setterMethod = new ReflectionMethod(get_class($objToSet), StringUtil::setter($setterProperty));
+		$setterMethod->invoke($objToSet, $value);
 	}
 	
 	public static function callMethod($object, $methodName) {

@@ -6,7 +6,7 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$view = "view1";
+$view = View::DEFAULT_VIEW;
 
 // Validate
 //TODO
@@ -22,21 +22,27 @@ foreach($_POST as $key=>$val) {
 // Handle action
 if(isset($_POST["ACTION"])) {
 	list($beanClass, $methodName) = BeanUtil::getBeanAndProperties($_POST["ACTION"]);
-	$view = ReflectionUtil::callMethod(BeanLocator::get($beanClass), $methodName);
+	$beanInstance = BeanLocator::get($beanClass);
+	if(isset($_POST[DataTable::DATATABLE_ROW])) {
+		$rowIndex = $_POST[DataTable::DATATABLE_ROW];
+		ReflectionUtil::callNestedSetter($beanInstance, "selectedRowIndex", $rowIndex);
+	}
+	$view = ReflectionUtil::callMethod($beanInstance, $methodName);
+	if(is_null($view)) {
+		$view = $_POST["VIEW"];
+	}
 }
 
 $viewXml = "view/$view.xml";
+if(!file_exists($viewXml)) {
+	throw new ViewNotExistsException($view);
+}
 
 //Parse view
 $doc = new SimpleXMLElement($viewXml, null, true);
 $parser = new XmlToComponentParser();
-$result = $parser->parse($doc);
+$viewRoot = $parser->parse($doc);
 
-echo $result->render();
-
-function out($var) {
-	echo "<pre>";
-	print_r($var);
-	echo "</pre>";
-}
+$viewRoot->setPage($view);
+echo $viewRoot->render();
 ?>

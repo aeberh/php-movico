@@ -1,4 +1,16 @@
-body {
-	font-family: Arial;
-	font-size: 12px;
+body, td, button, th {
+	font-family: Verdana;
+	font-size: 13px;
+}
+
+.msg {
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+}
+
+.info {
+	color: green;
 }

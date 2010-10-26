@@ -3,6 +3,7 @@ class CommandButton extends Component {
 	
 	private $action;
 	private $value;
+	private $popup;
 	
 	public function setAction($action) {
 		$this->action = $action;
@@ -12,8 +13,23 @@ class CommandButton extends Component {
 		$this->value = $value;
 	}
 	
+	public function setPopup($popup) {
+		$this->popup = $popup;
+	}
+	
 	public function render($index=null) {
-		return "<button type=\"submit\" onclick=\"this.form.ACTION.value='".$this->action."';\">".$this->value."</button>";
+		if(!$this->rendered) {
+			return "";
+		}
+		$onclick = "this.form.ACTION.value='".$this->action."';";
+		if($this->hasAnchestorOfType("DataTable") && $this->hasAnchestorOfType("Form")) {
+			$onclick .= "this.form.".DataTable::DATATABLE_ROW.".value='$index';";
+		}
+		if(!empty($this->popup)) {
+			$msg = $this->getConvertedValue($this->popup, $index);
+			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
+		}
+		return "<button type=\"submit\" onclick=\"$onclick\">".$this->value."</button>";
 	}
 	
 	public function getValidParents() {

@@ -1,5 +1,5 @@
 <?
-abstract class RequestBean extends ManagedBean {
+abstract class RequestBean extends BackingBean {
 	
 	
 	

@@ -2,6 +2,9 @@
 class View extends Component {
 	
 	private $title;
+	private $page;
+	
+	const DEFAULT_VIEW = "index";
 	
 	public function setTitle($title) {
 		$this->title = $title;
@@ -17,6 +20,14 @@ class View extends Component {
 	
 	public function getValidParents() {
 		return array();
+	}
+	
+	public function setPage($page) {
+		$this->page = $page;
+	}
+	
+	public function getPage() {
+		return $this->page;
 	}
 	
 }

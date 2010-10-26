@@ -4,6 +4,8 @@ class DataTable extends Component {
 	private $value;
 	private $var;
 	
+	const DATATABLE_ROW = "DATATABLE_ROW";
+	
 	public function setValue($value) {
 		$this->value = $value;
 	}
@@ -22,10 +24,14 @@ class DataTable extends Component {
 	
 	public function render($index=null) {
 		$cols = $this->getChildrenOfType("Column");
-		$result = "<table cellspacing=\"0\" cellpadding=\"0\">";
+		$result = "<table class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
 		$result .= $this->renderHeader($cols);
 		$result .= $this->renderRows($cols);
-		return $result."</table>";
+		$result .= "</table>";
+		if($this->hasAnchestorOfType("Form")) {
+			$result .= "<input type=\"hidden\" name=\"".self::DATATABLE_ROW."\"/>";
+		}
+		return $result;
 	}
 
 	private function renderHeader($cols) {
@@ -36,13 +42,20 @@ class DataTable extends Component {
 		return $result."</tr>";
 	}
 	
+	public function getRows() {
+		list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($this->value);
+		$beanObj = BeanLocator::get($beanClass);
+		return ReflectionUtil::callNestedGetter($beanObj, $nestedProperty);
+	}
+	
 	private function renderRows($cols) {
-		$rows = BeanUtil::getProperty($this->value);
+		$rows = $this->getRows();
 		$result = "";
-		foreach($rows as $row) {
+		for($i=0; $i<count($rows); $i++) {
+			$row = $rows[$i];
 			$result .= "<tr>";
 			foreach($cols as $col) {
-				$result .= "<td>".$col->render($row)."</td>";
+				$result .= "<td>".$col->render($i)."</td>";
 			}
 			$result .= "</tr>";
 		}

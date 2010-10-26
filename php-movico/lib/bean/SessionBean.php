@@ -1,5 +1,5 @@
 <?
-abstract class SessionBean extends ManagedBean {
+abstract class SessionBean extends BackingBean {
 	
 	
 	

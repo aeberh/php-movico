@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "../lib/component/dtd/view.dtd">
+<view>
+	<css src="test.css"/>
+	<message/>
+    <form>
+    	<outputLabel for="firstName" value="Voornaam"/>
+    	<inputText value="#{UserBean.firstName}"/>
+    	<outputLabel for="lastName" value="Achternaam"/>
+    	<inputText value="#{UserBean.lastName}"/>
+    	<inputHidden value="#{UserBean.id}"/>
+    	<inputHidden value="#{UserBean.editMode}"/>
+    	<commandButton action="#{UserBean.save}" value="Opslaan"/>
+    	<commandButton action="#{UserBean.back}" value="Terug"/>
+    </form>
+</view>

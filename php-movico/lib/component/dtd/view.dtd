@@ -1,4 +1,5 @@
 <!ELEMENT view ANY>
+<!ATTLIST view title CDATA #IMPLIED>
 
 <!ELEMENT form ANY>
 
@@ -12,10 +13,18 @@
 <!ATTLIST commandButton
 	value CDATA #REQUIRED
 	action CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	popup CDATA #IMPLIED
 >
 
 <!ELEMENT inputSecret EMPTY>
-<!ATTLIST inputText 
+<!ATTLIST inputSecret 
+	value CDATA #REQUIRED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT inputHidden EMPTY>
+<!ATTLIST inputHidden 
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
 >
@@ -61,3 +70,5 @@
 <!ELEMENT column ANY>
 
 <!ELEMENT colHeader ANY>
+
+<!ELEMENT message EMPTY>

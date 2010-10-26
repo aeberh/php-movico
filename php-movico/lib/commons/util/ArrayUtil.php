@@ -70,7 +70,7 @@ class ArrayUtil {
 		if(count($array)<=1) {
 			return array();
 		}
-		$result = $array;
+		$result = array();
 		for($i=0; $i<count($array)-1; $i++) {
 			$result[] = $array[$i];
 		}

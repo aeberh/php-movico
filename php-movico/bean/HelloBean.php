@@ -2,15 +2,15 @@
 class HelloBean extends RequestBean {
         
     private $name;
-    private $message = "testje";
+    private $message;
 
     public function sayHello() {
         $this->message = "Hello, ".$this->name."!";
-        return "view1";
+        return "hello";
     }
     
     public function goBack() {
-    	return "view1";
+    	return "hello";
     }
         
     public function getName() {
@@ -25,9 +25,5 @@ class HelloBean extends RequestBean {
         return $this->message;
     }
     
-    public function getUsers() {
-    	return UserServiceUtil::getUsers();
-    }
-        
 }
 ?>

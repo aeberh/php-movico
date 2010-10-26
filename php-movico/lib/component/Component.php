@@ -5,6 +5,8 @@ abstract class Component {
 	protected $children = array();
 	protected $id;
 	
+	protected $rendered = true;
+	
 	public function addChild(Component $component) {
 		$parentClass = get_class($this);
 		if(!in_array($parentClass, $component->getValidParents())) {
@@ -38,12 +40,12 @@ abstract class Component {
 		return $this->parent;
 	}
 	
-	private function getFirstAncestorOfType($className) {
+	protected function getFirstAncestorOfType($className) {
 		$result = null;
 		$current = $this;
 		while(get_class($current) !== $className) {
 			$parent = $current->getParent();
-			if(get_class($parent) === "View") {
+			if(get_class($parent) === "View" && $className !== "View") {
 				throw new NoSuchAnchestorComponentException(get_class($this), $className);
 			}
 			$current = $parent;
@@ -51,26 +53,38 @@ abstract class Component {
 		return $current;
 	}
 	
-	protected function getConvertedValue($string, $rowObject=null) {
+	protected function hasAnchestorOfType($className) {
+		try {
+			$this->getFirstAncestorOfType($className);
+			return true;
+		} catch(NoSuchAnchestorComponentException $e) {
+			return false;
+		}
+	}
+	
+	protected function getConvertedValue($string, $rowIndex=null) {
 		preg_match_all("/#\{[a-zA-Z\.]+\}/", $string, $matches);
 		$replaces = array();
 		foreach($matches as $match) {
-			$replaces[$match[0]] = $this->getBeanValue($match[0], $rowObject);
+			if(isset($match[0])) {
+				$replaces[$match[0]] = $this->getBeanValue($match[0], $rowIndex);
+			}
 		}
 		return str_replace(array_keys($replaces), array_values($replaces), $string);
 	}
 	
-	private function getBeanValue($valueExpression, $rowObject=null) {
+	private function getBeanValue($valueExpression, $rowIndex=null) {
 		list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($valueExpression);
 		try {
 			$beanObj = BeanLocator::get($beanClass);
 		} catch(NoSuchBeanException $e) {
 			try {
 				$dataTable = $this->getFirstAncestorOfType("DataTable");
-				if($dataTable->getVar() !== $beanClass  || $rowObject === null) {
+				if($dataTable->getVar() !== $beanClass  || $rowIndex === null) {
 					throw NoSuchBeanException($beanClass);
 				}
-				$beanObj = $rowObject;
+				$rows = $dataTable->getRows();
+				$beanObj = $rows[$rowIndex];
 			} catch(NoSuchAnchestorComponentException $e) {
 				throw new NoSuchBeanException($beanClass);
 			}
@@ -96,6 +110,10 @@ abstract class Component {
 
 	public function setId($id) {
 		$this->id = $id;
+	}
+	
+	public function setRendered($rendered) {
+		$this->rendered = $rendered;
 	}
 	
 }

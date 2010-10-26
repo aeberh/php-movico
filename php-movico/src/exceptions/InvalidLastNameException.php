@@ -1,0 +1,5 @@
+<?
+class InvalidLastNameException extends Exception {
+	
+}
+?>
