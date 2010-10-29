@@ -38,10 +38,10 @@ class ServiceBuilder {
 			foreach($entityEl->getElementsByTagName("column") as $property) {
 				$propertyName = $property->getAttribute("name");
 				$type = $property->getAttribute("type");
-				$length = $property->getAttribute("size");
+				$size = $property->getAttribute("size");
 				$primary = $property->getAttribute("primary")=="true";
 				$autoIncrement = $property->getAttribute("auto-increment")=="true";
-				$entity->addProperty(new Property($propertyName, $type, $length), $primary, $autoIncrement);
+				$entity->addProperty(new Property($propertyName, $type, $size), $primary, $autoIncrement);
 			}
 
 			// Insert finders

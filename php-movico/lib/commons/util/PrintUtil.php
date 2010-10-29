@@ -6,7 +6,7 @@ class PrintUtil {
 	}
 	
 	public static function logln($text) {
-		echo "$text<br/>";
+		echo "$text\n";
 	}
 	
 	public static function out($var) {
