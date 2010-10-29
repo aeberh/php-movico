@@ -8,12 +8,13 @@ class ActionController {
 		$action = RequestUtil::get("ACTION");
 		if(!is_null($action)) {
 			$rowIndex = RequestUtil::get(DataTable::DATATABLE_ROW);
-			$view = $this->executeAction($action, $rowIndex);
+			$postView = RequestUtil::get("VIEW");
+			$view = $this->executeAction($action, $rowIndex, $postView);
 		}
 		return $view;
 	}
 	
-	private function executeAction($action, $rowIndex) {
+	private function executeAction($action, $rowIndex, $postView) {
 		list($beanClass, $methodName) = BeanUtil::getBeanAndProperties($action);
 		$beanInstance = BeanLocator::get($beanClass);
 		if(!is_null($rowIndex)) {
@@ -21,7 +22,7 @@ class ActionController {
 		}
 		$view = ReflectionUtil::callMethod($beanInstance, $methodName);
 		if(is_null($view)) {
-			$view = $post["VIEW"];
+			$view = $postView;
 		}
 		return $view;
 	}

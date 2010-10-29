@@ -4,10 +4,6 @@
 	<css src="test.css"/>
 	<message/>
 	<form>
-		<selectOneMenu options="#{SelectUserBean.userList}" value="#{SelectUserBean.userId}"/>
-		<commandButton action="#{SelectUserBean.edit}" value="Bekijken"/>
-	</form>
-	<form>
 		<dataTable value="#{UserBean.users}" var="user" rendered="#{UserBean.hasUsers}">
 			<column>
 				<colHeader>

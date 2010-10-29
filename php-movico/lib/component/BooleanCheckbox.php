@@ -14,7 +14,6 @@ class BooleanCheckbox extends Component {
 	
 	public function doRender($rowIndex=null) {
 		$name = $this->value;
-		PrintUtil::out($name);
 		$value = $this->getConvertedValue($name, $rowIndex);
 		$checked = $value ? " checked=\"checked\"" : "";
 		$defValue = $value ? "1" : "0";
