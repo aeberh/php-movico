@@ -75,6 +75,8 @@ class ServiceBuilder {
 				}
 			}
 			
+			$entity->validate();
+			
 			// Add entity
 			$this->entities[$entity->getName()] = $entity;
 		}
