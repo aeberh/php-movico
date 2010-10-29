@@ -24,13 +24,13 @@ class UserPersistence extends Persistence {
 	}
 
 	public function update(User $object) {
-		$q = "UPDATE ".self::TABLE." SET `firstName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', `lastName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."' WHERE id='{$object->getId()}'";
+		$q = "UPDATE ".self::TABLE." SET `firstName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', `lastName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', `createDate`='".Singleton::create("DateConverter")->fromDOMtoDB($object->getCreateDate())."', `default`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isDefault())."' WHERE id='{$object->getId()}'";
 		$pk = $object->getId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `createDate`, `default`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("DateConverter")->fromDOMtoDB($object->getCreateDate())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isDefault())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `createDate`, `default`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("DateConverter")->fromDOMtoDB($object->getCreateDate())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isDefault())."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -55,6 +55,8 @@ class UserPersistence extends Persistence {
 		$result->setId(Singleton::create("NullConverter")->fromDBtoDOM($row["id"]));
 		$result->setFirstName(Singleton::create("NullConverter")->fromDBtoDOM($row["firstName"]));
 		$result->setLastName(Singleton::create("NullConverter")->fromDBtoDOM($row["lastName"]));
+		$result->setCreateDate(Singleton::create("DateConverter")->fromDBtoDOM($row["createDate"]));
+		$result->setDefault(Singleton::create("BooleanConverter")->fromDBtoDOM($row["default"]));
 		return $result;
 	}
 

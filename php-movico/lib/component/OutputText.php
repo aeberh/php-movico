@@ -7,7 +7,7 @@ class OutputText extends Component {
 		$this->value = $value;
 	}
 
-	public function render($row=null) {
+	public function doRender($row=null) {
 		return "<span>".$this->getConvertedValue($this->value, $row)."</span>";
 	}
 	

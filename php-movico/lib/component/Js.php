@@ -7,7 +7,7 @@ class Js extends Component {
 		$this->src = $src;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		return "<script language=\"Javascript\" type=\"text/javascript\" src=\"".$this->src."\"></script>";
 	}
 	

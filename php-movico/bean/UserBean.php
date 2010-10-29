@@ -5,6 +5,7 @@ class UserBean extends RequestBean {
 	
 	private $editMode;
 	
+	private $default;
 	private $firstName;
 	private $lastName;
 	private $id;
@@ -20,21 +21,31 @@ class UserBean extends RequestBean {
     	return UserServiceUtil::getUsers();
     }
     
+    public function getHasUsers() {
+    	$users = $this->getUsers();
+    	return !empty($users);
+    }
+
     public function edit() {
     	$selectedUser = $this->getSelectedUser();
     	$this->id = $selectedUser->getId();
     	$this->firstName = $selectedUser->getFirstName();
     	$this->lastName = $selectedUser->getLastName();
+    	$this->default = $selectedUser->isDefault();
     	$this->editMode = true;
     	return "edit_user";
+    }
+    
+    public function renderTable() {
+    	return false;
     }
     
     public function save() {
     	try {
 	    	if($this->editMode) {
-		    	$user = UserServiceUtil::update($this->id, $this->firstName, $this->lastName);
+		    	$user = UserServiceUtil::update($this->id, $this->firstName, $this->lastName, $this->default);
 	    	} else {
-	    		$user = UserServiceUtil::create($this->firstName, $this->lastName);
+	    		$user = UserServiceUtil::create($this->firstName, $this->lastName, $this->default);
 	    	}
 	    	$action = $this->editMode ? "aangepast":"toegevoegd";
     		MessageUtil::info("Gebruiker werd succesvol $action!");
@@ -98,6 +109,14 @@ class UserBean extends RequestBean {
     
     public function getEditMode() {
     	return $this->editMode;
+    }
+    
+    public function isDefault() {
+    	return $this->default;
+    }
+    
+    public function setDefault($default) {
+    	$this->default = $default;
     }
         
 }

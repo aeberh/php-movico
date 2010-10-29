@@ -4,7 +4,17 @@
 	<css src="test.css"/>
 	<message/>
 	<form>
-		<dataTable value="#{UserBean.users}" var="user">
+		<selectOneMenu options="#{SelectUserBean.userList}" value="#{SelectUserBean.userId}"/>
+		<commandButton action="#{SelectUserBean.edit}" value="Bekijken"/>
+	</form>
+	<form>
+		<dataTable value="#{UserBean.users}" var="user" rendered="#{UserBean.hasUsers}">
+			<column>
+				<colHeader>
+					<outputText value="Creatie"/>
+				</colHeader>
+				<outputText value="#{user.createDate}"/>
+			</column>
 			<column>
 				<colHeader>
 					<outputText value="Naam"/>
@@ -13,12 +23,19 @@
 			</column>
 			<column>
 				<colHeader>
+					<outputText value="Default?"/>
+				</colHeader>
+				<outputText value="#{user.default}"/>
+			</column>
+			<column>
+				<colHeader>
 					<outputText value="Actions"/>
 				</colHeader>
 				<commandButton action="#{UserBean.edit}" value="Aanpassen"/>
-				<commandButton action="#{UserBean.delete}" value="Verwijderen" popup="Ben je zeker?"/>
+				<commandButton action="#{UserBean.delete}" value="Verwijderen" popup="Ben je zeker dat je #{user.firstName} wil verwijderen?"/>
 			</column>
 		</dataTable>
 		<commandButton action="#{UserBean.create}" value="Nieuw"/>
+		<ajaxLoading/>
 	</form>
 </view>

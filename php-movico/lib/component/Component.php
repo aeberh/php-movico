@@ -7,6 +7,10 @@ abstract class Component {
 	
 	protected $rendered = true;
 	
+	public function __construct() {
+		$this->id = time();
+	}
+	
 	public function addChild(Component $component) {
 		$parentClass = get_class($this);
 		if(!in_array($parentClass, $component->getValidParents())) {
@@ -16,7 +20,15 @@ abstract class Component {
 		$component->setParent($this);
 	}
 	
-	public abstract function render($index=null);
+	public function render($index=null) {
+		$shouldBeRendered = $this->getConvertedValue($this->rendered, $index);
+		if(!$shouldBeRendered) {
+			return "";
+		}
+		return $this->doRender($index);
+	}
+	
+	public abstract function doRender($index=null);
 	
 	public function renderChildren($include=array(), $exclude=array(), $index=null) {
 		$result = "";
@@ -64,6 +76,9 @@ abstract class Component {
 	
 	protected function getConvertedValue($string, $rowIndex=null) {
 		preg_match_all("/#\{[a-zA-Z\.]+\}/", $string, $matches);
+		if(count($matches)==1 && isset($matches[0][0]) && $matches[0][0]==$string) {
+			return $this->getBeanValue($matches[0][0], $rowIndex);
+		}
 		$replaces = array();
 		foreach($matches as $match) {
 			if(isset($match[0])) {
@@ -110,6 +125,10 @@ abstract class Component {
 
 	public function setId($id) {
 		$this->id = $id;
+	}
+	
+	public function getId() {
+		return $this->id;
 	}
 	
 	public function setRendered($rendered) {

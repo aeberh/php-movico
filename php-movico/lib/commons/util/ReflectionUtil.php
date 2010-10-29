@@ -15,7 +15,15 @@ class ReflectionUtil {
 				throw new NullPointerException();
 			}
 			$className = get_class($object);
-			$getterMethod = new ReflectionMethod($className, StringUtil::getter($property));
+			try {
+				$getterMethod = new ReflectionMethod($className, StringUtil::getter($property));
+			} catch(ReflectionException $e) {
+				try {
+					$getterMethod = new ReflectionMethod($className, StringUtil::boolGetter($property));
+				} catch(ReflectionException $e) {
+					throw new MethodNotExistsException($className, StringUtil::getter($property));
+				}
+			}
 			$object = $getterMethod->invoke($object);
 		}
 		return $object;

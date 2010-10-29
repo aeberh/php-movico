@@ -4,13 +4,17 @@
 	<css src="test.css"/>
 	<message/>
     <form>
-    	<outputLabel for="firstName" value="Voornaam"/>
-    	<inputText value="#{UserBean.firstName}"/>
-    	<outputLabel for="lastName" value="Achternaam"/>
-    	<inputText value="#{UserBean.lastName}"/>
-    	<inputHidden value="#{UserBean.id}"/>
-    	<inputHidden value="#{UserBean.editMode}"/>
-    	<commandButton action="#{UserBean.save}" value="Opslaan"/>
-    	<commandButton action="#{UserBean.back}" value="Terug"/>
+    	<panelGrid columns="2">
+	    	<outputLabel for="firstName" value="Voornaam"/>
+	    	<inputText id="firstName" value="#{UserBean.firstName}"/>
+	    	<outputLabel for="lastName" value="Achternaam"/>
+	    	<inputText id="lastName" value="#{UserBean.lastName}"/>
+	    	<outputText value=""/>
+	    	<booleanCheckbox value="#{UserBean.default}" label="Is default user?"/>
+	    	<inputHidden value="#{UserBean.id}"/>
+	    	<inputHidden value="#{UserBean.editMode}"/>
+	    	<commandButton action="#{UserBean.save}" value="Opslaan"/>
+	    	<commandButton action="#{UserBean.back}" value="Terug"/>
+    	</panelGrid>
     </form>
 </view>

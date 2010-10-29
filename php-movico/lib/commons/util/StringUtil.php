@@ -79,6 +79,11 @@ class StringUtil {
 		return "get".ucfirst($key);
 	}
 	
+	public static function boolGetter($key) {
+		self::checkTypes($key);
+		return "is".ucfirst($key);
+	}
+	
 	public static function setter($key) {
 		self::checkTypes($key);
 		return "set".ucfirst($key);

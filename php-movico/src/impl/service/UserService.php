@@ -1,20 +1,22 @@
 <?php
 class UserService extends UserServiceBase {
 
-	public function create($firstName, $lastName) {
+	public function create($firstName, $lastName, $default) {
 		$user = $this->createUser();
-		return $this->doUpdate($user, $firstName, $lastName);
+		$user->setCreateDate(Date::createNow());
+		return $this->doUpdate($user, $firstName, $lastName, $default);
 	}
 	
-	public function update($id, $firstName, $lastName) {
+	public function update($id, $firstName, $lastName, $default) {
 		$user = $this->getUser($id);
-		return $this->doUpdate($user, $firstName, $lastName);
+		return $this->doUpdate($user, $firstName, $lastName, $default);
 	}
 	
-	private function doUpdate(User $user, $firstName, $lastName) {
+	private function doUpdate(User $user, $firstName, $lastName, $default) {
 		$this->validate($firstName, $lastName);
 		$user->setFirstName($firstName);
 		$user->setLastName($lastName);
+		$user->setDefault($default);
 		return $this->updateUser($user);
 	}
 	

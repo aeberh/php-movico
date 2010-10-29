@@ -17,7 +17,7 @@ class CommandButton extends Component {
 		$this->popup = $popup;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		if(!$this->rendered) {
 			return "";
 		}

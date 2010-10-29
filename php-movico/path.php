@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 $localPath = "/var/www/phpfaces";
 $root = @file_exists($localPath) ? $localPath : dirname(__FILE__);
 

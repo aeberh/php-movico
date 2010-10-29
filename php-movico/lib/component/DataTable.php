@@ -22,7 +22,7 @@ class DataTable extends Component {
 		return $this->value;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");
 		$result = "<table class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
 		$result .= $this->renderHeader($cols);

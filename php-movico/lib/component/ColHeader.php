@@ -1,7 +1,7 @@
 <?
 class ColHeader extends Component {
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		return "<th>".$this->renderChildren()."</th>";
 	}
 	

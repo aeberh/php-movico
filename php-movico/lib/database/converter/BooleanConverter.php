@@ -9,7 +9,7 @@ class BooleanConverter implements DatabaseFieldConverter {
 	}
 	
 	function fromDOMtoDB($domValue) {
-		if($domValue === true) {
+		if($domValue == true) {
 			return 1;
 		}
 		return 0;

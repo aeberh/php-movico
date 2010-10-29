@@ -31,5 +31,25 @@ abstract class UserModel extends Model {
 		$this->lastName = $lastName;
 	}
 
+	private $createDate;
+
+	public function getCreateDate() {
+		return $this->createDate;
+	}
+
+	public function setCreateDate($createDate) {
+		$this->createDate = $createDate;
+	}
+
+	private $default;
+
+	public function isDefault() {
+		return $this->default;
+	}
+
+	public function setDefault($default) {
+		$this->default = $default;
+	}
+
 }
 ?>

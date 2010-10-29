@@ -20,5 +20,9 @@ class Date {
 		return date($format, $this->time);
 	}
 	
+	public function __toString() {
+		return $this->format();
+	}
+	
 }
 ?>

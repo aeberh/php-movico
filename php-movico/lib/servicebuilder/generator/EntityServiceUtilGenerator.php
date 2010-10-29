@@ -44,6 +44,9 @@ class EntityServiceUtilGenerator {
 		$result = "";
 		$methods = ReflectionUtil::getSubclassMethods($entity->getName()."Service");
 		foreach($methods as $method) {
+			if(!$method->isPublic()) {
+				continue;
+			}
 			$name = $method->name;
 			$paramNames = array();
 			foreach($method->getParameters() as $param) {

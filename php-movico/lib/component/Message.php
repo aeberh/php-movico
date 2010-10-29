@@ -1,7 +1,7 @@
 <?
 class Message extends Component {
 	
-	public function render($rowIndex=null) {
+	public function doRender($rowIndex=null) {
 		if(!MessageUtil::hasMessage()) {
 			return "";
 		}

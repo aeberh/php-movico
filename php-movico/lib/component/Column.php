@@ -5,7 +5,7 @@ class Column extends Component {
 		return array("DataTable");
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		return $this->renderChildren(array(), array("ColHeader"), $index);
 	}
 	

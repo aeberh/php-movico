@@ -5,5 +5,7 @@
 		<column name="id" type="int" primary="true" auto-increment="true"/>
 		<column name="firstName" type="String" size="25"/>
 		<column name="lastName" type="String" size="25"/>
+		<column name="createDate" type="Date"/>
+		<column name="default" type="boolean"/>
 	</entity>
 </service-builder>

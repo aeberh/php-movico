@@ -10,21 +10,25 @@ class View extends Component {
 		$this->title = $title;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		$ajax = SettingsUtil::isAjaxEnabled();
-		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n";
+		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
+			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>";
 		if($ajax) {
 			$result .= <<<TST
-		<script type="text/javascript" src="lib/jquery/jquery-1.4.3.min.js"></script>
+		<script type="text/javascript" src="lib/javascript/jquery-1.4.3.min.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				registerForms();
 				function registerForms() {
 					$("form").submit(function() {
+						$("button").attr("disabled", "disabled");
+						$("img.AjaxLoading").show();
 						$.post("index.php?jquery=1", $(this).serialize(),
 						function(data) {
 							$("body").html(data.body);
 							registerForms();
+							$("img.AjaxLoading").hide();
 						}, "json");
 						return false;
 					});

@@ -7,7 +7,7 @@ abstract class AbstractInput extends Component {
 		$this->value = $value;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		$name = $this->value;
 		$val = $this->getConvertedValue($this->value);
 		$type = $this->getType();

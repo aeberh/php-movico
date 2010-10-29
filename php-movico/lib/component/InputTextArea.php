@@ -7,7 +7,7 @@ class InputTextArea extends Component {
 		$this->value = $value;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		$name = $this->value;
 		$val = BeanUtil::getProperty($name);
 		return "<textarea id=\"".$this->id."\" name=\"$name\">$val</textarea>";

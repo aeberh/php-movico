@@ -9,7 +9,7 @@ class Css extends Component {
 		$this->src = $src;
 	}
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".self::PATH.$this->src."\">";
 	}
 	

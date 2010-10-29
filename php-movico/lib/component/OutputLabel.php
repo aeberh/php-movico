@@ -4,7 +4,7 @@ class OutputLabel extends Component {
 	private $value;
 	private $for;
 	
-	public function render($index=null) {
+	public function doRender($index=null) {
 		return "<label for=\"".$this->for."\">".$this->value."</label>";
 	}
 

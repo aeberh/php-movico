@@ -2,6 +2,7 @@
 <!ATTLIST view title CDATA #IMPLIED>
 
 <!ELEMENT form ANY>
+<!ATTLIST form id CDATA #IMPLIED>
 
 <!ELEMENT css EMPTY>
 <!ATTLIST css src CDATA #REQUIRED>
@@ -15,6 +16,12 @@
 	action CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
+>
+
+<!ELEMENT booleanCheckbox EMPTY>
+<!ATTLIST booleanCheckbox
+	value CDATA #REQUIRED
+	label CDATA #IMPLIED
 >
 
 <!ELEMENT inputSecret EMPTY>
@@ -65,6 +72,7 @@
 <!ATTLIST dataTable
 	value CDATA #REQUIRED
 	var CDATA #REQUIRED
+	rendered CDATA #IMPLIED
 >
 
 <!ELEMENT column ANY>
@@ -72,3 +80,8 @@
 <!ELEMENT colHeader ANY>
 
 <!ELEMENT message EMPTY>
+
+<!ELEMENT ajaxLoading EMPTY>
+<!ATTLIST ajaxLoading
+	src CDATA #IMPLIED
+>

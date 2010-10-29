@@ -4,15 +4,15 @@ class SelectOneMenu extends Component {
 	private $value;
 	private $options;
 	
-	public function render($index=null) {
+	public function doRender($rowIndex=null) {
 		$name = $this->value;
-		$val = BeanUtil::getProperty($name);
+		$val = $this->getConvertedValue($name, $rowIndex);
 		$result = "<select";
 		if(!empty($this->id)) {
 			$result .= " id=\"".$this->id."\"";
 		}
 		$result .= " name=\"$name\">";
-		$optionList = BeanUtil::getProperty($this->options);
+		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {
 			$sel = ($val === $oValue) ? " selected=\"selected\"" : "";
 			$result .= "<option$sel value=\"$oValue\">$oLabel</option>";
