@@ -12,7 +12,7 @@ class AjaxLoading extends Component {
 		$src = isset($this->src) ? $this->src : "loading.gif";
 		$form = $this->getFirstAncestorOfType("Form");
 		$id = $form->getId()."Loading";
-		return "<img src=\"view/img/$src\" class=\"".self::CLASS_NAME."\" style=\"display:none\"/>";
+		return "<img src=\"www/img/$src\" class=\"".self::CLASS_NAME."\" style=\"display:none\"/>";
 	}
 	
 	public function getValidParents() {

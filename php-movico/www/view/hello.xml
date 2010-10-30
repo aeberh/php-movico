@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE view SYSTEM "../lib/component/dtd/view.dtd">
+<!DOCTYPE view SYSTEM "../../lib/component/dtd/view.dtd">
 <view>
 	<css src="test.css"/>
     <outputText value="Dit is een #{HelloBean.message}"/>

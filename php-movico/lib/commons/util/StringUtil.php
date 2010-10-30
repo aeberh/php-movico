@@ -64,6 +64,15 @@ class StringUtil {
 		self::checkTypes($string, $old, $new);
 		return str_replace($old, $new, $string);
 	}
+	
+	public static function replaceAssoc($string, $replaceMap) {
+		self::checkTypes($string);
+		$result = $string;
+		foreach($replaceMap as $key=>$value) {
+			$result = self::replaceWith($result, $key, $value);
+		}
+		return $result;
+	}
 
 	public static function untill($input, $needle) {
 		self::checkTypes($input, $needle);

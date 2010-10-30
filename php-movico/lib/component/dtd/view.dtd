@@ -1,3 +1,14 @@
+<!ELEMENT composition (define*)>
+<!ATTLIST composition template CDATA #REQUIRED>
+
+<!ELEMENT define ANY>
+<!ATTLIST define name CDATA #REQUIRED>
+
+<!ELEMENT template ANY>
+
+<!ELEMENT insert EMPTY>
+<!ATTLIST insert name CDATA #REQUIRED> 
+
 <!ELEMENT view ANY>
 <!ATTLIST view title CDATA #IMPLIED>
 

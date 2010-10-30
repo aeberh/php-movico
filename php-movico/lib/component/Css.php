@@ -1,7 +1,7 @@
 <?
 class Css extends Component {
 	
-	const PATH = "view/css/";
+	const PATH = "www/css/";
 	
 	private $src;
 	

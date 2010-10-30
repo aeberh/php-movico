@@ -1,4 +1,4 @@
-<?php
+<?
 class ViewNotExistsException extends Exception {
 	
 	public function __construct($view) {
@@ -6,3 +6,4 @@ class ViewNotExistsException extends Exception {
 	}
 	
 }
+?>

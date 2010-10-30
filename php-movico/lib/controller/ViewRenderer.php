@@ -7,11 +7,14 @@ class ViewRenderer {
 	}
 	
 	private function parseView($view) {
-		$viewXml = "view/$view.xml";
+		$viewXml = "www/view/$view.xml";
 		if(!file_exists($viewXml)) {
 			throw new ViewNotExistsException($view);
 		}
 		$node = new SimpleXMLElement($viewXml, null, true);
+		if($node->getName() == "composition") {
+			$node = $this->parseTemplate($node);
+		}
 		$viewRoot = $this->parseNode($node);
 		$viewRoot->setPage($view);
 		return $viewRoot;
@@ -43,6 +46,79 @@ class ViewRenderer {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
 		return $viewComp->render();
+	}
+	
+	private function parseTemplate(SimpleXMLElement $composition) {
+		$template = $composition->attributes()->template;
+		$tplXml = "www/template/$template.xml";
+		if(!file_exists($tplXml)) {
+			throw new TemplateNotExistsException($template);
+		}
+		$replaces = array();
+//		foreach($composition->children() as $define) {
+//			$key = $define->attributes()->name;
+//			$replaces[(string)$key] = $this->getChildrenAsXml($define);
+//		}
+////		PrintUtil::out($replaces);
+//		
+//		$tplNode = new SimpleXMLElement($tplXml, null, true);
+//		$viewNode = new SimpleXMLElement("<view></view>");
+//		
+//		$this->doParse($tplNode, $viewNode, $replaces);
+//		return $viewNode;
+//		
+//		$inserts = count($tplNode->xpath("//insert"));
+//		
+//		$result = $tplNode->asXml();
+//		for($i=0; $i<$inserts; $i++) {
+//			$result = StringUtil::replaceAssoc($result, $replaces);
+//		}
+////		PrintUtil::out($result);
+//		
+//		$viewNode = new SimpleXMLElement($result);
+//		$viewNode->template = "view";
+//		return $viewNode;
+		foreach($composition->children() as $define) {
+			$key = "<insert name=\"{$define->attributes()->name}\"/>";
+			$replaces[$key] = $this->getChildrenAsXml($define);
+		}
+		
+		$tplNode = new SimpleXMLElement($tplXml, null, true);
+		$result = $tplNode->asXml();
+		$result = StringUtil::replaceWith($result, "<template>", "<view>");
+		$result = StringUtil::replaceWith($result, "</template>", "</view>");
+		
+		$inserts = count($tplNode->xpath("//insert"));
+		for($i=0; $i<$inserts; $i++) {
+			$result = StringUtil::replaceAssoc($result, $replaces);
+		}
+		return new SimpleXMLElement($result);
+	}
+	
+//	private function doParse(SimpleXMLElement $tplNode, SimpleXMLElement &$viewNode, $replaces, SimpleXMLElement &$result) {
+//		if($tplNode->getName() == "insert") {
+//			$contentXml = $replaces[(string)$tplNode->attributes()->name];
+//			$viewChild = new SimpleXMLElement($contentXml);
+//			$childNode = $result->addChild($viewChild->getName(), $contentXml);
+//			PrintUtil::out($viewNode);
+//		} else {
+////			$childNode = $viewNode;
+////			if($tplNode->getName() != "template") {
+////				$childNode = $viewNode->addChild($tplNode->getName());
+////			}
+//			$childNode = $result->addChild($tplNode->getName());
+//			foreach($tplNode->children() as $tplChild) {
+//				$this->doParse($tplChild, $childNode, $replaces, $result);
+//			}
+//		}
+//	}
+	
+	private function getChildrenAsXml(SimpleXMLElement $parent) {
+		$result = "";
+		foreach($parent->children() as $child) {
+			$result .= $child->asXML();
+		}
+		return $result;
 	}
 	
 }
