@@ -40,10 +40,9 @@ class ViewRenderer {
 	
 	private function renderComponent($viewComp) {
 		if(isset($_GET["jquery"])) {
-			return json_encode(array("body"=>$viewComp->renderBodyChildren()));
-		} else {
-			return $viewComp->render();
+			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
+		return $viewComp->render();
 	}
 	
 }

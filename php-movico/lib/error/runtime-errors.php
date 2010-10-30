@@ -1,11 +1,17 @@
 <?
-set_exception_handler("handleException");
 function handleException($e) {
-	require_once("lib/error/exception.php");
+	$result = ExceptionPrinter::printException($e);
+	if(isset($_GET["jquery"])) {
+		$result = StringUtil::getJson("body", $result);
+	}
+	print $result;
 }
 
-set_error_handler("handleError", E_ALL);
 function handleError($type, $msg, $file, $line, $context) {
-	require_once("lib/error/error.php");
+	$result = ErrorPrinter::printError($type, $msg, $file, $line, $context);
+	if(isset($_GET["jquery"])) {
+		$result = StringUtil::getJson("body", $result);
+	}
+	print $result;
 }
 ?>

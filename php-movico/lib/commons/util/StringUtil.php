@@ -94,5 +94,10 @@ class StringUtil {
 		return strtolower($string[0]).substr($string, 1);
 	}
 	
+	public static function getJson($key, $value) {
+		self::checkTypes($key, $value);
+		return json_encode(array($key=>$value));
+	}
+	
 }
 ?>
