@@ -79,6 +79,8 @@
 	columns CDATA #REQUIRED
 >
 
+<!ELEMENT panelGroup ANY>
+
 <!ELEMENT dataTable (column*)>
 <!ATTLIST dataTable
 	value CDATA #REQUIRED
