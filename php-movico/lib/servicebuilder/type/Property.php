@@ -1,11 +1,13 @@
 <?php
 class Property {
 
-	private $name;
+	protected $name;
 	private $type;
 	private $size;
+	
+	private $entity;
 
-	private static $allowedTypes = array("String", "int", "boolean", "Date");
+	private static $allowedTypes = array("String", "int", "boolean", "Date", "Collection");
 
 	public function __construct($name, $type, $size) {
 		$this->name = $name;
@@ -24,6 +26,14 @@ class Property {
 	
 	public function getSize() {
 		return $this->size;
+	}
+	
+	public function setEntity(Entity $entity) {
+		$this->entity = $entity;
+	}
+	
+	public function getEntity() {
+		return $this->entity;
 	}
 
 	public function getDbType() {

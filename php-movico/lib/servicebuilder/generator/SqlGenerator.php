@@ -15,9 +15,12 @@ class SqlGenerator {
 		$table = $entity->getTable();
 		$primKey = $entity->getPrimaryKey();
 		$sql = "CREATE TABLE `$table` (\n";
-		$sql .= "\t`{$primKey->getName()}` {$primKey->getDbType()} unsigned NOT NULL AUTO_INCREMENT,\n";
+		$sql .= "\t`{$primKey->getName()}` {$primKey->getDbType()} NOT NULL AUTO_INCREMENT,\n";
 		foreach($entity->getProperties() as $property) {
 			$sql .= "\t`{$property->getName()}` {$property->getDbType()} NOT NULL,\n";
+		}
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity->getName()) as $property) {
+			$sql .= "\t`{$property->getMappingKey()}` {$property->getEntity()->getPrimaryKey()->getDbType()} NOT NULL,\n";
 		}
 		$sql .= implode(",\n", $this->generateIndexes($entity));
 		$sql .= "\n);";

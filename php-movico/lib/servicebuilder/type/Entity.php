@@ -7,7 +7,7 @@ class Entity {
 	private $primaryKey;
 	private $finders;
 	private $orderCols;
-	private $autoIncrement;
+	private $oneToManyProperties;
 
 	public function __construct($name, $table=null) {
 		$this->name = $name;
@@ -15,21 +15,28 @@ class Entity {
 		$this->properties = array();
 		$this->finders = array();
 		$this->orderCols = array();
+		$this->oneToManyProperties = array();
 	}
 	
-	public function addProperty(Property $property, $primary, $autoIncrement) {
-		if($primary) {
-			if(!empty($this->primaryKey)) {
-				throw new ServiceBuilderException("Only one primary key allowed");
-			}
-			if(!empty($this->properties[$property->getName()])) {
-				throw new ServiceBuilderException("Duplicate property name '{$property->getName()}' for entity '$this->name'");
-			}
-			$this->primaryKey = $property;
-			$this->autoIncrement = $autoIncrement;
-		} else {
-			$this->properties[$property->getName()] = $property;
+	public function addProperty(Property $property) {
+		$property->setEntity($this);
+		$this->properties[$property->getName()] = $property;
+	}
+	
+	public function addPKProperty(PrimaryKeyProperty $property) {
+		if(!empty($this->primaryKey)) {
+			throw new ServiceBuilderException("Only one primary key allowed");
 		}
+		if(!empty($this->properties[$property->getName()])) {
+			throw new ServiceBuilderException("Duplicate property name '{$property->getName()}' for entity '$this->name'");
+		}
+		$property->setEntity($this);
+		$this->primaryKey = $property;
+	}
+	
+	public function addOneManyProperty(OneToManyProperty $property) {
+		$property->setEntity($this);
+		$this->oneToManyProperties[] = $property;
 	}
 
 	public function addFinder(Finder $finder) {
@@ -68,6 +75,10 @@ class Entity {
 
 	public function getProperties() {
 		return $this->properties;
+	}
+	
+	public function getOneToManyProperties() {
+		return $this->oneToManyProperties;
 	}
 	
 	public function getOrderByClause() {

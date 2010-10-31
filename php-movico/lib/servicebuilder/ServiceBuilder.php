@@ -21,6 +21,19 @@ class ServiceBuilder {
 			Singleton::create("ExceptionGenerator")->generate($entity);
 		}
 	}
+	
+	public function getOneToManyMappedProperties($entityName) {
+		$result = array();
+		foreach($this->entities as $entity) {
+			$oneToManyProps = $entity->getOneToManyProperties();
+			foreach($oneToManyProps as $property) {
+				if($property->getEntityName() == $entityName) {
+					$result[] = $property;
+				}
+			}
+		}
+		return $result;
+	}
 
 	private function importEntities() {
 		$dom = new DOMDocument();
@@ -39,9 +52,17 @@ class ServiceBuilder {
 				$propertyName = $property->getAttribute("name");
 				$type = $property->getAttribute("type");
 				$size = $property->getAttribute("size");
+				$entityName = $property->getAttribute("entity");
+				$mappingKey = $property->getAttribute("mapping-key");
 				$primary = $property->getAttribute("primary")=="true";
 				$autoIncrement = $property->getAttribute("auto-increment")=="true";
-				$entity->addProperty(new Property($propertyName, $type, $size), $primary, $autoIncrement);
+				if($primary) {
+					$entity->addPKProperty(new PrimaryKeyProperty($propertyName, $type, $size, $autoIncrement));
+				} elseif($type == "Collection") {
+					$entity->addOneManyProperty(new OneToManyProperty($propertyName, $entityName, $mappingKey));
+				} else {
+					$entity->addProperty(new Property($propertyName, $type, $size));
+				}
 			}
 
 			// Insert finders

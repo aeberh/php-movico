@@ -8,4 +8,13 @@
 		<column name="createDate" type="Date"/>
 		<column name="default" type="boolean"/>
 	</entity>
+	
+	<!-- 1 to N relationship -->
+	<entity name="Team">
+		<column name="teamId" type="int" primary="true" auto-increment="true"/>
+		<column name="players" type="Collection" entity="Player" mapping-key="teamId"/>
+	</entity>
+	<entity name="Player">
+		<column name="playerId" type="int" primary="true" auto-increment="true"/>
+	</entity>
 </service-builder>
