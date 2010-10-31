@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<view>
+    <outputText value="#{HelloBean.message}"/>
+    <form>
+    	<inputText value="#{HelloBean.name}"/>
+        <commandButton action="#{HelloBean.sayHello}" value="Say Hello!"/>
+    </form>
+</view>

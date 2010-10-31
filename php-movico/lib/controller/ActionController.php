@@ -15,6 +15,9 @@ class ActionController {
 	}
 	
 	private function executeAction($action, $rowIndex, $postView) {
+		if(!StringUtil::startsWith($action, "#")) {
+			return $action;
+		}
 		list($beanClass, $methodName) = BeanUtil::getBeanAndProperties($action);
 		$beanInstance = BeanLocator::get($beanClass);
 		if(!is_null($rowIndex)) {

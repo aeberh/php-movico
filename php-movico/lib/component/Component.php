@@ -8,7 +8,7 @@ abstract class Component {
 	protected $rendered = true;
 	
 	public function __construct() {
-		$this->id = time();
+		$this->id = rand(100000, 999999);
 	}
 	
 	public function addChild(Component $component) {

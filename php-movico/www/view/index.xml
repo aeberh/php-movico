@@ -1,37 +1,12 @@
 <?xml version="1.0"?>
-<!DOCTYPE view SYSTEM "../../lib/component/dtd/view.dtd">
-<view title="Overzicht Gebruikers">
-	<css src="test.css"/>
-	<message/>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<view>
 	<form>
-		<dataTable value="#{UserBean.users}" var="user" rendered="#{UserBean.hasUsers}">
-			<column>
-				<colHeader>
-					<outputText value="Creatie"/>
-				</colHeader>
-				<outputText value="#{user.createDate}"/>
-			</column>
-			<column>
-				<colHeader>
-					<outputText value="Naam"/>
-				</colHeader>
-				<outputText value="#{user.fullName}"/>
-			</column>
-			<column>
-				<colHeader>
-					<outputText value="Default?"/>
-				</colHeader>
-				<outputText value="#{user.default}"/>
-			</column>
-			<column>
-				<colHeader>
-					<outputText value="Actions"/>
-				</colHeader>
-				<commandButton action="#{UserBean.edit}" value="Aanpassen"/>
-				<commandButton action="#{UserBean.delete}" value="Verwijderen" popup="Ben je zeker dat je #{user.firstName} wil verwijderen?"/>
-			</column>
-		</dataTable>
-		<commandButton action="#{UserBean.create}" value="Nieuw"/>
-		<ajaxLoading/>
+		<panelGrid columns="1">
+			<outputText value="Bean examples"/>
+			<commandButton action="beans/request/hello" value="HelloBean (request scope)"/>
+			<commandButton action="beans/session/login" value="LoginBean (session scope)"/>
+			<commandButton action="beans/application/counter" value="CounterBean (application scope)"/>
+		</panelGrid>
 	</form>
 </view>

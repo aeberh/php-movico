@@ -6,13 +6,9 @@ class HelloBean extends RequestBean {
 
     public function sayHello() {
         $this->message = "Hello, ".$this->name."!";
-        return "hello";
+        return null;
     }
     
-    public function goBack() {
-    	return "hello";
-    }
-        
     public function getName() {
         return $this->name;
     }

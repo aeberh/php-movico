@@ -1,5 +1,7 @@
 <?
 require_once("path.php");
+session_start();
+
 require_once("lib/error/runtime-errors.php");
 
 set_exception_handler("handleException");
