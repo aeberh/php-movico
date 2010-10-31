@@ -14,7 +14,7 @@ class InputTextArea extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup");
 	}
 	
 }

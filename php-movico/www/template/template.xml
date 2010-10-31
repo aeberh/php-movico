@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE template SYSTEM "../../lib/component/dtd/view.dtd">
-<template>
-	<insert name="title"/>
-	<panelGrid columns="2">
-		<outputText value="Dit is de navigatie!!"/>
-		<insert name="body"/>
-	</panelGrid>
-</template>

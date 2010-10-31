@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<view>
-	<form>
-		<panelGrid columns="1">
-			<inputText value="#{LoginBean.username}"/>
-			<inputSecret value="#{LoginBean.password}"/>
-			<commandButton action="#{LoginBean.login}" value="Login"/>
-		</panelGrid>
-	</form>
-</view>
+<composition template="main">
+	<define name="title">
+		<outputText value="LoginBean (session scope)"/>
+	</define>
+	<define name="body">
+		<form>
+			<panelGrid columns="1">
+				<inputText value="#{LoginBean.username}"/>
+				<inputSecret value="#{LoginBean.password}"/>
+				<commandButton action="#{LoginBean.login}" value="Login"/>
+			</panelGrid>
+		</form>
+	</define>
+</composition>

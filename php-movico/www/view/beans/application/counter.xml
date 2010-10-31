@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<view>
-	<outputText value="#{CounterBean.count}"/>
-    <form>
-        <commandButton action="#{CounterBean.increment}" value="Increment"/>
-    </form>
-</view>
+<composition template="main">
+	<define name="title">
+		<outputText value="CounterBean (application scope)"/>
+	</define>
+	<define name="body">
+		<outputText value="#{CounterBean.count}"/>
+	    <form>
+	        <commandButton action="#{CounterBean.increment}" value="Increment"/>
+	    </form>
+	</define>
+</composition>

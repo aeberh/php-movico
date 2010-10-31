@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<view>
-	<outputText value="Welcome, #{LoginBean.username}!"/>
-</view>
+<composition template="main">
+	<define name="title">
+		<outputText value="LoginBean (session scope)"/>
+	</define>
+	<define name="body">
+		<outputText value="Welcome, #{LoginBean.username}!"/>
+	</define>
+</composition>

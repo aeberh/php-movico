@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<view>
-	<form>
-		<panelGrid columns="1">
-			<outputText value="Bean examples"/>
-			<commandButton action="beans/request/hello" value="HelloBean (request scope)"/>
-			<commandButton action="beans/session/login" value="LoginBean (session scope)"/>
-			<commandButton action="beans/application/counter" value="CounterBean (application scope)"/>
-		</panelGrid>
-	</form>
-</view>
+<composition template="main">
+	<define name="title">
+		<outputText value="Movico Examples"/>
+	</define>
+	<define name="body">
+		<outputText value="Please select an example on the left"/>
+	</define>
+</composition>

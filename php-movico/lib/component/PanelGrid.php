@@ -11,7 +11,7 @@ class PanelGrid extends Component {
 				$result .= "</tr><tr>";
 			}
 		}
-		return $result;
+		return $result."</tr></table>";
 	}
 
 	public function setColumns($columns) {
@@ -19,7 +19,7 @@ class PanelGrid extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form");
+		return array("View", "Form", "PanelGroup");
 	}
 	
 }
