@@ -7,7 +7,7 @@ class ConfigurationFile {
     public function __construct($filename) {
 		try {
 			FileUtil::checkFileExists($filename);
-		} catch(FileUtilException $e) {
+		} catch(FileNotExistsException $e) {
 			throw new ConfigurationException("Configuration file '$filename' does not exist");
 		}
 		$this->filename = $filename;

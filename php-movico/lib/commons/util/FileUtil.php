@@ -11,7 +11,7 @@ class FileUtil {
 
 	public static function checkFileExists($filename) {
 		if(!self::fileExists($filename)) {
-			throw new FileUtilException("File '$filename' does not exist");
+			throw new FileNotExistsException($filename);
 		}
 	}
 
@@ -30,7 +30,7 @@ class FileUtil {
 
 	public static function storeFileContents($filename, $content) {
 		self::createFile($filename);
-		$pointer = fopen($filename, 'w');
+		$pointer = fopen($filename, "w+");
 		fwrite($pointer, $content);
 		fclose($pointer);
 	}
@@ -43,7 +43,7 @@ class FileUtil {
 		if(!self::directoryExists($path)) {
 			mkdir($path, 0777, true);
 		}
-		$pointer = @fopen($filename, 'w');
+		$pointer = @fopen($filename, "w+");
 		@fclose($pointer);
 	}
 

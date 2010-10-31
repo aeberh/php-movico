@@ -1,0 +1,5 @@
+<?
+class ApplicationBean extends BackingBean {
+	
+}
+?>

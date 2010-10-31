@@ -4,7 +4,7 @@ class View extends Component {
 	private $title;
 	private $page;
 	
-	const DEFAULT_VIEW = "example";
+	const DEFAULT_VIEW = "count";
 	
 	public function setTitle($title) {
 		$this->title = $title;

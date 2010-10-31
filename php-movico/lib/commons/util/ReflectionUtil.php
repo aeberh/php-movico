@@ -44,11 +44,14 @@ class ReflectionUtil {
 		}
 		$setterMethod = new ReflectionMethod(get_class($objToSet), StringUtil::setter($setterProperty));
 		$setterMethod->invoke($objToSet, $value);
+		BeanLocator::storeBean($objToSet);
 	}
 	
 	public static function callMethod($object, $methodName) {
 		$method = new ReflectionMethod(get_class($object), $methodName);
-		return $method->invoke($object);
+		$result = $method->invoke($object);
+		BeanLocator::storeBean($object);
+		return $result;
 	}
 	
 	public static function getSubclassMethods($className) {
