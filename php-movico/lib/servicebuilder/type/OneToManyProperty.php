@@ -18,5 +18,14 @@ class OneToManyProperty extends Property {
 		return $this->mappingKey;
 	}
 	
+	public function getMappedProperty() {
+		return $this->getEntity()->getProperty($this->getMappingKey());
+	}
+	
+	public function getFinderSignature($tthis=false) {
+		$thisOrNot = $tthis ? "this->" : "";
+		return "findBy".ucfirst($this->mappingKey)."(\$$thisOrNot{$this->mappingKey})";
+	}
+	
 }
 ?>

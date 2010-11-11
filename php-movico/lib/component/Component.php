@@ -13,6 +13,9 @@ abstract class Component {
 	
 	public function addChild(Component $component) {
 		$parentClass = get_class($this);
+		if(get_class($this) == "HtmlComponent") {
+			$parentClass = $this->getTagName();
+		}
 		if(!in_array($parentClass, $component->getValidParents())) {
 			throw new InvalidComponentHierarchyException($parentClass, get_class($component));
 		}

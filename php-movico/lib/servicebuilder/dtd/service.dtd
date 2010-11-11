@@ -1,6 +1,6 @@
 <!ELEMENT service-builder (entity+, order?, finder*)>
 
-<!ELEMENT entity (column*)>
+<!ELEMENT entity (column*,finder*,order?)>
 <!ATTLIST entity
 	name CDATA #REQUIRED
 	table CDATA #IMPLIED

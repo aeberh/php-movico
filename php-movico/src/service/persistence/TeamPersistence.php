@@ -24,13 +24,13 @@ class TeamPersistence extends Persistence {
 	}
 
 	public function update(Team $object) {
-		$q = "UPDATE ".self::TABLE." SET  WHERE teamId='{$object->getTeamId()}'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."' WHERE teamId='{$object->getTeamId()}'";
 		$pk = $object->getTeamId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." () VALUES ('')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." () VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -53,6 +53,7 @@ class TeamPersistence extends Persistence {
 		$result = new Team();
 		$result->setNew(false);
 		$result->setTeamId(Singleton::create("NullConverter")->fromDBtoDOM($row["teamId"]));
+		$result->setName(Singleton::create("NullConverter")->fromDBtoDOM($row["name"]));
 		return $result;
 	}
 

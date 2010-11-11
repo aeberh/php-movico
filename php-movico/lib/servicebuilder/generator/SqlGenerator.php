@@ -19,7 +19,7 @@ class SqlGenerator {
 		foreach($entity->getProperties() as $property) {
 			$sql .= "\t`{$property->getName()}` {$property->getDbType()} NOT NULL,\n";
 		}
-		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity->getName()) as $property) {
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
 			$sql .= "\t`{$property->getMappingKey()}` {$property->getEntity()->getPrimaryKey()->getDbType()} NOT NULL,\n";
 		}
 		$sql .= implode(",\n", $this->generateIndexes($entity));

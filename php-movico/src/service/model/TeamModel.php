@@ -11,8 +11,18 @@ abstract class TeamModel extends Model {
 		$this->teamId = $teamId;
 	}
 
+	private $name;
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function setName($name) {
+		$this->name = $name;
+	}
+
 	public function getPlayers() {
-		return PlayerServiceUtil::getPlayers($this->teamId);
+		return PlayerServiceUtil::findByTeamId($this->teamId);
 	}
 
 }

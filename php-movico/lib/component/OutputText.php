@@ -12,7 +12,7 @@ class OutputText extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup");
+		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div", "p", "h1", "h2", "h3", "h4", "h5", "h6");
 	}
 	
 }

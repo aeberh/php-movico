@@ -8,10 +8,19 @@ class EntityServiceBaseGenerator {
 			$content .= $this->generateFinder($finder);
 		}
 		$content .= $this->generateBaseServices($entity);
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
+			$content .= $this->generateOneToManyService($property);
+		}
 		$content .= "}\n?>";
 		// Write file to class
 		$destination = "src/service/service/$className.php";
 		FileUtil::storeFileContents($destination, $content);
+	}
+	
+	private function generateOneToManyService(OneToManyProperty $property) {
+		$columnName = $property->getMappingKey();
+		return "\tpublic function {$property->getFinderSignature()} {\n".
+			"\t\treturn \$this->getPersistence()->{$property->getFinderSignature()};\n\t}\n\n";
 	}
 
 	private function generateBaseServices(Entity $entity) {

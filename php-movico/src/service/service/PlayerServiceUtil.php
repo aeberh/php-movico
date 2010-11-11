@@ -1,6 +1,10 @@
 <?php
 class PlayerServiceUtil {
 
+	public static function findByTeamId($teamId) {
+		return self::getService()->findByTeamId($teamId);
+	}
+
 	public static function createPlayer($pk=0) {
 		return self::getService()->createPlayer($pk);
 	}

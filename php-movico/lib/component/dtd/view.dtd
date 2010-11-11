@@ -13,7 +13,10 @@
 <!ATTLIST view title CDATA #IMPLIED>
 
 <!ELEMENT form ANY>
-<!ATTLIST form id CDATA #IMPLIED>
+<!ATTLIST form
+	id CDATA #IMPLIED
+	rendered CDATA #IMPLIED
+>
 
 <!ELEMENT css EMPTY>
 <!ATTLIST css src CDATA #REQUIRED>
@@ -23,6 +26,14 @@
 
 <!ELEMENT commandButton EMPTY>
 <!ATTLIST commandButton
+	value CDATA #REQUIRED
+	action CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	popup CDATA #IMPLIED
+>
+
+<!ELEMENT commandLink EMPTY>
+<!ATTLIST commandLink
 	value CDATA #REQUIRED
 	action CDATA #REQUIRED
 	rendered CDATA #IMPLIED
@@ -98,3 +109,7 @@
 <!ATTLIST ajaxLoading
 	src CDATA #IMPLIED
 >
+
+<!ELEMENT ol (li)+>
+<!ELEMENT ul (li)+>
+<!ELEMENT li ANY>

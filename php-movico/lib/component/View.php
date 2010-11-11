@@ -22,14 +22,29 @@ class View extends Component {
 				registerForms();
 				function registerForms() {
 					$("form").submit(function() {
+						alert('Helooooo');
 						$("button").attr("disabled", "disabled");
 						$("img.AjaxLoading").show();
-						$.post("index.php?jquery=1", $(this).serialize(),
-						function(data) {
-							$("body").html(data.body);
-							registerForms();
-							$("img.AjaxLoading").hide();
-						}, "json");
+						
+						$.ajax({
+							url: "index.php?jquery=1",
+							data: $(this).serialize(),
+							type: "POST",
+							dataType: "json",
+							timeout: 1000,
+							success: function(data) {
+								$("body").html(data.body);
+								registerForms();
+								$("img.AjaxLoading").hide();
+							},
+							error: function(request, errorType, errorThrown) {
+								if(errorType == "timeout") {
+									$("body").html("<p>TIMEOUT!!</p>");
+								} else {
+									$("body").html("<p>"+errorType+": "+errorThrown);
+								}
+							}
+						});
 						return false;
 					});
 				}

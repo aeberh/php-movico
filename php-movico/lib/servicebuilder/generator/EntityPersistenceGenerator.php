@@ -15,9 +15,19 @@ class EntityPersistenceGenerator {
 		$content .= $this->generateFindAll($entity);
 		$content .= $this->generateGetCount();
 		$content .= $this->generateGetAsObject($entity);
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
+			$content .= $this->generateOneToManyFinder($entity, $property);
+		}
 		$content .= "}\n?>";
 		$destination = "src/service/persistence/$className.php";
 		FileUtil::storeFileContents($destination, $content);
+	}
+	
+	private function generateOneToManyFinder(Entity $entity, OneToManyProperty $property) {
+		$columnName = $property->getMappingKey();
+		return "\tpublic function {$property->getFinderSignature()} {\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$entity->getOrderByClause()}\")->getResult();\n".
+			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
 	private function generateGetCount() {
@@ -28,7 +38,7 @@ class EntityPersistenceGenerator {
 	
 	private function generateFinder(Finder $finder, $entityName) {
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses())."\");\n";
+			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()."\");\n";
 		if($finder->isUnique()) {
 			$result .= "\t\tif(\$result->isEmpty()) {\n".
 				"\t\t\tthrow new NoSuch{$entityName}Exception();\n".
@@ -61,6 +71,10 @@ class EntityPersistenceGenerator {
 			"\t\t\$result->setNew(false);\n";
 		foreach($entity->getAllProperties() as $prop) {
 			$propName = $prop->getName();
+			$result .= "\t\t\$result->set".ucfirst($propName)."(Singleton::create(\"{$prop->getConverter()}\")->fromDBtoDOM(\$row[\"".$propName."\"]));\n";
+		}
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $prop) {
+			$propName = $prop->getMappingKey();
 			$result .= "\t\t\$result->set".ucfirst($propName)."(Singleton::create(\"{$prop->getConverter()}\")->fromDBtoDOM(\$row[\"".$propName."\"]));\n";
 		}
 		return $result."\t\treturn \$result;\n\t}\n\n";

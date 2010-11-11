@@ -12,9 +12,11 @@
 	<!-- 1 to N relationship -->
 	<entity name="Team">
 		<column name="teamId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
 		<column name="players" type="Collection" entity="Player" mapping-key="teamId"/>
 	</entity>
 	<entity name="Player">
 		<column name="playerId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
 	</entity>
 </service-builder>

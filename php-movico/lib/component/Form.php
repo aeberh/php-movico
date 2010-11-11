@@ -14,7 +14,7 @@ class Form extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "PanelGrid", "PanelGroup");
+		return array("View", "PanelGrid", "PanelGroup", "div");
 	}
 		
 }

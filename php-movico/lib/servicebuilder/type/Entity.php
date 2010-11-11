@@ -96,11 +96,19 @@ class Entity {
 		return array_merge(array($this->primaryKey->getName() => $this->primaryKey), $this->properties);
 	}
 	
+	public function getProperty($propName) {
+		$props = $this->getAllProperties();
+		return $props[$propName];
+	}
+	
 	public function getPropertyNames($pkIncluded) {
 		$properties = $pkIncluded ? $this->getAllProperties() : $this->getProperties();
 		$result = array();
 		foreach ($this->getProperties() as $property) {
 			$result[] = "`".$property->getName()."`";
+		}
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($this) as $property) {
+			$result[] = "`".$property->getMappingKey()."`";
 		}
 		return $result;
 	}
@@ -111,6 +119,9 @@ class Entity {
 		foreach ($properties as $property) {
 			$result[] = $this->getGetter($objName, $property);
 		}
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($this) as $property) {
+			$result[] = $this->getGetter($objName, $property->getMappedProperty());
+		}
 		return $result;
 	}
 	
@@ -118,6 +129,12 @@ class Entity {
 		$result = array();
 		foreach ($this->getProperties() as $property) {
 			$result[] = "`{$property->getName()}`='{$this->getGetter($objName, $property)}'";
+		}
+		$sb = Singleton::create("ServiceBuilder");
+		foreach($sb->getOneToManyMappedProperties($this) as $property) {
+			$propName = $property->getMappingKey();
+			$mappedProperty = $property->getMappedProperty();
+			$result[] = "`{$propName}`='{$this->getGetter($objName, $mappedProperty)}'";
 		}
 		return $result;
 	}

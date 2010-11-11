@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+ini_set("display_errors", 1);
+ini_set("error_reporting", E_ALL);
 
 $localPath = "/var/www/phpfaces";
 $root = @file_exists($localPath) ? $localPath : dirname(__FILE__);
@@ -11,7 +11,7 @@ buildDirectoryList($root, ".", $directories);
 ini_set("include_path", implode(PATH_SEPARATOR, $directories));
 
 function __autoload($className) {
-	require_once($className.".php");
+	@include_once("$className.php");
 }
 
 function buildDirectoryList($absRoot, $root, &$paths) {

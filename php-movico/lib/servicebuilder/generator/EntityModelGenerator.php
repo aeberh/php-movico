@@ -6,6 +6,7 @@ class EntityModelGenerator {
 		$content = "<?php\nabstract class $className extends Model {\n\n";
 		$content .= $this->gettersAndSetters($entity);
 		$content .= $this->getOneToManyGetters($entity);
+		$content .= $this->getOneToManyMappedGettersSetters($entity);
 		$content .= "}\n?>";
 		// Write file to class
 		$destination = "src/service/model/{$className}.php";
@@ -27,10 +28,21 @@ class EntityModelGenerator {
 		$result = "";
 		foreach($entity->getOneToManyProperties() as $property) {
 			$mappedEntity = $property->getEntityName();
-			$mappingKey = $property->getMappingKey();
-			$functionName = "get".ucfirst($property->getName());
-			$result .= "\tpublic function $functionName() {\n".
-				"\t\treturn {$mappedEntity}ServiceUtil::$functionName(\$this->{$mappingKey});\n\t}\n\n";
+			$functionName = $property->getFinderSignature(true);
+			$result .= "\tpublic function get".ucfirst($property->getName())."() {\n".
+				"\t\treturn {$mappedEntity}ServiceUtil::$functionName;\n\t}\n\n";
+		}
+		return $result;
+	}
+	
+	private function getOneToManyMappedGettersSetters(Entity $entity) {
+		$result = "";
+		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
+			$name = $property->getMappingKey();
+			$result .= "\tprivate \${$name};\n\n".
+				"\tpublic function get".ucfirst($name)."() {\n\t\treturn \$this->{$name};\n\t}\n\n".
+				"\tpublic function get".$property->getEntity()->getName()."() {\n\t\treturn TeamServiceUtil::getTeam(\$this->teamId);\n\t}\n\n".
+				"\tpublic function set".ucfirst($name)."(\${$name}) {\n\t\t\$this->{$name} = \${$name};\n\t}\n\n";
 		}
 		return $result;
 	}

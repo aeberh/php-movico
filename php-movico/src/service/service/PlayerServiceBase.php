@@ -29,5 +29,9 @@ class PlayerServiceBase {
 		return Singleton::create("PlayerPersistence");
 	}
 
+	public function findByTeamId($teamId) {
+		return $this->getPersistence()->findByTeamId($teamId);
+	}
+
 }
 ?>

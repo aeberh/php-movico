@@ -63,7 +63,7 @@ class DataTable extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "PanelGrid", "Form", "PanelGroup");
+		return array("View", "PanelGrid", "Form", "PanelGroup", "div");
 	}
 	
 }
