@@ -1,18 +1,13 @@
 <?
 class AjaxLoading extends Component {
 	
-	private $src;
 	const CLASS_NAME = "AjaxLoading";
-	
-	public function setSrc($src) {
-		$this->src = $src;
-	}
 	
 	public function doRender($rowIndex=null) {
 		$src = isset($this->src) ? $this->src : "loading.gif";
 		$form = $this->getFirstAncestorOfType("Form");
 		$id = $form->getId()."Loading";
-		return "<img src=\"www/img/$src\" class=\"".self::CLASS_NAME."\" style=\"display:none\"/>";
+		return "<img src=\"lib/component/img/connect_idle.gif\" class=\"".self::CLASS_NAME."\"/>";
 	}
 	
 	public function getValidParents() {

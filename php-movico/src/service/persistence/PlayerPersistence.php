@@ -1,7 +1,7 @@
 <?php
 class PlayerPersistence extends Persistence {
 
-	const TABLE = "Player";
+	const TABLE = "movico_player";
 
 	public function findByPrimaryKey($playerId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE playerId='$playerId'");

@@ -2,8 +2,7 @@
 ini_set("display_errors", 1);
 ini_set("error_reporting", E_ALL);
 
-$localPath = "/var/www/phpfaces";
-$root = @file_exists($localPath) ? $localPath : dirname(__FILE__);
+$root = dirname(__FILE__);
 
 $directories = array(".", $root);
 buildDirectoryList($root, ".", $directories);

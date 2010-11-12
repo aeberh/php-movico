@@ -7,7 +7,7 @@ class CommandLink extends AbstractCommand {
 		if($this->hasAnchestorOfType("DataTable") && $this->hasAnchestorOfType("Form")) {
 			$onclick .= "document.getElementById('$formId').".DataTable::DATATABLE_ROW.".value='$index';";
 		}
-		$onclick .= "jQuery('form#$formId').submit();";
+		$onclick .= "jQuery('form#".$formId."').submit();";
 		if(!empty($this->popup)) {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";

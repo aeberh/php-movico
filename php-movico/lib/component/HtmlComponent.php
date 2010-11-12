@@ -45,7 +45,7 @@ class HtmlComponent extends Component {
 	}
 	
 	private function checkValidTag($tagName) {
-		if(!in_array($tagName, array("div", "p", "ul", "ol", "li", "br", "h1", "h2", "h3", "h4", "h5", "h6"))) {
+		if(!in_array($tagName, array("div", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"))) {
 			throw new ComponentNotExistsException($tagName);
 		}
 	}

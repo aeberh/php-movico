@@ -1,0 +1,16 @@
+<project name="plugins" basedir="." default="release">
+	<target name="release">
+		<delete includeemptydirs="true">
+			<fileset dir="release" defaultexcludes="false" />
+		</delete>
+		<copy todir="release">
+			<fileset dir=".">
+				<exclude name="**/.svn"/>
+				<exclude name="./.settings"/>
+				<exclude name="**/.project"/>
+				<exclude name="**/.buildpath"/>
+				<exclude name="build.xml"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

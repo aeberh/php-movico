@@ -106,9 +106,6 @@
 <!ELEMENT message EMPTY>
 
 <!ELEMENT ajaxLoading EMPTY>
-<!ATTLIST ajaxLoading
-	src CDATA #IMPLIED
->
 
 <!ELEMENT ol (li)+>
 <!ELEMENT ul (li)+>

@@ -13,7 +13,7 @@ class DatabaseManager {
 	 * Initializes a new DatabaseManager
 	 */
 	public function __construct() {
-		$group = SettingsUtil::isLocal() ? "Development" : "Production";
+		$group = SettingsUtil::getEnvironment();
 		$this->importParameters($group);
 	}
 

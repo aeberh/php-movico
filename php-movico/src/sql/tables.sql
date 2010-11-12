@@ -1,4 +1,4 @@
-CREATE TABLE `User` (
+CREATE TABLE `movico_user` (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`firstName` VARCHAR(25) NOT NULL,
 	`lastName` VARCHAR(25) NOT NULL,
@@ -7,13 +7,13 @@ CREATE TABLE `User` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Team` (
+CREATE TABLE `movico_team` (
 	`teamId` INTEGER NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(25) NOT NULL,
 	PRIMARY KEY (`teamId`)
 );
 
-CREATE TABLE `Player` (
+CREATE TABLE `movico_player` (
 	`playerId` INTEGER NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(25) NOT NULL,
 	`teamId` INTEGER NOT NULL,

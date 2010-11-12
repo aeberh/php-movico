@@ -13,35 +13,36 @@ class View extends Component {
 	public function doRender($index=null) {
 		$ajax = SettingsUtil::isAjaxEnabled();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
-			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>";
+			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
+			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.4.3.min.js\"></script>";
 		if($ajax) {
+			$timeout = SettingsUtil::getAjaxTimeout();
 			$result .= <<<TST
-		<script type="text/javascript" src="lib/javascript/jquery-1.4.3.min.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				registerForms();
 				function registerForms() {
 					$("form").submit(function() {
-						alert('Helooooo');
 						$("button").attr("disabled", "disabled");
-						$("img.AjaxLoading").show();
+						$("img.AjaxLoading").attr("src", "lib/component/img/connect_active.gif");
 						
 						$.ajax({
 							url: "index.php?jquery=1",
 							data: $(this).serialize(),
 							type: "POST",
 							dataType: "json",
-							timeout: 1000,
+							timeout: $timeout,
 							success: function(data) {
 								$("body").html(data.body);
 								registerForms();
-								$("img.AjaxLoading").hide();
+								$("img.AjaxLoading").attr("src", "lib/component/img/connect_idle.gif");
 							},
 							error: function(request, errorType, errorThrown) {
+								$("button").removeAttr("disabled");
 								if(errorType == "timeout") {
-									$("body").html("<p>TIMEOUT!!</p>");
+									$("img.AjaxLoading").attr("src", "lib/component/img/connect_caution.gif");
 								} else {
-									$("body").html("<p>"+errorType+": "+errorThrown);
+									$("img.AjaxLoading").attr("src", "lib/component/img/connect_disconnected.gif");
 								}
 							}
 						});
