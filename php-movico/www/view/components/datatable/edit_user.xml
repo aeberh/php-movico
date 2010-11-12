@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="DataTable"/>
+	</define>
+	<define name="body">
+	   	<message/>
+	    <form>
+	    	<panelGrid columns="2">
+		    	<outputLabel for="firstName" value="First name"/>
+		    	<inputText id="firstName" value="#{UserBean.firstName}"/>
+		    	<outputLabel for="lastName" value="Last name"/>
+		    	<inputText id="lastName" value="#{UserBean.lastName}"/>
+		    	<outputText value=""/>
+		    	<booleanCheckbox value="#{UserBean.default}" label="Is default user?"/>
+		    	<inputHidden value="#{UserBean.id}"/>
+		    	<inputHidden value="#{UserBean.editMode}"/>
+		    	<commandButton action="#{UserBean.save}" value="Save"/>
+		    	<commandButton action="components/datatable/users" value="Go back"/>
+	    	</panelGrid>
+	    </form>
+	</define>
+</composition>

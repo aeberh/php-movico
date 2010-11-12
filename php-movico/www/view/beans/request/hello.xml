@@ -5,10 +5,11 @@
 		<outputText value="HelloBean (request scope)"/>
 	</define>
 	<define name="body">
-	    <outputText value="#{HelloBean.message}"/>
+		<p>Fill in your name and press the button. Your name will be printed below.</p>
 	    <form>
 	    	<inputText value="#{HelloBean.name}"/>
 	        <commandButton action="#{HelloBean.sayHello}" value="Say Hello!"/>
 	    </form>
+	    <p><outputText value="#{HelloBean.message}"/></p>
 	</define>
 </composition>

@@ -88,6 +88,7 @@
 <!ELEMENT panelGrid ANY>
 <!ATTLIST panelGrid 
 	columns CDATA #REQUIRED
+	id CDATA #IMPLIED
 >
 
 <!ELEMENT panelGroup ANY>

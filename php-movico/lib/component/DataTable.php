@@ -24,7 +24,7 @@ class DataTable extends Component {
 	
 	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");
-		$result = "<table class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
+		$result = "<table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
 		$result .= $this->renderHeader($cols);
 		$result .= $this->renderRows($cols);
 		$result .= "</table>";
@@ -37,7 +37,7 @@ class DataTable extends Component {
 	private function renderHeader($cols) {
 		$result = "<tr>";
 		foreach($cols as $col) {
-			$result .= $col->renderChildren(array("ColHeader"));
+			$result .= "<th>".$col->renderChildren(array("ColHeader"))."</th>";
 		}
 		return $result."</tr>";
 	}

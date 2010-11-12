@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="DataTable"/>
+	</define>
+	<define name="body">
+		<message/>
+		<form>
+			<dataTable value="#{UserBean.users}" var="user" rendered="#{UserBean.hasUsers}" id="userTable">
+				<column>
+					<colHeader>
+						<outputText value="Created at"/>
+					</colHeader>
+					<outputText value="#{user.createDate}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Full Name"/>
+					</colHeader>
+					<outputText value="#{user.fullName}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Default?"/>
+					</colHeader>
+					<outputText value="#{user.default}"/>
+				</column>
+				<column>
+					<commandLink action="#{UserBean.edit}" value="Edit"/>
+				</column>
+				<column>
+					<commandLink action="#{UserBean.delete}" value="Delete" popup="Are you sure you want to delete #{user.firstName}?"/>
+				</column>
+			</dataTable>
+			<p><commandButton action="#{UserBean.create}" value="Create"/></p>
+		</form>
+	</define>
+</composition>

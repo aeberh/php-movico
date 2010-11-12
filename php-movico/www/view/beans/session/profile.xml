@@ -5,6 +5,6 @@
 		<outputText value="LoginBean (session scope)"/>
 	</define>
 	<define name="body">
-		<outputText value="Welcome, #{LoginBean.username}!"/>
+		<p><outputText value="Welcome, #{LoginBean.username}!"/></p>
 	</define>
 </composition>

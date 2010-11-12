@@ -5,9 +5,9 @@
 		<outputText value="LoginBean (session scope)"/>
 	</define>
 	<define name="body">
+		<p>You're now logged in.</p>
 		<form>
-			<outputText value="You are now logged in."/>
-			<commandButton action="#{LoginBean.toProfile}" value="Go to my profile"/>
+			<commandButton action="beans/session/profile" value="Go to my profile"/>
 		</form>
 	</define>
 </composition>

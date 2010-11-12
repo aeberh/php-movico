@@ -18,7 +18,7 @@ abstract class AbstractCommand extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p");
 	}
 	
 }

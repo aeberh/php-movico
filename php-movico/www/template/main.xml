@@ -4,7 +4,7 @@
 	<css src="test.css"/>
 	<h1>Movico Sample Browser</h1>
 	<panelGrid columns="2">
-		<form>
+		<form id="nav">
 			<h2>Bean Examples</h2>
 			<ul>
 				<li><commandLink action="beans/request/hello" value="HelloBean (request)"/></li>
@@ -15,9 +15,13 @@
 			<ul>
 				<li><commandLink action="services/onetomany/teams" value="One-to-many relationship"/></li>
 			</ul>
+			<h2>Components</h2>
+			<ul>
+				<li><commandLink action="components/datatable/users" value="DataTable"/></li>
+			</ul>
 			<ajaxLoading/>
 		</form>	
-		<div>
+		<div id="main">
 			<h2><insert name="title"/></h2>
 			<insert name="body"/>
 		</div>

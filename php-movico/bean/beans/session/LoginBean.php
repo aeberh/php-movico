@@ -14,11 +14,6 @@ class LoginBean extends SessionBean {
 		return null;
 	}
 	
-	public function toProfile() {
-		return "beans/session/profile";
-	}
-	
-	
 	public function setUsername($username) {
 		$this->username = $username;
 	}

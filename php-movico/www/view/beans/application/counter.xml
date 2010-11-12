@@ -5,7 +5,7 @@
 		<outputText value="CounterBean (application scope)"/>
 	</define>
 	<define name="body">
-		<outputText value="#{CounterBean.count}"/>
+		<p><outputText value="Current count: #{CounterBean.count}"/></p>
 	    <form>
 	        <commandButton action="#{CounterBean.increment}" value="Increment"/>
 	    </form>

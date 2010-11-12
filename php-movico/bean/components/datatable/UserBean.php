@@ -33,7 +33,7 @@ class UserBean extends RequestBean {
     	$this->lastName = $selectedUser->getLastName();
     	$this->default = $selectedUser->isDefault();
     	$this->editMode = true;
-    	return "edit_user";
+    	return "components/datatable/edit_user";
     }
     
     public function renderTable() {
@@ -49,7 +49,7 @@ class UserBean extends RequestBean {
 	    	}
 	    	$action = $this->editMode ? "aangepast":"toegevoegd";
     		MessageUtil::info("Gebruiker werd succesvol $action!");
-    		return "index";
+    		return "components/datatable/users";
     	} catch(InvalidFirstNameException $e) {
     		MessageUtil::error("Ongeldige voornaam!");
     	} catch(InvalidLastNameException $e) {
@@ -57,11 +57,7 @@ class UserBean extends RequestBean {
     	}
     	return null;
     }
-    
-    public function back() {
-    	return "index";
-    }
-    
+
     public function delete() {
     	$user = $this->getSelectedUser();
     	UserServiceUtil::deleteUser($user->getId());
@@ -76,7 +72,7 @@ class UserBean extends RequestBean {
     
     public function create() {
     	$this->editMode = false;
-    	return "edit_user";
+    	return "components/datatable/edit_user";
     }
     
     public function getId() {

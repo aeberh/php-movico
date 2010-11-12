@@ -2,7 +2,7 @@
 class ColHeader extends Component {
 	
 	public function doRender($index=null) {
-		return "<th>".$this->renderChildren()."</th>";
+		return $this->renderChildren();
 	}
 	
 	public function getValidParents() {

@@ -5,6 +5,10 @@
 		<outputText value="LoginBean (session scope)"/>
 	</define>
 	<define name="body">
+		<p>
+			Enter the same value in both fields to have a succesful login. Next,
+			follow the flow to see how the session-scoped bean stores its values.
+		</p>
 		<form>
 			<panelGrid columns="1">
 				<inputText value="#{LoginBean.username}"/>
