@@ -7,6 +7,9 @@ class SelectManyListBox extends Component {
 	public function doRender($rowIndex=null) {
 		$name = $this->value;
 		$val = $this->getConvertedValue($name, $rowIndex);
+		if(is_null($val)) {
+			$val = array();
+		}
 		$result = "<select id=\"".$this->id."\" name=\"{$name}[]\" multiple=\"multiple\">";
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {

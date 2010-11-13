@@ -16,28 +16,49 @@ class EntityPersistenceGenerator {
 		$content .= $this->generateGetCount();
 		$content .= $this->generateGetAsObject($entity);
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
-			$content .= $this->generateOneToManyFinder($entity, $property);
+			$content .= $this->generateOneToManyFinder($property);
 		}
 		foreach(Singleton::create("ServiceBuilder")->getManyToManyMappedProperties($entity) as $property) {
-			$content .= $this->generateManyToManyFinder($entity, $property);
+			$content .= $this->generateManyToManyFinder($property);
+		}
+		foreach($entity->getManyToManyProperties() as $property) {
+			$content .= $this->generateManyToManySetter($property);
 		}
 		$content .= "}\n?>";
 		$destination = "src/service/persistence/$className.php";
 		FileUtil::storeFileContents($destination, $content);
 	}
 	
-	private function generateManyToManyFinder(Entity $entity, ManyToManyProperty $property) {
+	private function generateManyToManySetter(ManyToManyProperty $property) {
+		$containerProp = $property->getEntity()->getPrimaryKey()->getName();
+		$containedProp = Singleton::create("ServiceBuilder")->getEntity($property->getEntityName())->getPrimaryKey()->getName();
+		return "\tpublic function set".ucfirst($property->getName())."(\$$containerProp, \${$containedProp}s) {\n".
+			"\t\t\$this->db->updateQuery(\"DELETE FROM ".$property->getMappingTable()." WHERE $containerProp='\$$containerProp'\");\n".
+			"\t\tif(empty(\${$containedProp}s)) {\n".
+			"\t\t\treturn;\n".
+			"\t\t}\n".
+			"\t\t\$insertValues = array();\n".
+			"\t\tforeach(\${$containedProp}s as \${$containedProp}) {\n".
+			"\t\t\t\$insertValues[] = \"('\$$containerProp', '\$$containedProp')\";\n".
+			"\t\t}\n".
+			"\t\t\$this->db->updateQuery(\"INSERT INTO ".$property->getMappingTable()." ($containerProp, $containedProp) VALUES ".
+				"\".implode(\", \", \$insertValues));\n\t}\n\n";
+	}
+	
+	private function generateManyToManyFinder(ManyToManyProperty $property) {
 		$columnName = $property->getMappingKey();
-		$pkName = $entity->getPrimaryKey()->getName();
+		$pkName = $property->getEntity()->getPrimaryKey()->getName();
+		$mappedPkName = Singleton::create("ServiceBuilder")->getEntity($property->getEntityName())->getPrimaryKey()->getName();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
-			"\t\t\$rows = \$this->db->selectQuery(\"SELECT t.* FROM ".$property->getMappingTable()." mapping,\".self::TABLE.\" t WHERE mapping.$columnName='\$$columnName' AND mapping.$pkName=t.$pkName {$entity->getOrderByClause()}\")->getResult();\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT t.* FROM ".$property->getMappingTable()." mapping,\".self::TABLE.\" t WHERE mapping.$columnName='\$$columnName' ".
+				"AND mapping.$mappedPkName=t.$mappedPkName {$property->getEntity()->getOrderByClause()}\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
-	private function generateOneToManyFinder(Entity $entity, OneToManyProperty $property) {
+	private function generateOneToManyFinder(OneToManyProperty $property) {
 		$columnName = $property->getMappingKey();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
-			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$entity->getOrderByClause()}\")->getResult();\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$property->getEntity()->getOrderByClause()}\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	

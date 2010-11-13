@@ -89,12 +89,14 @@
 <!ATTLIST selectManyListBox
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
 >
 
 <!ELEMENT panelGrid ANY>
 <!ATTLIST panelGrid 
 	columns CDATA #REQUIRED
 	id CDATA #IMPLIED
+	columnClasses CDATA #IMPLIED
 >
 
 <!ELEMENT panelGroup ANY>

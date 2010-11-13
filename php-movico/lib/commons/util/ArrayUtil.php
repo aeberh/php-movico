@@ -40,8 +40,11 @@ class ArrayUtil {
 		}
 	}
 
-	public static function toIndexedArray($objects, $key, $value) {
+	public static function toIndexedArray($objects, $key, $value=null) {
 		self::checkTypes($objects);
+		if(is_null($value)) {
+			$value = $key;
+		}
 		StringUtil::checkTypes($key, $value);
 		if(empty($objects))
 			return array();

@@ -2,9 +2,10 @@
 class TeacherBean extends RequestBean {
 	
 	private $name;
-	private $students;
+	private $studentIds;
 	
 	private $studentsVisible;
+	private $teacherId;
 	
 	public function create() {
 		TeacherServiceUtil::create($this->name);
@@ -12,7 +13,14 @@ class TeacherBean extends RequestBean {
 	}
 	
 	public function showStudents() {
-		$this->students = $this->getSelectedTeacher()->getStudents();
+		$this->teacherId = $this->getSelectedTeacher()->getTeacherId();
+		$this->studentIds = ArrayUtil::toIndexedArray($this->getSelectedTeacher()->getStudents(), "studentId");
+		$this->studentsVisible = true;
+		return null;
+	}
+	
+	public function updateStudents() {
+		TeacherServiceUtil::setStudents($this->teacherId, $this->studentIds);
 		$this->studentsVisible = true;
 		return null;
 	}
@@ -25,8 +33,12 @@ class TeacherBean extends RequestBean {
 		$this->name = $name;
 	}
 	
-	public function getStudents() {
-		return ArrayUtil::toIndexedArray($this->students, "studentId", "name");
+	public function getStudentIds() {
+		return $this->studentIds;
+	}
+	
+	public function setStudentIds($studentIds) {
+		$this->studentIds = $studentIds;
 	}
 	
 	public function getTeachers() {
@@ -37,9 +49,21 @@ class TeacherBean extends RequestBean {
 		return $this->studentsVisible;
 	}
 	
-	public function getSelectedTeacher() {
+	private function getSelectedTeacher() {
 		$teachers = $this->getTeachers();
 		return $teachers[$this->getSelectedRowIndex()];
+	}
+	
+	public function getTeacherId() {
+		return $this->teacherId;
+	}
+	
+	public function setTeacherId($teacherId) {
+		$this->teacherId = $teacherId;
+	}
+	
+	public function getAllTeachers() {
+		return ArrayUtil::toIndexedArray($this->getTeachers(), "teacherId", "name");
 	}
 	
 }

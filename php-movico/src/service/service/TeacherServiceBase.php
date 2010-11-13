@@ -33,5 +33,9 @@ class TeacherServiceBase {
 		return $this->getPersistence()->findByStudentId($studentId);
 	}
 
+	public function setStudents($teacherId, $studentIds) {
+		$this->getPersistence()->setStudents($teacherId, $studentIds);
+	}
+
 }
 ?>

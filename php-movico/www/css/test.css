@@ -52,6 +52,22 @@ h3 {
 	color: white;
 }
 
+.panelGrid td {
+	vertical-align: top;
+}
+
+.panelGrid td.students {
+	padding-left: 10px;
+}
+
+.panelGrid td.teachers {
+	padding-right: 10px;
+}
+
+.panelGrid td.students .dataTable,.panelGrid td.teachers .dataTable {
+	width: 100%;
+}
+
 #nav {
 	background: #ddd;
 	padding: 20px;

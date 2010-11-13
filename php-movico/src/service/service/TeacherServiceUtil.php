@@ -9,6 +9,10 @@ class TeacherServiceUtil {
 		return self::getService()->findByStudentId($studentId);
 	}
 
+	public static function setStudents($teacherId, $studentIds) {
+		self::getService()->setStudents($teacherId, $studentIds);
+	}
+
 	public static function createTeacher($pk=0) {
 		return self::getService()->createTeacher($pk);
 	}

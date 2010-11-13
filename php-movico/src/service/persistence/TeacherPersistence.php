@@ -58,8 +58,20 @@ class TeacherPersistence extends Persistence {
 	}
 
 	public function findByStudentId($studentId) {
-		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.studentId='$studentId' AND mapping.teacherId=t.teacherId ORDER BY `name` asc")->getResult();
+		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.studentId='$studentId' AND mapping.teacherId=t.teacherId ")->getResult();
 		return $this->getAsObjects($rows);
+	}
+
+	public function setStudents($teacherId, $studentIds) {
+		$this->db->updateQuery("DELETE FROM movico_students_teachers WHERE teacherId='$teacherId'");
+		if(empty($studentIds)) {
+			return;
+		}
+		$insertValues = array();
+		foreach($studentIds as $studentId) {
+			$insertValues[] = "('$teacherId', '$studentId')";
+		}
+		$this->db->updateQuery("INSERT INTO movico_students_teachers (teacherId, studentId) VALUES ".implode(", ", $insertValues));
 	}
 
 }
