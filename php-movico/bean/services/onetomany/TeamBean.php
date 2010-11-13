@@ -7,6 +7,7 @@ class TeamBean extends RequestBean {
 	private $playerName;
 	
 	private $showPlayerForm;
+	private $showPlayerTable;
 	
 	public function getTeams() {
 		return ArrayUtil::toIndexedArray(TeamServiceUtil::getTeams(), "teamId", "name");
@@ -24,6 +25,8 @@ class TeamBean extends RequestBean {
 		$player->setName($this->playerName);
 		$player->setTeamId($this->teamId);
 		PlayerServiceUtil::updatePlayer($player);
+		$this->showPlayerForm = true;
+		$this->playerName = "";
 		return null;
 	}
 	
@@ -39,6 +42,10 @@ class TeamBean extends RequestBean {
 		$team->setName($this->teamName);
 		TeamServiceUtil::updateTeam($team);
 		return null;
+	}
+	
+	public function getShowPlayerTable() {
+		return $this->showPlayerForm && count($this->getPlayers()) > 0;
 	}
 	
 	public function getShowPlayerForm() {

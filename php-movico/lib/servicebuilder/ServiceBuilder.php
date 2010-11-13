@@ -46,6 +46,11 @@ class ServiceBuilder {
 				$result[$prop->getMappingTable()][] = $prop;
 			}
 		}
+		foreach($result as $table=>$props) {
+			if(count($props) != 2) {
+				throw new ServiceBuilderException("Mapping table '$table' should have 2 properties, now has ".count($props));
+			}
+		}
 		return $result;
 	}
 	
@@ -71,14 +76,13 @@ class ServiceBuilder {
 				$type = $property->getAttribute("type");
 				$size = $property->getAttribute("size");
 				$entityName = $property->getAttribute("entity");
-				$mappingKey = $property->getAttribute("mapping-key");
 				$mappingTable = $property->getAttribute("mapping-table");
 				$primary = $property->getAttribute("primary")=="true";
 				$autoIncrement = $property->getAttribute("auto-increment")=="true";
 				if($primary) {
 					$entity->addPKProperty(new PrimaryKeyProperty($propertyName, $type, $size, $autoIncrement));
-				} elseif($type == "Collection" && $mappingKey) {
-					$entity->addOneManyProperty(new OneToManyProperty($propertyName, $entityName, $mappingKey));
+				} elseif($type == "Collection" && !$mappingTable) {
+					$entity->addOneManyProperty(new OneToManyProperty($propertyName, $entityName));
 				} elseif($mappingTable) {
 					$entity->addManyToManyProperty(new ManyToManyProperty($propertyName, $entityName, $mappingTable));
 				} else {

@@ -13,7 +13,7 @@
 	<entity name="Team" table="movico_team">
 		<column name="teamId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="25"/>
-		<column name="players" type="Collection" entity="Player" mapping-key="teamId"/>
+		<column name="players" type="Collection" entity="Player"/>
 	</entity>
 	<entity name="Player" table="movico_player">
 		<column name="playerId" type="int" primary="true" auto-increment="true"/>

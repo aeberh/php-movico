@@ -13,7 +13,7 @@
 			<selectOneMenu options="#{TeamBean.teams}" value="#{TeamBean.teamId}"/>
 			<commandButton action="#{TeamBean.showPlayers}" value="Show players"/>
 		</form>
-		<dataTable var="player" value="#{TeamBean.players}">
+		<dataTable var="player" value="#{TeamBean.players}" rendered="#{TeamBean.showPlayerTable}">
 			<column>
 				<colHeader>
 					<outputText value="Players"/>
@@ -28,9 +28,11 @@
 			</column>
 		</dataTable>
 		<form rendered="#{TeamBean.showPlayerForm}">
-			<inputText value="#{TeamBean.playerName}"/>
-			<inputHidden value="#{TeamBean.teamId}"/>
-			<commandButton action="#{TeamBean.addPlayer}" value="Add player"/>
+			<p>
+				<inputText value="#{TeamBean.playerName}"/>
+				<inputHidden value="#{TeamBean.teamId}"/>
+				<commandButton action="#{TeamBean.addPlayer}" value="Add player"/>
+			</p>
 		</form>
 	</define>
 </composition>

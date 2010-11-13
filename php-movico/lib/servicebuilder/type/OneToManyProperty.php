@@ -2,12 +2,10 @@
 class OneToManyProperty extends Property {
 	
 	private $entityName;
-	private $mappingKey;
 	
-	public function __construct($name, $entityName, $mappingKey) {
+	public function __construct($name, $entityName) {
 		$this->name = $name;
 		$this->entityName = $entityName;
-		$this->mappingKey = $mappingKey;
 	}
 	
 	public function getEntityName() {
@@ -15,16 +13,16 @@ class OneToManyProperty extends Property {
 	}
 	
 	public function getMappingKey() {
-		return $this->mappingKey;
+		return $this->getMappedProperty()->getName();
 	}
 	
 	public function getMappedProperty() {
-		return $this->getEntity()->getProperty($this->getMappingKey());
+		return $this->getEntity()->getPrimaryKey();
 	}
 	
 	public function getFinderSignature($tthis=false) {
 		$thisOrNot = $tthis ? "this->" : "";
-		return "findBy".ucfirst($this->mappingKey)."(\$$thisOrNot{$this->mappingKey})";
+		return "findBy".ucfirst($this->getMappingKey())."(\$$thisOrNot{$this->getMappingKey()})";
 	}
 	
 }

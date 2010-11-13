@@ -32,16 +32,16 @@ h2 {
 	margin-bottom: 10px;
 }
 
-#userTable {
+.dataTable {
 	border-collapse: collapse;
 }
 
-#userTable td, #userTable th {
+.dataTable td, .dataTable th {
 	padding: 3px 10px;
 	border: 1px solid #888;
 }
 
-#userTable th {
+.dataTable th {
 	background: #888;
 	color: white;
 }

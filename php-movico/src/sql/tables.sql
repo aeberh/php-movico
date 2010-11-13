@@ -33,5 +33,8 @@ CREATE TABLE `movico_teacher` (
 );
 
 CREATE TABLE `Students_Teachers` (
-	`teacherId` INTEGER NOT NULL	`studentId` INTEGER NOT NULL	 PRIMARY KEY (`teacherId`,`studentId`)
+	`teacherId` INTEGER NOT NULL,
+	`studentId` INTEGER NOT NULL,
+	 PRIMARY KEY (`teacherId`,`studentId`)
 );
+
