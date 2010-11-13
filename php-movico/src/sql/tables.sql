@@ -20,3 +20,18 @@ CREATE TABLE `movico_player` (
 	PRIMARY KEY (`playerId`)
 );
 
+CREATE TABLE `movico_student` (
+	`studentId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	PRIMARY KEY (`studentId`)
+);
+
+CREATE TABLE `movico_teacher` (
+	`teacherId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	PRIMARY KEY (`teacherId`)
+);
+
+CREATE TABLE `Students_Teachers` (
+	`teacherId` INTEGER NOT NULL	`studentId` INTEGER NOT NULL	 PRIMARY KEY (`teacherId`,`studentId`)
+);

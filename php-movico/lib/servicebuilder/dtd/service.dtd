@@ -15,6 +15,7 @@
 	size CDATA #IMPLIED
 	entity CDATA #IMPLIED
 	mapping-key CDATA #IMPLIED
+	mapping-table CDATA #IMPLIED
 >
 
 <!ELEMENT order (order-column+)>

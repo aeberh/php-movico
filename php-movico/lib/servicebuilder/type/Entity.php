@@ -3,19 +3,16 @@ class Entity {
 
 	private $name;
 	private $table;
-	private $properties;
+	private $properties = array();
 	private $primaryKey;
-	private $finders;
-	private $orderCols;
-	private $oneToManyProperties;
+	private $finders = array();
+	private $orderCols = array();
+	private $oneToManyProperties = array();
+	private $manyToManyProperties = array();
 
 	public function __construct($name, $table=null) {
 		$this->name = $name;
 		$this->table = empty($table) ? $name : $table;
-		$this->properties = array();
-		$this->finders = array();
-		$this->orderCols = array();
-		$this->oneToManyProperties = array();
 	}
 	
 	public function addProperty(Property $property) {
@@ -37,6 +34,11 @@ class Entity {
 	public function addOneManyProperty(OneToManyProperty $property) {
 		$property->setEntity($this);
 		$this->oneToManyProperties[] = $property;
+	}
+	
+	public function addManyToManyProperty(ManyToManyProperty $property) {
+		$property->setEntity($this);
+		$this->manyToManyProperties[] = $property;
 	}
 
 	public function addFinder(Finder $finder) {
@@ -79,6 +81,10 @@ class Entity {
 	
 	public function getOneToManyProperties() {
 		return $this->oneToManyProperties;
+	}
+	
+	public function getManyToManyProperties() {
+		return $this->manyToManyProperties;
 	}
 	
 	public function getOrderByClause() {

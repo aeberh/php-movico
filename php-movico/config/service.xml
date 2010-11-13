@@ -19,4 +19,16 @@
 		<column name="playerId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="25"/>
 	</entity>
+	
+	<!-- M to N relationship -->
+	<entity name="Student" table="movico_student">
+		<column name="studentId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
+		<column name="teachers" type="Collection" entity="Teacher" mapping-table="Students_Teachers"/>
+	</entity>
+	<entity name="Teacher" table="movico_teacher">
+		<column name="teacherId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
+		<column name="students" type="Collection" entity="Student" mapping-table="Students_Teachers"/>
+	</entity>
 </service-builder>

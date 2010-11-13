@@ -7,6 +7,9 @@ class SqlGenerator {
 		foreach ($entities as $entity) {
 			$sql .= $this->generateSql($entity) . "\n\n";
 		}
+		foreach(Singleton::create("ServiceBuilder")->getManyToManyMappingTables() as $table=>$props) {
+			$sql .= $this->generateMappingTable($table, $props);
+		}
 		FileUtil::storeFileContents("src/sql/tables.sql", $sql);
 		PrintUtil::logln("SQL scripts generated.");
 	}
@@ -25,6 +28,18 @@ class SqlGenerator {
 		$sql .= implode(",\n", $this->generateIndexes($entity));
 		$sql .= "\n);";
 		return $sql;
+	}
+	
+	private function generateMappingTable($table, $props) {
+		$sql = "CREATE TABLE `$table` (\n";
+		$pkNames = array();
+		foreach($props as $prop) {
+			$pk = Singleton::create("ServiceBuilder")->getEntity($prop->getEntityName())->getPrimaryKey();
+			$pkName = "`{$pk->getName()}`";
+			$sql .= "\t$pkName {$pk->getDbType()} NOT NULL,\n";
+			$pkNames[] = $pkName;
+		}
+		return $sql."\t PRIMARY KEY (".implode(",", $pkNames).")\n);\n\n";
 	}
 	
 	private function generateIndexes(Entity $entity) {

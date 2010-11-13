@@ -65,7 +65,7 @@ class Property {
 			throw new ServiceBuilderException("'$this->type' is not a valid property type");
 		}
 		if($this->type == "String" && empty($this->size)) {
-			throw new ServiceBuilderException("String property '{$this->name}' has no size defined");
+			throw new ServiceBuilderException("String property '{$this->name}' of entity '{$this->getEntity()->getName()}' has no size defined");
 		}
 	}
 

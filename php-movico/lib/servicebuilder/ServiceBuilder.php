@@ -35,6 +35,20 @@ class ServiceBuilder {
 		return $result;
 	}
 	
+	public function getManyToManyMappingTables() {
+		$result = array();
+		foreach($this->entities as $entity) {
+			$manyToManyProps = $entity->getManyToManyProperties();
+			foreach($manyToManyProps as $prop) {
+				if(!isset($result[$prop->getMappingTable()])) {
+					$result[$prop->getMappingTable()] = array();
+				}
+				$result[$prop->getMappingTable()][] = $prop;
+			}
+		}
+		return $result;
+	}
+	
 	public function getEntity($entityName) {
 		return $this->entities[$entityName];
 	}
@@ -58,12 +72,15 @@ class ServiceBuilder {
 				$size = $property->getAttribute("size");
 				$entityName = $property->getAttribute("entity");
 				$mappingKey = $property->getAttribute("mapping-key");
+				$mappingTable = $property->getAttribute("mapping-table");
 				$primary = $property->getAttribute("primary")=="true";
 				$autoIncrement = $property->getAttribute("auto-increment")=="true";
 				if($primary) {
 					$entity->addPKProperty(new PrimaryKeyProperty($propertyName, $type, $size, $autoIncrement));
-				} elseif($type == "Collection") {
+				} elseif($type == "Collection" && $mappingKey) {
 					$entity->addOneManyProperty(new OneToManyProperty($propertyName, $entityName, $mappingKey));
+				} elseif($mappingTable) {
+					$entity->addManyToManyProperty(new ManyToManyProperty($propertyName, $entityName, $mappingTable));
 				} else {
 					$entity->addProperty(new Property($propertyName, $type, $size));
 				}
