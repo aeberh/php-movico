@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Many to many relationship"/>
+	</define>
+	<define name="body">
+		<panelGrid columns="2">
+			<div>
+				<h3>Teachers</h3>
+				<form>
+					<inputText value="#{TeacherBean.name}"/>
+					<commandButton action="#{TeacherBean.create}" value="Add teacher"/>
+				</form>
+				<form>
+					<dataTable var="teacher" value="#{TeacherBean.teachers}">
+						<column>
+							<colHeader>
+								<outputText value="Teachers"/>
+							</colHeader>
+							<outputText value="#{teacher.name}"/>
+						</column>
+						<column>
+							<commandButton action="#{TeacherBean.showStudents}" value="Show students"/>
+						</column>
+					</dataTable>
+				</form>
+				<selectManyListBox options="#{StudentBean.allStudents}" value="#{TeacherBean.students}" rendered="#{TeacherBean.studentsVisible}"/>
+			</div>
+			<div>
+				<h3>Students</h3>
+				<form>
+					<inputText value="#{StudentBean.name}"/>
+					<commandButton action="#{StudentBean.create}" value="Add student"/>
+				</form>
+				<dataTable var="student" value="#{StudentBean.students}">
+					<column>
+						<colHeader>
+							<outputText value="Students"/>
+						</colHeader>
+						<outputText value="#{student.name}"/>
+					</column>
+				</dataTable>
+			</div>
+		</panelGrid>
+	</define>
+</composition>

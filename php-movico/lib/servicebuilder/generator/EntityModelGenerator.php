@@ -7,6 +7,7 @@ class EntityModelGenerator {
 		$content .= $this->gettersAndSetters($entity);
 		$content .= $this->getOneToManyGetters($entity);
 		$content .= $this->getOneToManyMappedGettersSetters($entity);
+		$content .= $this->getManyToManyGetters($entity);
 		$content .= "}\n?>";
 		// Write file to class
 		$destination = "src/service/model/{$className}.php";
@@ -20,6 +21,17 @@ class EntityModelGenerator {
 			$result .= "\tprivate \${$name};\n\n".
 				"\tpublic function ".$property->getGetter()." {\n\t\treturn \$this->{$name};\n\t}\n\n".
 				"\tpublic function set".ucfirst($name)."(\${$name}) {\n\t\t\$this->{$name} = \${$name};\n\t}\n\n";
+		}
+		return $result;
+	}
+	
+	private function getManyToManyGetters(Entity $entity) {
+		$result = "";
+		foreach($entity->getManyToManyProperties() as $property) {
+			$mappedEntity = $property->getEntityName();
+			$functionName = $property->getFinderSignature(true);
+			$result .= "\tpublic function get".ucfirst($property->getName())."() {\n".
+				"\t\treturn {$mappedEntity}ServiceUtil::$functionName;\n\t}\n\n";
 		}
 		return $result;
 	}

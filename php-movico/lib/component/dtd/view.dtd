@@ -85,6 +85,12 @@
 	value CDATA #REQUIRED
 >
 
+<!ELEMENT selectManyListBox EMPTY>
+<!ATTLIST selectManyListBox
+	options CDATA #REQUIRED
+	value CDATA #REQUIRED
+>
+
 <!ELEMENT panelGrid ANY>
 <!ATTLIST panelGrid 
 	columns CDATA #REQUIRED

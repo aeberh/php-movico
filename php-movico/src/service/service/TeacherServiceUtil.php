@@ -1,6 +1,14 @@
 <?php
 class TeacherServiceUtil {
 
+	public static function create($name) {
+		return self::getService()->create($name);
+	}
+
+	public static function findByStudentId($studentId) {
+		return self::getService()->findByStudentId($studentId);
+	}
+
 	public static function createTeacher($pk=0) {
 		return self::getService()->createTeacher($pk);
 	}

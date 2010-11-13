@@ -5,22 +5,19 @@ class EntityServiceBaseGenerator {
 		$className = "{$entity->getName()}ServiceBase";
 		$content = "<?php\nclass $className {\n\n";
 		foreach($entity->getFinders() as $finder) {
-			$content .= $this->generateFinder($finder);
+			$content .= $this->generateFinder($finder->getMethodSignature());
 		}
 		$content .= $this->generateBaseServices($entity);
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
-			$content .= $this->generateOneToManyService($property);
+			$content .= $this->generateFinder($property->getFinderSignature());
+		}
+		foreach(Singleton::create("ServiceBuilder")->getManyToManyMappedProperties($entity) as $property) {
+			$content .= $this->generateFinder($property->getFinderSignature());
 		}
 		$content .= "}\n?>";
 		// Write file to class
 		$destination = "src/service/service/$className.php";
 		FileUtil::storeFileContents($destination, $content);
-	}
-	
-	private function generateOneToManyService(OneToManyProperty $property) {
-		$columnName = $property->getMappingKey();
-		return "\tpublic function {$property->getFinderSignature()} {\n".
-			"\t\treturn \$this->getPersistence()->{$property->getFinderSignature()};\n\t}\n\n";
 	}
 
 	private function generateBaseServices(Entity $entity) {
@@ -48,9 +45,9 @@ class EntityServiceBaseGenerator {
 			"\t}\n\n";
 	}
 	
-	private function generateFinder(Finder $finder) {
-		return "\tpublic function {$finder->getMethodSignature()} {\n".
-			"\t\treturn \$this->getPersistence()->{$finder->getMethodSignature()};\n".
+	private function generateFinder($signature) {
+		return "\tpublic function $signature {\n".
+			"\t\treturn \$this->getPersistence()->$signature;\n".
 			"\t}\n\n";
 	}
 

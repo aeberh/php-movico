@@ -6,7 +6,7 @@ class PanelGroup extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup");
+		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div");
 	}
 	
 }

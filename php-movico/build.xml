@@ -12,6 +12,7 @@
 				<exclude name="build.xml"/>
 				<exclude name="config/main.conf"/>
 				<exclude name="config/service.xml"/>
+				<exclude name="service.php"/>
 			</fileset>
 		</copy>
 		<delete includeemptydirs="true">

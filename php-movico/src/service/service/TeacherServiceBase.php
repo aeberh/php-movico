@@ -29,5 +29,9 @@ class TeacherServiceBase {
 		return Singleton::create("TeacherPersistence");
 	}
 
+	public function findByStudentId($studentId) {
+		return $this->getPersistence()->findByStudentId($studentId);
+	}
+
 }
 ?>

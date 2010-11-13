@@ -19,7 +19,7 @@ class PanelGrid extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGroup");
+		return array("View", "Form", "PanelGroup", "div");
 	}
 	
 }

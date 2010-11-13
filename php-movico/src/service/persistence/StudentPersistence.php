@@ -57,5 +57,10 @@ class StudentPersistence extends Persistence {
 		return $result;
 	}
 
+	public function findByTeacherId($teacherId) {
+		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.teacherId='$teacherId' AND mapping.studentId=t.studentId ")->getResult();
+		return $this->getAsObjects($rows);
+	}
+
 }
 ?>

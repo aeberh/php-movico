@@ -14,10 +14,12 @@
 			<h2>Service Examples</h2>
 			<ul>
 				<li><commandLink action="services/onetomany/teams" value="One-to-many relationship"/></li>
+				<li><commandLink action="services/manytomany/classes" value="Many-to-many relationship"/></li>
 			</ul>
-			<h2>Components</h2>
+			<h2>Component Examples</h2>
 			<ul>
 				<li><commandLink action="components/datatable/users" value="DataTable"/></li>
+				<li><commandLink action="components/listbox/countries" value="ListBox"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

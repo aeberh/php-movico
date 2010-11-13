@@ -41,7 +41,7 @@ class TeacherPersistence extends Persistence {
 	}
 
 	public function findAll() {
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ")->getResult();
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `name` asc")->getResult();
 		return $this->getAsObjects($rows);
 	}
 
@@ -55,6 +55,11 @@ class TeacherPersistence extends Persistence {
 		$result->setTeacherId(Singleton::create("NullConverter")->fromDBtoDOM($row["teacherId"]));
 		$result->setName(Singleton::create("NullConverter")->fromDBtoDOM($row["name"]));
 		return $result;
+	}
+
+	public function findByStudentId($studentId) {
+		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.studentId='$studentId' AND mapping.teacherId=t.teacherId ORDER BY `name` asc")->getResult();
+		return $this->getAsObjects($rows);
 	}
 
 }

@@ -24,11 +24,14 @@
 	<entity name="Student" table="movico_student">
 		<column name="studentId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="25"/>
-		<column name="teachers" type="Collection" entity="Teacher" mapping-table="Students_Teachers"/>
+		<column name="teachers" type="Collection" entity="Teacher" mapping-table="movico_students_teachers"/>
 	</entity>
 	<entity name="Teacher" table="movico_teacher">
 		<column name="teacherId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="25"/>
-		<column name="students" type="Collection" entity="Student" mapping-table="Students_Teachers"/>
+		<column name="students" type="Collection" entity="Student" mapping-table="movico_students_teachers"/>
+		<order>
+			<order-column name="name" order-by="asc"/>
+		</order>
 	</entity>
 </service-builder>

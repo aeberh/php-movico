@@ -21,5 +21,9 @@ abstract class StudentModel extends Model {
 		$this->name = $name;
 	}
 
+	public function getTeachers() {
+		return TeacherServiceUtil::findByStudentId($this->studentId);
+	}
+
 }
 ?>

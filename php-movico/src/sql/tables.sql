@@ -32,7 +32,7 @@ CREATE TABLE `movico_teacher` (
 	PRIMARY KEY (`teacherId`)
 );
 
-CREATE TABLE `Students_Teachers` (
+CREATE TABLE `movico_students_teachers` (
 	`teacherId` INTEGER NOT NULL,
 	`studentId` INTEGER NOT NULL,
 	 PRIMARY KEY (`teacherId`,`studentId`)

@@ -25,8 +25,19 @@ class ServiceBuilder {
 	public function getOneToManyMappedProperties(Entity $forEntity) {
 		$result = array();
 		foreach($this->entities as $entity) {
-			$oneToManyProps = $entity->getOneToManyProperties();
-			foreach($oneToManyProps as $property) {
+			foreach($entity->getOneToManyProperties() as $property) {
+				if($property->getEntityName() == $forEntity->getName()) {
+					$result[] = $property;
+				}
+			}
+		}
+		return $result;
+	}
+	
+	public function getManyToManyMappedProperties(Entity $forEntity) {
+		$result = array();
+		foreach($this->entities as $entity) {
+			foreach($entity->getManyToManyProperties() as $property) {
 				if($property->getEntityName() == $forEntity->getName()) {
 					$result[] = $property;
 				}

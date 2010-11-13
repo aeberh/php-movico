@@ -76,6 +76,8 @@ class DatabaseManager {
 			$this->disconnect();
 			if(StringUtil::contains($error, "Duplicate entry")) {
 				throw new UniqueConstraintViolationException($error);
+			} elseif(StringUtil::contains($error, "Table") && StringUtil::contains($error, "doesn't exist")) {
+				throw new DatabaseTableNotExistsException($error);
 			} else {
 				throw new DatabaseException("Unknown error while executing query: ".$error);
 			}

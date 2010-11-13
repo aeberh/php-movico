@@ -18,9 +18,20 @@ class EntityPersistenceGenerator {
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
 			$content .= $this->generateOneToManyFinder($entity, $property);
 		}
+		foreach(Singleton::create("ServiceBuilder")->getManyToManyMappedProperties($entity) as $property) {
+			$content .= $this->generateManyToManyFinder($entity, $property);
+		}
 		$content .= "}\n?>";
 		$destination = "src/service/persistence/$className.php";
 		FileUtil::storeFileContents($destination, $content);
+	}
+	
+	private function generateManyToManyFinder(Entity $entity, ManyToManyProperty $property) {
+		$columnName = $property->getMappingKey();
+		$pkName = $entity->getPrimaryKey()->getName();
+		return "\tpublic function {$property->getFinderSignature()} {\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT t.* FROM ".$property->getMappingTable()." mapping,\".self::TABLE.\" t WHERE mapping.$columnName='\$$columnName' AND mapping.$pkName=t.$pkName {$entity->getOrderByClause()}\")->getResult();\n".
+			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
 	private function generateOneToManyFinder(Entity $entity, OneToManyProperty $property) {

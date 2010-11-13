@@ -90,7 +90,7 @@ abstract class Component {
 		}
 		return str_replace(array_keys($replaces), array_values($replaces), $string);
 	}
-	
+
 	private function getBeanValue($valueExpression, $rowIndex=null) {
 		list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($valueExpression);
 		try {
