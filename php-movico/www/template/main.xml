@@ -20,6 +20,7 @@
 			<ul>
 				<li><commandLink action="components/datatable/users" value="DataTable"/></li>
 				<li><commandLink action="components/listbox/countries" value="ListBox"/></li>
+				<li><commandLink action="components/fileupload/upload_file" value="File Upload"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

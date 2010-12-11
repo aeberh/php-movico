@@ -1,11 +1,13 @@
 <?php
 class HelloBean extends RequestBean {
         
+	const GREETING = "Hello";
+	
     private $name;
     private $message;
 
     public function sayHello() {
-        $this->message = "Hello, ".$this->name."!";
+        $this->message = self::GREETING.", ".$this->name."!";
         return null;
     }
     

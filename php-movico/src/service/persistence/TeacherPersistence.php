@@ -4,7 +4,7 @@ class TeacherPersistence extends Persistence {
 	const TABLE = "movico_teacher";
 
 	public function findByPrimaryKey($teacherId) {
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teacherId='$teacherId'");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teacherId='".addslashes($teacherId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchTeacherException($teacherId);
 		}
@@ -20,17 +20,17 @@ class TeacherPersistence extends Persistence {
 
 	public function remove($teacherId) {
 		$this->findByPrimaryKey($teacherId);
-		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teacherId='$teacherId'");
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teacherId='".addslashes($teacherId)."'");
 	}
 
 	public function update(Teacher $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."' WHERE teacherId='{$object->getTeacherId()}'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."' WHERE teacherId='".addslashes($object->getTeacherId())."'";
 		$pk = $object->getTeacherId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeacherId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeacherId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
 			}
 		}
 		$this->db->updateQuery($q);

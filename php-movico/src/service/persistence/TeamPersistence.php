@@ -4,7 +4,7 @@ class TeamPersistence extends Persistence {
 	const TABLE = "movico_team";
 
 	public function findByPrimaryKey($teamId) {
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='$teamId'");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchTeamException($teamId);
 		}
@@ -20,17 +20,17 @@ class TeamPersistence extends Persistence {
 
 	public function remove($teamId) {
 		$this->findByPrimaryKey($teamId);
-		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teamId='$teamId'");
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 	}
 
 	public function update(Team $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."' WHERE teamId='{$object->getTeamId()}'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."' WHERE teamId='".addslashes($object->getTeamId())."'";
 		$pk = $object->getTeamId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
 			}
 		}
 		$this->db->updateQuery($q);

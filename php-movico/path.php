@@ -10,7 +10,11 @@ buildDirectoryList($root, ".", $directories);
 ini_set("include_path", implode(PATH_SEPARATOR, $directories));
 
 function __autoload($className) {
-	@include_once("$className.php");
+	if(in_array(lcfirst($className), array("div", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"))) {
+		require_once("HtmlComponent.php");
+	} else {
+		require_once("$className.php");
+	}
 }
 
 function buildDirectoryList($absRoot, $root, &$paths) {
@@ -23,4 +27,5 @@ function buildDirectoryList($absRoot, $root, &$paths) {
 		}
 	}
 }
+Singleton::create("Settings")->setRootPath($root);
 ?>

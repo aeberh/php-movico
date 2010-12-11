@@ -86,7 +86,7 @@ class EntityPersistenceGenerator {
 		$pk = $entity->getPrimaryKey()->getName();
 		$name = $entity->getName();
 		return "\tpublic function findByPrimaryKey(\$$pk) {\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $pk='\$$pk'\");\n".
+			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $pk='\".addslashes(\$$pk).\"'\");\n".
 			"\t\tif(\$result->isEmpty()) {\n\t\t\tthrow new NoSuch{$name}Exception(\$$pk);\n\t\t}\n".
 			"\t\treturn \$this->getAsObject(\$result->getSingleRow());\n\t}\n\n";
 	}
@@ -131,7 +131,7 @@ class EntityPersistenceGenerator {
 		$allPropNames = $entity->getPropertyNames(true);
 		$allPropGetters = $entity->getPropertyGetters("object", true);
 		
-		$result .= "\t\t\$q = \"UPDATE \".self::TABLE.\" SET ".implode(", ", $updatePairs)." WHERE {$pk->getName()}='{\$object->{$pk->getGetter()}}'\";\n".
+		$result .= "\t\t\$q = \"UPDATE \".self::TABLE.\" SET ".implode(", ", $updatePairs)." WHERE {$pk->getName()}='\".addslashes(\$object->{$pk->getGetter()}).\"'\";\n".
 			"\t\t\$pk = \$object->{$pk->getGetter()};\n".
 			"\t\tif(\$object->isNew()) {\n".
 			"\t\t\tif(empty(\$pk)) {\n".
@@ -153,7 +153,7 @@ class EntityPersistenceGenerator {
 		$pk = $entity->getPrimaryKey()->getName();
 		return "\tpublic function remove(\$$pk) {\n".
 			"\t\t\$this->findByPrimaryKey(\$$pk);\n".
-			"\t\t\$this->db->updateQuery(\"DELETE FROM \".self::TABLE.\" WHERE $pk='\$$pk'\");\n".
+			"\t\t\$this->db->updateQuery(\"DELETE FROM \".self::TABLE.\" WHERE $pk='\".addslashes(\$$pk).\"'\");\n".
 			"\t}\n\n";
 	}
 

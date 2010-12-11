@@ -146,7 +146,7 @@ class Entity {
 	}
 	
 	private function getGetter($objName, Property $property) {
-		return "\".Singleton::create(\"".$property->getConverter()."\")->fromDOMtoDB(\${$objName}->{$property->getGetter()}).\"";
+		return "\".addslashes(Singleton::create(\"".$property->getConverter()."\")->fromDOMtoDB(\${$objName}->{$property->getGetter()})).\"";
 	}
 
 	public function getPrimaryKey() {

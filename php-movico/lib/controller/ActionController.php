@@ -1,9 +1,9 @@
 <?
 class ActionController {
 	
-	public function perform($post) {
+	public function perform($post, $files) {
 		$view = View::DEFAULT_VIEW;
-		$this->updateModel($post);
+		$this->updateModel($post, $files);
 		
 		$action = RequestUtil::get("ACTION");
 		if(!is_null($action)) {
@@ -30,12 +30,17 @@ class ActionController {
 		return $view;
 	}
 
-	private function updateModel($post) {
+	private function updateModel($post, $files) {
 		foreach($post as $key=>$val) {
 			if(StringUtil::startsWith($key, "#")) {
 				list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);
 				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $val);
 			}
+		}
+		foreach($files as $key=>$fileArray) {
+			$file = new UploadedFile($fileArray);
+			list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);
+			ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $file);
 		}
 	}
 	

@@ -1,0 +1,5 @@
+<?
+class FileUploadException extends Exception {
+	
+}
+?>

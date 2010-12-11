@@ -11,12 +11,12 @@ class View extends Component {
 	}
 	
 	public function doRender($index=null) {
-		$ajax = SettingsUtil::isAjaxEnabled();
+		$ajax = Singleton::create("Settings")->isAjaxEnabled();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
 			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.4.3.min.js\"></script>";
 		if($ajax) {
-			$timeout = SettingsUtil::getAjaxTimeout();
+			$timeout = Singleton::create("Settings")->getAjaxTimeout();
 			$result .= <<<TST
 		<script type="text/javascript">
 			$(function() {

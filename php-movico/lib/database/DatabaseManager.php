@@ -13,7 +13,7 @@ class DatabaseManager {
 	 * Initializes a new DatabaseManager
 	 */
 	public function __construct() {
-		$group = SettingsUtil::getEnvironment();
+		$group = Singleton::create("Settings")->getEnvironment();
 		$this->importParameters($group);
 	}
 

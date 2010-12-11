@@ -109,6 +109,11 @@
 	id CDATA #IMPLIED
 >
 
+<!ELEMENT fileUpload ANY>
+<!ATTLIST fileUpload
+	value CDATA #REQUIRED
+>
+
 <!ELEMENT column ANY>
 
 <!ELEMENT colHeader ANY>

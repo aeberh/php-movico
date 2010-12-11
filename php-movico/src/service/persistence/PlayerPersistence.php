@@ -4,7 +4,7 @@ class PlayerPersistence extends Persistence {
 	const TABLE = "movico_player";
 
 	public function findByPrimaryKey($playerId) {
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE playerId='$playerId'");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE playerId='".addslashes($playerId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchPlayerException($playerId);
 		}
@@ -20,17 +20,17 @@ class PlayerPersistence extends Persistence {
 
 	public function remove($playerId) {
 		$this->findByPrimaryKey($playerId);
-		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE playerId='$playerId'");
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE playerId='".addslashes($playerId)."'");
 	}
 
 	public function update(Player $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', `teamId`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."' WHERE playerId='{$object->getPlayerId()}'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `teamId`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."' WHERE playerId='".addslashes($object->getPlayerId())."'";
 		$pk = $object->getPlayerId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `teamId`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `teamId`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `teamId`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlayerId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `teamId`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPlayerId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."')";
 			}
 		}
 		$this->db->updateQuery($q);

@@ -25,6 +25,9 @@ abstract class Component {
 	
 	public function render($index=null) {
 		$shouldBeRendered = $this->getConvertedValue($this->rendered, $index);
+		if(StringUtil::startsWith(strval($shouldBeRendered), "!")) {
+			$shouldBeRendered = !(substr(strval($shouldBeRendered), 1));
+		}
 		if(!$shouldBeRendered) {
 			return "";
 		}
@@ -84,8 +87,8 @@ abstract class Component {
 		}
 		$replaces = array();
 		foreach($matches as $match) {
-			if(isset($match[0])) {
-				$replaces[$match[0]] = $this->getBeanValue($match[0], $rowIndex);
+			for($i=0; $i<count($match); $i++) {
+				$replaces[$match[$i]] = $this->getBeanValue($match[$i], $rowIndex);
 			}
 		}
 		return str_replace(array_keys($replaces), array_values($replaces), $string);
