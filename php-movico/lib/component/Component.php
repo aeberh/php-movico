@@ -102,7 +102,7 @@ abstract class Component {
 			try {
 				$dataTable = $this->getFirstAncestorOfType("DataTable");
 				if($dataTable->getVar() !== $beanClass  || $rowIndex === null) {
-					throw NoSuchBeanException($beanClass);
+					throw new NoSuchBeanException($beanClass);
 				}
 				$rows = $dataTable->getRows();
 				$beanObj = $rows[$rowIndex];

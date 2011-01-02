@@ -59,7 +59,6 @@ class ViewRenderer {
 //			$key = $define->attributes()->name;
 //			$replaces[(string)$key] = $this->getChildrenAsXml($define);
 //		}
-////		PrintUtil::out($replaces);
 //		
 //		$tplNode = new SimpleXMLElement($tplXml, null, true);
 //		$viewNode = new SimpleXMLElement("<view></view>");
@@ -73,7 +72,6 @@ class ViewRenderer {
 //		for($i=0; $i<$inserts; $i++) {
 //			$result = StringUtil::replaceAssoc($result, $replaces);
 //		}
-////		PrintUtil::out($result);
 //		
 //		$viewNode = new SimpleXMLElement($result);
 //		$viewNode->template = "view";
@@ -100,7 +98,6 @@ class ViewRenderer {
 //			$contentXml = $replaces[(string)$tplNode->attributes()->name];
 //			$viewChild = new SimpleXMLElement($contentXml);
 //			$childNode = $result->addChild($viewChild->getName(), $contentXml);
-//			PrintUtil::out($viewNode);
 //		} else {
 ////			$childNode = $viewNode;
 ////			if($tplNode->getName() != "template") {

@@ -18,7 +18,8 @@
 			</ul>
 			<h2>Component Examples</h2>
 			<ul>
-				<li><commandLink action="components/datatable/users" value="DataTable"/></li>
+				<li><commandLink action="components/datatable/normal/users" value="DataTable"/></li>
+				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable"/></li>
 				<li><commandLink action="components/listbox/countries" value="ListBox"/></li>
 				<li><commandLink action="components/fileupload/upload_file" value="File Upload"/></li>
 			</ul>

@@ -15,16 +15,22 @@ class ReflectionUtil {
 				throw new NullPointerException();
 			}
 			$className = get_class($object);
+			$isListItem = StringUtil::endsWith($property, ")");
+			$strippedProperty = $isListItem ? substr($property, 0, strpos($property, "(")) : $property;
 			try {
-				$getterMethod = new ReflectionMethod($className, StringUtil::getter($property));
+				$getterMethod = new ReflectionMethod($className, StringUtil::getter($strippedProperty));
 			} catch(ReflectionException $e) {
 				try {
-					$getterMethod = new ReflectionMethod($className, StringUtil::boolGetter($property));
+					$getterMethod = new ReflectionMethod($className, StringUtil::boolGetter($strippedProperty));
 				} catch(ReflectionException $e) {
-					throw new MethodNotExistsException($className, StringUtil::getter($property));
+					throw new MethodNotExistsException($className, StringUtil::getter($strippedProperty));
 				}
 			}
 			$object = $getterMethod->invoke($object);
+			if($isListItem) {
+				$index = StringUtil::getSubstringBetween($property, "(", ")");
+				$object = $object[$index];
+			}
 		}
 		return $object;
 	}

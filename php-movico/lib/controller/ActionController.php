@@ -31,6 +31,7 @@ class ActionController {
 	}
 
 	private function updateModel($post, $files) {
+		$beanClass = "";
 		foreach($post as $key=>$val) {
 			if(StringUtil::startsWith($key, "#")) {
 				list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);

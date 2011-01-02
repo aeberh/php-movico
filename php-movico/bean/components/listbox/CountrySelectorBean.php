@@ -25,7 +25,8 @@ class CountrySelectorBean extends RequestBean {
 	}
 	
 	public function save() {
-		$this->message = implode(",", $this->countries)." selected.";
+		$selected = empty($this->countries) ? "None" : implode(", ", $this->countries);
+		$this->message = "$selected selected.";
 	}
 	
 }

@@ -7,9 +7,15 @@ abstract class AbstractInput extends Component {
 		$this->value = $value;
 	}
 	
-	public function doRender($index=null) {
+	public function doRender($row=null) {
 		$name = $this->value;
-		$val = $this->getConvertedValue($this->value);
+		if(!is_null($row)) {
+			$dtComp = $this->getFirstAncestorOfType("DataTable");
+			$dtVar = $dtComp->getVar();
+			$dtValue = BeanUtil::getBeanString($dtComp->getValue())."($row)";
+			$name = str_replace($dtVar, $dtValue, $this->value);
+		}
+		$val = $this->getConvertedValue($this->value, $row);
 		$type = $this->getType();
 		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"/>";
 	}

@@ -108,5 +108,12 @@ class StringUtil {
 		return json_encode(array($key=>$value));
 	}
 	
+	public static function getSubstringBetween($input, $from, $to) {
+		self::checkTypes($input, $from, $to);
+		$fromIndex = strpos($input, $from)+1;
+		$toIndex = strpos($input, $to);
+		return substr($input, $fromIndex, $toIndex-$fromIndex);
+	}
+	
 }
 ?>

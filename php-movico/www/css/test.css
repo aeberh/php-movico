@@ -81,12 +81,20 @@ h3 {
 
 .msg {
 	font-weight: bold;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+	padding: 3px;
 }
 
 .error {
-	color: red;
+	color: #D00;
+	border-color: #D00;
+	background-color: #FDD;
 }
 
 .info {
-	color: green;
+	color: #0D0;
+	border-color: #0D0;
+	background-color: #DFD;
 }
