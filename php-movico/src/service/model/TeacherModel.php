@@ -21,8 +21,8 @@ abstract class TeacherModel extends Model {
 		$this->name = $name;
 	}
 
-	public function getStudents() {
-		return StudentServiceUtil::findByTeacherId($this->teacherId);
+	public function getStudents($from=0, $limit=9999999999) {
+		return StudentServiceUtil::findByTeacherId($this->teacherId, $from, $limit);
 	}
 
 }

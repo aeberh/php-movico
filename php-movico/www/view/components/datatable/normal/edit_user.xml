@@ -17,7 +17,7 @@
 		    	<inputHidden value="#{UserBean.id}"/>
 		    	<inputHidden value="#{UserBean.editMode}"/>
 		    	<commandButton action="#{UserBean.save}" value="Save"/>
-		    	<commandButton action="components/datatable/users" value="Go back"/>
+		    	<commandButton action="components/datatable/normal/users" value="Go back"/>
 	    	</panelGrid>
 	    </form>
 	</define>

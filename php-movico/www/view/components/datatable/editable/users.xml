@@ -20,14 +20,6 @@
 					</colHeader>
 					<inputText value="#{user.lastName}"/>
 				</column>
-				<!-- 
-				<column>
-					<colHeader>
-						<outputText value="Default?"/>
-					</colHeader>
-					<outputText value="#{user.default}"/>
-				</column>
-				-->
 			</dataTable>
 			<p>
 				<commandButton action="#{EditableUserBean.save}" value="Save"/>

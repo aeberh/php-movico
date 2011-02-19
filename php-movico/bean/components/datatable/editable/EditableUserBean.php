@@ -1,5 +1,5 @@
 <?php
-class EditableUserBean extends SessionBean {
+class EditableUserBean extends RequestBean {
 	
 	private $users;
 	

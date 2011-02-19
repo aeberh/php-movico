@@ -22,7 +22,7 @@ class OneToManyProperty extends Property {
 	
 	public function getFinderSignature($tthis=false) {
 		$thisOrNot = $tthis ? "this->" : "";
-		return "findBy".ucfirst($this->getMappingKey())."(\$$thisOrNot{$this->getMappingKey()})";
+		return "findBy".ucfirst($this->getMappingKey())."(\$$thisOrNot{$this->getMappingKey()}, \$from, \$limit)";
 	}
 	
 }

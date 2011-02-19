@@ -17,8 +17,8 @@ class PlayerServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getPlayers() {
-		return $this->getPersistence()->findAll();
+	public function getPlayers($from, $limit) {
+		return $this->getPersistence()->findAll($from, $limit);
 	}
 
 	public function countPlayers() {
@@ -29,8 +29,8 @@ class PlayerServiceBase {
 		return Singleton::create("PlayerPersistence");
 	}
 
-	public function findByTeamId($teamId) {
-		return $this->getPersistence()->findByTeamId($teamId);
+	public function findByTeamId($teamId, $from, $limit) {
+		return $this->getPersistence()->findByTeamId($teamId, $from, $limit);
 	}
 
 }

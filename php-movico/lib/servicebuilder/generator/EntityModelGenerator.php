@@ -30,7 +30,7 @@ class EntityModelGenerator {
 		foreach($entity->getManyToManyProperties() as $property) {
 			$mappedEntity = $property->getEntityName();
 			$functionName = $property->getFinderSignature(true);
-			$result .= "\tpublic function get".ucfirst($property->getName())."() {\n".
+			$result .= "\tpublic function get".ucfirst($property->getName())."(\$from=0, \$limit=9999999999) {\n".
 				"\t\treturn {$mappedEntity}ServiceUtil::$functionName;\n\t}\n\n";
 		}
 		return $result;
@@ -41,7 +41,7 @@ class EntityModelGenerator {
 		foreach($entity->getOneToManyProperties() as $property) {
 			$mappedEntity = $property->getEntityName();
 			$functionName = $property->getFinderSignature(true);
-			$result .= "\tpublic function get".ucfirst($property->getName())."() {\n".
+			$result .= "\tpublic function get".ucfirst($property->getName())."(\$from=0, \$limit=9999999999) {\n".
 				"\t\treturn {$mappedEntity}ServiceUtil::$functionName;\n\t}\n\n";
 		}
 		return $result;

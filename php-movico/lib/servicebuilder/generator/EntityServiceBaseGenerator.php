@@ -44,8 +44,8 @@ class EntityServiceBaseGenerator {
 			"\tpublic function delete$name(\$pk) {\n".
 			"\t\t\$this->getPersistence()->remove(\$pk);\n".
 			"\t}\n\n".
-			"\tpublic function get{$name}s() {\n".
-			"\t\treturn \$this->getPersistence()->findAll();\n".
+			"\tpublic function get{$name}s(\$from, \$limit) {\n".
+			"\t\treturn \$this->getPersistence()->findAll(\$from, \$limit);\n".
 			"\t}\n\n".
 			"\tpublic function count{$name}s() {\n".
 			"\t\treturn \$this->getPersistence()->count();\n".
@@ -56,7 +56,7 @@ class EntityServiceBaseGenerator {
 	}
 	
 	private function generateFinder($signature) {
-		return "\tpublic function $signature {\n\t\treturn \$this->getPersistence()->$signature;\n\t}\n\n";
+		return "\tpublic function $signature {\n\t\treturn \$this->getPersistence()->".str_replace("=-1", "", $signature).";\n\t}\n\n";
 	}
 
 }

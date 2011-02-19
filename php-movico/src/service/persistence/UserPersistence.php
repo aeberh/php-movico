@@ -40,8 +40,8 @@ class UserPersistence extends Persistence {
 		return $this->findByPrimaryKey($pk);
 	}
 
-	public function findAll() {
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ")->getResult();
+	public function findAll($from, $limit) {
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		return $this->getAsObjects($rows);
 	}
 

@@ -17,8 +17,8 @@ class StudentServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getStudents() {
-		return $this->getPersistence()->findAll();
+	public function getStudents($from, $limit) {
+		return $this->getPersistence()->findAll($from, $limit);
 	}
 
 	public function countStudents() {
@@ -29,8 +29,8 @@ class StudentServiceBase {
 		return Singleton::create("StudentPersistence");
 	}
 
-	public function findByTeacherId($teacherId) {
-		return $this->getPersistence()->findByTeacherId($teacherId);
+	public function findByTeacherId($teacherId, $from, $limit) {
+		return $this->getPersistence()->findByTeacherId($teacherId, $from, $limit);
 	}
 
 	public function setTeachers($studentId, $teacherIds) {

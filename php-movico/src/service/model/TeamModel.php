@@ -21,8 +21,8 @@ abstract class TeamModel extends Model {
 		$this->name = $name;
 	}
 
-	public function getPlayers() {
-		return PlayerServiceUtil::findByTeamId($this->teamId);
+	public function getPlayers($from=0, $limit=9999999999) {
+		return PlayerServiceUtil::findByTeamId($this->teamId, $from, $limit);
 	}
 
 }

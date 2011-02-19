@@ -25,8 +25,8 @@ class UserServiceUtil {
 		self::getService()->deleteUser($pk);
 	}
 
-	public static function getUsers() {
-		return self::getService()->getUsers();
+	public static function getUsers($from=0, $limit=9999999999) {
+		return self::getService()->getUsers($from, $limit);
 	}
 
 	public static function countUsers() {

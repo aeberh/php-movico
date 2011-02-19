@@ -17,8 +17,8 @@ class TeamServiceUtil {
 		self::getService()->deleteTeam($pk);
 	}
 
-	public static function getTeams() {
-		return self::getService()->getTeams();
+	public static function getTeams($from=0, $limit=9999999999) {
+		return self::getService()->getTeams($from, $limit);
 	}
 
 	public static function countTeams() {

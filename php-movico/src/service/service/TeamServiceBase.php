@@ -17,8 +17,8 @@ class TeamServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getTeams() {
-		return $this->getPersistence()->findAll();
+	public function getTeams($from, $limit) {
+		return $this->getPersistence()->findAll($from, $limit);
 	}
 
 	public function countTeams() {

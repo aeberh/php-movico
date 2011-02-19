@@ -45,8 +45,8 @@ class EntityServiceUtilGenerator {
 			"\tpublic static function delete$name(\$pk) {\n".
 			"\t\tself::getService()->delete$name(\$pk);\n".
 			"\t}\n\n".
-			"\tpublic static function get{$name}s() {\n".
-			"\t\treturn self::getService()->get{$name}s();\n".
+			"\tpublic static function get{$name}s(\$from=0, \$limit=9999999999) {\n".
+			"\t\treturn self::getService()->get{$name}s(\$from, \$limit);\n".
 			"\t}\n\n".
 			"\tpublic static function count{$name}s() {\n".
 			"\t\treturn self::getService()->count{$name}s();\n".
@@ -78,7 +78,7 @@ class EntityServiceUtilGenerator {
 	
 	private function generateFinder($signature) {
 		return "\tpublic static function $signature {\n".
-			"\t\treturn self::getService()->$signature;\n".
+			"\t\treturn self::getService()->".str_replace("=-1", "", $signature).";\n".
 			"\t}\n\n";
 	}
 

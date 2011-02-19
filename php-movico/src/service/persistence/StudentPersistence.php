@@ -40,8 +40,8 @@ class StudentPersistence extends Persistence {
 		return $this->findByPrimaryKey($pk);
 	}
 
-	public function findAll() {
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ")->getResult();
+	public function findAll($from, $limit) {
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		return $this->getAsObjects($rows);
 	}
 
@@ -57,8 +57,8 @@ class StudentPersistence extends Persistence {
 		return $result;
 	}
 
-	public function findByTeacherId($teacherId) {
-		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.teacherId='$teacherId' AND mapping.studentId=t.studentId ORDER BY `name` asc")->getResult();
+	public function findByTeacherId($teacherId, $from, $limit) {
+		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.teacherId='$teacherId' AND mapping.studentId=t.studentId ORDER BY `name` asc LIMIT $from,$limit")->getResult();
 		return $this->getAsObjects($rows);
 	}
 

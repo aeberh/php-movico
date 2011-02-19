@@ -1,8 +1,8 @@
 <?php
 class PlayerServiceUtil {
 
-	public static function findByTeamId($teamId) {
-		return self::getService()->findByTeamId($teamId);
+	public static function findByTeamId($teamId, $from, $limit) {
+		return self::getService()->findByTeamId($teamId, $from, $limit);
 	}
 
 	public static function createPlayer($pk=0) {
@@ -21,8 +21,8 @@ class PlayerServiceUtil {
 		self::getService()->deletePlayer($pk);
 	}
 
-	public static function getPlayers() {
-		return self::getService()->getPlayers();
+	public static function getPlayers($from=0, $limit=9999999999) {
+		return self::getService()->getPlayers($from, $limit);
 	}
 
 	public static function countPlayers() {

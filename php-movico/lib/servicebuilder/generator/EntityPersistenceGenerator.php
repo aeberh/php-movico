@@ -51,14 +51,14 @@ class EntityPersistenceGenerator {
 		$mappedPkName = Singleton::create("ServiceBuilder")->getEntity($property->getEntityName())->getPrimaryKey()->getName();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
 			"\t\t\$rows = \$this->db->selectQuery(\"SELECT t.* FROM ".$property->getMappingTable()." mapping,\".self::TABLE.\" t WHERE mapping.$columnName='\$$columnName' ".
-				"AND mapping.$mappedPkName=t.$mappedPkName {$property->getEntity()->getOrderByClause()}\")->getResult();\n".
+				"AND mapping.$mappedPkName=t.$mappedPkName {$property->getEntity()->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
 	private function generateOneToManyFinder(OneToManyProperty $property) {
 		$columnName = $property->getMappingKey();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
-			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$property->getEntity()->getOrderByClause()}\")->getResult();\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$property->getEntity()->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
@@ -70,7 +70,7 @@ class EntityPersistenceGenerator {
 	
 	private function generateFinder(Finder $finder, $entityName) {
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()."\");\n";
+			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()." LIMIT \$from,\$limit\");\n";
 		if($finder->isUnique()) {
 			$result .= "\t\tif(\$result->isEmpty()) {\n".
 				"\t\t\tthrow new NoSuch{$entityName}Exception();\n".
@@ -92,8 +92,8 @@ class EntityPersistenceGenerator {
 	}
 
 	private function generateFindAll(Entity $entity) {
-		return "\tpublic function findAll() {\n".
-			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" {$entity->getOrderByClause()}\")->getResult();\n".
+		return "\tpublic function findAll(\$from, \$limit) {\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" {$entity->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 

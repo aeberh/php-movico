@@ -5,8 +5,8 @@ class StudentServiceUtil {
 		return self::getService()->create($name);
 	}
 
-	public static function findByTeacherId($teacherId) {
-		return self::getService()->findByTeacherId($teacherId);
+	public static function findByTeacherId($teacherId, $from, $limit) {
+		return self::getService()->findByTeacherId($teacherId, $from, $limit);
 	}
 
 	public static function setTeachers($studentId, $teacherIds) {
@@ -29,8 +29,8 @@ class StudentServiceUtil {
 		self::getService()->deleteStudent($pk);
 	}
 
-	public static function getStudents() {
-		return self::getService()->getStudents();
+	public static function getStudents($from=0, $limit=9999999999) {
+		return self::getService()->getStudents($from, $limit);
 	}
 
 	public static function countStudents() {
