@@ -128,6 +128,10 @@ abstract class Component {
 		}
 		return $result;
 	}
+	
+	protected function getChildren() {
+		return $this->children;
+	}
 
 	public function setId($id) {
 		$this->id = $id;

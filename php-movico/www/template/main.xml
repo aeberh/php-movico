@@ -22,6 +22,15 @@
 				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable"/></li>
 				<li><commandLink action="components/listbox/countries" value="ListBox"/></li>
 				<li><commandLink action="components/fileupload/upload_file" value="File Upload"/></li>
+				<li><commandLink action="components/panelseries/contacts" value="PanelSeries"/></li>
+			</ul>
+			<h2>Lib Examples</h2>
+			<ul>
+				<li><commandLink action="libs/i18n" value="Internationalization"/></li>
+			</ul>
+			<h2>Games</h2>
+			<ul>
+				<li><commandLink action="games/boggle" value="Boggle"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

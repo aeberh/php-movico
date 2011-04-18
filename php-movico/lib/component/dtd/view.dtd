@@ -101,6 +101,14 @@
 
 <!ELEMENT panelGroup ANY>
 
+<!ELEMENT panelSeries ANY>
+<!ATTLIST panelSeries
+	value CDATA #REQUIRED
+	var CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	id CDATA #IMPLIED
+>
+
 <!ELEMENT dataTable (column*)>
 <!ATTLIST dataTable
 	value CDATA #REQUIRED
