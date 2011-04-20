@@ -1,23 +1,27 @@
-<?php
-ini_set("display_errors", 1);
-ini_set("error_reporting", E_ALL);
-
+<?
 class ArrayList {
 	
 	private $elements = array();
 	private $type;
-	
-	/**
-	 * Create a new ArrayList that contains elements of the given type.
-	 * @param $type
-	 */
+
 	public function __construct($type) {
+		if(!is_string($type)) {
+			throw new IllegalArgumentException("Type parameter must be a string");
+		}
 		$this->type = $type;
+	}
+	
+	public static function fromArray($type, array $array) {
+		$list = new ArrayList($type);
+		foreach($array as $element) {
+			$list->add($element);
+		}
+		return $list;
 	}
 	
 	public function add($element, $position=-1) {
 		if(!$this->isCorrectType($element)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Tried to add element of type ".gettype($element)." to list of type ".$this->type);
 		}
 		$this->elements[] = $element;
 	}
@@ -38,12 +42,12 @@ class ArrayList {
 	}
 	
 	public function join($delimiter) {
-		return implode($delimiter, $this->elements);
+		return new String(implode($delimiter, $this->elements));
 	}
 	
 	public function indexOf($search) {
 		if(!$this->isCorrectType($search)) {
-			throw new IllegalArgumentException();
+			throw new ListException();
 		}
 		for($i=0; $i<$this->size(); $i++) {
 			if($this->elements[$i] === $search) {
@@ -58,6 +62,9 @@ class ArrayList {
 	}
 	
 	private function isCorrectType($element) {
+		if($this->type === "?") {
+			return true;
+		}
 		if(!is_object($element)) {
 			return $this->type === gettype($element);
 		}
@@ -69,31 +76,8 @@ class ArrayList {
 	}
 	
 	public function __toString() {
-		return "[".implode(",", $this->elements)."]";
-	}
-	
-	public function sort(Comparator $comparator) {
-		
+		return "[".$this->join(",")."]";
 	}
 	
 }
-
-class IndexOutOfBoundsException extends Exception {}
-
-class IllegalArgumentException extends Exception {}
 ?>
-
-<h1>ArrayList</h1>
-<?php 
-try {
-	$list = new ArrayList("string");
-	$list->add("one");
-	$list->add("two");
-	
-	$first = $list->get(5);
-} catch(Exception $e) {
-	echo "Error! $e";
-}
-?>
-<?=$list?>
-<?=$first?>

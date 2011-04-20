@@ -1,26 +1,7 @@
 <?
-class DataTable extends Component {
-	
-	private $value;
-	private $var;
+class DataTable extends DataSeries {
 	
 	const DATATABLE_ROW = "DATATABLE_ROW";
-	
-	public function setValue($value) {
-		$this->value = $value;
-	}
-	
-	public function setVar($var) {
-		$this->var = $var;
-	}
-	
-	public function getVar() {
-		return $this->var;
-	}
-	
-	public function getValue() {
-		return $this->value;
-	}
 	
 	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");

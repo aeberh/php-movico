@@ -10,7 +10,7 @@ abstract class AbstractInput extends Component {
 	public function doRender($row=null) {
 		$name = $this->value;
 		if(!is_null($row)) {
-			$dtComp = $this->getFirstAncestorOfType("DataTable");
+			$dtComp = $this->getFirstAncestorOfType("DataSeries");
 			$dtVar = $dtComp->getVar();
 			$dtValue = BeanUtil::getBeanString($dtComp->getValue())."($row)";
 			$name = str_replace($dtVar, $dtValue, $this->value);
@@ -23,7 +23,7 @@ abstract class AbstractInput extends Component {
 	public abstract function getType();
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "PanelSeries");
 	}
 	
 }

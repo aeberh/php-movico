@@ -5,6 +5,8 @@
 		<outputText value="PanelSeries"/>
 	</define>
 	<define name="body">
-
+		<panelSeries value="#{ContactsBean.contacts}" var="contact">
+			<inputText value="#{contact.name}"/>
+		</panelSeries>
 	</define>
 </composition>

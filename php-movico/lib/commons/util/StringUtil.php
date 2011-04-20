@@ -83,6 +83,14 @@ class StringUtil {
 		return self::replaceWith($input, $needle, "");
 	}
 	
+	public static function removeAll($input, $needles) {
+		$result = $input;
+		foreach($needles as $needle) {
+			$result .= self::remove($input, $needle);
+		}
+		return $result;
+	}
+	
 	public static function getter($key) {
 		self::checkTypes($key);
 		return "get".ucfirst($key);

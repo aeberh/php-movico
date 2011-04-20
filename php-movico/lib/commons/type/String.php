@@ -7,6 +7,14 @@ class String {
 		$this->string = $string;
 	}
 	
+	public static function fromPrimitives($strings) {
+		$result = new ArrayList("String");
+		foreach ($strings as $string) {
+			$result->add(new String($string));
+		}
+		return $result;
+	}
+	
 	public function length() {
 		return strlen($this->string);
 	}
@@ -23,8 +31,14 @@ class String {
 		return new String(substr($this->string, $start, $length));
 	}
 	
-	public function split($delimiter, $limit=0) {
-		return new String(explode($delimiter, $this->string, $limit));
+	public function split($delimiter, $limit=null) {
+		self::toObject($delimiter);
+		if($delimiter->isEmpty()) {
+			$list = array($this);
+		} else {
+			$list = is_null($limit) ? explode($delimiter, $this->string) : explode($delimiter, $this->string, $limit);
+		}
+		return self::fromPrimitives($list);
 	}
 	
 	public function toLowerCase() {
@@ -39,21 +53,52 @@ class String {
 		return new String(trim($this->string));
 	}
 	
-	public function indexOf(String $substring) {
-		return strpos($this->string, $substring);
+	public function indexOf($needle) {
+		self::toObject($needle);
+		if($needle->isEmpty()) {
+			return -1;
+		}
+		return strpos($this->string, $needle->__toString());
 	}
 	
-	public function contains(String $substring) {
-		return $this->indexOf($substring) > -1;
+	public function contains($needle) {
+		self::toObject($needle);
+		return $this->indexOf($needle) > -1;
 	}
 	
-	public function startsWith(String $substring) {
+	public function startsWith($substring) {
+		self::toObject($substring);
 		return $this->indexOf($substring) === 0;
 	}
 	
-	public function endsWith(String $substring) {
+	public function endsWith($substring) {
+		self::toObject($substring);
 		$index = $this->length() - $substring->length();
 		return $this->indexOf($substring) === $index;
+	}
+	
+	public function getMatches($regex) {
+		self::toObject($regex);
+		preg_match_all($regex, $this, $matches, PREG_SET_ORDER);
+		$result = new ArrayList("ArrayList");
+		foreach($matches as $match) {
+			$list = new ArrayList("String");
+			foreach($match as $m) {
+				$list->add(new String($m));
+			}
+			$result->add($list);
+		}
+		return $result;
+	}
+	
+	public function isEmpty() {
+		return "" === $this->string;
+	}
+	
+	private static function toObject(&$input) {
+		if(is_string($input)) {
+			$input = new String($input);
+		}
 	}
 	
 	public function __toString() {
@@ -61,3 +106,4 @@ class String {
 	}
 	
 }
+?>

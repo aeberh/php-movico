@@ -1,11 +1,5 @@
 <?
-class PanelSeries extends Component {
-	
-	private $value;
-	
-	public function setValue($value) {
-		$this->value = $value;
-	}
+class PanelSeries extends DataSeries {
 	
 	public function doRender($index=null) {
 		$children = $this->getChildren();
@@ -21,6 +15,10 @@ class PanelSeries extends Component {
 		list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($this->value);
 		$beanObj = BeanLocator::get($beanClass);
 		return ReflectionUtil::callNestedGetter($beanObj, $nestedProperty);
+	}
+	
+	public function getValidParents() {
+		return array("View", "PanelGrid", "Form", "PanelGroup", "div", "PanelSeries");
 	}
 	
 }
