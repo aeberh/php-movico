@@ -20,4 +20,5 @@ new StringMatchesTest();
 // ArrayList tests
 new ListAddElementTest();
 new ListGetElementTest();
+new ListJoinElementsTest();
 ?>

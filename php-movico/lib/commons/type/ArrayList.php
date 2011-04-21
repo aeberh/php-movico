@@ -41,7 +41,7 @@ class ArrayList {
 		return $this->size() === 0;
 	}
 	
-	public function join($delimiter) {
+	public function join($delimiter="") {
 		return new String(implode($delimiter, $this->elements));
 	}
 	
