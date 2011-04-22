@@ -1,5 +1,5 @@
 <?
-class ArrayList {
+class ArrayList implements IteratorAggregate {
 	
 	private $elements = array();
 	private $type;
@@ -19,7 +19,7 @@ class ArrayList {
 		return $list;
 	}
 	
-	public function add($element, $position=-1) {
+	public function add($element) {
 		if(!$this->isCorrectType($element)) {
 			throw new IllegalArgumentException("Tried to add element of type ".gettype($element)." to list of type ".$this->type);
 		}
@@ -47,7 +47,7 @@ class ArrayList {
 	
 	public function indexOf($search) {
 		if(!$this->isCorrectType($search)) {
-			throw new ListException();
+			throw new IllegalArgumentException("Tried to search element of type ".gettype($search)." in list of type ".$this->type);
 		}
 		for($i=0; $i<$this->size(); $i++) {
 			if($this->elements[$i] === $search) {
@@ -61,14 +61,34 @@ class ArrayList {
 		return $this->indexOf($search) >= 0;
 	}
 	
+	public function getSublist($from, $size=null) {
+		$l = is_null($size) ? $this->size()-$from : $size;
+		if($l<0) {
+			throw new IllegalArgumentException("Sublist size cannot be negative");
+		}
+		if($from<0 || $from+$l > $this->size()) {
+			throw new IndexOutOfBoundsException("Sublist is out of bounds");
+		}
+		$result = array_slice($this->elements, $from, $l);
+		return self::fromArray($this->type, $result);
+	}
+
+	public function getIterator() {
+		return new ArrayIterator($this->elements);
+	}
+
 	private function isCorrectType($element) {
 		if($this->type === "?") {
 			return true;
 		}
-		if(!is_object($element)) {
-			return $this->type === gettype($element);
+		return $this->type === $this->getType($element);
+	}
+	
+	private function getType($var) {
+		if(!is_object($var)) {
+			return gettype($var);
 		}
-		return $this->type === get_class($element);
+		return get_class($var);
 	}
 	
 	private function isValidIndex($i) {

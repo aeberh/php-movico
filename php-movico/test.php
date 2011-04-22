@@ -21,4 +21,12 @@ new StringMatchesTest();
 new ListAddElementTest();
 new ListGetElementTest();
 new ListJoinElementsTest();
+new ListContainsTest();
+new ListGetSublistTest();
+new ListIteratorTest();
+
+//Hashmap tests
+new MapPutElementTest();
+new MapGetElementTest();
+new MapIteratorTest();
 ?>
