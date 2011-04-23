@@ -1,0 +1,18 @@
+#boggle-layout {
+	background: orange;
+	padding: 5px;
+	border-radius: 15px;
+	box-shadow: 2px 2px 1px #ccc;
+}
+
+#boggle-layout td {
+	text-align: center;
+	width: 50px;
+	line-height: 50px;
+	font-weight: bold;
+	background: white;
+	border-radius: 15px;
+	margin: 10px;
+	box-shadow: 2px 2px 1px #ccc;
+	font-size: 18px;
+}

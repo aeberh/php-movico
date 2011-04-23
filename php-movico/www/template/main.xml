@@ -2,6 +2,7 @@
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <template>
 	<css src="test.css"/>
+	<css src="boggle.css"/>
 	<h1>Movico Sample Browser</h1>
 	<panelGrid columns="2">
 		<form id="nav">

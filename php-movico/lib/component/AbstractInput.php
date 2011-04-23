@@ -2,9 +2,14 @@
 abstract class AbstractInput extends Component {
 	
 	private $value;
+	private $autoFocus;
 
 	public function setValue($value) {
 		$this->value = $value;
+	}
+	
+	public function setAutoFocus($autoFocus) {
+		$this->autoFocus = $autoFocus;
 	}
 	
 	public function doRender($row=null) {
@@ -17,7 +22,8 @@ abstract class AbstractInput extends Component {
 		}
 		$val = $this->getConvertedValue($this->value, $row);
 		$type = $this->getType();
-		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"/>";
+		$focus = $this->autoFocus === "true" ? " class=\"autofocus\"" : "";
+		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"$focus/>";
 	}
 	
 	public abstract function getType();

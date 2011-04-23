@@ -62,6 +62,7 @@
 <!ATTLIST inputText
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
+	autoFocus CDATA #IMPLIED
 >
 
 <!ELEMENT inputTextArea EMPTY>
@@ -108,6 +109,15 @@
 <!ATTLIST panelSeries
 	value CDATA #REQUIRED
 	var CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT panelGridSeries ANY>
+<!ATTLIST panelGridSeries
+	value CDATA #REQUIRED
+	var CDATA #REQUIRED
+	columns CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
 >

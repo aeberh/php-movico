@@ -36,6 +36,7 @@ class View extends Component {
 								$("body").html(data.body);
 								registerForms();
 								$("img.AjaxLoading").attr("src", "lib/component/img/connect_idle.gif");
+								autoFocus();
 							},
 							error: function(request, errorType, errorThrown) {
 								$("button").removeAttr("disabled");

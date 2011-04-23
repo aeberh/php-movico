@@ -5,11 +5,17 @@
 		<outputText value="Boggle"/>
 	</define>
 	<define name="body">
-		<form>
-			<commandButton action="#{BoggleBean.start}" value="Start Game" rendered="#{BoggleBean.unstarted}"/>
-		</form>
-		<panelSeries value="#{BoggleBean.layout}" var="field">
+		<panelGridSeries value="#{BoggleBean.layout}" var="field" columns="#{BoggleBean.columns}" id="boggle-layout">
 			<outputText value="#{field}"/>
+		</panelGridSeries>
+		<form>
+			<inputText value="#{BoggleBean.word}" autoFocus="true"/>
+			<commandButton action="#{BoggleBean.addWord}" value="Add"/>
+		</form>
+		<panelSeries value="#{BoggleBean.words}" var="word">
+			<div>
+				<outputText value="#{word}"/>
+			</div>
 		</panelSeries>
 	</define>
 </composition>
