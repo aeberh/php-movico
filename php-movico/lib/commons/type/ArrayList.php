@@ -21,7 +21,7 @@ class ArrayList implements IteratorAggregate {
 	
 	public function add($element) {
 		if(!$this->isCorrectType($element)) {
-			throw new IllegalArgumentException("Tried to add element of type ".gettype($element)." to list of type ".$this->type);
+			throw new IllegalArgumentException("Tried to add element of type ".TypeUtil::getType($element)." to list of type ".$this->type);
 		}
 		$this->elements[] = $element;
 	}
@@ -47,7 +47,7 @@ class ArrayList implements IteratorAggregate {
 	
 	public function indexOf($search) {
 		if(!$this->isCorrectType($search)) {
-			throw new IllegalArgumentException("Tried to search element of type ".gettype($search)." in list of type ".$this->type);
+			throw new IllegalArgumentException("Tried to search element of type ".TypeUtil::getType($search)." in list of type ".$this->type);
 		}
 		for($i=0; $i<$this->size(); $i++) {
 			if($this->elements[$i] === $search) {
@@ -79,7 +79,16 @@ class ArrayList implements IteratorAggregate {
 	
 	public function sort(Comparator $comparator=null) {
 		if(is_null($comparator)) {
-			sort($this->elements);
+			if(TypeUtil::isPrimitive($this->type)) {
+				sort($this->elements);
+			} elseif(TypeUtil::isObjectType($this->type)) {
+				if(!TypeUtil::isClassComparable($this->type)) {
+					throw new ListNotSortableException("List of type ".$this->type." is not sortable");
+				}
+				usort($this->elements, function($a, $b) {
+					return $a->compareTo($b);
+		        });
+			}
 		} else {
 			usort($this->elements, function($a, $b) use ($comparator) {
 				return $comparator->compare($a, $b);
@@ -91,14 +100,7 @@ class ArrayList implements IteratorAggregate {
 		if($this->type === "?") {
 			return true;
 		}
-		return $this->type === $this->getType($element);
-	}
-	
-	private function getType($var) {
-		if(!is_object($var)) {
-			return gettype($var);
-		}
-		return get_class($var);
+		return $this->type === TypeUtil::getType($element);
 	}
 	
 	private function isValidIndex($i) {

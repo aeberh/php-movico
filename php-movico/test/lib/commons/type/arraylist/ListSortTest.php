@@ -1,36 +1,52 @@
 <?
 class ListSortTest extends UnitTestCase {
 	
-	private $list;
-	
-	public function __construct() {
-		$this->list = new ArrayList("string");
-		$this->list->add("b");
-		$this->list->add("a");
-		$this->list->add("c");
-	}
-	
 	function testSortPrimitivesNaturalOrdering() {
-		$this->list->sort();
-		$this->assertEqual("a", $this->list->get(0));
-		$this->assertEqual("b", $this->list->get(1));
-		$this->assertEqual("c", $this->list->get(2));
+		$pList = new ArrayList("string");
+		$pList->add("b");
+		$pList->add("a");
+		$pList->add("c");
+		
+		$pList->sort();
+		$this->assertEqual("a", $pList->get(0));
+		$this->assertEqual("b", $pList->get(1));
+		$this->assertEqual("c", $pList->get(2));
 	}
 	
-	function testSortObjectsNaturalOrdering() {
+	function testSortObjectsNoComparableInterface() {
+		$oList = new ArrayList("SampleSortableObject");
+		$oList->add(new SampleSortableObject(new String("b")));
+		$oList->add(new SampleSortableObject(new String("a")));
+		$oList->add(new SampleSortableObject(new String("c")));
 		
+		$this->expectException("ListNotSortableException");
+		$oList->sort();
+	}
+	
+	function testSortObjectsComparableInterface() {
+		$oList = new ArrayList("SampleSortableObjectComparable");
+		$oList->add(new SampleSortableObjectComparable(new String("b")));
+		$oList->add(new SampleSortableObjectComparable(new String("a")));
+		$oList->add(new SampleSortableObjectComparable(new String("c")));
+		
+		$oList->sort();
+		
+		$this->assertEqual(new String("c"), $oList->get(0)->getField());
+		$this->assertEqual(new String("b"), $oList->get(1)->getField());
+		$this->assertEqual(new String("a"), $oList->get(2)->getField());
 	}
 	
 	function testSortObjectsComparator() {
-		$list = new ArrayList("SampleSortableObject");
-		$list->add(new SampleSortableObject(new String("b")));
-		$list->add(new SampleSortableObject(new String("a")));
-		$list->add(new SampleSortableObject(new String("c")));
-		$list->sort(new SampleSortableObjectComparator());
+		$oList = new ArrayList("SampleSortableObject");
+		$oList->add(new SampleSortableObject(new String("b")));
+		$oList->add(new SampleSortableObject(new String("a")));
+		$oList->add(new SampleSortableObject(new String("c")));
 		
-		$this->assertEqual(new String("c"), $list->get(0)->getField());
-		$this->assertEqual(new String("b"), $list->get(1)->getField());
-		$this->assertEqual(new String("a"), $list->get(2)->getField());
+		$oList->sort(new SampleSortableObjectComparator());
+		
+		$this->assertEqual(new String("c"), $oList->get(0)->getField());
+		$this->assertEqual(new String("b"), $oList->get(1)->getField());
+		$this->assertEqual(new String("a"), $oList->get(2)->getField());
 	}
 
 }
@@ -38,7 +54,7 @@ class ListSortTest extends UnitTestCase {
 class SampleSortableObjectComparator implements Comparator {
 	
 	public function compare($one, $other) {
-		return $one->compareTo($other);
+		return $other->getField()->compareTo($one->getField());
 	}
 	
 }
@@ -54,8 +70,12 @@ class SampleSortableObject {
 	public function getField() {
 		return $this->field;
 	}
+
+}
+
+class SampleSortableObjectComparable extends SampleSortableObject implements Comparable {
 	
-	public function compareTo(SampleSortableObject $other) {
+	public function compareTo(self $other) {
 		return $other->getField()->compareTo($this->getField());
 	}
 	

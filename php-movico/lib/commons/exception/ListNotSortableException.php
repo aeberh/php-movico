@@ -1,0 +1,7 @@
+<?
+class ListNotSortableException extends Exception {
+	
+	
+	
+}
+?>

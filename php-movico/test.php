@@ -31,4 +31,9 @@ new ListSortTest();
 new MapPutElementTest();
 new MapGetElementTest();
 new MapIteratorTest();
+
+//TypeUtil tests
+new IsObjectTypeTest();
+new IsPrimitiveTypeTest();
+new IsComparableTest();
 ?>

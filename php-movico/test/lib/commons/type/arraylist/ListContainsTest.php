@@ -10,8 +10,16 @@ class ListContainsTest extends UnitTestCase {
 		$this->list->add("Third");
 	}
 	
-	function testActualContains() {
+	function testActualContainsFirst() {
+		$this->assertTrue($this->list->contains("First"));
+	}
+	
+	function testActualContainsSecond() {
 		$this->assertTrue($this->list->contains("Second"));
+	}
+	
+	function testActualContainsThird() {
+		$this->assertTrue($this->list->contains("Third"));
 	}
 	
 	function testFalseContains() {
