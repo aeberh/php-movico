@@ -91,6 +91,10 @@ class String {
 		return $result;
 	}
 	
+	public function compareTo(String $other) {
+		return strcmp($this->string, $other->string);
+	}
+	
 	public function isEmpty() {
 		return "" === $this->string;
 	}

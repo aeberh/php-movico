@@ -100,6 +100,9 @@
 >
 
 <!ELEMENT panelGroup ANY>
+<!ATTLIST panelGroup
+	rendered CDATA #IMPLIED
+>
 
 <!ELEMENT panelSeries ANY>
 <!ATTLIST panelSeries

@@ -16,6 +16,7 @@ new StringEndsWithTest();
 new StringLengthTest();
 new StringSplitTest();
 new StringMatchesTest();
+new StringCompareTest();
 
 // ArrayList tests
 new ListAddElementTest();
@@ -24,6 +25,7 @@ new ListJoinElementsTest();
 new ListContainsTest();
 new ListGetSublistTest();
 new ListIteratorTest();
+new ListSortTest();
 
 //Hashmap tests
 new MapPutElementTest();

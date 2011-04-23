@@ -76,6 +76,16 @@ class ArrayList implements IteratorAggregate {
 	public function getIterator() {
 		return new ArrayIterator($this->elements);
 	}
+	
+	public function sort(Comparator $comparator=null) {
+		if(is_null($comparator)) {
+			sort($this->elements);
+		} else {
+			usort($this->elements, function($a, $b) use ($comparator) {
+				return $comparator->compare($a, $b);
+	        });
+		}
+	}
 
 	private function isCorrectType($element) {
 		if($this->type === "?") {
