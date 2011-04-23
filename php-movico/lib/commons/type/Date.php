@@ -1,4 +1,4 @@
-<?php 
+<?
 class Date {
 	
 	private $time;
@@ -15,7 +15,7 @@ class Date {
 	public static function create($time) {
 		return new Date($time);
 	}
-	
+
 	public function format($format=self::DEFAULT_FORMAT) {
 		return date($format, $this->time);
 	}

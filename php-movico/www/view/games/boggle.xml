@@ -8,5 +8,8 @@
 		<form>
 			<commandButton action="#{BoggleBean.start}" value="Start Game" rendered="#{BoggleBean.unstarted}"/>
 		</form>
+		<panelSeries value="#{BoggleBean.layout}" var="field">
+			<outputText value="#{field}"/>
+		</panelSeries>
 	</define>
 </composition>

@@ -4,7 +4,7 @@ class ClassUtil {
 	public static function isSubclassOf($child, $parent) {
 		self::checkClassExists($child);
 		self::checkClassExists($parent);
-		return in_array($parent, class_parents($child));
+		return $child === $parent || in_array($parent, class_parents($child));
 	}
 	
 	private static function checkClassExists($className) {

@@ -16,14 +16,14 @@ class HtmlComponent extends Component {
 		return $this->tagName;
 	}
 	
-	public function doRender($rowIndex=null) {
+	public function doRender($row=null) {
 		$tag = $this->tagName;
 		$result = "<$tag".$this->getExpandedAttrs();
 		if(empty($this->children) && empty($this->text)) {
 			return "$result/>";
 		}
 		$result .= ">";
-		$result .= $this->hasChildren() ? $this->renderChildren() : $this->text;
+		$result .= $this->hasChildren() ? $this->renderChildren(array(), array(), $row) : $this->text;
 		return $result."</$tag>";
 	}
 	
@@ -40,7 +40,7 @@ class HtmlComponent extends Component {
 			case "li":
 				return array("ul", "ol");
 			default:
-				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p");
+				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries");
 		}
 	}
 	

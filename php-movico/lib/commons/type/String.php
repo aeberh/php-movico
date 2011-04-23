@@ -7,12 +7,16 @@ class String {
 		$this->string = $string;
 	}
 	
-	public static function fromPrimitives($strings) {
+	public static function fromPrimitives(array $strings) {
 		$result = new ArrayList("String");
 		foreach ($strings as $string) {
 			$result->add(new String($string));
 		}
 		return $result;
+	}
+	
+	public static function create($str) {
+		return new String($str);
 	}
 	
 	public function length() {
@@ -97,6 +101,20 @@ class String {
 	
 	public function isEmpty() {
 		return "" === $this->string;
+	}
+	
+	public function remove($part) {
+		return $this->replace($part, "");
+	}
+	
+	public function replace($search, $by) {
+		self::toObject($search);
+		self::toObject($by);
+		return new String(str_replace($search, $by, $this->string));
+	}
+	
+	public static function BLANK() {
+		return String::create("");
 	}
 	
 	private static function toObject(&$input) {

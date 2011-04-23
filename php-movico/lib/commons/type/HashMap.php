@@ -5,7 +5,7 @@ class HashMap implements IteratorAggregate {
 	private $keyType;
 	private $valueType;
 	
-	public function __construct($keyType, $valueType) {
+	public function __construct($keyType="?", $valueType="?") {
 		if(!is_string($keyType) || !is_string($valueType)) {
 			throw new IllegalArgumentException("Type parameters must be strings");
 		}
@@ -40,6 +40,14 @@ class HashMap implements IteratorAggregate {
 	
 	public function getIterator() {
 		return new ArrayIterator($this->elements);
+	}
+	
+	public function __toString() {
+		$pairs = new ArrayList("string");
+		foreach($this as $key=>$value) {
+			$pairs->add("$key:$value");
+		}
+		return "{".$pairs->join(",")."}";
 	}
 	
 	private function isCorrectKeyType($key) {

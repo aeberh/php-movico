@@ -61,7 +61,7 @@ abstract class Component {
 	protected function getFirstAncestorOfType($className) {
 		$result = null;
 		$current = $this;
-		while(get_class($current) !== $className) {
+		while(!ClassUtil::isSubclassOf(get_class($current), $className)) {
 			$parent = $current->getParent();
 			if(get_class($parent) === "View" && $className !== "View") {
 				throw new NoSuchAnchestorComponentException(get_class($this), $className);
@@ -100,11 +100,11 @@ abstract class Component {
 			$beanObj = BeanLocator::get($beanClass);
 		} catch(NoSuchBeanException $e) {
 			try {
-				$dataTable = $this->getFirstAncestorOfType("DataTable");
-				if($dataTable->getVar() !== $beanClass  || $rowIndex === null) {
+				$dataSeries = $this->getFirstAncestorOfType("DataSeries");
+				if($dataSeries->getVar() !== $beanClass  || is_null($rowIndex)) {
 					throw new NoSuchBeanException($beanClass);
 				}
-				$rows = $dataTable->getRows();
+				$rows = $dataSeries->getRows();
 				$beanObj = $rows[$rowIndex];
 			} catch(NoSuchAnchestorComponentException $e) {
 				throw new NoSuchBeanException($beanClass);

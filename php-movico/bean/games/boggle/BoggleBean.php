@@ -10,8 +10,7 @@ class BoggleBean extends RequestBean {
 	
 	public function start() {
 		$this->started = true;
-		$grid = BoggleGrid::generate("nl");
-		$this->layout = $grid->getLayout();
+		$this->layout = BoggleGrid::generate("nl")->getLayout();
 		return null;
 	}
 	

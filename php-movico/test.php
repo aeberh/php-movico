@@ -17,6 +17,8 @@ new StringLengthTest();
 new StringSplitTest();
 new StringMatchesTest();
 new StringCompareTest();
+new StringReplaceTest();
+new StringRemoveTest();
 
 // ArrayList tests
 new ListAddElementTest();
@@ -26,13 +28,18 @@ new ListContainsTest();
 new ListGetSublistTest();
 new ListIteratorTest();
 new ListSortTest();
+new ListToStringTest();
 
-//Hashmap tests
+// HashSet tests
+new SetAddElementTest();
+
+// HashMap tests
 new MapPutElementTest();
 new MapGetElementTest();
 new MapIteratorTest();
+new MapToStringTest();
 
-//TypeUtil tests
+// TypeUtil tests
 new IsObjectTypeTest();
 new IsPrimitiveTypeTest();
 new IsComparableTest();

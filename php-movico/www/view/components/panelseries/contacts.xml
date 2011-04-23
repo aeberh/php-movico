@@ -6,7 +6,13 @@
 	</define>
 	<define name="body">
 		<panelSeries value="#{ContactsBean.contacts}" var="contact">
-			<inputText value="#{contact.name}"/>
+			<h3><outputText value="#{contact.name}"/></h3>
+			<p><outputText value="#{contact.age} years old"/></p>
+			<p><outputText value="#{contact.job}"/></p>
+		</panelSeries>
+		<h3>All names</h3>
+		<panelSeries value="#{ContactsBean.contactNames}" var="name">
+			<outputText value="#{name}"/>
 		</panelSeries>
 	</define>
 </composition>

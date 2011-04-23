@@ -1,4 +1,4 @@
-<?php
+<?
 ini_set("display_errors", 1);
 ini_set("error_reporting", E_ALL);
 
@@ -13,7 +13,10 @@ function __autoload($className) {
 	if(in_array(lcfirst($className), array("div", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"))) {
 		require_once("HtmlComponent.php");
 	} else {
-		require_once("$className.php");
+		$found = stream_resolve_include_path("$className.php");
+		if ($found !== false) {
+			include_once("$className.php");
+		}
 	}
 }
 

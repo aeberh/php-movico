@@ -6,6 +6,9 @@ class ReflectionUtil {
 	 */
 	public static function callNestedGetter($object, $nestedProperty) {
 		StringUtil::checkTypes($nestedProperty);
+		if($nestedProperty === "") {
+			return $object;
+		}
 		$properties = explode(".", $nestedProperty);
 		if(empty($properties) || !is_object($object)) {
 			throw new InvalidTypeException("Should be called on object");

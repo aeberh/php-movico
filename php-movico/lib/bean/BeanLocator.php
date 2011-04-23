@@ -5,6 +5,9 @@ class BeanLocator {
 	const APP_SCOPE_FILE = "lib/bean/data/appscope.dat";
 	
 	public static function get($className) {
+		if(!class_exists($className)) {
+			throw new NoSuchBeanException($className);
+		}
 		if(self::isRequestBean($className)) {
 			return self::getOrCreateRequestBean($className);
 		}

@@ -2,11 +2,14 @@
 class PanelSeries extends DataSeries {
 	
 	public function doRender($index=null) {
-		$children = $this->getChildren();
-		$rows = $this->getRows();
+		$nbRows = count($this->getRows());
 		$result = "";
-		for($i=0; $i<count($rows); $i++) {
-			$result .= "<div>".$rows[$i]->render($i)."</div>";
+		for($i=0; $i<$nbRows; $i++) {
+			$result .= "<div>";
+			foreach($this->getChildren() as $child) {
+				$result .= $child->render($i);
+			}
+			$result .= "</div>";
 		}
 		return $result;
 	}

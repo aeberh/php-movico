@@ -1,10 +1,10 @@
 <?
 class ArrayList implements IteratorAggregate {
 	
-	private $elements = array();
-	private $type;
+	protected $elements = array();
+	protected $type;
 
-	public function __construct($type) {
+	public function __construct($type="?") {
 		if(!is_string($type)) {
 			throw new IllegalArgumentException("Type parameter must be a string");
 		}
@@ -12,7 +12,7 @@ class ArrayList implements IteratorAggregate {
 	}
 	
 	public static function fromArray($type, array $array) {
-		$list = new ArrayList($type);
+		$list = new self($type);
 		foreach($array as $element) {
 			$list->add($element);
 		}
@@ -30,7 +30,7 @@ class ArrayList implements IteratorAggregate {
 		if(!$this->isValidIndex($i)) {
 			throw new IndexOutOfBoundsException();
 		}
-		return $this->elements[$i];
+		return $this->getElement($i);
 	}
 	
 	public function size() {
@@ -50,7 +50,7 @@ class ArrayList implements IteratorAggregate {
 			throw new IllegalArgumentException("Tried to search element of type ".TypeUtil::getType($search)." in list of type ".$this->type);
 		}
 		for($i=0; $i<$this->size(); $i++) {
-			if($this->elements[$i] === $search) {
+			if($this->getElement($i) === $search) {
 				return $i;
 			}
 		}
@@ -95,8 +95,17 @@ class ArrayList implements IteratorAggregate {
 	        });
 		}
 	}
+	
+	private function getElements() {
+		return array_values($this->elements);
+	}
+	
+	private function getElement($i) {
+		$els = $this->getElements();
+		return $els[$i];
+	}
 
-	private function isCorrectType($element) {
+	protected function isCorrectType($element) {
 		if($this->type === "?") {
 			return true;
 		}
