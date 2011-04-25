@@ -3,7 +3,10 @@ function toggleBooleanValue(elementId) {
 	elem.value = (elem.value == '1') ? '0' : '1';
 }
 
-autoFocus();
+$(function() {
+	autoFocus();
+});
+
 function autoFocus() {
 	$(".autofocus").focus();
 }

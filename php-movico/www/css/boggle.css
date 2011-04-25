@@ -1,3 +1,45 @@
+#boggle .left {
+	float: left;
+}
+
+#boggle .right {
+	float: left;
+	padding-left: 25px;
+}
+
+#boggle .clear {
+	clear: both;
+}
+
+#boggle form {
+	padding: 5px;
+}
+
+#boggle button {
+	visibility: hidden;
+}
+
+#boggle {
+	font-size: 15px;
+	font-family: Tahoma, Arial;
+}
+
+#boggle .right p {
+	font-weight: bold;
+	font-size: 17px;	
+}
+
+#words {
+	text-transform: uppercase;
+	font-family: Courier;
+}
+
+#boggle input[type=text] {
+	text-transform: uppercase;
+	font-size: 15px;
+	padding: 4px;
+}
+
 #boggle-layout {
 	background: orange;
 	padding: 5px;

@@ -14,7 +14,7 @@ class BoggleGrid {
 	}
 	
 	private function generateLayout() {
-		$content = file_get_contents("www/view/games/lang/{$this->lang}");
+		$content = file_get_contents("bean/games/boggle/blocks/{$this->lang}");
 		$dice = explode("\n", $content);
 		$this->layout = array();
 		foreach ($dice as $die) {

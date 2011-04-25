@@ -1,0 +1,5 @@
+<?
+class WordNotInDictionaryException extends BoggleWordException {
+	
+}
+?>

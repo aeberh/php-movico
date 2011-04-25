@@ -5,17 +5,26 @@
 		<outputText value="Boggle"/>
 	</define>
 	<define name="body">
-		<panelGridSeries value="#{BoggleBean.layout}" var="field" columns="#{BoggleBean.columns}" id="boggle-layout">
-			<outputText value="#{field}"/>
-		</panelGridSeries>
-		<form>
-			<inputText value="#{BoggleBean.word}" autoFocus="true"/>
-			<commandButton action="#{BoggleBean.addWord}" value="Add"/>
-		</form>
-		<panelSeries value="#{BoggleBean.words}" var="word">
-			<div>
-				<outputText value="#{word}"/>
+		<div id="boggle">
+			<div class="left">
+				<panelGridSeries value="#{BoggleBean.layout}" var="field" columns="#{BoggleBean.columns}" id="boggle-layout">
+					<outputText value="#{field}"/>
+				</panelGridSeries>
+				<form>
+					<inputText value="#{BoggleBean.word}" autoFocus="true"/>
+					<commandButton action="#{BoggleBean.addWord}" value="Add"/>
+				</form>
 			</div>
-		</panelSeries>
+			<div class="right">
+				<message/>
+				<p><outputText value="You have #{BoggleBean.points} points so far."/></p>
+				<panelSeries value="#{BoggleBean.words}" var="word" id="words">
+					<div>
+						<outputText value="#{word}"/>
+					</div>
+				</panelSeries>
+			</div>
+			<div class="clear"></div>
+		</div>
 	</define>
 </composition>
