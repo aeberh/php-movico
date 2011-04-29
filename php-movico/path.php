@@ -10,7 +10,7 @@ buildDirectoryList($root, ".", $directories);
 ini_set("include_path", implode(PATH_SEPARATOR, $directories));
 
 function __autoload($className) {
-	if(in_array(lcfirst($className), array("div", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"))) {
+	if(in_array(lcfirst($className), array("div", "p", "span", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"))) {
 		require_once("HtmlComponent.php");
 	} else {
 		$found = stream_resolve_include_path("$className.php");

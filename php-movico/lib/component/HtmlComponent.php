@@ -40,7 +40,7 @@ class HtmlComponent extends Component {
 			case "li":
 				return array("ul", "ol");
 			default:
-				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries");
+				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries", "ColHeader");
 		}
 	}
 	
@@ -51,7 +51,7 @@ class HtmlComponent extends Component {
 	}
 	
 	public static function getPossibleTags() {
-		return array("div", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6");
+		return array("div", "span", "p", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6");
 	}
 	
 }

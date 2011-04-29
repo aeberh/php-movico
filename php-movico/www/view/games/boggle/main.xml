@@ -6,7 +6,13 @@
 	</define>
 	<define name="body">
 		<form>
-			<commandButton action="#{BoggleBean.start}" value="New Game"/>
+			<p>
+				<span>Please enter your name:</span>
+				<inputText value="#{BoggleBean.name}"/>
+			</p>
+			<p>
+				<commandButton action="#{BoggleBean.start}" value="New Game"/>
+			</p>
 		</form>
 	</define>
 </composition>

@@ -8,5 +8,26 @@
 		<form>
 			<commandButton action="games/boggle/main" value="Main Menu"/>
 		</form>
+		<h3>High Score Table</h3>
+		<dataTable value="#{BoggleBean.highScores}" var="highscore">
+			<column>
+				<colHeader>
+					<span>Play Date</span>
+				</colHeader>
+				<outputText value="#{highscore.playDate}"/>
+			</column>
+			<column>
+				<colHeader>
+					<span>Name</span>
+				</colHeader>
+				<outputText value="#{highscore.name}"/>
+			</column>
+			<column>
+				<colHeader>
+					<span>Points</span>
+				</colHeader>
+				<outputText value="#{highscore.points}"/>
+			</column>
+		</dataTable>
 	</define>
 </composition>

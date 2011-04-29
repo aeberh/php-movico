@@ -32,6 +32,14 @@ CREATE TABLE `movico_teacher` (
 	PRIMARY KEY (`teacherId`)
 );
 
+CREATE TABLE `movico_boggle_hscore` (
+	`hscoreId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	`points` INTEGER NOT NULL,
+	`playDate` DATETIME NOT NULL,
+	PRIMARY KEY (`hscoreId`)
+);
+
 CREATE TABLE `movico_students_teachers` (
 	`teacherId` INTEGER NOT NULL,
 	`studentId` INTEGER NOT NULL,

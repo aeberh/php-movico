@@ -1,7 +1,7 @@
 <?
 class BoggleBean extends SessionBean {
 	
-	const TIMER = 5000;
+	const TIMER = 90000;
 	
 	private $grid;
 	private $words;
@@ -9,6 +9,7 @@ class BoggleBean extends SessionBean {
 	private $dictionary;
 	private $pointsList;
 	private $millis;
+	private $name;
 	
 	public function __construct() {
 		$this->pointsList = HashMap::fromArray("integer", "integer", array(0=>0, 1=>0, 2=>0, 3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11));
@@ -22,6 +23,14 @@ class BoggleBean extends SessionBean {
 		$this->millis = $millis;
 	}
 	
+	public function getName() {
+		return $this->name;
+	}
+	
+	public function setName($name) {
+		$this->name = $name;
+	}
+	
 	public function start() {
 		$this->millis = self::TIMER;
 		$this->grid = BoggleGrid::create("nl");
@@ -31,6 +40,7 @@ class BoggleBean extends SessionBean {
 	}
 	
 	public function stop() {
+		BoggleHighScoreServiceUtil::create($this->name, $this->getPoints());
 		return "games/boggle/results";
 	}
 	
@@ -43,6 +53,10 @@ class BoggleBean extends SessionBean {
 		}
 		$this->word = "";
 		return null;
+	}
+	
+	public function getHighScores() {
+		return BoggleHighScoreServiceUtil::getBoggleHighScores();
 	}
 	
 	private function addWord() {

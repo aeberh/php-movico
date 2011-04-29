@@ -34,4 +34,15 @@
 			<order-column name="name" order-by="asc"/>
 		</order>
 	</entity>
+	
+	<!-- Boggle -->
+	<entity name="BoggleHighScore" table="movico_boggle_hscore">
+		<column name="hscoreId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
+		<column name="points" type="int"/>
+		<column name="playDate" type="Date"/>
+		<order>
+			<order-column name="points" order-by="desc"/>
+		</order>
+	</entity>
 </service-builder>
