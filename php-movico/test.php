@@ -19,6 +19,8 @@ new StringMatchesTest();
 new StringCompareTest();
 new StringReplaceTest();
 new StringRemoveTest();
+new StringIndexOfTest();
+new StringIndexesOfTest();
 
 // ArrayList tests
 new ListAddElementTest();
@@ -29,6 +31,7 @@ new ListGetSublistTest();
 new ListIteratorTest();
 new ListSortTest();
 new ListToStringTest();
+new ListIndexesOfTest();
 
 // HashSet tests
 new SetAddElementTest();
@@ -43,4 +46,8 @@ new MapToStringTest();
 new IsObjectTypeTest();
 new IsPrimitiveTypeTest();
 new IsComparableTest();
+
+// Boggle tests
+new WordIsPossibleInLayoutTest();
+new BoggleGridIndicesTest();
 ?>

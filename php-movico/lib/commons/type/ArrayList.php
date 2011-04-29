@@ -19,6 +19,10 @@ class ArrayList implements IteratorAggregate {
 		return $list;
 	}
 	
+	public function toArray() {
+		return $this->elements;
+	}
+	
 	public function add($element) {
 		if(!$this->isCorrectType($element)) {
 			throw new IllegalArgumentException("Tried to add element of type ".TypeUtil::getType($element)." to list of type ".$this->type);
@@ -45,16 +49,30 @@ class ArrayList implements IteratorAggregate {
 		return new String(implode($delimiter, $this->elements));
 	}
 	
-	public function indexOf($search) {
+	public function indexOf($search, $offset=0) {
 		if(!$this->isCorrectType($search)) {
 			throw new IllegalArgumentException("Tried to search element of type ".TypeUtil::getType($search)." in list of type ".$this->type);
 		}
-		for($i=0; $i<$this->size(); $i++) {
-			if($this->getElement($i) === $search) {
+		for($i=$offset; $i<$this->size(); $i++) {
+			if($this->getElement($i) == $search) {
 				return $i;
 			}
 		}
 		return -1;
+	}
+	
+	public function indexesOf($search) {
+		$result = new ArrayList("integer");
+		$offset = 0;
+		do {
+			$index = $this->indexOf($search, $offset);
+			if($index == -1) {
+				break;
+			}
+			$result->add($index);
+			$offset = $index+1;
+		} while(true);
+		return $result;
 	}
 	
 	public function contains($search) {
@@ -94,6 +112,34 @@ class ArrayList implements IteratorAggregate {
 				return $comparator->compare($a, $b);
 	        });
 		}
+	}
+	
+	public function getFirst() {
+		if($this->isEmpty()) {
+			throw new IndexOutOfBoundsException();
+		}
+		return $this->getElement(0);
+	}
+	
+	public function getLast() {
+		if($this->isEmpty()) {
+			throw new IndexOutOfBoundsException();
+		}
+		return $this->getElement($this->size()-1);
+	}
+	
+	public function addAll(ArrayList $list) {
+		foreach($list as $element) {
+			$this->add($element);
+		}
+	}
+	
+	public function getRandomElement() {
+		return $this->getElement(array_rand($this->getElements()));
+	}
+	
+	public function shuffle() {
+		shuffle($this->elements);
 	}
 	
 	private function getElements() {

@@ -58,3 +58,8 @@
 	box-shadow: 2px 2px 1px #ccc;
 	font-size: 18px;
 }
+
+.movico-timer span {
+	font-size: 35px;
+	font-weight: bold;	
+}

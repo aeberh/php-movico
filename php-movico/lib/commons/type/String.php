@@ -1,5 +1,5 @@
-<?php
-class String {
+<?
+class String implements IteratorAggregate {
 	
 	private $string;
 	
@@ -23,12 +23,14 @@ class String {
 		return strlen($this->string);
 	}
 	
+	/*
 	public function charAt($index) {
 		if(!$this->isValidIndex($index)) {
 			throw new StringIndexOutOfBoundsException();
 		}
 		return new String($string[$index]);
 	}
+	*/
 	
 	public function substring($start, $end=-1) {
 		$length = ($end === -1) ? $this->length()-$start : $end-$start;
@@ -57,12 +59,24 @@ class String {
 		return new String(trim($this->string));
 	}
 	
-	public function indexOf($needle) {
+	public function indexOf($needle, $offset=0) {
 		self::toObject($needle);
-		if($needle->isEmpty()) {
-			return -1;
-		}
-		return strpos($this->string, $needle->__toString());
+		$result = $needle->isEmpty() ? false : strpos($this->string, $needle->string, $offset);
+		return $result === false ? -1 : $result;
+	}
+	
+	public function indexesOf($needle) {
+		$result = new ArrayList("integer");
+		$offset = 0;
+		do {
+			$index = $this->indexOf($needle, $offset);
+			if($index == -1) {
+				break;
+			}
+			$result->add($index);
+			$offset = $index+1;
+		} while(true);
+		return $result;
 	}
 	
 	public function contains($needle) {
@@ -115,6 +129,14 @@ class String {
 	
 	public static function BLANK() {
 		return String::create("");
+	}
+	
+	public function getIterator() {
+		$chars = array();
+		for($i=0; $i<$this->length(); $i++) {
+			$chars[] = String::create($this->string[$i]);
+		}
+		return new ArrayIterator($chars);
 	}
 	
 	private static function toObject(&$input) {

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Boggle - Main"/>
+	</define>
+	<define name="body">
+		<form>
+			<commandButton action="#{BoggleBean.start}" value="New Game"/>
+		</form>
+	</define>
+</composition>

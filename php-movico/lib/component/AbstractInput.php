@@ -29,7 +29,7 @@ abstract class AbstractInput extends Component {
 	public abstract function getType();
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "PanelSeries");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "PanelSeries", "div");
 	}
 	
 }

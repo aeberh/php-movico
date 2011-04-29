@@ -102,6 +102,7 @@
 
 <!ELEMENT panelGroup ANY>
 <!ATTLIST panelGroup
+	id CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 >
 

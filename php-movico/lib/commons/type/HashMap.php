@@ -13,6 +13,14 @@ class HashMap implements IteratorAggregate {
 		$this->valueType = $valueType;
 	}
 	
+	public static function fromArray($keyType, $valueType, array $array) {
+		$map = new self($keyType, $valueType);
+		foreach($array as $key=>$value) {
+			$map->put($key, $value);
+		}
+		return $map;
+	}
+	
 	public function put($key, $value) {
 		if(!$this->isCorrectKeyType($key)) {
 			throw new IllegalArgumentException("Tried to add element with key of type ".TypeUtil::getType($key)." to map with keys of type ".$this->keyType);

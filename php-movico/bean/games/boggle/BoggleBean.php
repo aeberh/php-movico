@@ -1,27 +1,43 @@
 <?
 class BoggleBean extends SessionBean {
 	
-	private $layout;
+	const TIMER = 5000;
+	
+	private $grid;
 	private $words;
 	private $word;
-	
-	private $glossary;
-	
-	private static $POINTS = array(3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11);
+	private $dictionary;
+	private $pointsList;
+	private $millis;
 	
 	public function __construct() {
-		$this->layout = BoggleGrid::generate("nl")->getLayout();
-		$this->glossary = file("bean/games/boggle/glossary/nl", FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-		$this->words = array();
+		$this->pointsList = HashMap::fromArray("integer", "integer", array(0=>0, 1=>0, 2=>0, 3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11));
 	}
 	
-	public function addWord() {
+	public function getMillis() {
+		return $this->millis;
+	}
+	
+	public function setMillis($millis) {
+		$this->millis = $millis;
+	}
+	
+	public function start() {
+		$this->millis = self::TIMER;
+		$this->grid = BoggleGrid::create("nl");
+		$this->dictionary = Dictionary::create("nl", "4x4");
+		$this->words = new ArrayList("BoggleWord");
+		return "games/boggle/boggle";
+	}
+	
+	public function stop() {
+		return "games/boggle/results";
+	}
+	
+	public function add() {
 		try {
-			$word = trim($this->word);
-			$this->validateWord($word);
-			$this->words[] = $word;
-			sort($this->words);
-			MessageUtil::info("Word $word was added to the list");
+			$word = $this->addWord();
+			MessageUtil::info("Word {$word->getWord()} was added to the list - {$word->getPoints($this->pointsList)} point(s)");
 		} catch(BoggleWordException $e) {
 			MessageUtil::error($e->getMessage());
 		}
@@ -29,21 +45,34 @@ class BoggleBean extends SessionBean {
 		return null;
 	}
 	
-	private function validateWord($word) {
-		if(strlen($word) < 3) {
+	private function addWord() {
+		$word = new BoggleWord($this->word);
+		$this->validate($word);
+		$this->words->add($word);
+		$this->words->sort();
+		return $word;
+	}
+
+	private function validate(BoggleWord $word) {
+		if($word->getLength() < 3) {
 			throw new IllegalWordLengthException("Word should at least have 2 characters");
 		}
-		if(in_array($word, $this->words)) {
+		if($this->words->contains($word)) {
 			throw new WordAlreadyEnteredException("Word was already entered before");
 		}
-		if(false) {
+		if(!$word->isPossibleInLayout($this->grid)) {
 			throw new WordNotPossibleException("Word is impossible to make");
 		}
-		if(!in_array($word, $this->glossary)) {
-			throw new WordNotInDictionaryException("Word doesn't exist in dicionary");
+		if(!$this->dictionary->contains($word)) {
+			throw new WordNotInDictionaryException("Word doesn't exist in dictionary");
 		}
 	}
 	
+	public function getPossibleWords() {
+		//return $this->dictionary->getPossibleWords($this->grid);
+		return array();
+	}
+
 	public function setWord($word) {
 		$this->word = $word;
 	}
@@ -53,23 +82,27 @@ class BoggleBean extends SessionBean {
 	}
 	
 	public function getWords() {
-		return $this->words;
+		$result = array();
+		foreach($this->words as $word) {
+			$result[] = $word->getWord();
+		}
+		return $result;
 	}
 	
 	public function getPoints() {
 		$result = 0;
 		foreach($this->words as $word) {
-			$result += self::$POINTS[strlen($word)];
+			$result += $word->getPoints($this->pointsList);
 		}
 		return $result;
 	}
 	
 	public function getColumns() {
-		return sqrt(count($this->layout));
+		return $this->grid->getColumns();
 	}
 	
 	public function getLayout() {
-		return $this->layout;
+		return $this->grid->getLayout()->toArray();
 	}
 	
 }

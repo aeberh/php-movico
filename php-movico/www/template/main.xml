@@ -6,6 +6,7 @@
 	<h1>Movico Sample Browser</h1>
 	<panelGrid columns="2">
 		<form id="nav">
+			<!-- 
 			<h2>Bean Examples</h2>
 			<ul>
 				<li><commandLink action="beans/request/hello" value="HelloBean (request)"/></li>
@@ -24,14 +25,16 @@
 				<li><commandLink action="components/listbox/countries" value="ListBox"/></li>
 				<li><commandLink action="components/fileupload/upload_file" value="File Upload"/></li>
 				<li><commandLink action="components/panelseries/contacts" value="PanelSeries"/></li>
+				<li><commandLink action="components/countdown/timer" value="Countdown Timer"/></li>
 			</ul>
 			<h2>Lib Examples</h2>
 			<ul>
 				<li><commandLink action="libs/i18n" value="Internationalization"/></li>
 			</ul>
+			 -->
 			<h2>Games</h2>
 			<ul>
-				<li><commandLink action="games/boggle" value="Boggle"/></li>
+				<li><commandLink action="games/boggle/main" value="Boggle"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

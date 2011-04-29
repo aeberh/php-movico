@@ -16,40 +16,11 @@ class View extends Component {
 			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.5.2.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>";
 		if($ajax) {
-			$timeout = Singleton::create("Settings")->getAjaxTimeout();
+			$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();
 			$result .= <<<TST
 		<script type="text/javascript">
 			$(function() {
-				registerForms();
-				function registerForms() {
-					$("form").submit(function() {
-						$("button").attr("disabled", "disabled");
-						$("img.AjaxLoading").attr("src", "lib/component/img/connect_active.gif");
-						
-						$.ajax({
-							url: "index.php?jquery=1",
-							data: $(this).serialize(),
-							type: "POST",
-							dataType: "json",
-							timeout: $timeout,
-							success: function(data) {
-								$("body").html(data.body);
-								registerForms();
-								$("img.AjaxLoading").attr("src", "lib/component/img/connect_idle.gif");
-								autoFocus();
-							},
-							error: function(request, errorType, errorThrown) {
-								$("button").removeAttr("disabled");
-								if(errorType == "timeout") {
-									$("img.AjaxLoading").attr("src", "lib/component/img/connect_caution.gif");
-								} else {
-									$("img.AjaxLoading").attr("src", "lib/component/img/connect_disconnected.gif");
-								}
-							}
-						});
-						return false;
-					});
-				}
+				registerForms('$ajaxTimeout');
 			});	
 		</script>
 TST;
