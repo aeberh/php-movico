@@ -22,7 +22,7 @@ abstract class TeamModel extends Model {
 	}
 
 	public function getPlayers($from=0, $limit=9999999999) {
-		return PlayerServiceUtil::findByTeamId($this->teamId, $from, $limit);
+		return PlayerServiceUtil::findByTeamId($this->teamId, $from=-1, $limit=-1);
 	}
 
 }

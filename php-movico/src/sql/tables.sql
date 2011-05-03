@@ -40,6 +40,29 @@ CREATE TABLE `movico_boggle_hscore` (
 	PRIMARY KEY (`hscoreId`)
 );
 
+CREATE TABLE `boggle_game` (
+	`gameId` INTEGER NOT NULL AUTO_INCREMENT,
+	`started` TINYINT(1) NOT NULL,
+	PRIMARY KEY (`gameId`),
+	KEY `IX_STARTED` (`started`)
+);
+
+CREATE TABLE `boggle_player` (
+	`playerId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	`gameId` INTEGER NOT NULL,
+	PRIMARY KEY (`playerId`),
+	UNIQUE KEY `IX_NAME` (`name`)
+);
+
+CREATE TABLE `boggle_guessed_word` (
+	`wordId` INTEGER NOT NULL AUTO_INCREMENT,
+	`word` VARCHAR(16) NOT NULL,
+	`gameId` INTEGER NOT NULL,
+	`playerId` INTEGER NOT NULL,
+	PRIMARY KEY (`wordId`)
+);
+
 CREATE TABLE `movico_students_teachers` (
 	`teacherId` INTEGER NOT NULL,
 	`studentId` INTEGER NOT NULL,

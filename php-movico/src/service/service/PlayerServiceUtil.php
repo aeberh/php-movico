@@ -1,7 +1,7 @@
 <?php
 class PlayerServiceUtil {
 
-	public static function findByTeamId($teamId, $from, $limit) {
+	public static function findByTeamId($teamId, $from=-1, $limit=-1) {
 		return self::getService()->findByTeamId($teamId, $from, $limit);
 	}
 

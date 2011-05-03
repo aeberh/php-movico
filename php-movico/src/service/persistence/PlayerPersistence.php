@@ -58,8 +58,9 @@ class PlayerPersistence extends Persistence {
 		return $result;
 	}
 
-	public function findByTeamId($teamId, $from, $limit) {
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='$teamId'  LIMIT $from,$limit")->getResult();
+	public function findByTeamId($teamId, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='$teamId' $limitStr")->getResult();
 		return $this->getAsObjects($rows);
 	}
 

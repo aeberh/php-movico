@@ -20,9 +20,10 @@ class OneToManyProperty extends Property {
 		return $this->getEntity()->getPrimaryKey();
 	}
 	
-	public function getFinderSignature($tthis=false) {
+	public function getFinderSignature($tthis=false, $values=true) {
+		$v = $values ? "=-1" : "";
 		$thisOrNot = $tthis ? "this->" : "";
-		return "findBy".ucfirst($this->getMappingKey())."(\$$thisOrNot{$this->getMappingKey()}, \$from, \$limit)";
+		return "findBy".ucfirst($this->getMappingKey())."(\$$thisOrNot{$this->getMappingKey()}, \$from$v, \$limit$v)";
 	}
 	
 }

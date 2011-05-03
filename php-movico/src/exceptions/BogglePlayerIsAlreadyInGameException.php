@@ -1,0 +1,5 @@
+<?
+class BogglePlayerIsAlreadyInGameException extends Exception {
+	
+}
+?>

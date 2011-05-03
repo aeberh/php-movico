@@ -27,7 +27,7 @@ class Finder {
 		return $this->finderColumns;
 	}
 	
-	public function getMethodSignature($values) {
+	public function getMethodSignature($values=true) {
 		$v = $values ? "=-1" : "";
 		return "findBy{$this->getName()}(".implode(", ", $this->getColumnVariables()).", \$from$v, \$limit$v)";
 	}

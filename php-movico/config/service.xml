@@ -45,4 +45,25 @@
 			<order-column name="points" order-by="desc"/>
 		</order>
 	</entity>
+	<entity name="BoggleGame" table="boggle_game">
+		<column name="gameId" type="int" primary="true" auto-increment="true"/>
+		<column name="started" type="boolean"/>
+		<column name="players" type="Collection" entity="BogglePlayer" mapping-key="gameId"/>
+		<finder name="Started">
+			<finder-column name="started"/>
+		</finder>
+	</entity>
+	<entity name="BogglePlayer" table="boggle_player">
+		<column name="playerId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
+		<finder name="Name" unique="true">
+			<finder-column name="name"/>
+		</finder>
+	</entity>
+	<entity name="BoggleGuessedWord" table="boggle_guessed_word">
+		<column name="wordId" type="int" primary="true" auto-increment="true"/>
+		<column name="word" type="String" size="16"/>
+		<column name="gameId" type="int"/>
+		<column name="playerId" type="int"/>
+	</entity>
 </service-builder>

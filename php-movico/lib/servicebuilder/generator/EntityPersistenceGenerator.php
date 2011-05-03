@@ -6,7 +6,7 @@ class EntityPersistenceGenerator {
 		$content = "<?php\nclass $className extends Persistence {\n\n".
 			"\tconst TABLE = \"{$entity->getTable()}\";\n\n";
 		foreach($entity->getFinders() as $finder) {
-			$content .= $this->generateFinder($finder, $entity->getName());
+			$content .= $this->generateFinder($finder, $entity);
 		}
 		$content .= $this->generateFindByPrimaryKey($entity);
 		$content .= $this->generateCreate($entity);
@@ -58,7 +58,8 @@ class EntityPersistenceGenerator {
 	private function generateOneToManyFinder(OneToManyProperty $property) {
 		$columnName = $property->getMappingKey();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
-			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$property->getEntity()->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
+			"\t\t\$limitStr = (\$from == -1 && \$limit == -1) ? \"\" : \" LIMIT \$from,\$limit\";\n".
+			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $columnName='\$$columnName' {$property->getEntity()->getOrderByClause()}\$limitStr\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	
@@ -68,12 +69,13 @@ class EntityPersistenceGenerator {
 			"\t}\n\n";
 	}
 	
-	private function generateFinder(Finder $finder, $entityName) {
+	private function generateFinder(Finder $finder, Entity $entity) {
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()." LIMIT \$from,\$limit\");\n";
+			"\t\t\$limitStr = (\$from == -1 && \$limit == -1) ? \"\" : \" LIMIT \$from,\$limit\";\n".
+			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()."\$limitStr\");\n";
 		if($finder->isUnique()) {
 			$result .= "\t\tif(\$result->isEmpty()) {\n".
-				"\t\t\tthrow new NoSuch{$entityName}Exception();\n".
+				"\t\t\tthrow new NoSuch{$entity->getName()}Exception();\n".
 				"\t\t}\n".
 				"\t\treturn \$this->getAsObject(\$result->getSingleRow());\n\t}\n\n";
 		} else {

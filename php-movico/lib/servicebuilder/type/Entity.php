@@ -47,7 +47,7 @@ class Entity {
 		}
 		foreach($finder->getColumns() as $finderColumn) {
 			if(empty($this->properties[$finderColumn->getName()])) {
-				throw new ServiceBuilderException("Finder column '{$finderColumn->getName()}' is not a property for entity '$this->name'");
+				//throw new ServiceBuilderException("Finder column '{$finderColumn->getName()}' is not a property for entity '$this->name'");
 			}
 		}
 		$this->finders[$finder->getName()] = $finder;

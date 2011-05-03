@@ -9,7 +9,8 @@ class BoggleBean extends SessionBean {
 	private $dictionary;
 	private $pointsList;
 	private $millis;
-	private $name;
+	private $playerName;
+	private $game;
 	
 	public function __construct() {
 		$this->pointsList = HashMap::fromArray("integer", "integer", array(0=>0, 1=>0, 2=>0, 3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11));
@@ -24,11 +25,11 @@ class BoggleBean extends SessionBean {
 	}
 	
 	public function getName() {
-		return $this->name;
+		return $this->playerName;
 	}
 	
 	public function setName($name) {
-		$this->name = $name;
+		$this->playerName = $name;
 	}
 	
 	public function start() {
@@ -40,7 +41,8 @@ class BoggleBean extends SessionBean {
 	}
 	
 	public function stop() {
-		BoggleHighScoreServiceUtil::create($this->name, $this->getPoints());
+		BoggleHighScoreServiceUtil::create($this->playerName, $this->getPoints());
+		$this->playerName = "";
 		return "games/boggle/results";
 	}
 	
@@ -79,6 +81,20 @@ class BoggleBean extends SessionBean {
 		}
 		if(!$this->dictionary->contains($word)) {
 			throw new WordNotInDictionaryException("Word doesn't exist in dictionary");
+		}
+	}
+	
+	public function getRooms() {
+		return BoggleGameServiceUtil::getUnstartedGames();
+	}
+	
+	public function createGame() {
+		try {
+			$this->game = BoggleGameServiceUtil::create($this->playerName);
+			return "games/boggle/room";
+		} catch(BogglePlayerIsAlreadyInGameException $e) {
+			MessageUtil::error("You cannot join 2 games at the same time!");
+			return null;
 		}
 	}
 	

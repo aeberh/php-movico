@@ -29,7 +29,7 @@ class PlayerServiceBase {
 		return Singleton::create("PlayerPersistence");
 	}
 
-	public function findByTeamId($teamId, $from, $limit) {
+	public function findByTeamId($teamId, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByTeamId($teamId, $from, $limit);
 	}
 

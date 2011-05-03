@@ -8,11 +8,12 @@
 		<form>
 			<p>
 				<span>Please enter your name:</span>
-				<inputText value="#{BoggleBean.name}"/>
+				<inputText value="#{BoggleBean.name}" autoFocus="true"/>
 			</p>
-			<p>
-				<commandButton action="#{BoggleBean.start}" value="New Game"/>
-			</p>
+			<ul>
+				<li><commandLink action="#{BoggleBean.start}" value="Single Player"/></li>
+				<li><commandLink action="games/boggle/rooms" value="Multi Player"/></li>
+			</ul>
 		</form>
 	</define>
 </composition>
