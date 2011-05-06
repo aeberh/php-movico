@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="DataTable"/>
+	</define>
+	<define name="body">
+		<message/>
+		<form>
+			<dataTable value="#{PaginationBean.countries}" var="country" rows="3">
+				<column>
+					<colHeader>
+						<outputText value="Country"/>
+					</colHeader>
+					<outputText value="#{country}"/>
+				</column>
+			</dataTable>
+		</form>
+	</define>
+</composition>

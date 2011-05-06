@@ -127,6 +127,7 @@
 <!ATTLIST dataTable
 	value CDATA #REQUIRED
 	var CDATA #REQUIRED
+	rows CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
 >

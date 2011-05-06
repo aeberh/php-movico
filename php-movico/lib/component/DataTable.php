@@ -3,6 +3,10 @@ class DataTable extends DataSeries {
 	
 	const DATATABLE_ROW = "DATATABLE_ROW";
 	
+	/*
+	 * <dataTable value="#{Bean.rows}" var="row" rows="10"
+	 */
+	
 	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");
 		$result = "<table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
@@ -32,7 +36,8 @@ class DataTable extends DataSeries {
 	private function renderRows($cols) {
 		$rows = $this->getRows();
 		$result = "";
-		for($i=0; $i<count($rows); $i++) {
+		$maxRows = isset($this->rows) ? $this->rows : count($rows);
+		for($i=0; $i<$maxRows; $i++) {
 			$row = $rows[$i];
 			$result .= "<tr>";
 			foreach($cols as $col) {
