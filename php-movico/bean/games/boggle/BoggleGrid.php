@@ -21,6 +21,10 @@ class BoggleGrid {
 		return $this->layout;
 	}
 	
+	public function getChars() {
+		return $this->layout->join(",");
+	}
+	
 	public function getColumns() {
 		return sqrt($this->layout->size());
 	}

@@ -3,6 +3,12 @@ class BoggleHighScorePersistence extends Persistence {
 
 	const TABLE = "movico_boggle_hscore";
 
+	public function findByLang($lang, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `lang`='$lang'ORDER BY `points` desc$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
 	public function findByPrimaryKey($hscoreId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE hscoreId='".addslashes($hscoreId)."'");
 		if($result->isEmpty()) {
@@ -24,13 +30,13 @@ class BoggleHighScorePersistence extends Persistence {
 	}
 
 	public function update(BoggleHighScore $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `points`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', `playDate`='".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."' WHERE hscoreId='".addslashes($object->getHscoreId())."'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `lang`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', `grid`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', `points`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', `playDate`='".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."' WHERE hscoreId='".addslashes($object->getHscoreId())."'";
 		$pk = $object->getHscoreId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getHscoreId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getHscoreId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -54,6 +60,8 @@ class BoggleHighScorePersistence extends Persistence {
 		$result->setNew(false);
 		$result->setHscoreId(Singleton::create("NullConverter")->fromDBtoDOM($row["hscoreId"]));
 		$result->setName(Singleton::create("NullConverter")->fromDBtoDOM($row["name"]));
+		$result->setLang(Singleton::create("NullConverter")->fromDBtoDOM($row["lang"]));
+		$result->setGrid(Singleton::create("NullConverter")->fromDBtoDOM($row["grid"]));
 		$result->setPoints(Singleton::create("NullConverter")->fromDBtoDOM($row["points"]));
 		$result->setPlayDate(Singleton::create("DateConverter")->fromDBtoDOM($row["playDate"]));
 		return $result;

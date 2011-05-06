@@ -1,8 +1,12 @@
 <?php
 class BoggleHighScoreServiceUtil {
 
-	public static function create($name, $points) {
-		return self::getService()->create($name, $points);
+	public static function create($name, $lang, $grid, $points) {
+		return self::getService()->create($name, $lang, $grid, $points);
+	}
+
+	public static function findByLang($lang, $from=-1, $limit=-1) {
+		return self::getService()->findByLang($lang, $from, $limit);
 	}
 
 	public static function createBoggleHighScore($pk=0) {

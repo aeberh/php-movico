@@ -34,7 +34,7 @@
 			 -->
 			<h2>Games</h2>
 			<ul>
-				<li><commandLink action="games/boggle/login" value="Boggle"/></li>
+				<li><commandLink action="games/boggle/menu" value="Boggle"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

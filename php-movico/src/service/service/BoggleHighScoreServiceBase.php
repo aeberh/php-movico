@@ -1,6 +1,10 @@
 <?php
 class BoggleHighScoreServiceBase {
 
+	public function findByLang($lang, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByLang($lang, $from, $limit);
+	}
+
 	public function createBoggleHighScore($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

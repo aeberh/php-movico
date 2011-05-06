@@ -1,5 +1,5 @@
 <?
-class ViewRenderer {
+class ViewRenderer extends ApplicationBean {
 	
 	public function render($view) {
 		$comp = $this->parseView($view);

@@ -6,7 +6,7 @@
 	<define name="body">
 		<p><outputText value="You have scored #{BoggleBean.points} points!"/></p>
 		<form>
-			<commandButton action="games/boggle/main" value="Main Menu"/>
+			<commandButton action="games/boggle/menu" value="Main Menu"/>
 		</form>
 		<h3>High Score Table</h3>
 		<dataTable value="#{BoggleBean.highScores}" var="highscore">

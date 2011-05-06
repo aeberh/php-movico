@@ -1,28 +1,26 @@
 <?
 class BoggleBean extends SessionBean {
 	
-	private $playerId;
-	private $gameId;
-	
-	public function getPlayerId() {
-		return $this->playerId;
+	private $name;
+	private $lang;
+
+	public function getName() {
+		return $this->name;
 	}
 	
-	public function setPlayerId($playerId) {
-		$this->playerId = $playerId;
+	public function setName($name) {
+		$this->name = $name;
 	}
 	
-	public function getGameId() {
-		return $this->gameId;
+	public function getLang() {
+		return $this->lang;
 	}
 	
-	public function setGameId($gameId) {
-		$this->gameId = $gameId;
+	public function setLang($lang) {
+		$this->lang = $lang;
 	}
 	
-	
-	
-	const TIMER = 90000;
+	const TIMER = 10000;
 	
 	private $grid;
 	private $words;
@@ -35,45 +33,6 @@ class BoggleBean extends SessionBean {
 		$this->pointsList = HashMap::fromArray("integer", "integer", array(0=>0, 1=>0, 2=>0, 3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11));
 	}
 	
-	
-	private $player;
-	private $roomId;
-	
-	
-	
-	public function startMultiPlayer() {
-		if($this->isInGame()) {
-			
-		}
-	}
-	
-	
-	
-	public function isLoggedIn() {
-		return isset($this->player);
-	}
-	
-	public function isInGame() {
-		return isset($this->roomId);
-	}
-	
-	public function isGameStarted() {
-		return BoggleGameServiceUtil::getBoggleGame($this->roomId)->isStarted();
-	}
-	
-	public function main() {
-		if(!$this->isLoggedIn()) {
-			return "games/boggle/login";
-		}
-		if(!$this->isInGame()) {
-			return "games/boggle/main";
-		}
-		if(!$this->isGameStarted()) {
-			return "games/boggle/room";
-		}
-		return "games/boggle/boggle";
-	}
-	
 	public function getMillis() {
 		return $this->millis;
 	}
@@ -84,15 +43,14 @@ class BoggleBean extends SessionBean {
 	
 	public function start() {
 		$this->millis = self::TIMER;
-		$this->grid = BoggleGrid::create("nl");
-		$this->dictionary = Dictionary::create("nl", "4x4");
+		$this->grid = BoggleGrid::create($this->lang);
+		$this->dictionary = Dictionary::create($this->lang, "4x4");
 		$this->words = new ArrayList("BoggleWord");
 		return "games/boggle/boggle";
 	}
 	
 	public function stop() {
-		BoggleHighScoreServiceUtil::create($this->playerName, $this->getPoints());
-		$this->playerName = "";
+		BoggleHighScoreServiceUtil::create($this->name, $this->lang, $this->grid, $this->getPoints());
 		return "games/boggle/results";
 	}
 	
@@ -107,10 +65,8 @@ class BoggleBean extends SessionBean {
 		return null;
 	}
 	
-	
-	
 	public function getHighScores() {
-		return BoggleHighScoreServiceUtil::getBoggleHighScores();
+		return BoggleHighScoreServiceUtil::findByLang($this->lang);
 	}
 	
 	private function addWord() {
@@ -136,11 +92,6 @@ class BoggleBean extends SessionBean {
 		}
 	}
 	
-	public function getPossibleWords() {
-		//return $this->dictionary->getPossibleWords($this->grid);
-		return array();
-	}
-
 	public function setWord($word) {
 		$this->word = $word;
 	}

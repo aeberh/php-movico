@@ -21,6 +21,26 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->name = $name;
 	}
 
+	private $lang;
+
+	public function getLang() {
+		return $this->lang;
+	}
+
+	public function setLang($lang) {
+		$this->lang = $lang;
+	}
+
+	private $grid;
+
+	public function getGrid() {
+		return $this->grid;
+	}
+
+	public function setGrid($grid) {
+		$this->grid = $grid;
+	}
+
 	private $points;
 
 	public function getPoints() {
