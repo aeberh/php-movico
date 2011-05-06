@@ -1,6 +1,27 @@
 <?
 class BoggleBean extends SessionBean {
 	
+	private $playerId;
+	private $gameId;
+	
+	public function getPlayerId() {
+		return $this->playerId;
+	}
+	
+	public function setPlayerId($playerId) {
+		$this->playerId = $playerId;
+	}
+	
+	public function getGameId() {
+		return $this->gameId;
+	}
+	
+	public function setGameId($gameId) {
+		$this->gameId = $gameId;
+	}
+	
+	
+	
 	const TIMER = 90000;
 	
 	private $grid;
@@ -9,11 +30,48 @@ class BoggleBean extends SessionBean {
 	private $dictionary;
 	private $pointsList;
 	private $millis;
-	private $playerName;
-	private $game;
 	
 	public function __construct() {
 		$this->pointsList = HashMap::fromArray("integer", "integer", array(0=>0, 1=>0, 2=>0, 3=>1, 4=>1, 5=>2, 6=>3, 7=>5, 8=>11));
+	}
+	
+	
+	private $player;
+	private $roomId;
+	
+	
+	
+	public function startMultiPlayer() {
+		if($this->isInGame()) {
+			
+		}
+	}
+	
+	
+	
+	public function isLoggedIn() {
+		return isset($this->player);
+	}
+	
+	public function isInGame() {
+		return isset($this->roomId);
+	}
+	
+	public function isGameStarted() {
+		return BoggleGameServiceUtil::getBoggleGame($this->roomId)->isStarted();
+	}
+	
+	public function main() {
+		if(!$this->isLoggedIn()) {
+			return "games/boggle/login";
+		}
+		if(!$this->isInGame()) {
+			return "games/boggle/main";
+		}
+		if(!$this->isGameStarted()) {
+			return "games/boggle/room";
+		}
+		return "games/boggle/boggle";
 	}
 	
 	public function getMillis() {
@@ -22,14 +80,6 @@ class BoggleBean extends SessionBean {
 	
 	public function setMillis($millis) {
 		$this->millis = $millis;
-	}
-	
-	public function getName() {
-		return $this->playerName;
-	}
-	
-	public function setName($name) {
-		$this->playerName = $name;
 	}
 	
 	public function start() {
@@ -57,6 +107,8 @@ class BoggleBean extends SessionBean {
 		return null;
 	}
 	
+	
+	
 	public function getHighScores() {
 		return BoggleHighScoreServiceUtil::getBoggleHighScores();
 	}
@@ -81,20 +133,6 @@ class BoggleBean extends SessionBean {
 		}
 		if(!$this->dictionary->contains($word)) {
 			throw new WordNotInDictionaryException("Word doesn't exist in dictionary");
-		}
-	}
-	
-	public function getRooms() {
-		return BoggleGameServiceUtil::getUnstartedGames();
-	}
-	
-	public function createGame() {
-		try {
-			$this->game = BoggleGameServiceUtil::create($this->playerName);
-			return "games/boggle/room";
-		} catch(BogglePlayerIsAlreadyInGameException $e) {
-			MessageUtil::error("You cannot join 2 games at the same time!");
-			return null;
 		}
 	}
 	

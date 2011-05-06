@@ -8,7 +8,7 @@ class BoggleGrid {
 	}
 	
 	public static function create($lang) {
-		$content = String::create(file_get_contents("bean/games/boggle/blocks/$lang"));
+		$content = String::create(file_get_contents("bean/games/boggle/data/blocks/$lang"));
 		$layout = new ArrayList("String");
 		foreach ($content->split("\n") as $die) {
 			$layout->add($die->split(" ")->getRandomElement());

@@ -12,7 +12,7 @@ class Dictionary {
 	}
 	
 	public static function create($lang, $size) {
-		$file = file("bean/games/boggle/glossary/{$lang}_{$size}", FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+		$file = file("bean/games/boggle/data/glossary/{$lang}_{$size}", FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
 		return new Dictionary($file);
 	}
 	
