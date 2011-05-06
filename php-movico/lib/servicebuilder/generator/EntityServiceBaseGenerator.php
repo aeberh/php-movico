@@ -44,7 +44,7 @@ class EntityServiceBaseGenerator {
 			"\tpublic function delete$name(\$pk) {\n".
 			"\t\t\$this->getPersistence()->remove(\$pk);\n".
 			"\t}\n\n".
-			"\tpublic function get{$name}s(\$from, \$limit) {\n".
+			"\tpublic function get{$name}s(\$from=0, \$limit=9999999999) {\n".
 			"\t\treturn \$this->getPersistence()->findAll(\$from, \$limit);\n".
 			"\t}\n\n".
 			"\tpublic function count{$name}s() {\n".
