@@ -21,7 +21,7 @@ class BogglePlayerServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getBogglePlayers($from, $limit) {
+	public function getBogglePlayers($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

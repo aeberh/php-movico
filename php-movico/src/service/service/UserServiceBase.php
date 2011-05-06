@@ -17,7 +17,7 @@ class UserServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getUsers($from, $limit) {
+	public function getUsers($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

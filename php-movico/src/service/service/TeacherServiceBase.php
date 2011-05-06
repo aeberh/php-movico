@@ -17,7 +17,7 @@ class TeacherServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getTeachers($from, $limit) {
+	public function getTeachers($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

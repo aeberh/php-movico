@@ -21,7 +21,7 @@ class BoggleGameServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getBoggleGames($from, $limit) {
+	public function getBoggleGames($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

@@ -19,5 +19,19 @@ class BogglePlayerService extends BogglePlayerServiceBase {
 		return $result;
 	}
 	
+	public function joinGame($playerId, $gameId) {
+		$player = $this->getPlayerCheckNotInGame($playerId);
+		$player->setGameId($gameId);
+		$this->updateBogglePlayer($player);
+	}
+	
+	public function getPlayerCheckNotInGame($playerId) {
+		$player = $this->getBogglePlayer($playerId);
+		if($player->isInGame()) {
+			throw new BogglePlayerIsAlreadyInGameException();
+		}
+		return $player;
+	}
+	
 }
 ?>

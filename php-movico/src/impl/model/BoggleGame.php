@@ -9,5 +9,10 @@ class BoggleGame extends BoggleGameModel {
 		return implode(", ", BogglePlayerServiceUtil::getPlayerNames($this->getGameId()));
 	}
 	
+	public function isIdle() {
+		$players = BogglePlayerServiceUtil::findByGameId($this->getGameId());
+		return empty($players);
+	}
+	
 }
 ?>

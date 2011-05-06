@@ -17,7 +17,7 @@ class TeamServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getTeams($from, $limit) {
+	public function getTeams($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

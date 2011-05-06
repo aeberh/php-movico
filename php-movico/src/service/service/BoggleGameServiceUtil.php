@@ -5,8 +5,8 @@ class BoggleGameServiceUtil {
 		return self::getService()->getUnstartedGames();
 	}
 
-	public static function create($playerName) {
-		return self::getService()->create($playerName);
+	public static function createGame($playerId) {
+		return self::getService()->createGame($playerId);
 	}
 
 	public static function findByStarted($started, $from=-1, $limit=-1) {

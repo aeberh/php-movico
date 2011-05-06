@@ -17,7 +17,7 @@ class PlayerServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getPlayers($from, $limit) {
+	public function getPlayers($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

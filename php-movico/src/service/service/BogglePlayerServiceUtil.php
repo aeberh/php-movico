@@ -9,6 +9,14 @@ class BogglePlayerServiceUtil {
 		return self::getService()->getPlayerNames($gameId);
 	}
 
+	public static function joinGame($playerId, $gameId) {
+		return self::getService()->joinGame($playerId, $gameId);
+	}
+
+	public static function getPlayerCheckNotInGame($playerId) {
+		return self::getService()->getPlayerCheckNotInGame($playerId);
+	}
+
 	public static function findByName($name, $from=-1, $limit=-1) {
 		return self::getService()->findByName($name, $from, $limit);
 	}

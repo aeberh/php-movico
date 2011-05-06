@@ -17,7 +17,7 @@ class StudentServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getStudents($from, $limit) {
+	public function getStudents($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

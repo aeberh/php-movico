@@ -17,7 +17,7 @@ class BoggleHighScoreServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getBoggleHighScores($from, $limit) {
+	public function getBoggleHighScores($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 

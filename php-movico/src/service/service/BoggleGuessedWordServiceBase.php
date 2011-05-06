@@ -17,7 +17,7 @@ class BoggleGuessedWordServiceBase {
 		$this->getPersistence()->remove($pk);
 	}
 
-	public function getBoggleGuessedWords($from, $limit) {
+	public function getBoggleGuessedWords($from=0, $limit=9999999999) {
 		return $this->getPersistence()->findAll($from, $limit);
 	}
 
