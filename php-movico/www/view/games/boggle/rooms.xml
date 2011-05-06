@@ -8,24 +8,24 @@
 		<form>
 			<message/>
 			<p>Choose a room or start a new game</p>
-			<dataTable value="#{BoggleBean.rooms}" var="room">
+			<dataTable value="#{BoggleRoomBean.games}" var="game">
 				<column>
 					<colHeader>
 						<outputText value="Room name"/>
 					</colHeader>
-					<outputText value="#{room.name}"/>
+					<outputText value="#{game.name}"/>
 				</column>
 				<column>
 					<colHeader>
 						<outputText value="Players"/>
 					</colHeader>
-					<outputText value="#{room.playersStr}"/>
+					<outputText value="#{game.playersStr}"/>
 				</column>
 				<column>
-					<commandLink action="#{BoggleBean.joinRoom}" value="Join"/>
+					<commandLink action="#{BoggleRoomBean.joinGame}" value="Join"/>
 				</column>
 			</dataTable>
-			<commandButton action="#{BoggleBean.createGame}" value="Create New Game"/>
+			<commandButton action="#{BoggleRoomBean.createGame}" value="Create New Game"/>
 		</form>
 	</define>
 </composition>
