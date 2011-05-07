@@ -2,6 +2,7 @@
 class DataTable extends DataSeries {
 	
 	const DATATABLE_ROW = "DATATABLE_ROW";
+	const DATATABLE_FROM = "DATATABLE_FROM";
 	
 	/*
 	 * <dataTable value="#{Bean.rows}" var="row" rows="10"
@@ -13,6 +14,14 @@ class DataTable extends DataSeries {
 		$result .= $this->renderHeader($cols);
 		$result .= $this->renderRows($cols);
 		$result .= "</table>";
+		if($this->isPagination()) {
+			$nbPages = count($this->getRows())/$this->rows+1;
+			$result .= "<p class=\"dataTablePagination\">";
+			for($i=1; $i<=$nbPages; $i++) {
+				$result .= "<a href=\"#\">$i</a>&nbsp;";
+			}
+			$result .= "</p>";
+		}
 		if($this->hasAnchestorOfType("Form")) {
 			$result .= "<input type=\"hidden\" name=\"".self::DATATABLE_ROW."\"/>";
 		}
@@ -36,10 +45,10 @@ class DataTable extends DataSeries {
 	private function renderRows($cols) {
 		$rows = $this->getRows();
 		$result = "";
-		$maxRows = isset($this->rows) ? $this->rows : count($rows);
-		for($i=0; $i<$maxRows; $i++) {
+		for($i=0; $i<count($rows); $i++) {
+			$page = isset($this->rows) ? floor($i/$this->rows)+1 : 1;
 			$row = $rows[$i];
-			$result .= "<tr>";
+			$result .= "<tr class=\"page p$page\">";
 			foreach($cols as $col) {
 				$result .= "<td>".$col->render($i)."</td>";
 			}

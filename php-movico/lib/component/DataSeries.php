@@ -4,6 +4,7 @@ abstract class DataSeries extends Component {
 	protected $value;
 	protected $var;
 	protected $rows;
+	protected $pagination;
 	
 	public function getValue() {
 		return $this->value;
@@ -27,6 +28,14 @@ abstract class DataSeries extends Component {
 	
 	public function setRows($rows) {
 		$this->rows = $rows;
+	}
+	
+	public function isPagination() {
+		return $this->pagination;
+	}
+	
+	public function setPagination($pagination) {
+		$this->pagination = $pagination;
 	}
 	
 }

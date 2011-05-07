@@ -20,7 +20,7 @@ class BoggleBean extends SessionBean {
 		$this->lang = $lang;
 	}
 	
-	const TIMER = 10000;
+	const TIMER = 90000;
 	
 	private $grid;
 	private $words;

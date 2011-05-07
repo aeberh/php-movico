@@ -128,6 +128,7 @@
 	value CDATA #REQUIRED
 	var CDATA #REQUIRED
 	rows CDATA #IMPLIED
+	pagination CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
 >

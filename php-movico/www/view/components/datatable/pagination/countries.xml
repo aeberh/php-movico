@@ -7,7 +7,7 @@
 	<define name="body">
 		<message/>
 		<form>
-			<dataTable value="#{PaginationBean.countries}" var="country" rows="3">
+			<dataTable id="countries" value="#{PaginationBean.countries}" var="country" rows="2" pagination="true">
 				<column>
 					<colHeader>
 						<outputText value="Country"/>

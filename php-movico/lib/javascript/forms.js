@@ -10,6 +10,7 @@ $(function() {
 function startupActions() {
 	autoFocus();
 	setupTimers();
+	setupPagination();
 }
 
 // Countdown timer
@@ -54,6 +55,18 @@ function millisToStrTime(millis) {
 // Autofocus
 function autoFocus() {
 	$("input.autofocus").focus();
+}
+
+// Pagination
+function setupPagination() {
+	$(".dataTable tr.page").hide();
+	$(".dataTable tr.p1").show();
+	$(".dataTablePagination a").click(function() {
+		var page = $(this).text();
+		$(".dataTable tr.page").hide();
+		$(".dataTable tr.p"+page).show();
+		return false;
+	});
 }
 
 // AJAX
