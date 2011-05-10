@@ -12,7 +12,7 @@ class CommandLink extends AbstractCommand {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
 		}
-		return "<a href=\"#\" onclick=\"$onclick\">".$this->value."</a>";
+		return "<a href=\"#\" onclick=\"$onclick\">".$this->getConvertedValue($this->value, $index)."</a>";
 	}
 
 }

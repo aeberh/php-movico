@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Bubble Sort"/>
+	</define>
+	<define name="body">
+		<form>
+			<panelGridSeries value="#{BubbleSortBean.grid.fieldsArray}" var="field" columns="4">
+				<commandLink action="#{BubbleSortBean.clickField}" value="#{field.value}" rendered="#{field.available}"/>
+			</panelGridSeries>
+		</form>
+	</define>
+</composition>

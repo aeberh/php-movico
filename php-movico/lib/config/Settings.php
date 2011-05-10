@@ -11,7 +11,7 @@ class Settings {
 	public function __construct() {
 		$config = new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
 		$this->environment = $config->getParam("environment", "prod")->getValue();
-		$this->ajaxEnabled = $config->getParam("ajax_enabled", "false")->getValue();
+		$this->ajaxEnabled = $config->getParam("ajax_enabled", "true")->getValue();
 		$this->ajaxTimeout = $config->getParam("ajax_timeout", "3000")->getValue();
 	}
 	

@@ -10,22 +10,31 @@ class DataTable extends DataSeries {
 	
 	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");
-		$result = "<table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
+		$result = "<div><table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
 		$result .= $this->renderHeader($cols);
 		$result .= $this->renderRows($cols);
 		$result .= "</table>";
 		if($this->isPagination()) {
-			$nbPages = count($this->getRows())/$this->rows+1;
-			$result .= "<p class=\"dataTablePagination\">";
-			for($i=1; $i<=$nbPages; $i++) {
-				$result .= "<a href=\"#\">$i</a>&nbsp;";
-			}
-			$result .= "</p>";
+			$result .= $this->renderPagination();
 		}
 		if($this->hasAnchestorOfType("Form")) {
 			$result .= "<input type=\"hidden\" name=\"".self::DATATABLE_ROW."\"/>";
 		}
-		return $result;
+		return "$result</div>";
+	}
+	
+	private function renderPagination() {
+		$nbPages = count($this->getRows())/$this->rows+1;
+		if($nbPages == 1) {
+			return "";
+		}
+		$result = "<p currentPage=\"1\" nbPages=\"$nbPages\" class=\"dataTablePagination\">";
+		$result .= "<a href=\"#\" class=\"prev\">&lt;</a>&nbsp;";
+		for($i=1; $i<=$nbPages; $i++) {
+			$result .= "<a href=\"#\" class=\"page\">$i</a>&nbsp;";
+		}
+		$result .= "<a href=\"#\" class=\"next\">&gt;</a>";
+		return $result."</p>";
 	}
 
 	private function renderHeader($cols) {

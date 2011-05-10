@@ -59,13 +59,40 @@ function autoFocus() {
 
 // Pagination
 function setupPagination() {
-	$(".dataTable tr.page").hide();
-	$(".dataTable tr.p1").show();
-	$(".dataTablePagination a").click(function() {
-		var page = $(this).text();
-		$(".dataTable tr.page").hide();
-		$(".dataTable tr.p"+page).show();
-		return false;
+	$(".dataTablePagination").each(function() {
+		var dataTable = $(this).siblings(".dataTable").get(0);
+		dataTable.children(".page").hide();
+		dataTable.siblings(".dataTable").children(".p1").show();
+		$(this).children(".prev").hide();
+		var nbPages = parseInt($(this).attr("nbPages"));
+		var currentPage = 1;
+		if(nbPages == 1) {
+			$(this).children(".next").hide();
+		}
+		$(this).children("a").click(function() {
+			var currentPage = parseInt($(this).parent().attr("currentPage"));
+			var newPage = currentPage;
+			if($(this).hasClass("prev")) {
+				newPage = currentPage-1;
+			} else if($(this).hasClass("next")) {
+				newPage = currentPage+1;
+			} else {
+				newPage = parseInt($(this).text());
+			}
+			var prev = $(this).parent().children(".prev")
+			$(this).parent().children(".prev").show();
+			$(".dataTable tr.page").hide();
+			$(".dataTable tr.p"+newPage).show();
+			$(".dataTablePagination .prev").show();
+			$(".dataTablePagination .next").show();
+			if(newPage == 1) {
+				$(".dataTablePagination .prev").hide();
+			} else if(newPage == nbPages) {
+				$(".dataTablePagination .next").hide();
+			}
+			$(this).parent(".dataTablePagination").attr("currentPage", newPage);
+			return false;
+		});
 	});
 }
 
