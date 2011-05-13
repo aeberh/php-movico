@@ -4,7 +4,7 @@ class CommandLink extends AbstractCommand {
 	public function doRender($index=null) {
 		$formId = $this->getFirstAncestorOfType("Form")->getId();
 		$onclick = "document.getElementById('$formId').ACTION.value='".$this->action."';";
-		if($this->hasAnchestorOfType("DataTable") && $this->hasAnchestorOfType("Form")) {
+		if($this->hasAnchestorOfType("DataSeries") && $this->hasAnchestorOfType("Form")) {
 			$onclick .= "document.getElementById('$formId').".DataTable::DATATABLE_ROW.".value='$index';";
 		}
 		$onclick .= "jQuery('form#".$formId."').submit();";

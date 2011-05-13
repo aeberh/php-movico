@@ -22,6 +22,7 @@ class BoggleGridIndicesTest extends UnitTestCase {
 	
 	public function testNotAdjacent() {
 		$this->assertFalse($this->grid->isIndicesAdjacent(5, 3));
+		$this->assertFalse($this->grid->isIndicesAdjacent(5, 5));
 		$this->assertFalse($this->grid->isIndicesAdjacent(5, 7));
 		$this->assertFalse($this->grid->isIndicesAdjacent(5, 11));
 		$this->assertFalse($this->grid->isIndicesAdjacent(5, 12));
@@ -35,7 +36,6 @@ class BoggleGridIndicesTest extends UnitTestCase {
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 1));
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 2));
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 4));
-		$this->assertTrue($this->grid->isIndicesAdjacent(5, 5));
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 6));
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 8));
 		$this->assertTrue($this->grid->isIndicesAdjacent(5, 9));

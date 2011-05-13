@@ -43,6 +43,14 @@ CREATE TABLE `movico_boggle_hscore` (
 	KEY `IX_LANG` (`lang`)
 );
 
+CREATE TABLE `movico_bubble_hscore` (
+	`hscoreId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	`playDate` DATETIME NOT NULL,
+	`seconds` INTEGER NOT NULL,
+	PRIMARY KEY (`hscoreId`)
+);
+
 CREATE TABLE `movico_students_teachers` (
 	`teacherId` INTEGER NOT NULL,
 	`studentId` INTEGER NOT NULL,

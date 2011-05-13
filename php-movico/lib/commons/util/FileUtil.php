@@ -44,6 +44,7 @@ class FileUtil {
 			mkdir($path, 0777, true);
 		}
 		$pointer = @fopen($filename, "w+");
+		@chmod($filename, 0777);
 		@fclose($pointer);
 	}
 

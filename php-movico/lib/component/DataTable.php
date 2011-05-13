@@ -2,7 +2,6 @@
 class DataTable extends DataSeries {
 	
 	const DATATABLE_ROW = "DATATABLE_ROW";
-	const DATATABLE_FROM = "DATATABLE_FROM";
 	
 	/*
 	 * <dataTable value="#{Bean.rows}" var="row" rows="10"

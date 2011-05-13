@@ -15,7 +15,7 @@
 				<selectOneMenu options="#{BoggleConstants.languages}" value="#{BoggleBean.lang}"/>
 			</p>
 			<ul>
-				<li><commandLink action="#{BoggleBean.start}" value="Start Game"/></li>
+				<li><commandButton action="#{BoggleBean.start}" value="Start Game"/></li>
 			</ul>
 		</form>
 	</define>

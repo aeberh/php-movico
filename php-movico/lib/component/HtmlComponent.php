@@ -40,7 +40,7 @@ class HtmlComponent extends Component {
 			case "li":
 				return array("ul", "ol");
 			default:
-				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries", "ColHeader");
+				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries", "ColHeader", "PanelGridSeries");
 		}
 	}
 	

@@ -50,4 +50,16 @@
 			<order-column name="points" order-by="desc"/>
 		</order>
 	</entity>
+	
+	<!-- BubbleSort -->
+	<entity name="BubbleHighScore" table="movico_bubble_hscore">
+		<column name="hscoreId" type="int" primary="true" auto-increment="true"/>
+		<column name="name" type="String" size="25"/>
+		<column name="playDate" type="Date"/>
+		<column name="seconds" type="int"/>
+		<order>
+			<order-column name="seconds" order-by="asc"/>
+		</order>
+	</entity>
+	
 </service-builder>

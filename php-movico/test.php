@@ -9,6 +9,8 @@ set_error_handler("handleError", E_ALL^E_NOTICE);
 
 require_once("lib/simpletest/autorun.php");
 
+echo microtime(true);
+
 // String tests
 new StringContainsTest();
 new StringStartsWithTest();
@@ -32,6 +34,7 @@ new ListIteratorTest();
 new ListSortTest();
 new ListToStringTest();
 new ListIndexesOfTest();
+new ListUpdateElementTest();
 
 // HashSet tests
 new SetAddElementTest();

@@ -31,6 +31,13 @@ class ArrayList implements IteratorAggregate {
 	}
 	
 	public function get($i) {
+		if(is_string($i)) {
+			$newI = intval($i);
+			if($newI === 0 && $i!=="0") {
+				throw new IllegalArgumentException("Index should be of type integer or a castable string");
+			}
+		}
+		$i = (int)$i;
 		if(!$this->isValidIndex($i)) {
 			throw new IndexOutOfBoundsException();
 		}
