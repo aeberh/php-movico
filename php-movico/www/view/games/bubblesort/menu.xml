@@ -10,9 +10,7 @@
 				<outputLabel for="name" value="Name: "/> 
 				<inputText id="name" value="#{BubbleSortBean.name}" autoFocus="true"/>
 			</p>
-			<ul>
-				<li><commandButton action="#{BubbleSortBean.start}" value="Start Game"/></li>
-			</ul>
+			<commandButton action="#{BubbleSortBean.start}" value="Start Game"/>
 		</form>
 	</define>
 </composition>

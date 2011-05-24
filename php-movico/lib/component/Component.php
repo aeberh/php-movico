@@ -80,6 +80,23 @@ abstract class Component {
 		}
 	}
 	
+	protected function hasDescendantOfType($type) {
+		return $this->checkHasDescendantOfType($this, $type);
+	}
+	
+	private function checkHasDescendantOfType(Component $comp, $type) {
+		$children = $comp->getChildren();
+		foreach($children as $child) {
+			if($child instanceof $type) {
+				return true;
+			}
+			if($this->checkHasDescendantOfType($child, $type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	protected function getConvertedValue($string, $rowIndex=null) {
 		preg_match_all("/#\{[a-zA-Z\.]+\}/", $string, $matches);
 		if(count($matches)==1 && isset($matches[0][0]) && $matches[0][0]==$string) {

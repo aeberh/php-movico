@@ -45,7 +45,17 @@ class ViewRenderer extends ApplicationBean {
 		if(isset($_GET["jquery"])) {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
-		return $viewComp->render();
+		$view = $viewComp->render();
+		if(isset($_GET["file"])) {
+			$view .= $this->jsRewriteParent();
+		}
+		return $view;
+	}
+	
+	private function jsRewriteParent() {
+		return "<script type=\"text/javascript\">".
+			"$(function() {window.parent.body.innerHTML=document.body.innerHTML;});".
+			"</script>";
 	}
 	
 	private function parseTemplate(SimpleXMLElement $composition) {

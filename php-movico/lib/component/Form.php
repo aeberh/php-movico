@@ -2,11 +2,19 @@
 class Form extends Component {
 	
 	public function doRender($index=null) {
-		$result = "<form enctype=\"multipart/form-data\" name=\"form".$this->id."\" id=\"".$this->id."\" method=\"post\" action=\"index.php\">";
+		$isFileUpload = $this->hasDescendantOfType("FileUpload");
+		$enctype = $isFileUpload ? "multipart/form-data" : "application/x-www-form-urlencoded";
+		$target = $isFileUpload ? "fileUpload" : "_self";
+		$action = $isFileUpload ? "index.php?file=1" : "index.php";
+		$result = "<form enctype=\"$enctype\" name=\"form".$this->id."\" id=\"".$this->id."\" method=\"post\" action=\"$action\" target=\"$target\">";
 		$result .= $this->renderChildren();
 		$result .= "<input type=\"hidden\" name=\"ACTION\"/>";
 		$result .= "<input type=\"hidden\" name=\"VIEW\" value=\"".$this->getViewId()."\"/>";
-		return $result."</form>";
+		$result .= "</form>";
+		if($isFileUpload) {
+			$result .= "<iframe name=\"fileUpload\" width=\"1000\" height=\"700\" src=\"#\"></iframe>";
+		}
+		return $result;
 	}
 	
 	private function getViewId() {

@@ -103,7 +103,11 @@ function registerForms(ajaxTimeout) {
 
 		$("button").attr("disabled", "disabled");
 		$("input").attr("readonly", "readonly");
-		$("img.AjaxLoading").attr("src", "lib/component/img/connect_active.gif");
+		showLoading("active");
+		
+		if($(this).attr("enctype") == "multipart/form-data") {
+			return true;
+		}
 		
 		$.ajax({
 			url: "index.php?jquery=1",
@@ -114,7 +118,7 @@ function registerForms(ajaxTimeout) {
 			success: function(data) {
 				$("body").html(data.body);
 				registerForms(ajaxTimeout);
-				$("img.AjaxLoading").attr("src", "lib/component/img/connect_idle.gif");
+				showLoading("idle");
 				var timerDuration = new Date().getTime() - timerStart;
 				$("body").attr("id", timerDuration);
 				startupActions();
@@ -123,12 +127,16 @@ function registerForms(ajaxTimeout) {
 				$("button").removeAttr("disabled");
 				$("input").removeAttr("readonly");
 				if(errorType == "timeout") {
-					$("img.AjaxLoading").attr("src", "lib/component/img/connect_caution.gif");
+					showLoading("caution");
 				} else {
-					$("img.AjaxLoading").attr("src", "lib/component/img/connect_disconnected.gif");
+					alert(errorThrown);
+					showLoading("disconnected");
 				}
 			}
 		});
 		return false;
 	});
+}
+function showLoading(status) {
+	$("img.AjaxLoading").attr("src", "lib/component/img/connect_"+status+".gif");
 }
