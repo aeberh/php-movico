@@ -4,6 +4,7 @@ function toggleBooleanValue(elementId) {
 }
 
 $(function() {
+	checkRedirect();
 	startupActions();
 });
 
@@ -11,6 +12,18 @@ function startupActions() {
 	autoFocus();
 	setupTimers();
 	setupPagination();
+}
+
+// Automatic redirect by hash
+function checkRedirect() {
+	var hash = window.location.hash;
+	if(hash == "#" || hash == "") {
+		return;
+	}
+	//submit the redirect form
+	$("#RedirectForm").attr("action", "#");
+	$("#RedirectForm input").val(hash.slice(1));
+	$("#RedirectForm").submit();
 }
 
 // Countdown timer

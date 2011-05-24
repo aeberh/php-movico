@@ -30,6 +30,7 @@
 	action CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
+	link CDATA #IMPLIED
 >
 
 <!ELEMENT commandLink EMPTY>
@@ -38,6 +39,7 @@
 	action CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
+	link CDATA #IMPLIED
 >
 
 <!ELEMENT booleanCheckbox EMPTY>
