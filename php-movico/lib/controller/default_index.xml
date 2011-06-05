@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE note SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/dtd/view.dtd">
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <view>
     <outputText value="Hello world!"/>
 </view>

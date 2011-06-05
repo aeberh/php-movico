@@ -73,9 +73,10 @@ function autoFocus() {
 // Pagination
 function setupPagination() {
 	$(".dataTablePagination").each(function() {
-		var dataTable = $(this).siblings(".dataTable").get(0);
-		dataTable.children(".page").hide();
-		dataTable.siblings(".dataTable").children(".p1").show();
+		var dataTableDiv = $(this).parent();
+		var dataTableDivId = dataTableDiv.attr("id");
+		$("#"+dataTableDivId+" .page").hide();
+		$("#"+dataTableDivId+" .p1").show();
 		$(this).children(".prev").hide();
 		var nbPages = parseInt($(this).attr("nbPages"));
 		var currentPage = 1;
@@ -94,14 +95,14 @@ function setupPagination() {
 			}
 			var prev = $(this).parent().children(".prev")
 			$(this).parent().children(".prev").show();
-			$(".dataTable tr.page").hide();
-			$(".dataTable tr.p"+newPage).show();
-			$(".dataTablePagination .prev").show();
-			$(".dataTablePagination .next").show();
+			$("#"+dataTableDivId+" tr.page").hide();
+			$("#"+dataTableDivId+" tr.p"+newPage).show();
+			$("#"+dataTableDivId+" .prev").show();
+			$("#"+dataTableDivId+" .next").show();
 			if(newPage == 1) {
-				$(".dataTablePagination .prev").hide();
+				$("#"+dataTableDivId+" .prev").hide();
 			} else if(newPage == nbPages) {
-				$(".dataTablePagination .next").hide();
+				$("#"+dataTableDivId+" .next").hide();
 			}
 			$(this).parent(".dataTablePagination").attr("currentPage", newPage);
 			return false;
@@ -112,15 +113,16 @@ function setupPagination() {
 // AJAX
 function registerForms(ajaxTimeout) {
 	$("form").submit(function() {
+		if($(this).attr("enctype") == "multipart/form-data") {
+			return true;
+		}
+		
 		var timerStart = new Date().getTime();
 
 		$("button").attr("disabled", "disabled");
 		$("input").attr("readonly", "readonly");
-		showLoading("active");
 		
-		if($(this).attr("enctype") == "multipart/form-data") {
-			return true;
-		}
+		showLoading("active");
 		
 		$.ajax({
 			url: "index.php?jquery=1",

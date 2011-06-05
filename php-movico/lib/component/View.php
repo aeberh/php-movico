@@ -35,7 +35,7 @@ TST;
 		return $this->renderChildren(array("Css", "Js"));
 	}
 	
-	private function renderBodyChildren() {
+	public function renderBodyChildren() {
 		return $this->renderChildren(array(), array("Css", "Js"));
 	}
 	

@@ -9,7 +9,7 @@ class DataTable extends DataSeries {
 	
 	public function doRender($index=null) {
 		$cols = $this->getChildrenOfType("Column");
-		$result = "<div><table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
+		$result = "<div id=\"".rand(100000, 999999)."\"><table id=\"".$this->id."\" class=\"dataTable\" cellspacing=\"0\" cellpadding=\"0\">";
 		$result .= $this->renderHeader($cols);
 		$result .= $this->renderRows($cols);
 		$result .= "</table>";
@@ -30,7 +30,7 @@ class DataTable extends DataSeries {
 		$result = "<p currentPage=\"1\" nbPages=\"$nbPages\" class=\"dataTablePagination\">";
 		$result .= "<a href=\"#\" class=\"prev\">&lt;</a>&nbsp;";
 		for($i=1; $i<=$nbPages; $i++) {
-			$result .= "<a href=\"#\" class=\"page\">$i</a>&nbsp;";
+			$result .= "<a href=\"#\" class=\"pg\">$i</a>&nbsp;";
 		}
 		$result .= "<a href=\"#\" class=\"next\">&gt;</a>";
 		return $result."</p>";
