@@ -3,6 +3,9 @@ class ActionController {
 	
 	public function perform($post, $files) {
 		$view = Singleton::create("Settings")->getDefaultView();
+		if(isset($post["REDIRECT"])) {
+			$view = $post["REDIRECT"];
+		}
 		$this->updateModel($post, $files);
 		
 		$action = RequestUtil::get("ACTION");

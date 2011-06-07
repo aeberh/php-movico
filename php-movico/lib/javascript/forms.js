@@ -5,12 +5,13 @@ function toggleBooleanValue(elementId) {
 
 $(function() {
 	checkRedirect();
-	startupActions();
+	startupActions(0);
+	setHash();
 });
 
-function startupActions() {
+function startupActions(ajaxTime) {
 	autoFocus();
-	setupTimers();
+	setupTimers(ajaxTime);
 	setupPagination();
 }
 
@@ -25,12 +26,18 @@ function checkRedirect() {
 	$("#RedirectForm input").val(hash.slice(1));
 	$("#RedirectForm").submit();
 }
+function setHash() {
+	var view = $("body").attr("view");
+	if(typeof view !== 'undefined' && view !== false) {
+		window.location.hash = "#"+view;
+	}
+}
 
 // Countdown timer
-function setupTimers() {
+function setupTimers(ajaxTime) {
 	$(".movico-timer").each(function() {
 		$(this).children("button").hide();
-		var millis = $(this).children("input").val()-$("body").attr("id");
+		var millis = $(this).children("input").val()-ajaxTime;
 		tick($(this), millis);
 	});
 }
@@ -135,8 +142,7 @@ function registerForms(ajaxTimeout) {
 				registerForms(ajaxTimeout);
 				showLoading("idle");
 				var timerDuration = new Date().getTime() - timerStart;
-				$("body").attr("id", timerDuration);
-				startupActions();
+				startupActions(timerDuration);
 			},
 			error: function(request, errorType, errorThrown) {
 				$("button").removeAttr("disabled");

@@ -26,7 +26,8 @@ class View extends Component {
 TST;
 		}
 		$result .= $this->renderHeadChildren();
-		$result .= "\t</head>\n\t<body>\n\t\t<div id=\"content\">\n";
+		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
+		$result .= "\t</head>\n\t<body$view>\n\t\t<div id=\"content\">\n";
 		$result .= $this->renderBodyChildren();
 		return $result."\t\t</div>\n{$this->renderRedirectForm()}\t</body>\n</html>";
 	}

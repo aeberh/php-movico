@@ -10,6 +10,10 @@ abstract class AbstractCommand extends Component {
 		$this->link = $link;
 	}
 	
+	public function isLinkEnabled() {
+		return $this->link === "true";
+	}
+	
 	public function setAction($action) {
 		$this->action = $action;
 	}
@@ -26,8 +30,11 @@ abstract class AbstractCommand extends Component {
 		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p", "div", "PanelGridSeries");
 	}
 	
-	protected function getHash() {
-		return String::create($this->action)->startsWith("$") ? "" : $this->action;
+	protected function getHref() {
+		if(!String::create($this->action)->trim()->startsWith("$") && $this->isLinkEnabled()) {
+			return "#".$this->action;
+		}
+		return "#";
 	}
 	
 }

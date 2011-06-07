@@ -6,7 +6,7 @@ class Form extends Component {
 		$enctype = $isFileUpload ? "multipart/form-data" : "application/x-www-form-urlencoded";
 		$i = rand(10000, 99999);
 		$target = $isFileUpload ? "fileUpload".$i : "_self";
-		$action = $isFileUpload ? "index.php?file=1" : "index.php";
+		$action = $isFileUpload ? $_SERVER["PHP_SELF"]."?file=1" : $_SERVER["PHP_SELF"];
 		$result = "<form enctype=\"$enctype\" name=\"form".$this->id."\" id=\"".$this->id."\" method=\"post\" action=\"$action\" target=\"$target\">";
 		$result .= $this->renderChildren();
 		$result .= "<input type=\"hidden\" name=\"ACTION\"/>";
