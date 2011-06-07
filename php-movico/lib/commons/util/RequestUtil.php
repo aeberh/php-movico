@@ -1,4 +1,4 @@
-<? 
+<?php
 class RequestUtil {
 	
 	public static function get($key, $defaultValue=null) {

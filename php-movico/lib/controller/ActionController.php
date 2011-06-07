@@ -2,7 +2,7 @@
 class ActionController {
 	
 	public function perform($post, $files) {
-		$view = View::DEFAULT_VIEW;
+		$view = Singleton::create("Settings")->getDefaultView();
 		$this->updateModel($post, $files);
 		
 		$action = RequestUtil::get("ACTION");

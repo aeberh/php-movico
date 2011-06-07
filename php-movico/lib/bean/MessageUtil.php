@@ -1,4 +1,4 @@
-<? 
+<?php
 class MessageUtil {
 	
 	private static $msg;

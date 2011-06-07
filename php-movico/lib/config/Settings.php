@@ -6,6 +6,7 @@ class Settings {
 	private $environment;
 	private $ajaxEnabled;
 	private $ajaxTimeout;
+	private $defaultView;
 	private $rootPath;
 	
 	public function __construct() {
@@ -13,6 +14,7 @@ class Settings {
 		$this->environment = $config->getParam("environment", "prod")->getValue();
 		$this->ajaxEnabled = $config->getParam("ajax_enabled", "true")->getValue();
 		$this->ajaxTimeout = $config->getParam("ajax_timeout", "3000")->getValue();
+		$this->defaultView = $config->getParam("default_view", View::DEFAULT_VIEW)->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -25,6 +27,10 @@ class Settings {
 	
 	public function getAjaxTimeout() {
 		return $this->ajaxTimeout;
+	}
+	
+	public function getDefaultView() {
+		return $this->defaultView;
 	}
 	
 	public function setRootPath($rootPath) {

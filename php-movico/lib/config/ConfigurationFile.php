@@ -28,15 +28,14 @@ class ConfigurationFile {
 	}
 
 	public function getParam($key, $default=null) {
-		$item = $this->items[$key];
-		if(!isset($item) || !$item instanceof ConfigurationParameter) {
+		if(!isset($this->items[$key]) || !$this->items[$key] instanceof ConfigurationParameter) {
 			if($default === null) {
 				throw new ConfigurationException("No configuration parameter '$key' exists");
 			} else {
-				$item = new ConfigurationParameter($key, $default);
+				return new ConfigurationParameter($key, $default);
 			}
 		}
-		return $item;
+		return $this->items[$key];
 	}
 
 	public function getGroup($key) {
