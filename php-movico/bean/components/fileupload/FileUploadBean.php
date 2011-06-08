@@ -4,9 +4,7 @@ class FileUploadBean extends RequestBean {
 	private $file;
 	
 	public function upload() {
-		if(empty($this->file)) {
-			return null;
-		}
+		sleep(3);
 		if($this->file->isUploadSuccess()) {
 			$this->file->moveToDir("tmp");
 		}
