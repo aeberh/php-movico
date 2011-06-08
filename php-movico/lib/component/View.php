@@ -29,7 +29,11 @@ TST;
 		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
 		$result .= "\t</head>\n\t<body$view>\n\t\t<div id=\"content\">\n";
 		$result .= $this->renderBodyChildren();
-		return $result."\t\t</div>\n{$this->renderRedirectForm()}\t</body>\n</html>";
+		$result .= "\t\t</div>\n{$this->renderRedirectForm()}";
+		if($ajax) {
+			$result .= $this->renderIframeReplace();
+		}
+		return $result."\t</body>\n</html>";
 	}
 	
 	private function renderHeadChildren() {
@@ -44,6 +48,12 @@ TST;
 		return "<form id=\"RedirectForm\" action=\"#\" method=\"post\">".
 			"<input type=\"hidden\" name=\"REDIRECT\" value=\"\">".
 			"</form>";
+	}
+	
+	private function renderIframeReplace() {
+		return "<script type=\"text/javascript\">".
+			"$(\"body\", window.parent.document).html($(\"body\").html());".
+			"</script>";
 	}
 	
 	public function getValidParents() {

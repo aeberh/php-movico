@@ -120,7 +120,9 @@ function setupPagination() {
 // AJAX
 function registerForms(ajaxTimeout) {
 	$("form").submit(function() {
-		if($(this).attr("enctype") == "multipart/form-data") {
+		showLoading("active");
+		var isUpload = $(this).attr("enctype") == "multipart/form-data";
+		if(isUpload) {
 			return true;
 		}
 		
@@ -128,8 +130,6 @@ function registerForms(ajaxTimeout) {
 
 		$("button").attr("disabled", "disabled");
 		$("input").attr("readonly", "readonly");
-		
-		showLoading("active");
 		
 		$.ajax({
 			url: "index.php?jquery=1",
@@ -150,7 +150,7 @@ function registerForms(ajaxTimeout) {
 				if(errorType == "timeout") {
 					showLoading("caution");
 				} else {
-					alert(errorThrown);
+					alert(errorType+": "+errorThrown);
 					showLoading("disconnected");
 				}
 			}
