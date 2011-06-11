@@ -31,7 +31,8 @@
 			</ul>
 			<h2>Lib Examples</h2>
 			<ul>
-				<li><commandLink action="libs/i18n" value="Internationalization" link="true"/></li>
+				<li><commandLink action="libs/i18n/i18n" value="Internationalization" link="true"/></li>
+				<li><commandLink action="libs/ajaxerrors/ajaxerrors" value="Ajax Errors" link="true"/></li>
 			</ul>
 			<h2>Games</h2>
 			<ul>

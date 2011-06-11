@@ -120,8 +120,13 @@ function setupPagination() {
 
 function unloadHtmlAreas() {
 	for(var inst in CKEDITOR.instances) {
-		alert("Removing instance "+inst);
 		CKEDITOR.remove(CKEDITOR.instances[inst]);
+	}
+}
+
+function updateHtmlAreas() {
+	for(var inst in CKEDITOR.instances) {
+		CKEDITOR.instances[inst].updateElement();
 	}
 }
 
@@ -139,6 +144,7 @@ function registerForms(ajaxTimeout) {
 		$("button").attr("disabled", "disabled");
 		$("input").attr("readonly", "readonly");
 		
+		updateHtmlAreas();
 		$.ajax({
 			url: "index.php?jquery=1",
 			data: $(this).serialize(),
