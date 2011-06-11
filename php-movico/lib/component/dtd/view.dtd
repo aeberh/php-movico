@@ -73,6 +73,12 @@
 	id CDATA #IMPLIED
 >
 
+<!ELEMENT inputRichText EMPTY>
+<!ATTLIST inputRichText
+	value CDATA #REQUIRED
+	id CDATA #IMPLIED
+>
+
 <!ELEMENT outputLabel EMPTY>
 <!ATTLIST outputLabel
 	value CDATA #REQUIRED

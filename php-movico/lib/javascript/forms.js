@@ -7,6 +7,7 @@ $(function() {
 	checkRedirect();
 	startupActions(0);
 	setHash();
+	unloadHtmlAreas();
 });
 
 function startupActions(ajaxTime) {
@@ -117,6 +118,13 @@ function setupPagination() {
 	});
 }
 
+function unloadHtmlAreas() {
+	for(var inst in CKEDITOR.instances) {
+		alert("Removing instance "+inst);
+		CKEDITOR.remove(CKEDITOR.instances[inst]);
+	}
+}
+
 // AJAX
 function registerForms(ajaxTimeout) {
 	$("form").submit(function() {
@@ -138,6 +146,7 @@ function registerForms(ajaxTimeout) {
 			dataType: "json",
 			timeout: ajaxTimeout,
 			success: function(data) {
+				unloadHtmlAreas();
 				$("body").html(data.body);
 				registerForms(ajaxTimeout);
 				showLoading("idle");
@@ -159,5 +168,5 @@ function registerForms(ajaxTimeout) {
 	});
 }
 function showLoading(status) {
-	$("img.AjaxLoading").attr("src", "lib/component/img/connect_"+status+".gif");
+	$("img.AjaxLoading").attr("src", "lib/component/ajax/img/connect_"+status+".gif");
 }
