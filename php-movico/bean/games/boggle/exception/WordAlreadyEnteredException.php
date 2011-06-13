@@ -1,5 +1,0 @@
-<?
-class WordAlreadyEnteredException extends BoggleWordException {
-	
-}
-?>
