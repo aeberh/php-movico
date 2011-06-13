@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Dropdown Submit"/>
+	</define>
+	<define name="body">
+	    <form>
+	        <p><selectOneMenu options="#{DropdownSubmitBean.options}" value="#{DropdownSubmitBean.selectedOption}" action="#{DropdownSubmitBean.showSelected}"/></p>
+	        <p><outputText value="#{DropdownSubmitBean.message}"/></p>
+	    </form>
+	</define>
+</composition>

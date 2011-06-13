@@ -21,6 +21,7 @@
 			<h2>Component Examples</h2>
 			<ul>
 				<li><commandLink action="components/inputrichtext/rich" value="Rich Text Editor" link="true"/></li>
+				<li><commandLink action="components/dropdownsubmit/dropdownsubmit" value="Dropdown Submit" link="true"/></li>
 				<li><commandLink action="components/datatable/normal/users" value="DataTable" link="true"/></li>
 				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable" link="true"/></li>
 				<li><commandLink action="components/datatable/pagination/countries" value="DataTable Pagination" link="true"/></li>

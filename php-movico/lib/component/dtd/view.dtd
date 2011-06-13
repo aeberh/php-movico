@@ -92,6 +92,7 @@
 <!ATTLIST selectOneMenu
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
+	action CDATA #IMPLIED
 >
 
 <!ELEMENT selectManyListBox EMPTY>

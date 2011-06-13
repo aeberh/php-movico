@@ -3,17 +3,28 @@ class SelectOneMenu extends Component {
 	
 	private $value;
 	private $options;
+	private $action;
+	
+	/*
+	 * Create an addiontal hidden commandbutton and click it to submit
+	 */
 	
 	public function doRender($rowIndex=null) {
 		$name = $this->value;
 		$val = $this->getConvertedValue($name, $rowIndex);
-		$result = "<select id=\"".$this->id."\" name=\"$name\">";
+		$buttonId = rand(10000, 99999);
+		$onchange = isset($this->action) ? " onchange=\"this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
+		$result = "<select id=\"".$this->id."\" name=\"$name\"$onchange>";
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {
 			$sel = ($val == $oValue) ? " selected=\"selected\"" : "";
 			$result .= "<option$sel value=\"$oValue\">$oLabel</option>";
 		}
-		return $result."</select>";
+		$result .= "</select>";
+		if(isset($this->action)) {
+			$result .= "<button id=\"$buttonId\" type=\"submit\" style=\"display:none\">Dummy</button>";
+		}
+		return $result;
 	}
 	
 	public function setValue($value) {
@@ -22,6 +33,10 @@ class SelectOneMenu extends Component {
 	
 	public function setOptions($options) {
 		$this->options = $options;
+	}
+	
+	public function setAction($action) {
+		$this->action = $action;
 	}
 	
 	public function getValidParents() {
