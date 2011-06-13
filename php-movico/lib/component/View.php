@@ -46,8 +46,9 @@ TST;
 	}
 	
 	private function renderRedirectForm() {
-		return "<form id=\"RedirectForm\" action=\"#\" method=\"post\">".
+		return "<form id=\"RedirectForm\" action=\"#\" method=\"post\" style=\"display:none\">".
 			"<input type=\"hidden\" name=\"REDIRECT\" value=\"\">".
+			"<button type=\"Submit\">Dummy</button>".
 			"</form>";
 	}
 	

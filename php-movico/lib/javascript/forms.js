@@ -25,7 +25,7 @@ function checkRedirect() {
 	//submit the redirect form
 	$("#RedirectForm").attr("action", "#");
 	$("#RedirectForm input").val(hash.slice(1));
-	$("#RedirectForm").submit();
+	$("#RedirectForm button").click();
 }
 function setHash() {
 	var view = $("body").attr("view");

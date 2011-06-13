@@ -1,7 +1,7 @@
 <?
 abstract class AbstractInput extends Component {
 	
-	protected $value;
+	private $value;
 	private $autoFocus;
 
 	public function setValue($value) {
