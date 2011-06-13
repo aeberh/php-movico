@@ -15,7 +15,8 @@ function __autoload($className) {
 	} else {
 		$found = stream_resolve_include_path("$className.php");
 		if($found === false) {
-			$found = stream_resolve_include_path(strtolower($className).".php");
+			$className = strtolower($className);
+			$found = stream_resolve_include_path("$className.php");
 		}
 		if ($found !== false) {
 			include_once("$className.php");
