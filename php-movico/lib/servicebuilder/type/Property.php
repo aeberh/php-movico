@@ -7,7 +7,7 @@ class Property {
 	
 	private $entity;
 
-	private static $allowedTypes = array("String", "int", "boolean", "Date", "Collection");
+	private static $allowedTypes = array("String", "int", "float", "boolean", "Date", "Collection");
 
 	public function __construct($name, $type, $size) {
 		$this->name = $name;
@@ -42,6 +42,8 @@ class Property {
 				return $this->size > 500 ? "TEXT" : "VARCHAR(".$this->size.")";
 			case "int":
 				return "INTEGER";
+			case "float":
+				return "FLOAT";
 			case "boolean":
 				return "TINYINT(1)";
 			case "Date":
