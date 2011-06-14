@@ -6,6 +6,9 @@ class DateConverter implements DatabaseFieldConverter {
 	}
 	
 	function fromDOMtoDB($domValue) {
+		if(empty($domValue)) {
+			$domValue = Date::create(0);
+		}
 		return $domValue->format("Y-m-d H:i:s");
 	}
 	
