@@ -27,7 +27,7 @@ abstract class AbstractCommand extends Component {
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p", "div", "PanelGridSeries");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p", "div", "h1", "h2", "h3", "PanelGridSeries");
 	}
 	
 	protected function getHref() {

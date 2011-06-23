@@ -38,9 +38,9 @@ class HtmlComponent extends Component {
 	public function getValidParents() {
 		switch($this->tagName) {
 			case "li":
-				return array("ul", "ol");
+				return array("ul", "ol", "PanelGroup");
 			default:
-				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "PanelSeries", "ColHeader", "PanelGridSeries");
+				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "li", "PanelSeries", "ColHeader", "PanelGridSeries", "HtmlComponent");
 		}
 	}
 	

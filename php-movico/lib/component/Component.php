@@ -24,14 +24,13 @@ abstract class Component {
 	}
 	
 	public function render($index=null) {
-		$shouldBeRendered = $this->getConvertedValue($this->rendered, $index);
-		if(StringUtil::startsWith(strval($shouldBeRendered), "!")) {
-			$shouldBeRendered = !(substr(strval($shouldBeRendered), 1));
-		}
-		if(!$shouldBeRendered) {
-			return "";
-		}
-		return $this->doRender($index);
+		//$shouldBeRendered = $this->getConvertedValue($this->rendered, $index);
+//		if(StringUtil::contains($this->rendered, "!")) {
+//			$render = !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
+//		} else {
+//			$render = $this->getConvertedValue($this->rendered, $index);
+//		}
+		return $this->getConvertedValue($this->rendered, $index) ? $this->doRender($index) : "";
 	}
 	
 	public abstract function doRender($index=null);

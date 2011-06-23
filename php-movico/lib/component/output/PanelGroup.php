@@ -2,11 +2,11 @@
 class PanelGroup extends Component {
 	
 	public function doRender($rowIndex=null) {
-		return "<div id=\"".$this->id."\">".$this->renderChildren()."</div>";
+		return $this->renderChildren();
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div");
+		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div", "li", "ul");
 	}
 	
 }
