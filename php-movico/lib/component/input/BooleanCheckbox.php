@@ -3,6 +3,7 @@ class BooleanCheckbox extends Component {
 	
 	private $value;
 	private $label;
+	private $action;
 	
 	public function setValue($value) {
 		$this->value = $value;
@@ -12,22 +13,32 @@ class BooleanCheckbox extends Component {
 		$this->label = $label;
 	}
 	
+	public function setAction($action) {
+		$this->action = $action;
+	}
+	
 	public function doRender($rowIndex=null) {
 		$name = $this->value;
 		$value = $this->getConvertedValue($name, $rowIndex);
 		$checked = $value ? " checked=\"checked\"" : "";
 		$defValue = $value ? "1" : "0";
+		$buttonId = rand(10000, 99999);
+		$onchangesubmit = isset($this->action) ? "this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
 		$result = "<table cellspacing=\"0\" cellpadding=\"0\"><tr>".
-			"<td><input type=\"checkbox\" id=\"{$this->id}\"$checked onclick=\"toggleBooleanValue('hidden_{$this->id}')\"/>".
+			"<td><input type=\"checkbox\" id=\"{$this->id}\"$checked onclick=\"toggleBooleanValue('hidden_{$this->id}');$onchangesubmit\"/>".
 			"<input type=\"hidden\" id=\"hidden_{$this->id}\" name=\"$name\" value=\"$defValue\"></td>";
 		if(isset($this->label)) {
 			$result .= "<td><label for=\"{$this->id}\">{$this->label}</label></td>";
 		}
-		return $result."</tr></table>";
+		$result .= "</tr></table>";
+		if(isset($this->action)) {
+			$result .= "<button id=\"$buttonId\" type=\"submit\" style=\"display:none\">Dummy</button>";
+		}
+		return $result;
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
 	}
 	
 }

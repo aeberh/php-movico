@@ -5,7 +5,7 @@ abstract class Component {
 	protected $children = array();
 	protected $id;
 	
-	protected $rendered = true;
+	protected $rendered = "true";
 	
 	public function __construct() {
 		$this->id = rand(100000, 999999);
@@ -24,13 +24,12 @@ abstract class Component {
 	}
 	
 	public function render($index=null) {
-		//$shouldBeRendered = $this->getConvertedValue($this->rendered, $index);
-//		if(StringUtil::contains($this->rendered, "!")) {
-//			$render = !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
-//		} else {
-//			$render = $this->getConvertedValue($this->rendered, $index);
-//		}
-		return $this->getConvertedValue($this->rendered, $index) ? $this->doRender($index) : "";
+		if(StringUtil::contains($this->rendered, "!")) {
+			$render = !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
+		} else {
+			$render = $this->getConvertedValue($this->rendered, $index);
+		}
+		return $render ? $this->doRender($index) : "";
 	}
 	
 	public abstract function doRender($index=null);

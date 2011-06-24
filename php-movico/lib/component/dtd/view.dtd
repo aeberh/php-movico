@@ -83,6 +83,7 @@
 <!ATTLIST outputLabel
 	value CDATA #REQUIRED
 	for CDATA #REQUIRED
+	rendered CDATA #IMPLIED
 >
 
 <!ELEMENT outputText EMPTY>
