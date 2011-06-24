@@ -87,7 +87,10 @@
 >
 
 <!ELEMENT outputText EMPTY>
-<!ATTLIST outputText value CDATA #REQUIRED>
+<!ATTLIST outputText
+	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+>
 
 <!ELEMENT selectOneMenu EMPTY>
 <!ATTLIST selectOneMenu
