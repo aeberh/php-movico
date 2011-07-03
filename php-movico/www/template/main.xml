@@ -5,18 +5,22 @@
 	<div id="gradient"></div>
 	<div id="wrapper">
 		<h1>T.T.C. Jevota</h1>
-		<ul id="nav">
-			<li>Home</li>
-			<li>
-				<p>Controlepaneel</p>
-				<ul>
-					<li>Clubbeheer</li>
-					<li>Teambeheer</li>
-					<li>Wedstrijdbeheer</li>
-					<li>Gebruikersbeheer</li>
-				</ul>
-			</li>
-		</ul>
+		<form>
+			<ul id="nav">
+				<li><commandLink action="index" value="Home" link="true"/></li>
+				<panelGroup rendered="#{LoginBean.admin}">
+					<li>
+						<p>Controlepaneel</p>
+						<ul>
+							<li><commandLink action="admin/clubs/overview" value="Clubbeheer" link="true"/></li>
+							<li><commandLink action="admin/teams/overview" value="Teambeheer" link="true"/></li>
+							<li><commandLink action="admin/games/overview" value="Wedstrijdbeheer" link="true"/></li>
+							<li><commandLink action="admin/users/overview" value="Gebruikersbeheer" link="true"/></li>
+						</ul>
+					</li>
+				</panelGroup>
+			</ul>
+		</form>
 		<div id="main">
 			<div class="col wide">
 				<message/>

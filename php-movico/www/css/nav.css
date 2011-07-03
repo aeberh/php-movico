@@ -23,3 +23,9 @@
 #nav li li {
 	list-style: none;
 }
+
+li a.selected {
+	text-decoration: none;
+	font-weight: bold;
+	cursor: default;
+}
