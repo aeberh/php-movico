@@ -3,25 +3,20 @@ function toggleBooleanValue(elementId) {
 	elem.value = (elem.value == '1') ? '0' : '1';
 }
 
-$(function() {
-	checkRedirect();
-	startupActions(0);
-	setHash();
-	unloadHtmlAreas();
-});
-
 function startupActions(ajaxTime) {
 	autoFocus();
 	setupTimers(ajaxTime);
 	setupPagination();
+	setSelectedLink();
 }
 
 // Automatic redirect by hash
-function checkRedirect() {
+function checkRedirect(ajaxTimeout) {
 	var hash = window.location.hash;
 	if(hash == "#" || hash == "") {
 		return;
 	}
+	registerForms(ajaxTimeout);
 	//submit the redirect form
 	$("#RedirectForm").attr("action", "#");
 	$("#RedirectForm input").val(hash.slice(1));
@@ -128,6 +123,15 @@ function updateHtmlAreas() {
 	for(var inst in CKEDITOR.instances) {
 		CKEDITOR.instances[inst].updateElement();
 	}
+}
+
+// Selected link add "selected" class
+function setSelectedLink() {
+	var hash = window.location.hash;
+	if(hash == "#" || hash == "") {
+		return;
+	}
+	$("a[href='"+hash+"']").addClass("selected");
 }
 
 // AJAX

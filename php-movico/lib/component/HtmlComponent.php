@@ -19,7 +19,7 @@ class HtmlComponent extends Component {
 	public function doRender($row=null) {
 		$tag = $this->tagName;
 		$result = "<$tag".$this->getExpandedAttrs();
-		if(empty($this->children) && empty($this->text)) {
+		if(empty($this->children) && empty($this->text) && $tag !== "div") {
 			return "$result/>";
 		}
 		$result .= ">";
@@ -40,7 +40,7 @@ class HtmlComponent extends Component {
 			case "li":
 				return array("ul", "ol", "PanelGroup");
 			default:
-				return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "div", "p", "li", "PanelSeries", "ColHeader", "PanelGridSeries", "HtmlComponent");
+				return array_merge(array("View", "Form", "PanelGrid", "Column", "PanelGroup", "PanelSeries", "ColHeader", "PanelGridSeries", "HtmlComponent"), self::getPossibleTags());
 		}
 	}
 	

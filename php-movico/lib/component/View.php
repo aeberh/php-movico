@@ -15,22 +15,25 @@ class View extends Component {
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
 			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
-			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>";
+			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>".
+		"<script type=\"text/javascript\">".
+			"$(function() {";
+		$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();
 		if($ajax) {
-			$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();
-			$result .= <<<TST
-		<script type="text/javascript">
-			$(function() {
-				registerForms('$ajaxTimeout');
-			});	
-		</script>
-TST;
+			$result .= "registerForms('$ajaxTimeout');";
 		}
+		$result .= "
+				checkRedirect('$ajaxTimeout');
+				startupActions(0);
+				setHash();
+				unloadHtmlAreas();
+			});
+		</script>";
 		$result .= $this->renderHeadChildren();
 		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
-		$result .= "\t</head>\n\t<body$view>\n\t\t<div id=\"content\">\n";
+		$result .= "\t</head>\n\t<body$view>\n\n";
 		$result .= $this->renderBodyChildren();
-		$result .= "\t\t</div>\n{$this->renderRedirectForm()}";
+		$result .= "\n{$this->renderRedirectForm()}";
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}

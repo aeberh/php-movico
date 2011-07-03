@@ -9,7 +9,7 @@
 		<form id="nav">
 			<h2>Bean Examples</h2>
 			<ul>
-				<li><commandLink action="beans/request/hello" value="HelloBean (request)" link="true"/></li>
+				<li><commandLink action="beans/request/hello" value="HelloBean (request)" link="false"/></li>
 				<li><commandLink action="beans/session/login" value="LoginBean (session)" link="true"/></li>
 				<li><commandLink action="beans/application/counter" value="CounterBean (application)" link="true"/></li>
 			</ul>
