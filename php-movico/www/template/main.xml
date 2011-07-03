@@ -1,50 +1,65 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <template>
-	<css src="test.css"/>
-	<css src="boggle.css"/>
-	<css src="bubble.css"/>
-	<h1>Movico Sample Browser</h1>
-	<panelGrid columns="2">
-		<form id="nav">
-			<h2>Bean Examples</h2>
-			<ul>
-				<li><commandLink action="beans/request/hello" value="HelloBean (request)" link="true"/></li>
-				<li><commandLink action="beans/session/login" value="LoginBean (session)" link="true"/></li>
-				<li><commandLink action="beans/application/counter" value="CounterBean (application)" link="true"/></li>
-			</ul>
-			<h2>Service Examples</h2>
-			<ul>
-				<li><commandLink action="services/onetomany/teams" value="One-to-many relationship" link="true"/></li>
-				<li><commandLink action="services/manytomany/classes" value="Many-to-many relationship" link="true"/></li>
-			</ul>
-			<h2>Component Examples</h2>
-			<ul>
-				<li><commandLink action="components/inputrichtext/rich" value="Rich Text Editor" link="true"/></li>
-				<li><commandLink action="components/onchangesubmit/onchange" value="OnChange Submit" link="true"/></li>
-				<li><commandLink action="components/datatable/normal/users" value="DataTable" link="true"/></li>
-				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable" link="true"/></li>
-				<li><commandLink action="components/datatable/pagination/countries" value="DataTable Pagination" link="true"/></li>
-				<li><commandLink action="components/listbox/countries" value="ListBox" link="true"/></li>
-				<li><commandLink action="components/fileupload/upload_file" value="File Upload" link="true"/></li>
-				<li><commandLink action="components/panelseries/contacts" value="PanelSeries" link="true"/></li>
-				<li><commandLink action="components/countdown/timer" value="Countdown Timer" link="true"/></li>
-			</ul>
-			<h2>Lib Examples</h2>
-			<ul>
-				<li><commandLink action="libs/i18n/i18n" value="Internationalization" link="true"/></li>
-				<li><commandLink action="libs/ajaxerrors/ajaxerrors" value="Ajax Errors" link="true"/></li>
-			</ul>
-			<h2>Games</h2>
-			<ul>
-				<li><commandLink action="games/boggle/menu" value="Boggle" link="true"/></li>
-				<li><commandLink action="games/bubblesort/menu" value="Bubble Sort" link="true"/></li>
-			</ul>
-			<ajaxLoading/>
-		</form>	
+	<css src="styles.css"/>
+	<div id="gradient"></div>
+	<div id="wrapper">
+		<h1>T.T.C. Jevota</h1>
+		<ul id="nav">
+			<li>Home</li>
+			<li>Nieuws</li>
+		</ul>
 		<div id="main">
-			<h2><insert name="title"/></h2>
-			<insert name="body"/>
+			<div class="col wide">
+				<message/>
+				<insert name="body"/>
+			</div>
+			<div class="col small">
+				<div>
+					<h2>Lid worden?</h2>
+					<div>
+						<p>
+						Wil je lid worden van T.T.C. Jevota?
+						Neem dan vandaag nog contact met ons op!
+						</p>
+						<div id="form-button">
+							Word lid
+						</div>
+					</div>
+				</div>
+				<div>
+					<h2>Login</h2>
+					<div>
+						<form rendered="#{!LoginBean.loggedIn}">
+							<p>
+								<outputLabel for="email" value="E-mailadres"/>
+								<inputText id="email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
+							</p>
+							<p>
+								<outputLabel for="pass" value="Wachtwoord"/>
+								<inputSecret id="pass" value="#{LoginBean.password}"/>
+							</p>
+							<p>
+								<commandButton action="#{LoginBean.login}" value="Inloggen"/>
+							</p>
+						</form>
+						<form rendered="#{LoginBean.loggedIn}">
+							<p><outputText value="Welkom, #{LoginBean.account.emailAddress}"/></p>
+							<panelGroup rendered="#{LoginBean.admin}">
+								<p>
+									<commandLink action="admin/clubs/overview" value="Controlepaneel"/>
+								</p>
+							</panelGroup>
+							<p>
+								<commandButton action="#{LoginBean.logout}" value="Uitloggen"/>
+							</p>
+						</form>
+					</div>
+				</div>
+				<div><h2>Contact</h2></div>
+			</div>
+			<div class="clear"></div>
 		</div>
-	</panelGrid>
+		<div class="clear"></div>
+	</div>
 </template>

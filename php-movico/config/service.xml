@@ -1,5 +1,35 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder SYSTEM "../lib/servicebuilder/dtd/service.dtd">
 <service-builder>
-	
+	<entity name="Account">
+		<column name="accountId" type="int" primary="true" auto-increment="true"/>
+		<column name="emailAddress" type="String" size="30"/>
+		<column name="password" type="String" size="20"/>
+		<finder name="EmailAddress" unique="true">
+			<finder-column name="emailAddress"/>
+		</finder>
+	</entity>
+	<entity name="PingpongClub">
+		<column name="clubId" type="int" primary="true" auto-increment="true"/>
+		<column name="number" type="String" size="10"/>
+		<column name="name" type="String" size="30"/>
+		<column name="location" type="String" size="100"/>
+		<order>
+			<order-column name="name" order-by="asc"/>
+		</order>
+	</entity>
+	<entity name="PingpongTeam">
+		<column name="teamId" type="int" primary="true" auto-increment="true"/>
+		<column name="team" type="String" size="1"/>
+		<column name="recreation" type="boolean"/>
+	</entity>
+	<entity name="PingpongMatch">
+		<column name="matchId" type="int" primary="true" auto-increment="true"/>
+		<column name="date" type="Date"/>
+		<column name="homeTeamId" type="int"/>
+		<column name="outTeamId" type="int"/>
+		<column name="homeTeamPoints" type="int"/>
+		<column name="outTeamPoints" type="int"/>
+		<column name="review" type="String" size="500"/>
+	</entity>
 </service-builder>

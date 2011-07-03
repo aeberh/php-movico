@@ -1,0 +1,1 @@
+INSERT INTO `Account` (emailAddress, password) VALUES ('admin@jevota.be', 'admin123');

@@ -1,10 +1,45 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="main">
-	<define name="title">
-		<outputText value="Movico Examples"/>
-	</define>
 	<define name="body">
-		<outputText value="Please select an example on the left"/>
+		<div>
+			<h2>Laatste Nieuws</h2>
+			<div>
+				<!-- 
+				<table id="news">
+					<tr><td>2 jun</td><td>Nieuwjaarsreceptie!</td><td>door Peter</td></tr>
+					<tr><td>17 maa</td><td>Blabla</td><td>door Michael</td></tr>
+				</table>
+				 -->
+			</div>
+		</div>
+		<div>
+			<h2>Aankomende wedstrijden</h2>
+			<div>
+				<!-- 
+				<table id="upcoming-matches">
+					<tr><td>02-05-2011</td><td>16u00</td><td>Lanaken A</td><td>Hoeselt C</td></tr>
+					<tr><td>03-05-2011</td><td>17u00</td><td>Paal A</td><td>Lanaken B</td></tr>
+					<tr><td>04-05-2011</td><td>18u00</td><td>Lanaken C</td><td>Centrum C</td></tr>
+					<tr><td>06-05-2011</td><td>19u00</td><td>Hoeselt A</td><td>Lanaken D</td></tr>
+					<tr><td>07-05-2011</td><td>20u00</td><td>Lanaken E</td><td>Herckenrode C</td></tr>
+				</table>
+				-->
+			</div>
+		</div>
+		<div>
+			<h2>Afgelopen wedstrijden</h2>
+			<div>
+				<!-- 
+				<table id="past-matches">
+					<tr><td>02-05-2011</td><td>16u00</td><td>Lanaken A</td><td>11</td><td>-</td><td>5</td><td>Hoeselt C</td></tr>
+					<tr><td>03-05-2011</td><td>17u00</td><td>Paal A</td><td>4</td><td>-</td><td>10</td><td>Lanaken B</td></tr>
+					<tr><td>04-05-2011</td><td>18u00</td><td>Lanaken C</td><td>8</td><td>-</td><td>8</td><td>Centrum C</td></tr>
+					<tr><td>06-05-2011</td><td>19u00</td><td>Hoeselt A</td><td>7</td><td>-</td><td>7</td><td>Lanaken D</td></tr>
+					<tr><td>07-05-2011</td><td>20u00</td><td>Lanaken E</td><td>11</td><td>-</td><td>4</td><td>Herckenrode C</td></tr>
+				</table>
+				-->
+			</div>
+		</div>
 	</define>
 </composition>

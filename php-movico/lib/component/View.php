@@ -28,9 +28,9 @@ TST;
 		}
 		$result .= $this->renderHeadChildren();
 		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
-		$result .= "\t</head>\n\t<body$view>\n\t\t<div id=\"content\">\n";
+		$result .= "\t</head>\n\t<body$view>\n\n";
 		$result .= $this->renderBodyChildren();
-		$result .= "\t\t</div>\n{$this->renderRedirectForm()}";
+		$result .= "\n{$this->renderRedirectForm()}";
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}

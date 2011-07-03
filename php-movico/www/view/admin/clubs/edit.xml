@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Clubbeheer - Wijzig club</h2>
+			<div>
+				<form>
+					<inputHidden value="#{ManageClubsBean.selected.clubId}"/>
+					<p>
+						<outputLabel for="number" value="Stamnummer"/>
+						<inputText id="number" value="#{ManageClubsBean.selected.number}" autoFocus="true"/>
+					</p>
+					<p>
+						<outputLabel for="name" value="Naam"/>
+						<inputText id="name" value="#{ManageClubsBean.selected.name}"/>
+					</p>
+					<p>
+						<outputLabel for="location" value="Locatie"/>
+						<inputTextArea id="location" value="#{ManageClubsBean.selected.location}"/>
+					</p>
+					<p>
+						<commandButton action="#{ManageClubsBean.save}" value="Opslaan"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</define>
+</composition>

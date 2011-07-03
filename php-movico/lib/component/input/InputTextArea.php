@@ -9,12 +9,12 @@ class InputTextArea extends Component {
 	
 	public function doRender($index=null) {
 		$name = $this->value;
-		$val = BeanUtil::getProperty($name);
+		$val = $this->getConvertedValue($name, $index);
 		return "<textarea id=\"".$this->id."\" name=\"$name\">$val</textarea>";
 	}
 	
 	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup");
+		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
 	}
 	
 }
