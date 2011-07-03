@@ -1,0 +1,24 @@
+.col.wide {
+	width: 65%;
+	float: left;
+}
+
+.col.small {
+	width: 35%;
+	float: left;
+}
+
+.col > div {
+	margin: 15px;
+	margin-left: 0;
+	border: 1px solid #eee;
+	border-radius: 10px;
+}
+
+.col > div > div {
+	padding: 7px;
+}
+
+.col.wide > div {
+	margin-left: 15px;
+}

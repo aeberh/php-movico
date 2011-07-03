@@ -1,13 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <template>
-	<css src="styles.css"/>
+	<css src="import.css"/>
 	<div id="gradient"></div>
 	<div id="wrapper">
 		<h1>T.T.C. Jevota</h1>
 		<ul id="nav">
 			<li>Home</li>
-			<li>Nieuws</li>
+			<li>
+				<p>Controlepaneel</p>
+				<ul>
+					<li>Clubbeheer</li>
+					<li>Teambeheer</li>
+					<li>Wedstrijdbeheer</li>
+					<li>Gebruikersbeheer</li>
+				</ul>
+			</li>
 		</ul>
 		<div id="main">
 			<div class="col wide">

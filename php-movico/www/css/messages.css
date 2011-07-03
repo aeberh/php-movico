@@ -1,0 +1,17 @@
+.msg {
+	padding: 4px 7px;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.error {
+	color: #f33;
+	background: #fdd;
+	border: 1px solid #f33;
+}
+
+.info {
+	color: #3f3;
+	background: #dfd;
+	border: 1px solid #3f3;
+}

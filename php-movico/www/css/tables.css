@@ -1,0 +1,28 @@
+.dataTable {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.dataTable td, .dataTable th {
+	padding: 2px 5px;
+	border: 1px solid #ccc;
+}
+
+.dataTable th {
+	padding: 2px 5px;
+	background: #ccc;
+	color: #fff;
+}
+
+#news td:first-child {
+	font-weight: bold;
+	padding-right: 10px;
+	text-align: right;
+	width: 50px;
+}
+
+#news td:last-child {
+	text-align: right;
+	color: #999;
+	font-style: italic;
+}
