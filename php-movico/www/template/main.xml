@@ -13,9 +13,7 @@
 						<p>Controlepaneel</p>
 						<ul>
 							<li><commandLink action="admin/clubs/overview" value="Clubbeheer" link="true"/></li>
-							<li><commandLink action="admin/teams/overview" value="Teambeheer" link="true"/></li>
 							<li><commandLink action="admin/games/overview" value="Wedstrijdbeheer" link="true"/></li>
-							<li><commandLink action="admin/users/overview" value="Gebruikersbeheer" link="true"/></li>
 						</ul>
 					</li>
 				</panelGroup>

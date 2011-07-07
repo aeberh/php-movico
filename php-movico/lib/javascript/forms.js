@@ -16,11 +16,10 @@ function checkRedirect(ajaxTimeout) {
 	if(hash == "#" || hash == "") {
 		return;
 	}
-	registerForms(ajaxTimeout);
 	//submit the redirect form
 	$("#RedirectForm").attr("action", "#");
 	$("#RedirectForm input").val(hash.slice(1));
-	$("#RedirectForm button").click();
+	doAjaxRequest($("#RedirectForm"), ajaxTimeout, true);
 }
 function setHash() {
 	var view = $("body").attr("view");
@@ -136,45 +135,49 @@ function setSelectedLink() {
 
 // AJAX
 function registerForms(ajaxTimeout) {
+	alert("Registering forms...");
 	$("form").submit(function() {
-		showLoading("active");
 		var isUpload = $(this).attr("enctype") == "multipart/form-data";
 		if(isUpload) {
 			return true;
 		}
-		
-		var timerStart = new Date().getTime();
-
-		$("button").attr("disabled", "disabled");
-		$("input").attr("readonly", "readonly");
-		
-		updateHtmlAreas();
-		$.ajax({
-			url: "index.php?jquery=1",
-			data: $(this).serialize(),
-			type: "POST",
-			dataType: "json",
-			timeout: ajaxTimeout,
-			success: function(data) {
-				unloadHtmlAreas();
-				$("body").html(data.body);
-				registerForms(ajaxTimeout);
-				showLoading("idle");
-				var timerDuration = new Date().getTime() - timerStart;
-				startupActions(timerDuration);
-			},
-			error: function(request, errorType, errorThrown) {
-				$("button").removeAttr("disabled");
-				$("input").removeAttr("readonly");
-				if(errorType == "timeout") {
-					showLoading("caution");
-				} else {
-					alert(errorType+": "+errorThrown);
-					showLoading("disconnected");
-				}
-			}
-		});
+		doAjaxRequest($(this), ajaxTimeout, false);
 		return false;
+	});
+}
+function doAjaxRequest(formObj, ajaxTimeout, redirect) {
+	showLoading("active");
+	var timerStart = new Date().getTime();
+	$("button").attr("disabled", "disabled");
+	$("input").attr("readonly", "readonly");
+	
+	updateHtmlAreas();
+	$.ajax({
+		url: "index.php?jquery=1",
+		data: formObj.serialize(),
+		type: "POST",
+		dataType: "json",
+		timeout: ajaxTimeout,
+		success: function(data) {
+			unloadHtmlAreas();
+			$("body").html(data.body);
+			if(!redirect) {
+				registerForms(ajaxTimeout);
+			}
+			showLoading("idle");
+			var timerDuration = new Date().getTime() - timerStart;
+			startupActions(timerDuration);
+		},
+		error: function(request, errorType, errorThrown) {
+			$("button").removeAttr("disabled");
+			$("input").removeAttr("readonly");
+			if(errorType == "timeout") {
+				showLoading("caution");
+			} else {
+				alert(errorType+": "+errorThrown);
+				showLoading("disconnected");
+			}
+		}
 	});
 }
 function showLoading(status) {

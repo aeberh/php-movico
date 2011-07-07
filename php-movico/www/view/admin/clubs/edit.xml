@@ -9,11 +9,11 @@
 					<inputHidden value="#{ManageClubsBean.selected.clubId}"/>
 					<p>
 						<outputLabel for="number" value="Stamnummer"/>
-						<inputText id="number" value="#{ManageClubsBean.selected.number}" autoFocus="true"/>
+						<outputText value="#{ManageClubsBean.selected.number}"/>
 					</p>
 					<p>
 						<outputLabel for="name" value="Naam"/>
-						<inputText id="name" value="#{ManageClubsBean.selected.name}"/>
+						<outputText value="#{ManageClubsBean.selected.name}"/>
 					</p>
 					<p>
 						<outputLabel for="location" value="Locatie"/>

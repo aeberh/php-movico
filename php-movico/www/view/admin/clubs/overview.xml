@@ -17,7 +17,7 @@
 							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen"/>
 						</column>
 						<column>
-							<commandButton action="#{ManageClubsBean.delete}" value="Verwijderen" popup="Weet je zeker dat je deze club verwijdert?"/>
+							<commandButton action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?"/>
 						</column>
 					</dataTable>
 					<p>

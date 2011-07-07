@@ -27,7 +27,7 @@ class ManageClubsBean extends RequestBean {
 	}
 	
 	public function save() {
-		PingpongClubServiceUtil::update($this->selected->clubId, $this->selected->getLocation());
+		PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getLocation());
 		MessageUtil::info("Club werd succesvol aangepast!");
 		return "admin/clubs/overview";
 	}
@@ -36,6 +36,10 @@ class ManageClubsBean extends RequestBean {
 		PingpongClubServiceUtil::delete($this->getSelectedClub());
 		MessageUtil::info("Club werd succesvol verwijderd!");
 		return "admin/clubs/overview";
+	}
+	
+	public function showTeams() {
+		
 	}
 	
 	private function getSelectedClub() {
