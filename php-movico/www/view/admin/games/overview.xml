@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Wedstrijdbeheer - Overzicht</h2>
+			<div>
+				<form>
+					<dataTable value="#{ManageGamesBean.games}" var="game">
+						<column>
+							<colHeader>
+								<outputText value="Datum"/>
+							</colHeader>
+							<outputText value="#{game.date}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Thuis"/>
+							</colHeader>
+							<outputText value="#{game.homeClub}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="P"/>
+							</colHeader>
+							<outputText value="#{game.homeTeamPoints}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="P"/>
+							</colHeader>
+							<outputText value="#{game.outTeamPoints}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Uit"/>
+							</colHeader>
+							<outputText value="#{game.outClub}"/>
+						</column>
+						<column>
+							<commandButton action="#{ManageGamesBean.edit}" value="Wijzigen"/>
+						</column>
+						<column>
+							<commandButton action="#{ManageGamesBean.delete}" value="X" popup="Weet je zeker dat je deze wedstrijd verwijdert?"/>
+						</column>
+					</dataTable>
+					<p>
+						<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</define>
+</composition>

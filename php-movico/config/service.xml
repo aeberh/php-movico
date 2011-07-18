@@ -23,13 +23,16 @@
 		<column name="team" type="String" size="1"/>
 		<column name="recreation" type="boolean"/>
 	</entity>
-	<entity name="PingpongMatch">
-		<column name="matchId" type="int" primary="true" auto-increment="true"/>
+	<entity name="PingpongGame">
+		<column name="gameId" type="int" primary="true" auto-increment="true"/>
 		<column name="date" type="Date"/>
 		<column name="homeTeamId" type="int"/>
 		<column name="outTeamId" type="int"/>
-		<column name="homeTeamPoints" type="int"/>
-		<column name="outTeamPoints" type="int"/>
+		<column name="homeTeamPts" type="int"/>
+		<column name="outTeamPts" type="int"/>
 		<column name="review" type="String" size="500"/>
+		<order>
+			<order-column name="date" order-by="asc"/>
+		</order>
 	</entity>
 </service-builder>

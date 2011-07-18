@@ -21,14 +21,14 @@ CREATE TABLE `PingpongTeam` (
 	PRIMARY KEY (`teamId`)
 );
 
-CREATE TABLE `PingpongMatch` (
-	`matchId` INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE `PingpongGame` (
+	`gameId` INTEGER NOT NULL AUTO_INCREMENT,
 	`date` DATETIME NOT NULL,
 	`homeTeamId` INTEGER NOT NULL,
 	`outTeamId` INTEGER NOT NULL,
-	`homeTeamPoints` INTEGER NOT NULL,
-	`outTeamPoints` INTEGER NOT NULL,
+	`homeTeamPts` INTEGER NOT NULL,
+	`outTeamPts` INTEGER NOT NULL,
 	`review` VARCHAR(500) NOT NULL,
-	PRIMARY KEY (`matchId`)
+	PRIMARY KEY (`gameId`)
 );
 

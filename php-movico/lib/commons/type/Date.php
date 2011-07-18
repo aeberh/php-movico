@@ -15,6 +15,10 @@ class Date {
 	public static function create($time) {
 		return new Date($time);
 	}
+	
+	public static function fromString($dateStr, $format=self::DEFAULT_FORMAT) {
+		return new Date(date_parse_from_format($format, $dateStr));
+	}
 
 	public function format($format=self::DEFAULT_FORMAT) {
 		return date($format, $this->time);

@@ -11,10 +11,6 @@ class ManageClubsBean extends RequestBean {
 		return PingpongClubServiceUtil::getPingpongClubs();
 	}
 	
-	public function getHasClubs() {
-		return count($this->getClubs())>0;
-	}
-	
 	public function create() {
 		PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getName(), $this->selected->getLocation());
 		MessageUtil::info("Club werd succesvol toegevoegd!");

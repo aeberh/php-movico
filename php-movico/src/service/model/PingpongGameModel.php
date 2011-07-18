@@ -1,14 +1,14 @@
 <?php
-abstract class PingpongMatchModel extends Model {
+abstract class PingpongGameModel extends Model {
 
-	private $matchId;
+	private $gameId;
 
-	public function getMatchId() {
-		return $this->matchId;
+	public function getGameId() {
+		return $this->gameId;
 	}
 
-	public function setMatchId($matchId) {
-		$this->matchId = $matchId;
+	public function setGameId($gameId) {
+		$this->gameId = $gameId;
 	}
 
 	private $date;
@@ -41,24 +41,24 @@ abstract class PingpongMatchModel extends Model {
 		$this->outTeamId = $outTeamId;
 	}
 
-	private $homeTeamPoints;
+	private $homeTeamPts;
 
-	public function getHomeTeamPoints() {
-		return $this->homeTeamPoints;
+	public function getHomeTeamPts() {
+		return $this->homeTeamPts;
 	}
 
-	public function setHomeTeamPoints($homeTeamPoints) {
-		$this->homeTeamPoints = $homeTeamPoints;
+	public function setHomeTeamPts($homeTeamPts) {
+		$this->homeTeamPts = $homeTeamPts;
 	}
 
-	private $outTeamPoints;
+	private $outTeamPts;
 
-	public function getOutTeamPoints() {
-		return $this->outTeamPoints;
+	public function getOutTeamPts() {
+		return $this->outTeamPts;
 	}
 
-	public function setOutTeamPoints($outTeamPoints) {
-		$this->outTeamPoints = $outTeamPoints;
+	public function setOutTeamPts($outTeamPts) {
+		$this->outTeamPts = $outTeamPts;
 	}
 
 	private $review;

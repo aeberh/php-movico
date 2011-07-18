@@ -6,7 +6,7 @@
 			<h2>Clubbeheer - Overzicht</h2>
 			<div>
 				<form>
-					<dataTable value="#{ManageClubsBean.clubs}" var="club" rendered="#{ManageClubsBean.hasClubs}">
+					<dataTable value="#{ManageClubsBean.clubs}" var="club">
 						<column>
 							<colHeader>
 								<outputText value="Naam"/>
