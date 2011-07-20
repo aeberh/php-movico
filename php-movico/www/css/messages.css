@@ -2,6 +2,7 @@
 	padding: 4px 7px;
 	font-weight: bold;
 	font-size: 0.9em;
+	border-radius: 2px;
 }
 
 .error {

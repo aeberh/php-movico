@@ -13,6 +13,10 @@ class PingpongClubServiceUtil {
 		return self::getService()->delete($club);
 	}
 
+	public static function findByName($name, $from=-1, $limit=-1) {
+		return self::getService()->findByName($name, $from, $limit);
+	}
+
 	public static function createPingpongClub($pk=0) {
 		return self::getService()->createPingpongClub($pk);
 	}

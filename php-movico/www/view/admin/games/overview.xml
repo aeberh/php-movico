@@ -17,25 +17,25 @@
 							<colHeader>
 								<outputText value="Thuis"/>
 							</colHeader>
-							<outputText value="#{game.homeClub}"/>
+							<outputText value="#{game.homeTeamStr}"/>
 						</column>
 						<column>
 							<colHeader>
 								<outputText value="P"/>
 							</colHeader>
-							<outputText value="#{game.homeTeamPoints}"/>
+							<outputText value="#{game.homeTeamPts}"/>
 						</column>
 						<column>
 							<colHeader>
 								<outputText value="P"/>
 							</colHeader>
-							<outputText value="#{game.outTeamPoints}"/>
+							<outputText value="#{game.outTeamPts}"/>
 						</column>
 						<column>
 							<colHeader>
 								<outputText value="Uit"/>
 							</colHeader>
-							<outputText value="#{game.outClub}"/>
+							<outputText value="#{game.outTeamStr}"/>
 						</column>
 						<column>
 							<commandButton action="#{ManageGamesBean.edit}" value="Wijzigen"/>

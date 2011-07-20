@@ -3,6 +3,18 @@ class PingpongGamePersistence extends Persistence {
 
 	const TABLE = "PingpongGame";
 
+	public function findByAfterDate($date, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `date`>'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` asc$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
+	public function findByBeforeDate($date, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `date`$lt;'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` asc$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
 	public function findByPrimaryKey($gameId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE gameId='".addslashes($gameId)."'");
 		if($result->isEmpty()) {

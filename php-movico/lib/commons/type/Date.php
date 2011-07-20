@@ -2,7 +2,7 @@
 class Date {
 	
 	private $time;
-	const DEFAULT_FORMAT = "d/m/Y";
+	const DEFAULT_FORMAT = "d/m/y G:i";
 	
 	private function __construct($time) {
 		$this->time = $time;
@@ -17,7 +17,8 @@ class Date {
 	}
 	
 	public static function fromString($dateStr, $format=self::DEFAULT_FORMAT) {
-		return new Date(date_parse_from_format($format, $dateStr));
+		$a = date_parse_from_format($format, $dateStr);
+		return self::create(mktime($a["hour"], $a["minute"], $a["second"], $a["month"], $a["day"], $a["year"]));
 	}
 
 	public function format($format=self::DEFAULT_FORMAT) {

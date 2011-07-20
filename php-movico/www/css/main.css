@@ -44,7 +44,7 @@ p {
 
 #wrapper {
 	border-radius: 0 0 10px 10px;
-	width: 800px;
+	width: 1000px;
 	margin: 0px auto;
 	background: #fff;
 }
@@ -72,15 +72,15 @@ p {
 	font-size: 1.5em;
 }
 
-#upcoming-matches td {
+#upcoming-games td {
 	padding-right: 7px;
 }
 
-#upcoming-matches td:nth-child(1), #upcoming-matches td:nth-child(2),
-#past-matches td:nth-child(1), #past-matches td:nth-child(2) {
+#upcoming-games td:nth-child(1), #upcoming-games td:nth-child(2),
+#past-games td:nth-child(1), #past-games td:nth-child(2) {
 	color: #888;
 }
 
-#upcoming-matches td:nth-child(3) {
+#upcoming-games td:nth-child(3) {
 	text-align: right;
 }

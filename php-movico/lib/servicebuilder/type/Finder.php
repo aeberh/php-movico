@@ -4,11 +4,13 @@ class Finder {
 	private $name;
 	private $unique;
 	private $finderColumns;
+	private $entity;
 
-	public function __construct($name, $unique) {
+	public function __construct(Entity $entity, $name, $unique) {
 		$this->name = $name;
 		$this->unique = $unique;
 		$this->finderColumns = array();
+		$this->entity = $entity;
 	}
 
 	public function addFinderColumn(FinderColumn $column) {
@@ -51,7 +53,9 @@ class Finder {
 	public function getWhereClauses() {
 		$result = array();
 		foreach($this->getColumns() as $column) {
-			$result[] = "`".$column->getName()."`".$column->getComparator()."'\$".$column->getName()."'";
+			$converter = $this->entity->getProperty($column->getName())->getConverter();
+			$value = "Singleton::create(\"$converter\")->fromDOMtoDB(\$".$column->getName().")";
+			$result[] = "`".$column->getName()."`".$column->getComparator()."'\".".$value.".\"'";
 		}
 		return $result;
 	}

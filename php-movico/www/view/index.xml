@@ -5,6 +5,7 @@
 		<div>
 			<h2>Laatste Nieuws</h2>
 			<div>
+				De website is online!!
 				<!-- 
 				<table id="news">
 					<tr><td>2 jun</td><td>Nieuwjaarsreceptie!</td><td>door Peter</td></tr>
@@ -16,6 +17,26 @@
 		<div>
 			<h2>Aankomende wedstrijden</h2>
 			<div>
+				<dataTable id="upcoming-games" value="#{HomeBean.upcoming}" var="game">
+					<column>
+						<colHeader>
+							<outputText value="Datum"/>
+						</colHeader>
+						<outputText value="#{game.date}"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Thuis"/>
+						</colHeader>
+						<outputText value="#{game.homeTeamStr}"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Uit"/>
+						</colHeader>
+						<outputText value="#{game.outTeamStr}"/>
+					</column>
+				</dataTable>
 				<!-- 
 				<table id="upcoming-matches">
 					<tr><td>02-05-2011</td><td>16u00</td><td>Lanaken A</td><td>Hoeselt C</td></tr>

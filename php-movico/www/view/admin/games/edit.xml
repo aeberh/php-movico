@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Wedstrijdbeheer - Wijzig wedstrijd</h2>
+			<div>
+				<form>
+					<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
+					<p>
+						<outputLabel for="score" value="Score"/>
+						<inputText value="#{ManageGamesBean.selected.homeTeamPts}"/>
+						<outputText value=" - "/>
+						<inputText value="#{ManageGamesBean.selected.outTeamPts}"/>
+					</p>
+					<p>
+						<outputLabel for="review" value="Review"/>
+						<inputTextArea value="#{ManageGamesBean.selected.review}"/>
+					</p>
+					<p>
+						<commandButton action="#{ManageGamesBean.save}" value="Opslaan"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</define>
+</composition>

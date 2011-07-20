@@ -34,10 +34,6 @@ class ManageClubsBean extends RequestBean {
 		return "admin/clubs/overview";
 	}
 	
-	public function showTeams() {
-		
-	}
-	
 	private function getSelectedClub() {
 		$clubs = $this->getClubs();
 		return $clubs[$this->getSelectedRowIndex()];

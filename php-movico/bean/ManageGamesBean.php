@@ -2,15 +2,46 @@
 class ManageGamesBean extends RequestBean {
 	
 	private $date;
-	private $jevotaTeamNo;
-	private $oppClub;
-	private $oppTeamNo;
-	private $home;
+	private $time;
+	private $homeClubId;
+	private $homeTeamNo;
+	private $outClubId;
+	private $outTeamNo;
+	private $homeTeamPts;
+	private $outTeamPts;
+	private $review;
+	
+	private $selected;
+	
+	// Constructor
+	
+	public function __construct() {
+		$this->selected = new PingpongGame();
+	}
 	
 	// Action methods
 	
 	public function create() {
-		$realDate = Date::fromString($this->date, "dd/MM/yy");
+		$date = Date::fromString($this->date." ".$this->time, "d/m/y G:i");
+		PingpongGameServiceUtil::create($date, $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo);
+		return "admin/games/overview";
+	}
+	
+	public function delete() {
+		PingpongGameServiceUtil::delete($this->getSelectedGame());
+		MessageUtil::info("Wedstrijd werd succesvol verwijderd!");
+		return "admin/games/overview";
+	}
+	
+	public function edit() {
+		$this->selected = $this->getSelectedGame();
+		return "admin/games/edit";
+	}
+	
+	public function save() {
+		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
+		MessageUtil::info("Wedstrijd werd succesvol aangepast!");
+		return "admin/games/overview";
 	}
 	
 	// Bean getters
@@ -30,7 +61,18 @@ class ManageGamesBean extends RequestBean {
 		return ArrayUtil::toIndexedArray($clubs, "clubId", "name");
 	}
 	
-	// Getters and setters
+	public function getSelected() {
+		return $this->selected;
+	}
+	
+	// Helpers
+	
+	private function getSelectedGame() {
+		$games = $this->getGames();
+		return $games[$this->getSelectedRowIndex()];
+	}
+	
+	// Field getters and setters
 	
 	public function getDate() {
 		return $this->date;
@@ -40,36 +82,68 @@ class ManageGamesBean extends RequestBean {
 		$this->date = $date;
 	}
 	
-	public function getJevotaTeamNo() {
-		return $this->jevotaTeamNo;
+	public function getTime() {
+		return $this->time;
 	}
 	
-	public function setJevotaTeamNo($jevotaTeamNo) {
-		$this->jevotaTeamNo = $jevotaTeamNo;
+	public function setTime($time) {
+		$this->time = $time;
 	}
 	
-	public function getOppClub() {
-		return $this->oppClub;
+	public function getHomeClubId() {
+		return $this->homeClubId;
 	}
 	
-	public function setOppClub($oppClub) {
-		$this->oppClub = $oppClub;
+	public function setHomeClubId($homeClubId) {
+		$this->homeClubId = $homeClubId;
 	}
 	
-	public function getOppTeamNo() {
-		return $this->oppTeamNo;
+	public function getHomeTeamNo() {
+		return $this->homeTeamNo;
 	}
 	
-	public function setOppTeamNo($oppTeamNo) {
-		$this->oppTeamNo = $oppTeamNo;
+	public function setHomeTeamNo($homeTeamNo) {
+		$this->homeTeamNo = $homeTeamNo;
 	}
 	
-	public function isHome() {
-		return $this->home;
+	public function getOutClubId() {
+		return $this->outClubId;
 	}
 	
-	public function setHome($home) {
-		$this->home = $home;
+	public function setOutClubId($outClubId) {
+		$this->outClubId = $outClubId;
+	}
+	
+	public function getOutTeamNo() {
+		return $this->outTeamNo;
+	}
+	
+	public function setOutTeamNo($outTeamNo) {
+		$this->outTeamNo = $outTeamNo;
+	}
+	
+	public function getHomeTeamPts() {
+		return $this->homeTeamPts;
+	}
+	
+	public function setHomeTeamPts() {
+		$this->homeTeamPts = $homeTeamPts;
+	}
+	
+	public function getOutTeamPts() {
+		return $this->outTeamPts;
+	}
+	
+	public function setOutTeamPts($outTeamPts) {
+		$this->outTeamPts = $outTeamPts;
+	}
+	
+	public function getReview() {
+		return $this->review;
+	}
+	
+	public function setReview($review) {
+		$this->review = $review;
 	}
 	
 }

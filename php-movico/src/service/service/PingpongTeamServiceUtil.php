@@ -1,6 +1,18 @@
 <?php
 class PingpongTeamServiceUtil {
 
+	public static function create($clubId, $teamNo, $recreation) {
+		return self::getService()->create($clubId, $teamNo, $recreation);
+	}
+
+	public static function getOrCreateClubId($clubId, $teamNo) {
+		return self::getService()->getOrCreateClubId($clubId, $teamNo);
+	}
+
+	public static function findByClubAndTeam($clubId, $teamNo, $recreation, $from=-1, $limit=-1) {
+		return self::getService()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
+	}
+
 	public static function createPingpongTeam($pk=0) {
 		return self::getService()->createPingpongTeam($pk);
 	}

@@ -106,7 +106,7 @@ class ServiceBuilder {
 				$finderName = $finderEl->getAttribute("name");
 				$returnType = $finderEl->getAttribute("unique");
 				$unique = $returnType == "true";
-				$finder = new Finder($finderName, $unique);
+				$finder = new Finder($entity, $finderName, $unique);
 				foreach($finderEl->getElementsByTagName("finder-column") as $fcEl) {
 					$name = $fcEl->getAttribute("name");
 					$comparator = $fcEl->getAttribute("comparator");

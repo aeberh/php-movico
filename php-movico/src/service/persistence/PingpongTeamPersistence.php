@@ -3,6 +3,15 @@ class PingpongTeamPersistence extends Persistence {
 
 	const TABLE = "PingpongTeam";
 
+	public function findByClubAndTeam($clubId, $teamNo, $recreation, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."' AND `teamNo`='".Singleton::create("NullConverter")->fromDOMtoDB($teamNo)."' AND `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($recreation)."'$limitStr");
+		if($result->isEmpty()) {
+			throw new NoSuchPingpongTeamException();
+		}
+		return $this->getAsObject($result->getSingleRow());
+	}
+
 	public function findByPrimaryKey($teamId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 		if($result->isEmpty()) {
@@ -24,13 +33,13 @@ class PingpongTeamPersistence extends Persistence {
 	}
 
 	public function update(PingpongTeam $object) {
-		$q = "UPDATE ".self::TABLE." SET `team`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeam()))."', `recreation`='".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."' WHERE teamId='".addslashes($object->getTeamId())."'";
+		$q = "UPDATE ".self::TABLE." SET `clubId`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', `teamNo`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', `recreation`='".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."' WHERE teamId='".addslashes($object->getTeamId())."'";
 		$pk = $object->getTeamId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`team`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeam()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`team`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeam()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -53,7 +62,8 @@ class PingpongTeamPersistence extends Persistence {
 		$result = new PingpongTeam();
 		$result->setNew(false);
 		$result->setTeamId(Singleton::create("NullConverter")->fromDBtoDOM($row["teamId"]));
-		$result->setTeam(Singleton::create("NullConverter")->fromDBtoDOM($row["team"]));
+		$result->setClubId(Singleton::create("NullConverter")->fromDBtoDOM($row["clubId"]));
+		$result->setTeamNo(Singleton::create("NullConverter")->fromDBtoDOM($row["teamNo"]));
 		$result->setRecreation(Singleton::create("BooleanConverter")->fromDBtoDOM($row["recreation"]));
 		return $result;
 	}

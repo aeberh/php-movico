@@ -5,7 +5,7 @@ class AccountPersistence extends Persistence {
 
 	public function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `emailAddress`='$emailAddress'$limitStr");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'$limitStr");
 		if($result->isEmpty()) {
 			throw new NoSuchAccountException();
 		}

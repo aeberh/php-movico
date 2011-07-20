@@ -1,6 +1,34 @@
 <?php
 class PingpongGameServiceUtil {
 
+	public static function create($date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo) {
+		return self::getService()->create($date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo);
+	}
+
+	public static function delete($game) {
+		return self::getService()->delete($game);
+	}
+
+	public static function update($gameId, $homeTeamPts, $outTeamPts, $review) {
+		return self::getService()->update($gameId, $homeTeamPts, $outTeamPts, $review);
+	}
+
+	public static function getFirstUpcomingGames() {
+		return self::getService()->getFirstUpcomingGames();
+	}
+
+	public static function getRecentlyPlayedGames() {
+		return self::getService()->getRecentlyPlayedGames();
+	}
+
+	public static function findByAfterDate($date, $from=-1, $limit=-1) {
+		return self::getService()->findByAfterDate($date, $from, $limit);
+	}
+
+	public static function findByBeforeDate($date, $from=-1, $limit=-1) {
+		return self::getService()->findByBeforeDate($date, $from, $limit);
+	}
+
 	public static function createPingpongGame($pk=0) {
 		return self::getService()->createPingpongGame($pk);
 	}

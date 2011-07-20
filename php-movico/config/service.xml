@@ -14,14 +14,23 @@
 		<column name="number" type="String" size="10"/>
 		<column name="name" type="String" size="30"/>
 		<column name="location" type="String" size="100"/>
+		<finder name="Name" unique="true">
+			<finder-column name="name"/>
+		</finder>
 		<order>
 			<order-column name="name" order-by="asc"/>
 		</order>
 	</entity>
 	<entity name="PingpongTeam">
 		<column name="teamId" type="int" primary="true" auto-increment="true"/>
-		<column name="team" type="String" size="1"/>
+		<column name="clubId" type="int"/>
+		<column name="teamNo" type="String" size="1"/>
 		<column name="recreation" type="boolean"/>
+		<finder name="ClubAndTeam" unique="true">
+			<finder-column name="clubId"/>
+			<finder-column name="teamNo"/>
+			<finder-column name="recreation"/>
+		</finder>
 	</entity>
 	<entity name="PingpongGame">
 		<column name="gameId" type="int" primary="true" auto-increment="true"/>
@@ -31,6 +40,12 @@
 		<column name="homeTeamPts" type="int"/>
 		<column name="outTeamPts" type="int"/>
 		<column name="review" type="String" size="500"/>
+		<finder name="AfterDate">
+			<finder-column name="date" comparator="&gt;"/>
+		</finder>
+		<finder name="BeforeDate">
+			<finder-column name="date" comparator="$lt;"/>
+		</finder>
 		<order>
 			<order-column name="date" order-by="asc"/>
 		</order>

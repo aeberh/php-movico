@@ -135,7 +135,6 @@ function setSelectedLink() {
 
 // AJAX
 function registerForms(ajaxTimeout) {
-	alert("Registering forms...");
 	$("form").submit(function() {
 		var isUpload = $(this).attr("enctype") == "multipart/form-data";
 		if(isUpload) {

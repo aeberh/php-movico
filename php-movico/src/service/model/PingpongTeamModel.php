@@ -11,14 +11,24 @@ abstract class PingpongTeamModel extends Model {
 		$this->teamId = $teamId;
 	}
 
-	private $team;
+	private $clubId;
 
-	public function getTeam() {
-		return $this->team;
+	public function getClubId() {
+		return $this->clubId;
 	}
 
-	public function setTeam($team) {
-		$this->team = $team;
+	public function setClubId($clubId) {
+		$this->clubId = $clubId;
+	}
+
+	private $teamNo;
+
+	public function getTeamNo() {
+		return $this->teamNo;
+	}
+
+	public function setTeamNo($teamNo) {
+		$this->teamNo = $teamNo;
 	}
 
 	private $recreation;

@@ -16,7 +16,11 @@ class SelectOneMenu extends Component {
 		$onchange = isset($this->action) ? " onchange=\"this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
 		$result = "<select id=\"".$this->id."\" name=\"$name\"$onchange>";
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
+		$assoc = ArrayUtil::isAssociative($optionList);
 		foreach($optionList as $oValue=>$oLabel) {
+			if(!$assoc) {
+				$oValue = $oLabel;
+			}
 			$sel = ($val == $oValue) ? " selected=\"selected\"" : "";
 			$result .= "<option$sel value=\"$oValue\">$oLabel</option>";
 		}

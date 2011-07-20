@@ -11,17 +11,18 @@
 						<inputText id="date" value="#{ManageGamesBean.date}" autoFocus="true"/>
 					</p>
 					<p>
-						<outputLabel for="jevota" value="Jevota Team"/>
-						<selectOneMenu value="#{ManageGamesBean.jevotaTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+						<outputLabel for="time" value="Tijd (hh:mm)"/>
+						<inputText id="time" value="#{ManageGamesBean.time}"/>
 					</p>
 					<p>
-						<outputLabel for="opponent" value="Tegenstander"/>
-						<selectOneMenu value="#{ManageGamesBean.oppClub}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.oppTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+						<outputLabel for="home" value="Thuisploeg"/>
+						<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
+						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ManageGamesBean.teamNos}"/>
 					</p>
 					<p>
-						<outputLabel for="location" value="Thuis"/>
-						<booleanCheckbox value="#{ManageGamesBean.home}"/>
+						<outputLabel for="out" value="Uitploeg"/>
+						<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
+						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ManageGamesBean.teamNos}"/>
 					</p>
 					<p>
 						<commandButton action="#{ManageGamesBean.create}" value="Opslaan"/>

@@ -3,6 +3,15 @@ class PingpongClubPersistence extends Persistence {
 
 	const TABLE = "PingpongClub";
 
+	public function findByName($name, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `name`='".Singleton::create("NullConverter")->fromDOMtoDB($name)."'ORDER BY `name` asc$limitStr");
+		if($result->isEmpty()) {
+			throw new NoSuchPingpongClubException();
+		}
+		return $this->getAsObject($result->getSingleRow());
+	}
+
 	public function findByPrimaryKey($clubId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE clubId='".addslashes($clubId)."'");
 		if($result->isEmpty()) {
