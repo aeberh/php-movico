@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Contactinformatie</h2>
+			<div>
+				Hier komt meer contactinformatie.
+			</div>
+		</div>
+	</define>
+</composition>

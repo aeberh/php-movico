@@ -21,6 +21,16 @@ abstract class PingpongClubModel extends Model {
 		$this->number = $number;
 	}
 
+	private $shortName;
+
+	public function getShortName() {
+		return $this->shortName;
+	}
+
+	public function setShortName($shortName) {
+		$this->shortName = $shortName;
+	}
+
 	private $name;
 
 	public function getName() {
@@ -31,14 +41,34 @@ abstract class PingpongClubModel extends Model {
 		$this->name = $name;
 	}
 
-	private $location;
+	private $address;
 
-	public function getLocation() {
-		return $this->location;
+	public function getAddress() {
+		return $this->address;
 	}
 
-	public function setLocation($location) {
-		$this->location = $location;
+	public function setAddress($address) {
+		$this->address = $address;
+	}
+
+	private $distance;
+
+	public function getDistance() {
+		return $this->distance;
+	}
+
+	public function setDistance($distance) {
+		$this->distance = $distance;
+	}
+
+	private $phone;
+
+	public function getPhone() {
+		return $this->phone;
+	}
+
+	public function setPhone($phone) {
+		$this->phone = $phone;
 	}
 
 }

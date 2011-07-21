@@ -5,5 +5,9 @@ class HomeBean extends RequestBean {
 		return PingpongGameServiceUtil::getFirstUpcomingGames();
 	}
 	
+	public function getPast() {
+		return PingpongGameServiceUtil::getRecentlyPlayedGames();
+	}
+	
 }
 ?>

@@ -9,7 +9,7 @@ class DateConverter implements DatabaseFieldConverter {
 		if(empty($domValue)) {
 			$domValue = Date::create(0);
 		}
-		return $domValue->format("Y-m-d H:i:s");
+		return $domValue->format("%Y-%m-%d %H:%M:%S");
 	}
 	
 }

@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="admin">
 	<define name="body">
 		<div>
 			<h2>Wedstrijdbeheer - Maak nieuwe wedstrijd</h2>
 			<div>
 				<form>
 					<p>
-						<outputLabel for="date" value="Datum (dd-mm-yy)"/>
+						<outputLabel for="date" value="Datum (dd/mm/yyyy)"/>
 						<inputText id="date" value="#{ManageGamesBean.date}" autoFocus="true"/>
 					</p>
 					<p>
-						<outputLabel for="time" value="Tijd (hh:mm)"/>
+						<outputLabel for="time" value="Tijd (hh.mm)"/>
 						<inputText id="time" value="#{ManageGamesBean.time}"/>
 					</p>
 					<p>

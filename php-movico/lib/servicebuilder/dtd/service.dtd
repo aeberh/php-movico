@@ -26,7 +26,7 @@
 	order-by CDATA #REQUIRED
 >
 
-<!ELEMENT finder (finder-column+)>
+<!ELEMENT finder (finder-column+, order?)>
 <!ATTLIST finder
 	name CDATA #REQUIRED
 	unique CDATA #IMPLIED

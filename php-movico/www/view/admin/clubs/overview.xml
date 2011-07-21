@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="admin">
 	<define name="body">
 		<div>
 			<h2>Clubbeheer - Overzicht</h2>
@@ -11,7 +11,7 @@
 							<colHeader>
 								<outputText value="Naam"/>
 							</colHeader>
-							<outputText value="#{club.number} - #{club.name}"/>
+							<outputText value="#{club.shortName}"/>
 						</column>
 						<column>
 							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen"/>

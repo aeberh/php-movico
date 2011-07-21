@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="admin">
 	<define name="body">
 		<div>
 			<h2>Wedstrijdbeheer - Wijzig wedstrijd</h2>

@@ -149,6 +149,10 @@ class String implements IteratorAggregate {
 		return new ArrayIterator($chars);
 	}
 	
+	public function equals(String $other) {
+		return $this->string === $other->__toString();
+	}
+	
 	private function isValidIndex($index) {
 		if($this->isEmpty()) {
 			return false;

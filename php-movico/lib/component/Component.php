@@ -16,7 +16,7 @@ abstract class Component {
 		if(get_class($this) == "HtmlComponent") {
 			$parentClass = $this->getTagName();
 		}
-		if(!in_array($parentClass, $component->getValidParents())) {
+		if(!$component->getValidParents() == -1 && !in_array($parentClass, $component->getValidParents())) {
 			throw new InvalidComponentHierarchyException($parentClass, get_class($component));
 		}
 		$this->children[] = $component;

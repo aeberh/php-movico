@@ -5,7 +5,16 @@ class PingpongClubPersistence extends Persistence {
 
 	public function findByName($name, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `name`='".Singleton::create("NullConverter")->fromDOMtoDB($name)."'ORDER BY `name` asc$limitStr");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `name`='".Singleton::create("NullConverter")->fromDOMtoDB($name)."'ORDER BY `shortName` asc$limitStr");
+		if($result->isEmpty()) {
+			throw new NoSuchPingpongClubException();
+		}
+		return $this->getAsObject($result->getSingleRow());
+	}
+
+	public function findByShortName($shortName, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `shortName`='".Singleton::create("NullConverter")->fromDOMtoDB($shortName)."'ORDER BY `shortName` asc$limitStr");
 		if($result->isEmpty()) {
 			throw new NoSuchPingpongClubException();
 		}
@@ -33,13 +42,13 @@ class PingpongClubPersistence extends Persistence {
 	}
 
 	public function update(PingpongClub $object) {
-		$q = "UPDATE ".self::TABLE." SET `number`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `location`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLocation()))."' WHERE clubId='".addslashes($object->getClubId())."'";
+		$q = "UPDATE ".self::TABLE." SET `number`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', `shortName`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getShortName()))."', `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `address`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getAddress()))."', `distance`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getDistance()))."', `phone`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone()))."' WHERE clubId='".addslashes($object->getClubId())."'";
 		$pk = $object->getClubId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`number`, `name`, `location`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLocation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`number`, `shortName`, `name`, `address`, `distance`, `phone`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getShortName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getAddress()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getDistance()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone()))."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`number`, `name`, `location`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLocation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`number`, `shortName`, `name`, `address`, `distance`, `phone`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getNumber()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getShortName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getAddress()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getDistance()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone()))."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -50,7 +59,7 @@ class PingpongClubPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `name` asc LIMIT $from,$limit")->getResult();
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `shortName` asc LIMIT $from,$limit")->getResult();
 		return $this->getAsObjects($rows);
 	}
 
@@ -63,8 +72,11 @@ class PingpongClubPersistence extends Persistence {
 		$result->setNew(false);
 		$result->setClubId(Singleton::create("NullConverter")->fromDBtoDOM($row["clubId"]));
 		$result->setNumber(Singleton::create("NullConverter")->fromDBtoDOM($row["number"]));
+		$result->setShortName(Singleton::create("NullConverter")->fromDBtoDOM($row["shortName"]));
 		$result->setName(Singleton::create("NullConverter")->fromDBtoDOM($row["name"]));
-		$result->setLocation(Singleton::create("NullConverter")->fromDBtoDOM($row["location"]));
+		$result->setAddress(Singleton::create("NullConverter")->fromDBtoDOM($row["address"]));
+		$result->setDistance(Singleton::create("NullConverter")->fromDBtoDOM($row["distance"]));
+		$result->setPhone(Singleton::create("NullConverter")->fromDBtoDOM($row["phone"]));
 		return $result;
 	}
 

@@ -1,23 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="admin">
 	<define name="body">
 		<div>
 			<h2>Clubbeheer - Wijzig club</h2>
 			<div>
+				<h3><outputText value="#{ManageClubsBean.selected.name}"/></h3>
 				<form>
 					<inputHidden value="#{ManageClubsBean.selected.clubId}"/>
 					<p>
-						<outputLabel for="number" value="Stamnummer"/>
-						<outputText value="#{ManageClubsBean.selected.number}"/>
+						<outputLabel for="club-address" value="Adres (bv. Groenstraat 20, 3650 Dilsen-Stokkem)"/>
+						<inputText maxLength="100" id="club-address" value="#{ManageClubsBean.selected.address}" autoFocus="true"/>
 					</p>
 					<p>
-						<outputLabel for="name" value="Naam"/>
-						<outputText value="#{ManageClubsBean.selected.name}"/>
+						<outputLabel for="club-distance" value="Afstand (in km)"/>
+						<inputText maxLength="3" id="club-distance" value="#{ManageClubsBean.selected.distance}"/>	
 					</p>
 					<p>
-						<outputLabel for="location" value="Locatie"/>
-						<inputTextArea id="location" value="#{ManageClubsBean.selected.location}"/>
+						<outputLabel for="club-phone" value="Telefoonnummer"/>
+						<inputText maxLength="20" id="club-phone" value="#{ManageClubsBean.selected.phone}"/>	
 					</p>
 					<p>
 						<commandButton action="#{ManageClubsBean.save}" value="Opslaan"/>

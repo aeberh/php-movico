@@ -5,6 +5,10 @@ class PingpongClubServiceBase {
 		return $this->getPersistence()->findByName($name, $from, $limit);
 	}
 
+	public function findByShortName($shortName, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByShortName($shortName, $from, $limit);
+	}
+
 	public function createPingpongClub($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

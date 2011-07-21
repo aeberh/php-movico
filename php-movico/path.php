@@ -35,4 +35,5 @@ function buildDirectoryList($absRoot, $root, &$paths) {
 	}
 }
 Singleton::create("Settings")->setRootPath($root);
+setlocale(LC_ALL, Singleton::create("Settings")->getLocale());
 ?>

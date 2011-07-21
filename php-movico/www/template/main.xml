@@ -5,71 +5,80 @@
 	<div id="gradient"></div>
 	<div id="wrapper">
 		<h1>T.T.C. Jevota</h1>
-		<form>
+		<form id="nav-form">
 			<ul id="nav">
 				<li><commandLink action="index" value="Home" link="true"/></li>
 				<panelGroup rendered="#{LoginBean.admin}">
-					<li>
-						<p>Controlepaneel</p>
-						<ul>
-							<li><commandLink action="admin/clubs/overview" value="Clubbeheer" link="true"/></li>
-							<li><commandLink action="admin/games/overview" value="Wedstrijdbeheer" link="true"/></li>
-						</ul>
-					</li>
+					<li><commandLink action="admin/clubs/overview" value="Admin" link="true"/></li>
 				</panelGroup>
 			</ul>
 		</form>
-		<div id="main">
-			<div class="col wide">
-				<message/>
-				<insert name="body"/>
-			</div>
-			<div class="col small">
-				<div>
-					<h2>Lid worden?</h2>
-					<div>
-						<p>
-						Wil je lid worden van T.T.C. Jevota?
-						Neem dan vandaag nog contact met ons op!
-						</p>
-						<div id="form-button">
-							Word lid
+		<img id="logo" src="jevota.jpg"/>
+		<div id="border-main">
+			<div id="main">
+				<div id="layout">
+					<div class="col wide">
+						<message/>
+						<insert name="body"/>
+					</div>
+					<div class="col small">
+						<div>
+							<div id="form-button">
+								Word lid
+							</div>
+						</div>
+						<div>
+							<h2>Login</h2>
+							<div>
+								<form rendered="#{!LoginBean.loggedIn}">
+									<p>
+										<outputLabel for="email" value="E-mailadres"/>
+										<inputText id="email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
+									</p>
+									<p>
+										<outputLabel for="pass" value="Wachtwoord"/>
+										<inputSecret id="pass" value="#{LoginBean.password}"/>
+									</p>
+									<p>
+										<commandButton action="#{LoginBean.login}" value="Inloggen"/>
+									</p>
+								</form>
+								<form rendered="#{LoginBean.loggedIn}">
+									<p><outputText value="Welkom, #{LoginBean.account.emailAddress}"/></p>
+									<panelGroup rendered="#{LoginBean.admin}">
+										<p>
+											<commandLink action="admin/clubs/overview" value="Controlepaneel"/>
+										</p>
+									</panelGroup>
+									<p>
+										<commandButton action="#{LoginBean.logout}" value="Uitloggen"/>
+									</p>
+								</form>
+							</div>
+						</div>
+						<div>
+							<h2>Contact</h2>
+							<div>
+								<p id="address">
+									<span>T.T.C. Jevota Lanaken</span>
+									<span>Biesweg 16</span>
+									<span>3620 Gellik</span>
+								</p>
+								<p id="contact">
+									<span>T 089/71.45.35</span>
+									<span>E info@jevota.be</span>
+								</p>
+								<form>
+									<p id="contact-link">
+											<commandLink value="Meer informatie" action="contact" link="true"/>
+									</p>
+								</form>
+							</div>
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div>
-					<h2>Login</h2>
-					<div>
-						<form rendered="#{!LoginBean.loggedIn}">
-							<p>
-								<outputLabel for="email" value="E-mailadres"/>
-								<inputText id="email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
-							</p>
-							<p>
-								<outputLabel for="pass" value="Wachtwoord"/>
-								<inputSecret id="pass" value="#{LoginBean.password}"/>
-							</p>
-							<p>
-								<commandButton action="#{LoginBean.login}" value="Inloggen"/>
-							</p>
-						</form>
-						<form rendered="#{LoginBean.loggedIn}">
-							<p><outputText value="Welkom, #{LoginBean.account.emailAddress}"/></p>
-							<panelGroup rendered="#{LoginBean.admin}">
-								<p>
-									<commandLink action="admin/clubs/overview" value="Controlepaneel"/>
-								</p>
-							</panelGroup>
-							<p>
-								<commandButton action="#{LoginBean.logout}" value="Uitloggen"/>
-							</p>
-						</form>
-					</div>
-				</div>
-				<div><h2>Contact</h2></div>
 			</div>
-			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
 	</div>
 </template>

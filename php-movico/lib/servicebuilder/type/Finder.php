@@ -5,6 +5,7 @@ class Finder {
 	private $unique;
 	private $finderColumns;
 	private $entity;
+	private $orderCols = array();
 
 	public function __construct(Entity $entity, $name, $unique) {
 		$this->name = $name;
@@ -15,6 +16,10 @@ class Finder {
 
 	public function addFinderColumn(FinderColumn $column) {
 		$this->finderColumns[] = $column;
+	}
+	
+	public function addOrderCol(OrderColumn $column) {
+		$this->orderCols[] = $column;
 	}
 
 	public function getName() {
@@ -66,6 +71,21 @@ class Finder {
 			$result = "UNIQUE $result";
 		}
 		return $result;
+	}
+	
+	public function hasOrder() {
+		return !empty($this->orderCols);
+	}
+	
+	public function getOrderByClause() {
+		if(empty($this->orderCols)) {
+			return "";
+		}
+		$orderTerms = array();
+		foreach($this->orderCols as $order) {
+			$orderTerms[] = $order->getClause();
+		}
+		return "ORDER BY ".implode(", ", $orderTerms);
 	}
 
 }

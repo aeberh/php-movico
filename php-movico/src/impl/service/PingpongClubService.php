@@ -1,17 +1,17 @@
 <?php
 class PingpongClubService extends PingpongClubServiceBase {
 
-	public function create($number, $name, $location) {
+	public function create($number, $name, $address) {
 		$club = $this->createPingpongClub();
 		$club->setNumber($number);
 		$club->setName($name);
-		$club->setLocation($location);
+		$club->setAddress($address);
 		return $this->updatePingpongClub($club);
 	}
 	
-	public function update($clubId, $location) {
+	public function update($clubId, $address) {
 		$club = $this->getPingpongClub($clubId);
-		$club->setLocation($location);
+		$club->setAddress($address);
 		return $this->updatePingpongClub($club);
 	}
 	

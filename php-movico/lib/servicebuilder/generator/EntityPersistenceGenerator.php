@@ -70,9 +70,10 @@ class EntityPersistenceGenerator {
 	}
 	
 	private function generateFinder(Finder $finder, Entity $entity) {
+		$orderByClause = $finder->hasOrder() ? $finder->getOrderByClause() : $entity->getOrderByClause();
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
 			"\t\t\$limitStr = (\$from == -1 && \$limit == -1) ? \"\" : \" LIMIT \$from,\$limit\";\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$entity->getOrderByClause()."\$limitStr\");\n";
+			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE ".implode(" AND ",$finder->getWhereClauses()).$orderByClause."\$limitStr\");\n";
 		if($finder->isUnique()) {
 			$result .= "\t\tif(\$result->isEmpty()) {\n".
 				"\t\t\tthrow new NoSuch{$entity->getName()}Exception();\n".

@@ -8,11 +8,15 @@ CREATE TABLE `Account` (
 
 CREATE TABLE `PingpongClub` (
 	`clubId` INTEGER NOT NULL AUTO_INCREMENT,
-	`number` VARCHAR(10) NOT NULL,
+	`number` VARCHAR(3) NOT NULL,
+	`shortName` VARCHAR(20) NOT NULL,
 	`name` VARCHAR(30) NOT NULL,
-	`location` VARCHAR(100) NOT NULL,
+	`address` VARCHAR(100) NOT NULL,
+	`distance` INTEGER NOT NULL,
+	`phone` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (`clubId`),
-	UNIQUE KEY `IX_NAME` (`name`)
+	UNIQUE KEY `IX_NAME` (`name`),
+	UNIQUE KEY `IX_SHORTNAME` (`shortName`)
 );
 
 CREATE TABLE `PingpongTeam` (
@@ -39,4 +43,4 @@ CREATE TABLE `PingpongGame` (
 
 INSERT INTO `Account` (emailAddress, password) VALUES ('admin@jevota.be', 'admin123');
 
-INSERT INTO `PingpongClub` (number, name) VALUES ('LK031', 'T.T.C. Jevota');
+INSERT INTO `PingpongClub` (number, name) VALUES ('31', 'T.T.C. Jevota');

@@ -1,18 +1,16 @@
 .col.wide {
-	width: 65%;
+	width: 75%;
 	float: left;
 }
 
 .col.small {
-	width: 35%;
+	width: 25%;
 	float: left;
 }
 
 .col > div:not(.msg) {
 	margin: 15px;
 	margin-left: 0;
-	border: 1px solid #eee;
-	border-radius: 10px;
 }
 
 .col > div > div {

@@ -11,7 +11,7 @@ class PingpongGamePersistence extends Persistence {
 
 	public function findByBeforeDate($date, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `date`$lt;'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` asc$limitStr");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `date`<'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` desc$limitStr");
 		return $this->getAsObjects($result->getResult());
 	}
 

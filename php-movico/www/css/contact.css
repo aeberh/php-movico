@@ -1,0 +1,11 @@
+#address span, #contact span {
+	display: block;
+}
+
+#contact span:first-letter {
+	font-weight: bold;
+}
+
+#contact-link a.selected {
+	display: none;
+}

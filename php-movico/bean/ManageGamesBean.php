@@ -22,7 +22,7 @@ class ManageGamesBean extends RequestBean {
 	// Action methods
 	
 	public function create() {
-		$date = Date::fromString($this->date." ".$this->time, "d/m/y G:i");
+		$date = Date::fromString($this->date." ".$this->time, "%d/%m/%Y %H.%M");
 		PingpongGameServiceUtil::create($date, $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo);
 		return "admin/games/overview";
 	}

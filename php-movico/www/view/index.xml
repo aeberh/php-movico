@@ -20,46 +20,87 @@
 				<dataTable id="upcoming-games" value="#{HomeBean.upcoming}" var="game">
 					<column>
 						<colHeader>
-							<outputText value="Datum"/>
+							<outputText value="Dag"/>
 						</colHeader>
-						<outputText value="#{game.date}"/>
+						<outputDate value="#{game.date}" format="%a"/>
 					</column>
 					<column>
 						<colHeader>
-							<outputText value="Thuis"/>
+							<outputText value="Datum"/>
+						</colHeader>
+						<outputDate value="#{game.date}" format="%d/%m/%Y"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Uur"/>
+						</colHeader>
+						<outputDate value="#{game.date}" format="%H.%M"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Thuisploeg"/>
 						</colHeader>
 						<outputText value="#{game.homeTeamStr}"/>
 					</column>
 					<column>
 						<colHeader>
-							<outputText value="Uit"/>
+							<outputText value="Uitploeg"/>
 						</colHeader>
 						<outputText value="#{game.outTeamStr}"/>
 					</column>
 				</dataTable>
-				<!-- 
-				<table id="upcoming-matches">
-					<tr><td>02-05-2011</td><td>16u00</td><td>Lanaken A</td><td>Hoeselt C</td></tr>
-					<tr><td>03-05-2011</td><td>17u00</td><td>Paal A</td><td>Lanaken B</td></tr>
-					<tr><td>04-05-2011</td><td>18u00</td><td>Lanaken C</td><td>Centrum C</td></tr>
-					<tr><td>06-05-2011</td><td>19u00</td><td>Hoeselt A</td><td>Lanaken D</td></tr>
-					<tr><td>07-05-2011</td><td>20u00</td><td>Lanaken E</td><td>Herckenrode C</td></tr>
-				</table>
-				-->
 			</div>
 		</div>
 		<div>
 			<h2>Afgelopen wedstrijden</h2>
 			<div>
-				<!-- 
-				<table id="past-matches">
-					<tr><td>02-05-2011</td><td>16u00</td><td>Lanaken A</td><td>11</td><td>-</td><td>5</td><td>Hoeselt C</td></tr>
-					<tr><td>03-05-2011</td><td>17u00</td><td>Paal A</td><td>4</td><td>-</td><td>10</td><td>Lanaken B</td></tr>
-					<tr><td>04-05-2011</td><td>18u00</td><td>Lanaken C</td><td>8</td><td>-</td><td>8</td><td>Centrum C</td></tr>
-					<tr><td>06-05-2011</td><td>19u00</td><td>Hoeselt A</td><td>7</td><td>-</td><td>7</td><td>Lanaken D</td></tr>
-					<tr><td>07-05-2011</td><td>20u00</td><td>Lanaken E</td><td>11</td><td>-</td><td>4</td><td>Herckenrode C</td></tr>
-				</table>
-				-->
+				<dataTable id="past-games" value="#{HomeBean.past}" var="game">
+					<column>
+						<colHeader>
+							<outputText value="Dag"/>
+						</colHeader>
+						<outputDate value="#{game.date}" format="%a"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Datum"/>
+						</colHeader>
+						<outputDate value="#{game.date}" format="%d/%m/%Y"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Uur"/>
+						</colHeader>
+						<outputDate value="#{game.date}" format="%H.%M"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Thuisploeg"/>
+						</colHeader>
+						<outputText value="#{game.homeTeamStr}"/>
+					</column>
+					<column>
+						<outputText value="#{game.homeTeamPts}"/>
+					</column>
+					<column>
+						<outputText value="-"/>
+					</column>
+					<column>
+						<outputText value="#{game.outTeamPts}"/>
+					</column>
+					<column>
+						<colHeader>
+							<outputText value="Uitploeg"/>
+						</colHeader>
+						<outputText value="#{game.outTeamStr}"/>
+					</column>
+					<column>
+						<img rendered="#{game.hasReview}" src="report.png" popup="#{game.review}"/>
+					</column>
+					<column>
+						<img src="car.png"/>
+					</column>
+				</dataTable>
 			</div>
 		</div>
 	</define>

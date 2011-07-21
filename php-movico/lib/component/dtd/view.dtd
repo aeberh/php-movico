@@ -21,6 +21,13 @@
 <!ELEMENT css EMPTY>
 <!ATTLIST css src CDATA #REQUIRED>
 
+<!ELEMENT img EMPTY>
+<!ATTLIST img
+	id CDATA #IMPLIED 
+	popup CDATA #IMPLIED
+	src CDATA #REQUIRED
+>
+
 <!ELEMENT js EMPTY>
 <!ATTLIST js src CDATA #REQUIRED>
 
@@ -52,12 +59,14 @@
 <!ATTLIST inputSecret 
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
+	maxLength CDATA #IMPLIED
 >
 
 <!ELEMENT inputHidden EMPTY>
 <!ATTLIST inputHidden 
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
+	maxLength CDATA #IMPLIED
 >
 
 <!ELEMENT inputText EMPTY>
@@ -65,6 +74,7 @@
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
 	autoFocus CDATA #IMPLIED
+	maxLength CDATA #IMPLIED
 >
 
 <!ELEMENT inputTextArea EMPTY>
@@ -89,6 +99,13 @@
 <!ELEMENT outputText EMPTY>
 <!ATTLIST outputText
 	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+>
+
+<!ELEMENT outputDate EMPTY>
+<!ATTLIST outputDate
+	value CDATA #REQUIRED
+	format CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 >
 

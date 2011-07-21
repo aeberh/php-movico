@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<template>
+	<css src="import.css"/>
+	<div id="gradient"></div>
+	<div id="wrapper">
+		<h1>T.T.C. Jevota</h1>
+		<form id="nav-form">
+			<ul id="nav">
+				<li><commandLink action="index" value="Home" link="true"/></li>
+				<panelGroup rendered="#{LoginBean.admin}">
+					<li><commandLink action="admin/clubs/overview" value="Admin" link="true"/></li>
+				</panelGroup>
+			</ul>
+		</form>
+		<img id="logo" src="jevota.jpg"/>
+		<div id="border-main">
+			<div id="main">
+				<div id="layout">
+					<div class="col small">
+						<form>
+							<ul>
+								<li><commandLink action="admin/clubs/overview" value="Clubbeheer" link="true"/></li>
+								<li><commandLink action="admin/games/overview" value="Wedstrijdbeheer" link="true"/></li>
+							</ul>
+						</form>
+					</div>
+					<div class="col wide">
+						<message/>
+						<insert name="body"/>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

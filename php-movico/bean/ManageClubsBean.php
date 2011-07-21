@@ -12,7 +12,7 @@ class ManageClubsBean extends RequestBean {
 	}
 	
 	public function create() {
-		PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getName(), $this->selected->getLocation());
+		PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getName(), $this->selected->getAddress());
 		MessageUtil::info("Club werd succesvol toegevoegd!");
 		return "admin/clubs/overview";
 	}
@@ -23,7 +23,7 @@ class ManageClubsBean extends RequestBean {
 	}
 	
 	public function save() {
-		PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getLocation());
+		PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getAddress());
 		MessageUtil::info("Club werd succesvol aangepast!");
 		return "admin/clubs/overview";
 	}

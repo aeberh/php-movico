@@ -9,6 +9,11 @@ class PingpongGame extends PingpongGameModel {
 		return $this->getTeamStr($this->getOutTeamId());
 	}
 	
+	public function isHasReview() {
+		$r = $this->getReview();
+		return !empty($r);
+	}
+	
 	private function getTeamStr($teamId) {
 		return PingpongTeamServiceUtil::getPingpongTeam($teamId)->getTeamStr();
 	}

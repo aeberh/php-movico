@@ -3,6 +3,7 @@ abstract class AbstractInput extends Component {
 	
 	private $value;
 	private $autoFocus;
+	private $maxLength;
 
 	public function setValue($value) {
 		$this->value = $value;
@@ -10,6 +11,10 @@ abstract class AbstractInput extends Component {
 	
 	public function setAutoFocus($autoFocus) {
 		$this->autoFocus = $autoFocus;
+	}
+	
+	public function setMaxLength($maxLength) {
+		$this->maxLength = $maxLength;
 	}
 	
 	public function doRender($row=null) {
@@ -23,7 +28,7 @@ abstract class AbstractInput extends Component {
 		$val = $this->getConvertedValue($this->value, $row);
 		$type = $this->getType();
 		$focus = $this->autoFocus === "true" ? " class=\"autofocus\"" : "";
-		return "<input id=\"".$this->id."\" type=\"$type\" name=\"$name\" value=\"$val\"$focus/>";
+		return "<input id=\"".$this->id."\" maxlength=\"".$this->maxLength."\" type=\"$type\" name=\"$name\" value=\"$val\"$focus/>";
 	}
 	
 	public abstract function getType();

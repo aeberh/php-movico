@@ -14,3 +14,7 @@ input[type="submit"] {
 label {
 	display: block;
 }
+
+#email, #pass {
+	width: 100%;
+}
