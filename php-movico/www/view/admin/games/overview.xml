@@ -38,10 +38,14 @@
 							<outputText value="#{game.outTeamStr}"/>
 						</column>
 						<column>
-							<commandButton action="#{ManageGamesBean.edit}" value="Wijzigen"/>
+							<commandButton action="#{ManageGamesBean.edit}" value="Wijzigen">
+								<param value="#{game.gameId}"/>
+							</commandButton>
 						</column>
 						<column>
-							<commandButton action="#{ManageGamesBean.delete}" value="X" popup="Weet je zeker dat je deze wedstrijd verwijdert?"/>
+							<commandButton action="#{ManageGamesBean.delete}" value="X" popup="Weet je zeker dat je deze wedstrijd verwijdert?">
+								<param value="#{game.gameId}"/>
+							</commandButton>
 						</column>
 					</dataTable>
 					<p>

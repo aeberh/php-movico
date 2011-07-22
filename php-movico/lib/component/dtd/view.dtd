@@ -32,7 +32,7 @@
 <!ELEMENT js EMPTY>
 <!ATTLIST js src CDATA #REQUIRED>
 
-<!ELEMENT commandButton EMPTY>
+<!ELEMENT commandButton (param*)>
 <!ATTLIST commandButton
 	value CDATA #REQUIRED
 	action CDATA #REQUIRED
@@ -42,7 +42,7 @@
 	class CDATA #IMPLIED
 >
 
-<!ELEMENT commandLink EMPTY>
+<!ELEMENT commandLink (param*)>
 <!ATTLIST commandLink
 	value CDATA #REQUIRED
 	action CDATA #REQUIRED
@@ -50,6 +50,11 @@
 	popup CDATA #IMPLIED
 	link CDATA #IMPLIED
 	class CDATA #IMPLIED
+>
+
+<!ELEMENT param EMPTY>
+<!ATTLIST param
+	value CDATA #REQUIRED
 >
 
 <!ELEMENT booleanCheckbox EMPTY>

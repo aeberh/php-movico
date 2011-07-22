@@ -23,10 +23,13 @@ class ActionController {
 		}
 		list($beanClass, $methodName) = BeanUtil::getBeanAndProperties($action);
 		$beanInstance = BeanLocator::get($beanClass);
+		/* obsolete now that we work with params
 		if(!is_null($rowIndex)) {
 			ReflectionUtil::callNestedSetter($beanInstance, "selectedRowIndex", $rowIndex);
 		}
-		$view = ReflectionUtil::callMethod($beanInstance, $methodName);
+		*/
+		$argValues = isset($_POST["ACTION_PARAM"][$action]) ? $_POST["ACTION_PARAM"][$action] : array();
+		$view = ReflectionUtil::callMethod($beanInstance, $methodName, $argValues);
 		if(is_null($view)) {
 			$view = $postView;
 		}

@@ -15,7 +15,7 @@ class CommandLink extends AbstractCommand {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
 		}
-		return "<a href=\"{$this->getHref()}\" onclick=\"$onclick\">".$this->getConvertedValue($this->value, $index)."</a>";
+		return "<a href=\"{$this->getHref()}\" onclick=\"$onclick\">".$this->getConvertedValue($this->value, $index)."</a>".$this->renderParams($index);
 	}
 
 }

@@ -13,8 +13,8 @@ class CommandButton extends AbstractCommand {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
 		}
-		return "<button type=\"submit\" onclick=\"$onclick\">".$this->value."</button>";
+		return "<button type=\"submit\" onclick=\"$onclick\">".$this->value."</button>".$this->renderParams($index);
 	}
-
+	
 }
 ?>

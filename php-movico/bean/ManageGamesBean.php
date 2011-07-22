@@ -27,14 +27,14 @@ class ManageGamesBean extends RequestBean {
 		return "admin/games/overview";
 	}
 	
-	public function delete() {
-		PingpongGameServiceUtil::delete($this->getSelectedGame());
+	public function delete($gameId) {
+		PingpongGameServiceUtil::delete(PingpongGameServiceUtil::getPingpongGame($gameId));
 		MessageUtil::info("Wedstrijd werd succesvol verwijderd!");
 		return "admin/games/overview";
 	}
 	
-	public function edit() {
-		$this->selected = $this->getSelectedGame();
+	public function edit($gameId) {
+		$this->selected = PingpongGameServiceUtil::getPingpongGame($gameId);
 		return "admin/games/edit";
 	}
 	
@@ -63,13 +63,6 @@ class ManageGamesBean extends RequestBean {
 	
 	public function getSelected() {
 		return $this->selected;
-	}
-	
-	// Helpers
-	
-	private function getSelectedGame() {
-		$games = $this->getGames();
-		return $games[$this->getSelectedRowIndex()];
 	}
 	
 	// Field getters and setters

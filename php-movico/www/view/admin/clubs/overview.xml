@@ -26,10 +26,14 @@
 							<outputText value="#{club.name}"/>
 						</column>
 						<column>
-							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen"/>
+							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen">
+								<param value="#{club.clubId}"/>
+							</commandButton>
 						</column>
 						<column>
-							<commandButton rendered="#{!club.hasGames}" action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?"/>
+							<commandButton rendered="#{!club.hasGames}" action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?">
+								<param value="#{club.clubId}"/>
+							</commandButton>
 						</column>
 					</dataTable>
 					<p>

@@ -18,8 +18,8 @@ class ManageClubsBean extends RequestBean {
 		return "admin/clubs/overview";
 	}
 	
-	public function edit() {
-		$this->selected = $this->getSelectedClub();
+	public function edit($clubId) {
+		$this->selected = PingpongClubServiceUtil::getPingpongClub($clubId);
 		return "admin/clubs/edit";
 	}
 	
@@ -30,19 +30,14 @@ class ManageClubsBean extends RequestBean {
 		return "admin/clubs/overview";
 	}
 	
-	public function delete() {
+	public function delete($clubId) {
 		try {
-			PingpongClubServiceUtil::delete($this->getSelectedClub());
+			PingpongClubServiceUtil::delete(PingpongClubServiceUtil::getPingpongClub($clubId));
 			MessageUtil::info("Club werd succesvol verwijderd!");
 		} catch(ExistingGamesForClubException $e) {
 			MessageUtil::error("De club kan niet verwijderd worden omdat deze reeds wedstrijden bevat");
 		}
 		return null;
-	}
-	
-	private function getSelectedClub() {
-		$clubs = $this->getClubs();
-		return $clubs[$this->getSelectedRowIndex()];
 	}
 	
 	public function getSelected() {
