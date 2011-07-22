@@ -24,13 +24,14 @@ p {
 	    linear,
 	    left top,
 	    left bottom,
-	    color-stop(0.2, #fff),
+	    color-stop(0.3, #fff),
 	    color-stop(1, #ddd)
 	);
 	background-image: -moz-linear-gradient(
-	    center bottom,
-	    #fff 20%
-	    #ddd 100%,
+	    center top,
+	    #fff,
+	    #fff 30%,
+	    #ddd
 	);
 	z-index: -5;
 }
@@ -50,8 +51,8 @@ p {
 	);
 	background-image: -moz-linear-gradient(
 	    center bottom,
-	    #ccc 0%
-	    #ddd 100%,
+	    #ccc 0%,
+	    #ddd 100%
 	); 
 	padding: 1px;
 	border-radius: 15px;
@@ -78,7 +79,6 @@ p {
 
 #logo {
 	position: absolute;
-	height: 80px;
 	top: 5px;
 }
 

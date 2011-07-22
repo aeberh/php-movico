@@ -13,7 +13,7 @@
 				</panelGroup>
 			</ul>
 		</form>
-		<img id="logo" src="jevota.jpg"/>
+		<img id="logo" src="jevota-small.png"/>
 		<div id="border-main">
 			<div id="main">
 				<div id="layout">

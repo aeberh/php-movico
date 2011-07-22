@@ -47,7 +47,7 @@
 	);
 	background-image: -moz-linear-gradient(
 	    center bottom,
-	    #ccc 0%
-	    #ddd 100%,
+	    #ccc 0%,
+	    #ddd 100%
 	);
 }
