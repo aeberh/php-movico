@@ -26,9 +26,9 @@ class UserBean extends RequestBean {
     	return !empty($users);
     }
 
-    public function edit() {
-    	$selectedUser = $this->getSelectedUser();
-    	$this->id = $selectedUser->getId();
+    public function edit($userId) {
+    	$selectedUser = UserServiceUtil::getUser($userId);
+    	$this->id = $userId;
     	$this->firstName = $selectedUser->getFirstName();
     	$this->lastName = $selectedUser->getLastName();
     	$this->default = $selectedUser->isDefault();
@@ -58,16 +58,10 @@ class UserBean extends RequestBean {
     	return null;
     }
 
-    public function delete() {
-    	$user = $this->getSelectedUser();
-    	UserServiceUtil::deleteUser($user->getId());
+    public function delete($userId) {
+    	UserServiceUtil::deleteUser($userId);
     	MessageUtil::info("Gebruiker werd succesvol verwijderd!");
     	return null;
-    }
-    
-    private function getSelectedUser() {
-    	$users = $this->retrieveUsers();
-    	return $users[$this->getSelectedRowIndex()];
     }
     
     public function create() {
