@@ -24,14 +24,11 @@ class BooleanCheckbox extends Component {
 		$defValue = $value ? "1" : "0";
 		$buttonId = rand(10000, 99999);
 		$onchangesubmit = isset($this->action) ? "this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
-		$result = "";
-		if(isset($this->label)) {
-			$result = "<table cellspacing=\"0\" cellpadding=\"0\"><tr><td>";
-		}
-		$result .= "<input type=\"checkbox\" id=\"{$this->id}\"$checked onclick=\"toggleBooleanValue('hidden_{$this->id}');$onchangesubmit\"/>".
+		$result = "<input type=\"checkbox\" id=\"{$this->id}\"$checked onclick=\"toggleBooleanValue('hidden_{$this->id}');$onchangesubmit\"/>".
 			"<input type=\"hidden\" id=\"hidden_{$this->id}\" name=\"$name\" value=\"$defValue\">";
+			//"<input type=\"hidden\" name=\"_type_".$name."\" value=\"Boolean\"/>";
 		if(isset($this->label)) {
-			$result .= "</td><td><label for=\"{$this->id}\">{$this->label}</label></td></tr></table>";
+			$result .= "<label for=\"{$this->id}\">{$this->label}</label>";
 		}
 		if(isset($this->action)) {
 			$result .= "<button id=\"$buttonId\" type=\"submit\" style=\"display:none\">Dummy</button>";

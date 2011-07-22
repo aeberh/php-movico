@@ -40,8 +40,10 @@ class ActionController {
 		$beanClass = "";
 		foreach($post as $key=>$val) {
 			if(StringUtil::startsWith($key, "#")) {
+				$type = empty($post["_type_".$key]) ? "Null" : $post["_type_".$key];
+				$objValue = Singleton::create("Domain".$type."Converter")->fromViewToDom($val);
 				list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);
-				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $val);
+				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $objValue);
 			}
 		}
 		foreach($files as $key=>$fileArray) {
