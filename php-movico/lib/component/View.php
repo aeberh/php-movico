@@ -14,6 +14,7 @@ class View extends Component {
 		$ajax = Singleton::create("Settings")->isAjaxEnabled();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
 			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.6.1.min.js\"></script>".
+			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-ui-1.8.14.custom.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>".
 		"<script type=\"text/javascript\">".

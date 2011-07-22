@@ -17,7 +17,7 @@ class SelectOneMenu extends Component {
 		$result = "<select id=\"".$this->id."\" name=\"$name\"$onchange>";
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {
-			$sel = ($val == $oValue) ? " selected=\"selected\"" : "";
+			$sel = (strval($val) == strval($oValue)) ? " selected=\"selected\"" : "";
 			$result .= "<option$sel value=\"$oValue\">$oLabel</option>";
 		}
 		$result .= "</select>";

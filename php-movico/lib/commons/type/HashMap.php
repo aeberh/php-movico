@@ -35,11 +35,10 @@ class HashMap implements IteratorAggregate {
 		if(!$this->isCorrectKeyType($key)) {
 			throw new IllegalArgumentException("Tried to get element with key of type ".TypeUtil::getType($key)." to map with keys of type ".$this->keyType);
 		}
-		$result = @$this->elements[$key];
-		if(!isset($result)) {
+		if(!isset($this->elements[$key])) {
 			return null;
 		}
-		return $result;
+		return $this->elements[$key];
 	}
 	
 	public function size() {

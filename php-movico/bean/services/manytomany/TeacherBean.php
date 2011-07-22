@@ -12,9 +12,10 @@ class TeacherBean extends RequestBean {
 		return null;
 	}
 	
-	public function showStudents() {
-		$this->teacherId = $this->getSelectedTeacher()->getTeacherId();
-		$this->studentIds = ArrayUtil::toIndexedArray($this->getSelectedTeacher()->getStudents(), "studentId");
+	public function showStudents($teacherId) {
+		$this->teacherId = $teacherId;
+		$selected = TeacherServiceUtil::getTeacher($teacherId);
+		$this->studentIds = ArrayUtil::toIndexedArray($selected->getStudents(), "studentId");
 		$this->studentsVisible = true;
 		return null;
 	}
@@ -47,11 +48,6 @@ class TeacherBean extends RequestBean {
 	
 	public function getStudentsVisible() {
 		return $this->studentsVisible;
-	}
-	
-	private function getSelectedTeacher() {
-		$teachers = $this->getTeachers();
-		return $teachers[$this->getSelectedRowIndex()];
 	}
 	
 	public function getTeacherId() {

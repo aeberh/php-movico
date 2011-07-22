@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Input Date and Time"/>
+	</define>
+	<define name="body">
+	    <form>
+	        <inputDate value="#{InputDateBean.date}" format="dd/mm/yy"/>
+	        <p><commandButton action="#{InputDateBean.submit}" value="Submit"/></p>
+	    </form>
+	    <div>
+	    	<outputText value="#{InputDateBean.dateStr}"/>
+	    </div>
+	</define>
+</composition>

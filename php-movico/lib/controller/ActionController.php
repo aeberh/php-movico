@@ -23,10 +23,13 @@ class ActionController {
 		}
 		list($beanClass, $methodName) = BeanUtil::getBeanAndProperties($action);
 		$beanInstance = BeanLocator::get($beanClass);
+		/* obsolete now that we work with params
 		if(!is_null($rowIndex)) {
 			ReflectionUtil::callNestedSetter($beanInstance, "selectedRowIndex", $rowIndex);
 		}
-		$view = ReflectionUtil::callMethod($beanInstance, $methodName);
+		*/
+		$argValues = isset($_POST["ACTION_PARAM"][$action]) ? $_POST["ACTION_PARAM"][$action] : array();
+		$view = ReflectionUtil::callMethod($beanInstance, $methodName, $argValues);
 		if(is_null($view)) {
 			$view = $postView;
 		}
@@ -37,8 +40,10 @@ class ActionController {
 		$beanClass = "";
 		foreach($post as $key=>$val) {
 			if(StringUtil::startsWith($key, "#")) {
+				$type = empty($post["_type_".$key]) ? "Null" : $post["_type_".$key];
+				$objValue = Singleton::create("Domain".$type."Converter")->fromViewToDom($val);
 				list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);
-				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $val);
+				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $objValue);
 			}
 		}
 		foreach($files as $key=>$fileArray) {

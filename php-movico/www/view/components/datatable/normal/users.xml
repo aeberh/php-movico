@@ -27,10 +27,14 @@
 					<outputText value="#{user.default}"/>
 				</column>
 				<column>
-					<commandLink action="#{UserBean.edit}" value="Edit"/>
+					<commandLink action="#{UserBean.edit}" value="Edit">
+						<param value="#{user.id}"/>
+					</commandLink>
 				</column>
 				<column>
-					<commandLink action="#{UserBean.delete}" value="Delete" popup="Are you sure you want to delete #{user.firstName}?"/>
+					<commandLink action="#{UserBean.delete}" value="Delete" popup="Are you sure you want to delete #{user.firstName}?">
+						<param value="#{user.id}"/>
+					</commandLink>
 				</column>
 			</dataTable>
 			<p><commandButton action="#{UserBean.create}" value="Create"/></p>

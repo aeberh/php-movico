@@ -10,7 +10,7 @@ class String implements IteratorAggregate {
 	public static function fromPrimitives(array $strings) {
 		$result = new ArrayList("String");
 		foreach ($strings as $string) {
-			$result->add(new String($string));
+			$result->add(self::create($string));
 		}
 		return $result;
 	}
@@ -23,18 +23,24 @@ class String implements IteratorAggregate {
 		return strlen($this->string);
 	}
 	
-	/*
 	public function charAt($index) {
 		if(!$this->isValidIndex($index)) {
-			throw new StringIndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException();
 		}
-		return new String($string[$index]);
+		return self::create($this->string[$index]);
 	}
-	*/
+	
+	public function getFirstChar() {
+		return $this->charAt(0);
+	}
+	
+	public function getLastChar() {
+		return $this->charAt($this->length()-1);
+	}
 	
 	public function substring($start, $end=-1) {
 		$length = ($end === -1) ? $this->length()-$start : $end-$start;
-		return new String(substr($this->string, $start, $length));
+		return self::create(substr($this->string, $start, $length));
 	}
 	
 	public function split($delimiter, $limit=null) {
@@ -48,15 +54,15 @@ class String implements IteratorAggregate {
 	}
 	
 	public function toLowerCase() {
-		return new String(strtolower($this->string));
+		return self::create(strtolower($this->string));
 	}
 	
 	public function toUpperCase() {
-		return new String(strtoupper($this->string));
+		return self::create(strtoupper($this->string));
 	}
 	
 	public function trim() {
-		return new String(trim($this->string));
+		return self::create(trim($this->string));
 	}
 	
 	public function indexOf($needle, $offset=0) {
@@ -102,7 +108,7 @@ class String implements IteratorAggregate {
 		foreach($matches as $match) {
 			$list = new ArrayList("String");
 			foreach($match as $m) {
-				$list->add(new String($m));
+				$list->add(self::create($m));
 			}
 			$result->add($list);
 		}
@@ -124,24 +130,39 @@ class String implements IteratorAggregate {
 	public function replace($search, $by) {
 		self::toObject($search);
 		self::toObject($by);
-		return new String(str_replace($search, $by, $this->string));
+		return self::create(str_replace($search, $by, $this->string));
 	}
 	
 	public static function BLANK() {
-		return String::create("");
+		return self::create("");
+	}
+	
+	public function append(String $other) {
+		return self::create($this->string.$other->__toString());
 	}
 	
 	public function getIterator() {
 		$chars = array();
 		for($i=0; $i<$this->length(); $i++) {
-			$chars[] = String::create($this->string[$i]);
+			$chars[] = self::create($this->string[$i]);
 		}
 		return new ArrayIterator($chars);
 	}
 	
+	public function equals(String $other) {
+		return $this->string === $other->__toString();
+	}
+	
+	private function isValidIndex($index) {
+		if($this->isEmpty()) {
+			return false;
+		}
+		return $index >= 0 && $index < $this->length();
+	}
+	
 	private static function toObject(&$input) {
 		if(is_string($input)) {
-			$input = new String($input);
+			$input = self::create($input);
 		}
 	}
 	

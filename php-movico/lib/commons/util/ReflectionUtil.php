@@ -56,9 +56,9 @@ class ReflectionUtil {
 		BeanLocator::storeBean($objToSet);
 	}
 	
-	public static function callMethod($object, $methodName) {
+	public static function callMethod($object, $methodName, $argValues) {
 		$method = new ReflectionMethod(get_class($object), $methodName);
-		$result = $method->invoke($object);
+		$result = $method->invokeArgs($object, $argValues);
 		BeanLocator::storeBean($object);
 		return $result;
 	}

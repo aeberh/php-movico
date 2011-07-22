@@ -21,7 +21,9 @@
 							<outputText value="#{teacher.name}"/>
 						</column>
 						<column>
-							<commandLink action="#{TeacherBean.showStudents}" value="Show students"/>
+							<commandLink action="#{TeacherBean.showStudents}" value="Show students">
+								<param value="#{teacher.teacherId}"/>
+							</commandLink>
 						</column>
 					</dataTable>
 				</form>
@@ -47,7 +49,9 @@
 							<outputText value="#{student.name}"/>
 						</column>
 						<column>
-							<commandLink action="#{StudentBean.showTeachers}" value="Show teachers"/>
+							<commandLink action="#{StudentBean.showTeachers}" value="Show teachers">
+								<param value="#{student.studentId}"/>
+							</commandLink>
 						</column>
 					</dataTable>
 				</form>

@@ -70,11 +70,10 @@ class ServiceBuilder {
 	}
 
 	private function importEntities() {
-		$dom = new DOMDocument();
-		$dom->load("config/service.xml");
-		$sbEl = $dom->getElementsByTagName("service-builder")->item(0);
-		$entityEls = $sbEl->getElementsByTagName("entity");
-
+		$file = XmlDocument::fromFile("config/service.xml");
+		$root = $file->getRootElement();
+		$entityEls = $root->getChildren("entity");
+		
 		$this->entities = array();
 		foreach($entityEls as $entityEl) {
 			$name = $entityEl->getAttribute("name");
@@ -82,7 +81,7 @@ class ServiceBuilder {
 			$entity = new Entity($name, $table);
 
 			// Insert properties
-			foreach($entityEl->getElementsByTagName("column") as $property) {
+			foreach($entityEl->getChildren("column") as $property) {
 				$propertyName = $property->getAttribute("name");
 				$type = $property->getAttribute("type");
 				$size = $property->getAttribute("size");
@@ -102,12 +101,12 @@ class ServiceBuilder {
 			}
 
 			// Insert finders
-			foreach($entityEl->getElementsByTagName("finder") as $finderEl) {
+			foreach($entityEl->getChildren("finder") as $finderEl) {
 				$finderName = $finderEl->getAttribute("name");
 				$returnType = $finderEl->getAttribute("unique");
 				$unique = $returnType == "true";
-				$finder = new Finder($finderName, $unique);
-				foreach($finderEl->getElementsByTagName("finder-column") as $fcEl) {
+				$finder = new Finder($entity, $finderName, $unique);
+				foreach($finderEl->getChildren("finder-column") as $fcEl) {
 					$name = $fcEl->getAttribute("name");
 					$comparator = $fcEl->getAttribute("comparator");
 					if(empty($comparator)) {
@@ -115,17 +114,29 @@ class ServiceBuilder {
 					}
 					$finder->addFinderColumn(new FinderColumn($name, $comparator));
 				}
+				$orderEls = $finderEl->getChildren("order");
+				if($orderEls->size() > 1) {
+					throw new ServiceBuilderException("Multiple order elements defined for finder $finderName");
+				}
+				if($orderEls->size() == 1) {
+					$orderEl = $orderEls->getFirst();
+					foreach($orderEl->getChildren("order-column") as $ocEl) {
+						$ocName = $ocEl->getAttribute("name");
+						$ocOrderBy = $ocEl->getAttribute("order-by");
+						$finder->addOrderCol(new OrderColumn($ocName, $ocOrderBy));
+					}
+				}
 				$entity->addFinder($finder);
 			}
 
 			// Insert order
-			$orderEls = $entityEl->getElementsByTagName("order");
-			if($orderEls->length > 1) {
+			$orderEls = $entityEl->getChildren("order");
+			if($orderEls->size() > 1) {
 				throw new ServiceBuilderException("Multiple order elements defined for entity {$entity->getName()}");
 			}
-			if($orderEls->length == 1) {
-				$orderEl = $orderEls->item(0);
-				foreach($orderEl->getElementsByTagName("order-column") as $ocEl) {
+			if($orderEls->size() == 1) {
+				$orderEl = $orderEls->get(0);
+				foreach($orderEl->getChildren("order-column") as $ocEl) {
 					$ocName = $ocEl->getAttribute("name");
 					$ocOrderBy = $ocEl->getAttribute("order-by");
 					$entity->addOrderCol(new OrderColumn($ocName, $ocOrderBy));

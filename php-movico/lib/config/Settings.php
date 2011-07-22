@@ -9,6 +9,7 @@ class Settings {
 	private $defaultView;
 	private $rootPath;
 	private $contextPath;
+	private $locale;
 	
 	public function __construct() {
 		$config = new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
@@ -17,6 +18,7 @@ class Settings {
 		$this->ajaxTimeout = $config->getParam("ajax_timeout", "3000")->getValue();
 		$this->defaultView = $config->getParam("default_view", View::DEFAULT_VIEW)->getValue();
 		$this->contextPath = $config->getParam("context_path", "/")->getValue();
+		$this->locale = $config->getParam("locale", "en_US")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -45,6 +47,10 @@ class Settings {
 	
 	public function getContextPath() {
 		return $this->contextPath;
+	}
+	
+	public function getLocale() {
+		return $this->locale;
 	}
 
 }

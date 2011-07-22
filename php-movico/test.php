@@ -9,8 +9,6 @@ set_error_handler("handleError", E_ALL^E_NOTICE);
 
 require_once("lib/simpletest/autorun.php");
 
-echo microtime(true);
-
 // String tests
 new StringContainsTest();
 new StringStartsWithTest();
@@ -23,6 +21,7 @@ new StringReplaceTest();
 new StringRemoveTest();
 new StringIndexOfTest();
 new StringIndexesOfTest();
+new StringCharAtTest();
 
 // ArrayList tests
 new ListAddElementTest();
@@ -53,4 +52,7 @@ new IsComparableTest();
 // Boggle tests
 new WordIsPossibleInLayoutTest();
 new BoggleGridIndicesTest();
+
+// Xml tests
+new XmlTest();
 ?>

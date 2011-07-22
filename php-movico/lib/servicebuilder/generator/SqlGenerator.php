@@ -11,6 +11,8 @@ class SqlGenerator {
 			$sql .= $this->generateMappingTable($table, $props);
 		}
 		FileUtil::storeFileContents("src/sql/tables.sql", $sql);
+		$data = FileUtil::fileExists("src/sql/data.sql") ? FileUtil::getFileContents("src/sql/data.sql") : "";
+		FileUtil::storeFileContents("src/sql/all.sql", $sql.$data);
 		PrintUtil::logln("SQL scripts generated.");
 	}
 	

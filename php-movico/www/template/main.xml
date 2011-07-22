@@ -21,6 +21,7 @@
 			<h2>Component Examples</h2>
 			<ul>
 				<li><commandLink action="components/inputrichtext/rich" value="Rich Text Editor" link="true"/></li>
+				<li><commandLink action="components/inputdate/inputdate" value="Input Date and Time" link="true"/></li>
 				<li><commandLink action="components/onchangesubmit/onchange" value="OnChange Submit" link="true"/></li>
 				<li><commandLink action="components/datatable/normal/users" value="DataTable" link="true"/></li>
 				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable" link="true"/></li>
@@ -32,7 +33,6 @@
 			</ul>
 			<h2>Lib Examples</h2>
 			<ul>
-				<li><commandLink action="libs/i18n/i18n" value="Internationalization" link="true"/></li>
 				<li><commandLink action="libs/ajaxerrors/ajaxerrors" value="Ajax Errors" link="true"/></li>
 			</ul>
 			<h2>Games</h2>

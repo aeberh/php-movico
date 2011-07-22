@@ -4,6 +4,7 @@ abstract class Component {
 	private $parent;
 	protected $children = array();
 	protected $id;
+	protected $class;
 	
 	protected $rendered = "true";
 	
@@ -16,7 +17,7 @@ abstract class Component {
 		if(get_class($this) == "HtmlComponent") {
 			$parentClass = $this->getTagName();
 		}
-		if(!in_array($parentClass, $component->getValidParents())) {
+		if(!$component->getValidParents() == -1 && !in_array($parentClass, $component->getValidParents())) {
 			throw new InvalidComponentHierarchyException($parentClass, get_class($component));
 		}
 		$this->children[] = $component;
@@ -144,6 +145,11 @@ abstract class Component {
 		return $result;
 	}
 	
+	protected function hasChildrenOfType($class) {
+		$children = $this->getChildrenOfType($class);
+		return !empty($children);
+	}
+	
 	protected function getChildren() {
 		return $this->children;
 	}
@@ -154,6 +160,10 @@ abstract class Component {
 	
 	public function getId() {
 		return $this->id;
+	}
+	
+	public function setClass($class) {
+		$this->class = $class;
 	}
 	
 	public function setRendered($rendered) {
