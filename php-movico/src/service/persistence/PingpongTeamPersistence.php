@@ -12,6 +12,12 @@ class PingpongTeamPersistence extends Persistence {
 		return $this->getAsObject($result->getSingleRow());
 	}
 
+	public function findByClub($clubId, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
 	public function findByPrimaryKey($teamId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 		if($result->isEmpty()) {

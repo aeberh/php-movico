@@ -26,6 +26,7 @@
 	id CDATA #IMPLIED 
 	popup CDATA #IMPLIED
 	src CDATA #REQUIRED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT js EMPTY>
@@ -38,6 +39,7 @@
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
 	link CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT commandLink EMPTY>
@@ -47,12 +49,14 @@
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
 	link CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT booleanCheckbox EMPTY>
 <!ATTLIST booleanCheckbox
 	value CDATA #REQUIRED
 	label CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT inputSecret EMPTY>
@@ -60,6 +64,7 @@
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
 	maxLength CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT inputHidden EMPTY>
@@ -67,6 +72,7 @@
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
 	maxLength CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT inputText EMPTY>
@@ -75,18 +81,21 @@
 	id CDATA #IMPLIED
 	autoFocus CDATA #IMPLIED
 	maxLength CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT inputTextArea EMPTY>
 <!ATTLIST inputTextArea
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT inputRichText EMPTY>
 <!ATTLIST inputRichText
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT outputLabel EMPTY>
@@ -94,12 +103,14 @@
 	value CDATA #REQUIRED
 	for CDATA #REQUIRED
 	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT outputText EMPTY>
 <!ATTLIST outputText
 	value CDATA #REQUIRED
 	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT outputDate EMPTY>
@@ -107,6 +118,7 @@
 	value CDATA #REQUIRED
 	format CDATA #IMPLIED
 	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT selectOneMenu EMPTY>
@@ -114,6 +126,7 @@
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
 	action CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT selectManyListBox EMPTY>
@@ -121,6 +134,7 @@
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
 	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT panelGrid ANY>
@@ -128,12 +142,14 @@
 	columns CDATA #REQUIRED
 	id CDATA #IMPLIED
 	columnClasses CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT panelGroup ANY>
 <!ATTLIST panelGroup
 	id CDATA #IMPLIED
 	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT panelSeries ANY>
@@ -142,6 +158,7 @@
 	var CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT panelGridSeries ANY>
@@ -151,6 +168,7 @@
 	columns CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT dataTable (column*)>
@@ -161,18 +179,29 @@
 	pagination CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT fileUpload ANY>
 <!ATTLIST fileUpload
 	value CDATA #REQUIRED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT column ANY>
+<!ATTLIST column
+	class CDATA #IMPLIED
+>
 
 <!ELEMENT colHeader ANY>
+<!ATTLIST column
+	class CDATA #IMPLIED
+>
 
 <!ELEMENT message EMPTY>
+<!ATTLIST message
+	class CDATA #IMPLIED
+>
 
 <!ELEMENT ajaxLoading EMPTY>
 

@@ -11,9 +11,9 @@ class LoginBean extends SessionBean {
 		try {
 			$this->account = AccountServiceUtil::login($this->emailAddress, $this->password);
 		} catch(LoginException $e) {
-			MessageUtil::error("EmailAddress and password don't match!");
+			MessageUtil::error("Logingegevens zijn onjuist!");
 		} catch(NoSuchAccountException $e) {
-			MessageUtil::error("EmailAddress and password don't match!");
+			MessageUtil::error("Logingegevens zijn onjuist!");
 		}
 		return null;
 	}
@@ -22,15 +22,15 @@ class LoginBean extends SessionBean {
 		try {
 			AccountServiceUtil::register($this->emailAddress, $this->password, $this->password2);
 			return $this->login();
-			MessageUtil::info("Account created!");
+			MessageUtil::info("Gebruiker geregistreerd!");
 		} catch(PasswordsDontMatchException $e) {
-			MessageUtil::error("Passwords don't match!");
+			MessageUtil::error("Wachtwoord en herhaling wachtwoord zijn verschillend");
 		} catch(InvalidEmailAddressException $e) {
-			MessageUtil::error("EmailAddress can only contain alphanumeric characters and must be at least 4 characters long");
+			MessageUtil::error("Het emailadres mag enkel alfanumerieke tekens bevatten en moet minstens 4 karakters lang zijn");
 		} catch(DuplicateEmailAddressException $e) {
-			MessageUtil::error("That emailAddress is already taken. Please choose another one or login with the right password.");
+			MessageUtil::error("Dit emailadres is reeds in gebruik. Log in met de juiste gegevens of kies een ander emailadres");
 		} catch(InvalidPasswordException $e) {
-			MessageUtil::error("Password can only contain alphanumeric characters and must be at least 6 characters long");
+			MessageUtil::error("Het wachtwoord mag enkel alfanumerieke tekens bevatten en moet minstens 6 karakters lang zijn");
 		}
 		return null;
 	}
@@ -44,7 +44,10 @@ class LoginBean extends SessionBean {
 	}
 	
 	public function isAdmin() {
-		return $this->emailAddress === "admin@jevota.be";
+		if(!$this->isLoggedIn()) {
+			return false;
+		}
+		return $this->account->getEmailAddress() === "admin@jevota.be";
 	}
 	
 	public function getAccount() {

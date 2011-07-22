@@ -29,6 +29,14 @@ class PingpongGameServiceUtil {
 		return self::getService()->findByBeforeDate($date, $from, $limit);
 	}
 
+	public static function findByHomeTeam($homeTeamId, $from=-1, $limit=-1) {
+		return self::getService()->findByHomeTeam($homeTeamId, $from, $limit);
+	}
+
+	public static function findByOutTeam($outTeamId, $from=-1, $limit=-1) {
+		return self::getService()->findByOutTeam($outTeamId, $from, $limit);
+	}
+
 	public static function createPingpongGame($pk=0) {
 		return self::getService()->createPingpongGame($pk);
 	}

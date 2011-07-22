@@ -25,7 +25,8 @@ CREATE TABLE `PingpongTeam` (
 	`teamNo` VARCHAR(1) NOT NULL,
 	`recreation` TINYINT(1) NOT NULL,
 	PRIMARY KEY (`teamId`),
-	UNIQUE KEY `IX_CLUBANDTEAM` (`clubId`, `teamNo`, `recreation`)
+	UNIQUE KEY `IX_CLUBANDTEAM` (`clubId`, `teamNo`, `recreation`),
+	KEY `IX_CLUB` (`clubId`)
 );
 
 CREATE TABLE `PingpongGame` (
@@ -38,6 +39,8 @@ CREATE TABLE `PingpongGame` (
 	`review` VARCHAR(500) NOT NULL,
 	PRIMARY KEY (`gameId`),
 	KEY `IX_AFTERDATE` (`date`),
-	KEY `IX_BEFOREDATE` (`date`)
+	KEY `IX_BEFOREDATE` (`date`),
+	KEY `IX_HOMETEAM` (`homeTeamId`),
+	KEY `IX_OUTTEAM` (`outTeamId`)
 );
 

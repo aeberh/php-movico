@@ -5,6 +5,10 @@ class PingpongTeamServiceBase {
 		return $this->getPersistence()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
 	}
 
+	public function findByClub($clubId, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByClub($clubId, $from, $limit);
+	}
+
 	public function createPingpongTeam($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

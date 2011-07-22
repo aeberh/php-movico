@@ -1,17 +1,52 @@
 .dataTable {
-	border-collapse: collapse;
+	border-spacing: 0;
 	width: 100%;
+	border-radius: 2px 2px 0 0;
 }
 
-.dataTable td, .dataTable th {
+.dataTable td {
 	padding: 2px 5px;
-	border: 1px solid #ccc;
+}
+
+.dataTable th:first-child {
+	border-radius: 2px 0 0 0;
 }
 
 .dataTable th {
-	padding: 2px 5px;
-	background: #ccc;
+	padding: 4px 5px;
+	background-color: #bbb;
+	background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    left bottom,
+	    color-stop(0, #aaa),
+	    color-stop(1, #bbb)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #aaa 0%
+	    #bbb 100%,
+	);
 	color: #fff;
+	font-family: Trebuchet MS;
+	font-weight: normal;
+}
+
+.dataTable tr {
+	background-color: #eee;
+	background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    left bottom,
+	    color-stop(0, #fff),
+	    color-stop(1, #eee)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #fff 0%
+	    #eee 100%,
+	);
+	border-top: 1px solid #fff;
 }
 
 #news td:first-child {

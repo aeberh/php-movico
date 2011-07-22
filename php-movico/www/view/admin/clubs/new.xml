@@ -13,7 +13,7 @@
 					</p>
 					<p>
 						<outputLabel for="club-shortname" value="Korte naam (bv. Bree)"/>
-						<inputText maxLength="20" id="club-short-name" value="#{ManageClubsBean.selected.name}"/>
+						<inputText maxLength="20" id="club-short-name" value="#{ManageClubsBean.selected.shortName}"/>
 					</p>
 					<p>
 						<outputLabel for="club-name" value="Naam (bv. T.T.C. Meteor Bree)"/>

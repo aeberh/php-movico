@@ -1,12 +1,12 @@
 <?php
 class PingpongClubServiceUtil {
 
-	public static function create($number, $name, $address) {
-		return self::getService()->create($number, $name, $address);
+	public static function create($number, $shortName, $name, $address, $distance, $phone) {
+		return self::getService()->create($number, $shortName, $name, $address, $distance, $phone);
 	}
 
-	public static function update($clubId, $address) {
-		return self::getService()->update($clubId, $address);
+	public static function update($clubId, $number, $shortName, $name, $address, $distance, $phone) {
+		return self::getService()->update($clubId, $number, $shortName, $name, $address, $distance, $phone);
 	}
 
 	public static function delete($club) {

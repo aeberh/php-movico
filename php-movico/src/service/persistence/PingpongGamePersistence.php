@@ -15,6 +15,18 @@ class PingpongGamePersistence extends Persistence {
 		return $this->getAsObjects($result->getResult());
 	}
 
+	public function findByHomeTeam($homeTeamId, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `homeTeamId`='".Singleton::create("NullConverter")->fromDOMtoDB($homeTeamId)."'ORDER BY `date` asc$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
+	public function findByOutTeam($outTeamId, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `outTeamId`='".Singleton::create("NullConverter")->fromDOMtoDB($outTeamId)."'ORDER BY `date` asc$limitStr");
+		return $this->getAsObjects($result->getResult());
+	}
+
 	public function findByPrimaryKey($gameId) {
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE gameId='".addslashes($gameId)."'");
 		if($result->isEmpty()) {

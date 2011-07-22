@@ -4,6 +4,7 @@ abstract class Component {
 	private $parent;
 	protected $children = array();
 	protected $id;
+	protected $class;
 	
 	protected $rendered = "true";
 	
@@ -144,6 +145,11 @@ abstract class Component {
 		return $result;
 	}
 	
+	protected function hasChildrenOfType($class) {
+		$children = $this->getChildrenOfType($class);
+		return !empty($children);
+	}
+	
 	protected function getChildren() {
 		return $this->children;
 	}
@@ -154,6 +160,10 @@ abstract class Component {
 	
 	public function getId() {
 		return $this->id;
+	}
+	
+	public function setClass($class) {
+		$this->class = $class;
 	}
 	
 	public function setRendered($rendered) {

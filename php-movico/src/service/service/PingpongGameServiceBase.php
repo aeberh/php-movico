@@ -9,6 +9,14 @@ class PingpongGameServiceBase {
 		return $this->getPersistence()->findByBeforeDate($date, $from, $limit);
 	}
 
+	public function findByHomeTeam($homeTeamId, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByHomeTeam($homeTeamId, $from, $limit);
+	}
+
+	public function findByOutTeam($outTeamId, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByOutTeam($outTeamId, $from, $limit);
+	}
+
 	public function createPingpongGame($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

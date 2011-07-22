@@ -37,11 +37,18 @@ class DataTable extends DataSeries {
 	}
 
 	private function renderHeader($cols) {
+		$headers = 0;
 		$result = "<tr>";
 		foreach($cols as $col) {
-			$result .= "<th>".$col->renderChildren(array("ColHeader"))."</th>";
+			$result .= "<th>";
+			$headers = $col->getChildrenOfType("ColHeader");
+			if(!empty($headers)) {
+				$headers++;
+				$result .= $headers->renderChildren(array("ColHeader"));
+			}
+			$result.="</th>";
 		}
-		return $result."</tr>";
+		return $headers == 0 ? "" : $result."</tr>";
 	}
 	
 	public function getRows() {

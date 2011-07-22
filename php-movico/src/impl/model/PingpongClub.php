@@ -5,5 +5,22 @@ class PingpongClub extends PingpongClubModel {
 		return "LK".$this->getNumber();
 	}
 	
+	public function getTeams() {
+		return PingpongTeamServiceUtil::findByClub($this->getClubId());
+	}
+	
+	public function getGames() {
+		$result = array();
+		foreach($this->getTeams() as $team) {
+			$result = array_merge($result, $team->getGames());
+		}
+		return $result;
+	}
+	
+	public function isHasGames() {
+		$games = $this->getGames();
+		return !empty($games);
+	}
+	
 }
 ?>

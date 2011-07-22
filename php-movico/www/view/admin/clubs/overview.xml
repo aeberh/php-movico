@@ -9,15 +9,27 @@
 					<dataTable value="#{ManageClubsBean.clubs}" var="club">
 						<column>
 							<colHeader>
+								<outputText value="Nummer"/>
+							</colHeader>
+							<outputText value="#{club.fullNumber}"/>
+						</column>
+						<column>
+							<colHeader>
 								<outputText value="Naam"/>
 							</colHeader>
 							<outputText value="#{club.shortName}"/>
 						</column>
 						<column>
+							<colHeader>
+								<outputText value="Volledige naam"/>
+							</colHeader>
+							<outputText value="#{club.name}"/>
+						</column>
+						<column>
 							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen"/>
 						</column>
 						<column>
-							<commandButton action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?"/>
+							<commandButton rendered="#{!club.hasGames}" action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?"/>
 						</column>
 					</dataTable>
 					<p>

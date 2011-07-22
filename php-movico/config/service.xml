@@ -37,6 +37,9 @@
 			<finder-column name="teamNo"/>
 			<finder-column name="recreation"/>
 		</finder>
+		<finder name="Club">
+			<finder-column name="clubId"/>
+		</finder>
 	</entity>
 	<entity name="PingpongGame">
 		<column name="gameId" type="int" primary="true" auto-increment="true"/>
@@ -54,6 +57,12 @@
 			<order>
 				<order-column name="date" order-by="desc"/>
 			</order>
+		</finder>
+		<finder name="HomeTeam">
+			<finder-column name="homeTeamId"/>
+		</finder>
+		<finder name="OutTeam">
+			<finder-column name="outTeamId"/>
 		</finder>
 		<order>
 			<order-column name="date" order-by="asc"/>

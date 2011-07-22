@@ -7,5 +7,11 @@ class PingpongTeam extends PingpongTeamModel {
 		return $clubName.$rec." ".$this->getTeamNo();
 	}
 	
+	public function getGames() {
+		$homeGames = PingpongGameServiceUtil::findByHomeTeam($this->getTeamId());
+		$outGames = PingpongGameServiceUtil::findByOutTeam($this->getTeamId());
+		return array_merge($homeGames, $outGames);
+	}
+	
 }
 ?>

@@ -13,6 +13,10 @@ class PingpongTeamServiceUtil {
 		return self::getService()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
 	}
 
+	public static function findByClub($clubId, $from=-1, $limit=-1) {
+		return self::getService()->findByClub($clubId, $from, $limit);
+	}
+
 	public static function createPingpongTeam($pk=0) {
 		return self::getService()->createPingpongTeam($pk);
 	}

@@ -19,33 +19,18 @@
 			<div>
 				<dataTable id="upcoming-games" value="#{HomeBean.upcoming}" var="game">
 					<column>
-						<colHeader>
-							<outputText value="Dag"/>
-						</colHeader>
 						<outputDate value="#{game.date}" format="%a"/>
 					</column>
 					<column>
-						<colHeader>
-							<outputText value="Datum"/>
-						</colHeader>
 						<outputDate value="#{game.date}" format="%d/%m/%Y"/>
 					</column>
 					<column>
-						<colHeader>
-							<outputText value="Uur"/>
-						</colHeader>
 						<outputDate value="#{game.date}" format="%H.%M"/>
 					</column>
 					<column>
-						<colHeader>
-							<outputText value="Thuisploeg"/>
-						</colHeader>
 						<outputText value="#{game.homeTeamStr}"/>
 					</column>
 					<column>
-						<colHeader>
-							<outputText value="Uitploeg"/>
-						</colHeader>
 						<outputText value="#{game.outTeamStr}"/>
 					</column>
 				</dataTable>
@@ -55,49 +40,34 @@
 			<h2>Afgelopen wedstrijden</h2>
 			<div>
 				<dataTable id="past-games" value="#{HomeBean.past}" var="game">
-					<column>
-						<colHeader>
-							<outputText value="Dag"/>
-						</colHeader>
+					<column class="game-day">
 						<outputDate value="#{game.date}" format="%a"/>
 					</column>
-					<column>
-						<colHeader>
-							<outputText value="Datum"/>
-						</colHeader>
+					<column class="game-date">
 						<outputDate value="#{game.date}" format="%d/%m/%Y"/>
 					</column>
-					<column>
-						<colHeader>
-							<outputText value="Uur"/>
-						</colHeader>
+					<column class="game-time">
 						<outputDate value="#{game.date}" format="%H.%M"/>
 					</column>
-					<column>
-						<colHeader>
-							<outputText value="Thuisploeg"/>
-						</colHeader>
+					<column class="game-home-team">
 						<outputText value="#{game.homeTeamStr}"/>
 					</column>
-					<column>
+					<column class="game-home-team-pts">
 						<outputText value="#{game.homeTeamPts}"/>
 					</column>
-					<column>
+					<column class="game-dash">
 						<outputText value="-"/>
 					</column>
-					<column>
+					<column class="game-out-team-pts">
 						<outputText value="#{game.outTeamPts}"/>
 					</column>
-					<column>
-						<colHeader>
-							<outputText value="Uitploeg"/>
-						</colHeader>
+					<column class="game-out-team">
 						<outputText value="#{game.outTeamStr}"/>
 					</column>
-					<column>
+					<column class="game-review">
 						<img rendered="#{game.hasReview}" src="report.png" popup="#{game.review}"/>
 					</column>
-					<column>
+					<column class="game-travel">
 						<img src="car.png"/>
 					</column>
 				</dataTable>

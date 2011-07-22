@@ -3,6 +3,7 @@
 	font-weight: bold;
 	font-size: 0.9em;
 	border-radius: 2px;
+	margin: 15px;
 }
 
 .error {
@@ -12,7 +13,7 @@
 }
 
 .info {
-	color: #3f3;
-	background: #dfd;
-	border: 1px solid #3f3;
+	color: #0c0;
+	background: #bfb;
+	border: 1px solid #0c0;
 }

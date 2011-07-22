@@ -25,7 +25,8 @@ CREATE TABLE `PingpongTeam` (
 	`teamNo` VARCHAR(1) NOT NULL,
 	`recreation` TINYINT(1) NOT NULL,
 	PRIMARY KEY (`teamId`),
-	UNIQUE KEY `IX_CLUBANDTEAM` (`clubId`, `teamNo`, `recreation`)
+	UNIQUE KEY `IX_CLUBANDTEAM` (`clubId`, `teamNo`, `recreation`),
+	KEY `IX_CLUB` (`clubId`)
 );
 
 CREATE TABLE `PingpongGame` (
@@ -38,9 +39,11 @@ CREATE TABLE `PingpongGame` (
 	`review` VARCHAR(500) NOT NULL,
 	PRIMARY KEY (`gameId`),
 	KEY `IX_AFTERDATE` (`date`),
-	KEY `IX_BEFOREDATE` (`date`)
+	KEY `IX_BEFOREDATE` (`date`),
+	KEY `IX_HOMETEAM` (`homeTeamId`),
+	KEY `IX_OUTTEAM` (`outTeamId`)
 );
 
 INSERT INTO `Account` (emailAddress, password) VALUES ('admin@jevota.be', 'admin123');
 
-INSERT INTO `PingpongClub` (number, name) VALUES ('31', 'T.T.C. Jevota');
+INSERT INTO `PingpongClub` (number, name, shortName, address, telephone) VALUES ('31', 'T.T.C. Jevota', 'Lanaken', 'Biesweg 16, Gellik', '089/714535');
