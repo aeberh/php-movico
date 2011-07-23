@@ -28,7 +28,7 @@ class ActionController {
 			ReflectionUtil::callNestedSetter($beanInstance, "selectedRowIndex", $rowIndex);
 		}
 		*/
-		$argValues = isset($_POST["ACTION_PARAM"][$action]) ? $_POST["ACTION_PARAM"][$action] : array();
+		$argValues = isset($_POST["ACTION_PARAM"][$action."_".$rowIndex]) ? $_POST["ACTION_PARAM"][$action."_".$rowIndex] : array();
 		$view = ReflectionUtil::callMethod($beanInstance, $methodName, $argValues);
 		if(is_null($view)) {
 			$view = $postView;
