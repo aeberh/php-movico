@@ -11,7 +11,7 @@
 							<colHeader>
 								<outputText value="Datum"/>
 							</colHeader>
-							<outputText value="#{game.date}"/>
+							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
 						</column>
 						<column>
 							<colHeader>

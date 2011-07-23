@@ -63,6 +63,43 @@
 	font-style: italic;
 }
 
-.item {
+.game-day, .game-date, .game-time {
+	color: #999;
+}
+
+.game-day {
+	width: 20px;
+}
+
+.game-date {
+	width: 70px;
+}
+
+.game-time {
+	width: 40px;
+}
+
+.game-home-team {
+	text-align: right;
+}
+
+.game-home-team, .game-out-team {
+	width: 120px;
+}
+
+.game-home-team-pts, .game-out-team-pts {
+	width: 20px;
+}
+
+.game-home-team-pts {
+	text-align: right;
+}
+	
+.game-dash {
+	width: 5px;
+	text-align: center;
+}
+
+.game-out-team {
 	
 }

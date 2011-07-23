@@ -8,6 +8,38 @@ function startupActions(ajaxTime) {
 	setupTimers(ajaxTime);
 	setupPagination();
 	setSelectedLink();
+	initMaps();
+}
+
+// Initialize Google Maps
+function initMaps() {
+	$(".googleMap").each(function() {
+		var map = null;
+		var directions = null;
+		var geocoder = null;
+		
+		var address = $(this).attr("address");
+		var zoomLevel = parseInt($(this).attr("zoom"));
+		
+		if (GBrowserIsCompatible()) {
+			map = new GMap2(document.getElementById($(this).attr("id")));
+			geocoder = new GClientGeocoder();
+			geocoder.getLatLng(
+				address,
+				function(point) {
+					if (!point) {
+						alert("Address " + address + " not found");
+					} else {
+						map.addControl(new GLargeMapControl3D());
+						map.setCenter(point, zoomLevel);
+						var marker = new GMarker(point);
+						map.addOverlay(marker);
+						//marker.openInfoWindowHtml(address);
+					}
+				}
+			);
+		}
+	});
 }
 
 // Automatic redirect by hash

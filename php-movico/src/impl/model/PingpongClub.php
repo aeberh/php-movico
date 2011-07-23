@@ -5,6 +5,10 @@ class PingpongClub extends PingpongClubModel {
 		return "LK".$this->getNumber();
 	}
 	
+	public function isLanaken() {
+		return $this->getShortName() === "Lanaken";
+	}
+	
 	public function getTeams() {
 		return PingpongTeamServiceUtil::findByClub($this->getClubId());
 	}

@@ -12,10 +12,13 @@ class View extends Component {
 	
 	public function doRender($index=null) {
 		$ajax = Singleton::create("Settings")->isAjaxEnabled();
+		$gmapsApiKey = Singleton::create("Settings")->getGmapsApiKey();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
 			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>".
+			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
+			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/357c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
 			"$(function() {";
 		$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();

@@ -12,6 +12,7 @@
 					<li><commandLink action="admin/clubs/overview" value="Admin" link="true"/></li>
 				</panelGroup>
 			</ul>
+			<ajaxLoading/>
 		</form>
 		<img id="logo" src="jevota-small.png"/>
 		<div id="border-main">

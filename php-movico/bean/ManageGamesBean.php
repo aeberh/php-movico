@@ -22,7 +22,7 @@ class ManageGamesBean extends RequestBean {
 	// Action methods
 	
 	public function create() {
-		$date = Date::fromString($this->date." ".$this->time, "%d/%m/%Y %H.%M");
+		$date = Date::fromString($this->date.$this->time, ApplicationConstants::DATE_FORMAT.ApplicationConstants::TIME_FORMAT);
 		PingpongGameServiceUtil::create($date, $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo);
 		return "admin/games/overview";
 	}
@@ -51,9 +51,11 @@ class ManageGamesBean extends RequestBean {
 	}
 	
 	public function getTeamNos() {
-		return array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
+		return ArrayUtil::makeAssociative(
+			array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
 			"REC A", "REC B", "REC C", "REC D", "REC E", "REC F",
-			"REC G", "REC H", "REC I", "REC J");
+			"REC G", "REC H", "REC I", "REC J")
+		);
 	}
 	
 	public function getClubs() {

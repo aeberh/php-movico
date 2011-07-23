@@ -4,6 +4,7 @@ abstract class DataSeries extends Component {
 	protected $value;
 	protected $var;
 	protected $rows;
+	protected $columnClasses;
 	protected $pagination;
 	
 	public function getValue() {
@@ -12,6 +13,15 @@ abstract class DataSeries extends Component {
 	
 	public function setValue($value) {
 		$this->value = $value;
+	}
+	
+	public function setColumnClasses($columnClasses) {
+		$this->columnClasses = $columnClasses;
+	}
+	
+	protected function getCurrentColumnClass($i) {
+		$this->classList = String::create($this->columnClasses)->split(",");
+		return $this->classList->get($i % $this->classList->size())->getPrimitive();
 	}
 	
 	public function getVar() {

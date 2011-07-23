@@ -8,7 +8,8 @@ class CommandLink extends AbstractCommand {
 			$onclick .= "formEl.action='{$this->getHref()}';";
 		}
 		if($this->hasAnchestorOfType("DataSeries") && $this->hasAnchestorOfType("Form")) {
-			$onclick .= "formEl.".DataTable::DATATABLE_ROW.".value='$index';";
+			$action = str_replace(array("#", "{", "}", "."), array("\\\\#", "\\\\{", "\\\\}", "\\\\."), $this->action);
+			$onclick .= "formEl.".DataTable::DATATABLE_ROW.".value='$index'; jQuery('input[name^=ACTION_PARAM\\\\[{$action}_{$index}\\\\]]').removeAttr('disabled');";
 		}
 		$onclick .= "$('form#".$formId."').submit();";
 		if(!empty($this->popup)) {

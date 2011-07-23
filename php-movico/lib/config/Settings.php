@@ -10,6 +10,7 @@ class Settings {
 	private $rootPath;
 	private $contextPath;
 	private $locale;
+	private $gmapsApiKey;
 	
 	public function __construct() {
 		$config = new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
@@ -19,6 +20,7 @@ class Settings {
 		$this->defaultView = $config->getParam("default_view", View::DEFAULT_VIEW)->getValue();
 		$this->contextPath = $config->getParam("context_path", "/")->getValue();
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
+		$this->gmapsApiKey = $config->getParam("gmapsApiKey", "")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -51,6 +53,10 @@ class Settings {
 	
 	public function getLocale() {
 		return $this->locale;
+	}
+	
+	public function getGmapsApiKey() {
+		return $this->gmapsApiKey;
 	}
 
 }

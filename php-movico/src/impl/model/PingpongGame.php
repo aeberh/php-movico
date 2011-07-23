@@ -1,6 +1,14 @@
 <?php
 class PingpongGame extends PingpongGameModel {
 
+	public function getHomeTeam() {
+		return PingpongTeamServiceUtil::getPingpongTeam($this->getHomeTeamId());
+	}
+	
+	public function getOutTeam() {
+		return PingpongTeamServiceUtil::getPingpongTeam($this->getOutTeamId());
+	}
+	
 	public function getHomeTeamStr() {
 		return $this->getTeamStr($this->getHomeTeamId());
 	}
