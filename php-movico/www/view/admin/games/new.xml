@@ -7,11 +7,11 @@
 			<div>
 				<form>
 					<p>
-						<outputLabel for="date" value="Datum (dd/mm/yyyy)"/>
+						<outputLabel for="date" value="Datum (dd-mm-yyyy)"/>
 						<inputText id="date" value="#{ManageGamesBean.date}" autoFocus="true"/>
 					</p>
 					<p>
-						<outputLabel for="time" value="Tijd (hh.mm)"/>
+						<outputLabel for="time" value="Tijd (hh:mm)"/>
 						<inputText id="time" value="#{ManageGamesBean.time}"/>
 					</p>
 					<p>
