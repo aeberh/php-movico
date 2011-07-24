@@ -20,7 +20,7 @@ class Settings {
 		$this->defaultView = $config->getParam("default_view", View::DEFAULT_VIEW)->getValue();
 		$this->contextPath = $config->getParam("context_path", "/")->getValue();
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
-		$this->gmapsApiKey = $config->getParam("gmapsApiKey", "")->getValue();
+		$this->gmapsApiKey = $config->getParam("gmaps_api_key", "")->getValue();
 	}
 	
 	public function getEnvironment() {
