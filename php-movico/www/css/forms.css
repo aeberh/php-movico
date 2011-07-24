@@ -7,14 +7,34 @@ input[type="text"],input[type="password"] {
 	border-radius: 5px;
 }
 
-input[type="submit"] {
-	
-}
-
 label {
 	display: block;
 }
 
 #email, #pass {
 	width: 100%;
+}
+
+input#club-number {
+	width: 30px;
+}
+
+input#club-short-name {
+	width: 150px;
+}
+
+input#club-name {
+	width: 200px;
+}
+
+input#club-distance {
+	width: 30px;
+}
+
+input#club-phone {
+	width: 130px;
+}
+
+input#club-address {
+	width: 250px;
 }

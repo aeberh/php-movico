@@ -6,6 +6,9 @@
 			<h2>Clubbeheer - Overzicht</h2>
 			<div>
 				<form>
+					<p>
+						<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
+					</p>
 					<dataTable value="#{ManageClubsBean.clubs}" var="club">
 						<column>
 							<colHeader>
@@ -26,6 +29,18 @@
 							<outputText value="#{club.name}"/>
 						</column>
 						<column>
+							<colHeader>
+								<outputText value="Adres"/>
+							</colHeader>
+							<outputText value="#{club.address}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Telefoon"/>
+							</colHeader>
+							<outputText value="#{club.phone}"/>
+						</column>
+						<column>
 							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen">
 								<param value="#{club.clubId}"/>
 							</commandButton>
@@ -36,9 +51,6 @@
 							</commandButton>
 						</column>
 					</dataTable>
-					<p>
-						<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
-					</p>
 				</form>
 			</div>
 		</div>

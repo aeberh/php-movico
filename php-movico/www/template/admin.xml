@@ -4,7 +4,7 @@
 	<css src="import.css"/>
 	<div id="gradient"></div>
 	<div id="wrapper">
-		<h1>T.T.C. Jevota</h1>
+		<h1>T.T.C. Jevota Lanaken</h1>
 		<form id="nav-form">
 			<ul id="nav">
 				<li><commandLink action="index" value="Home" link="true"/></li>

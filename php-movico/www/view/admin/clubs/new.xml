@@ -24,11 +24,11 @@
 						<inputText maxLength="100" id="club-address" value="#{ManageClubsBean.selected.address}"/>
 					</p>
 					<p>
-						<outputLabel for="club-distance" value="Afstand (in km)"/>
+						<outputLabel for="club-distance" value="Afstand in km (bv. 23)"/>
 						<inputText maxLength="3" id="club-distance" value="#{ManageClubsBean.selected.distance}"/>	
 					</p>
 					<p>
-						<outputLabel for="club-phone" value="Telefoonnummer"/>
+						<outputLabel for="club-phone" value="Telefoonnummer (bv. 089/71.61.34)"/>
 						<inputText maxLength="20" id="club-phone" value="#{ManageClubsBean.selected.phone}"/>	
 					</p>
 					<p>

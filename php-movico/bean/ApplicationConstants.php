@@ -2,7 +2,7 @@
 class ApplicationConstants extends ApplicationBean {
 	
 	const DAY_FORMAT = "%a";
-	const DATE_FORMAT = "%d/%m/%Y";
+	const DATE_FORMAT = "%d-%m-%Y";
 	const TIME_FORMAT = "%H:%M";
 	
 	public function getDayFormat() {

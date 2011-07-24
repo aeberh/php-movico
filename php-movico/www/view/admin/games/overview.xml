@@ -6,6 +6,9 @@
 			<h2>Wedstrijdbeheer - Overzicht</h2>
 			<div>
 				<form>
+					<p>
+						<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
+					</p>
 					<dataTable value="#{ManageGamesBean.games}" var="game">
 						<column>
 							<colHeader>
@@ -48,9 +51,6 @@
 							</commandButton>
 						</column>
 					</dataTable>
-					<p>
-						<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
-					</p>
 				</form>
 			</div>
 		</div>

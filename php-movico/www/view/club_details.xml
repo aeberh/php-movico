@@ -5,6 +5,9 @@
 		<div>
 			<h2><outputText value="#{ClubDetailsBean.club.name}"/></h2>
 			<div>
+				<p>
+					<outputText value="#{ClubDetailsBean.club.address}"/>
+				</p>
 				<googleMap address="#{ClubDetailsBean.club.address}" height="300" width="400" zoomLevel="12"/>
 			</div>
 		</div>
