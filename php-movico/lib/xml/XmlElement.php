@@ -28,6 +28,18 @@ class XmlElement {
 		return $this->getChildren($tagName)->size();
 	}
 	
+	public function getNbDescendants($tagName="*") {
+		$result = $this->getNbChildren($tagName);
+		foreach($this->getChildren() as $child) {
+			$result += $child->getNbDescendants($tagName);
+		}
+		return $result;
+	}
+	
+	public function hasChildren($tagName="*") {
+		return $this->getNbChildren($tagName) > 0;
+	}
+	
 	public function getAttributes() {
 		return $this->attributes;
 	}
@@ -49,6 +61,24 @@ class XmlElement {
 			}
 		}
 		return $result;
+	}
+	
+	public function asXml() {
+		$result = "<".$this->getName();
+		foreach($this->getAttributes() as $key=>$value) {
+			$result .= " $key=\"$value\"";
+		}
+		if(!$this->hasChildren() && !isset($this->text)) {
+			return $result."/>";
+		}
+		$result .= ">";
+		if(isset($this->text)) {
+			$result .= $this->text;
+		}
+		foreach($this->getChildren() as $child) {
+			$result .= $child->asXml();
+		}
+		return "$result</".$this->getName().">";
 	}
 	
 	public function setText(String $text) {

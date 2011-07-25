@@ -2,7 +2,9 @@
 class XmlTest extends UnitTestCase {
 	
 	function testXmlString() {
-		$file = XmlDocument::fromString(String::create("<root><element1 attribute1=\"value1\" attribute2=\"value2\"></element1><element2><child>bla</child></element2></root>"));
+		$xmlString = "<root><element1 attribute1=\"value1\" attribute2=\"value2\"/><element2><child>bla</child></element2></root>";
+		
+		$file = Singleton::create("DOMXmlFactory")->fromString(String::create($xmlString));
 		$this->assertEqual("root", $file->getRootElement()->getName());
 		$root = $file->getRootElement();
 		$this->assertEqual(2, $root->getNbChildren());
@@ -21,6 +23,9 @@ class XmlTest extends UnitTestCase {
 		$this->assertEqual("bla", $child->getText());
 		
 		$this->assertEqual("element2", $child->getParent()->getName());
+		
+		$this->assertEqual($xmlString, $root->asXml());
+		$this->assertEqual(1, $root->getNbDescendants("child"));
 	}
 	
 }

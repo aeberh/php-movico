@@ -70,7 +70,7 @@ class ServiceBuilder {
 	}
 
 	private function importEntities() {
-		$file = XmlDocument::fromFile("config/service.xml");
+		$file = Singleton::create("DOMXmlFactory")->fromFile("config/service.xml");
 		$root = $file->getRootElement();
 		$entityEls = $root->getChildren("entity");
 		
