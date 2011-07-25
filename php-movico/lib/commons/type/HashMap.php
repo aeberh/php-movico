@@ -41,6 +41,10 @@ class HashMap implements IteratorAggregate {
 		return $this->elements[$key];
 	}
 	
+	public function has($key) {
+		return !is_null($this->get($key));
+	}
+	
 	public function size() {
 		return count($this->elements);
 	}

@@ -1,41 +1,61 @@
 <?
 class ViewRenderer extends ApplicationBean {
 	
+	private $xmlFactory;
+	private $cacheEnabled;
+	
+	public function __construct() {
+		$this->xmlFactory = Singleton::create("DOMXmlFactory");
+		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
+	}
+	
 	public function render($view) {
-		$comp = $this->parseView($view);
+		$root = $this->getXmlElement($view);
+		$comp = $this->parseView($view, $root);
 		return $this->renderComponent($comp);
 	}
 	
-	private function parseView($view) {
-		$viewXml = "www/view/$view.xml";
-		if(!file_exists($viewXml)) {
+	private function getXmlElement($view) {
+		if($this->cacheEnabled && $this->getViewCache()->has($view)) {
+			return $this->getViewCache()->get($view);
+		}
+		$location = "www/view/$view.xml";
+		if(!file_exists($location)) {
 			throw new ViewNotExistsException($view);
 		}
-		$node = new SimpleXMLElement($viewXml, null, true);
-		if($node->getName() == "composition") {
-			$node = $this->parseTemplate($node);
+		$doc = $this->xmlFactory->fromFile($location);
+		$result = $doc->getRootElement();
+		while($result->getName() == "composition") {
+			$result = $this->parseTemplate($result);
 		}
-		$viewRoot = $this->parseNode($node);
+		if($this->cacheEnabled) {
+			$this->getViewCache()->put($view, $result);
+		}
+		return $result;
+	}
+	
+	private function parseView($view, XmlElement $root) {
+		$viewRoot = $this->parseNode($root);
 		$viewRoot->setPage($view);
 		return $viewRoot;
 	}
 		
-	private function parseNode(SimpleXMLElement $node) {
+	private function parseNode(XmlElement $node) {
 		$className = ucfirst($node->getName());
 		if(!class_exists($className)) {
-			$instance = new HtmlComponent($node->getName(), strval($node), $node->attributes());
+			$instance = new HtmlComponent($node->getName(), $node->getText(), $node->getAttributes());
 		} else {
 			if(!ClassUtil::isSubclassOf($className, "Component")) {
 				throw new ComponentNotExistsException($className);
 			}
 			$instance = new $className;
-			foreach($node->attributes() as $attrName=>$attrValue) {
+			foreach($node->getAttributes() as $attrName=>$attrValue) {
 				$setterName = "set".ucfirst($attrName);
 				$setter = new ReflectionMethod($instance, $setterName);
 				$setter->invoke($instance, (string)$attrValue);
 			}
 		}
-		foreach($node->children() as $child) {
+		foreach($node->getChildren() as $child) {
 			$instance->addChild($this->parseNode($child));
 		}
 		return $instance;
@@ -58,74 +78,40 @@ class ViewRenderer extends ApplicationBean {
 			"</script>";
 	}
 	
-	private function parseTemplate(SimpleXMLElement $composition) {
-		$template = $composition->attributes()->template;
+	private function parseTemplate(XmlElement $composition) {
+		$template = $composition->getAttribute("template");
 		$tplXml = "www/template/$template.xml";
 		if(!file_exists($tplXml)) {
 			throw new TemplateNotExistsException($template);
 		}
 		$replaces = array();
-//		foreach($composition->children() as $define) {
-//			$key = $define->attributes()->name;
-//			$replaces[(string)$key] = $this->getChildrenAsXml($define);
-//		}
-//		
-//		$tplNode = new SimpleXMLElement($tplXml, null, true);
-//		$viewNode = new SimpleXMLElement("<view></view>");
-//		
-//		$this->doParse($tplNode, $viewNode, $replaces);
-//		return $viewNode;
-//		
-//		$inserts = count($tplNode->xpath("//insert"));
-//		
-//		$result = $tplNode->asXml();
-//		for($i=0; $i<$inserts; $i++) {
-//			$result = StringUtil::replaceAssoc($result, $replaces);
-//		}
-//		
-//		$viewNode = new SimpleXMLElement($result);
-//		$viewNode->template = "view";
-//		return $viewNode;
-		foreach($composition->children() as $define) {
-			$key = "<insert name=\"{$define->attributes()->name}\"/>";
+		foreach($composition->getChildren() as $define) {
+			$key = "<insert name=\"{$define->getAttribute("name")}\"/>";
 			$replaces[$key] = $this->getChildrenAsXml($define);
 		}
 		
-		$tplNode = new SimpleXMLElement($tplXml, null, true);
+		$tplNode = $this->xmlFactory->fromFile($tplXml)->getRootElement();
 		$result = $tplNode->asXml();
 		$result = StringUtil::replaceWith($result, "<template>", "<view>");
 		$result = StringUtil::replaceWith($result, "</template>", "</view>");
 		
-		$inserts = count($tplNode->xpath("//insert"));
+		$inserts = $tplNode->getNbDescendants("insert");
 		for($i=0; $i<$inserts; $i++) {
 			$result = StringUtil::replaceAssoc($result, $replaces);
 		}
-		return new SimpleXMLElement($result);
+		return $this->xmlFactory->fromString($result)->getRootElement();
 	}
 	
-//	private function doParse(SimpleXMLElement $tplNode, SimpleXMLElement &$viewNode, $replaces, SimpleXMLElement &$result) {
-//		if($tplNode->getName() == "insert") {
-//			$contentXml = $replaces[(string)$tplNode->attributes()->name];
-//			$viewChild = new SimpleXMLElement($contentXml);
-//			$childNode = $result->addChild($viewChild->getName(), $contentXml);
-//		} else {
-////			$childNode = $viewNode;
-////			if($tplNode->getName() != "template") {
-////				$childNode = $viewNode->addChild($tplNode->getName());
-////			}
-//			$childNode = $result->addChild($tplNode->getName());
-//			foreach($tplNode->children() as $tplChild) {
-//				$this->doParse($tplChild, $childNode, $replaces, $result);
-//			}
-//		}
-//	}
-	
-	private function getChildrenAsXml(SimpleXMLElement $parent) {
+	private function getChildrenAsXml(XmlElement $parent) {
 		$result = "";
-		foreach($parent->children() as $child) {
+		foreach($parent->getChildren() as $child) {
 			$result .= $child->asXML();
 		}
 		return $result;
+	}
+	
+	private function getViewCache() {
+		return BeanLocator::get("ViewCache")->getCache();
 	}
 	
 }
