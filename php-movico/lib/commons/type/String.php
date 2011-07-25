@@ -166,6 +166,10 @@ class String implements IteratorAggregate {
 		}
 	}
 	
+	public function getPrimitive() {
+		return $this->string;
+	}
+	
 	public function __toString() {
 		return $this->string;
 	}

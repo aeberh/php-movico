@@ -57,6 +57,14 @@
 	value CDATA #REQUIRED
 >
 
+<!ELEMENT googleMap EMPTY>
+<!ATTLIST googleMap
+	address CDATA #REQUIRED
+	height CDATA #IMPLIED
+	width CDATA #IMPLIED
+	zoomLevel CDATA #IMPLIED
+>
+
 <!ELEMENT booleanCheckbox EMPTY>
 <!ATTLIST booleanCheckbox
 	value CDATA #REQUIRED
@@ -185,6 +193,7 @@
 	rendered CDATA #IMPLIED
 	id CDATA #IMPLIED
 	class CDATA #IMPLIED
+	columnClasses CDATA #IMPLIED
 >
 
 <!ELEMENT fileUpload ANY>

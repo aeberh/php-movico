@@ -68,8 +68,19 @@ class DataTable extends DataSeries {
 			$page = isset($this->rows) ? floor($i/$this->rows)+1 : 1;
 			$row = $rows[$i];
 			$result .= "<tr class=\"page p$page\">";
-			foreach($cols as $col) {
-				$result .= "<td>".$col->render($i)."</td>";
+			for($j=0; $j<count($cols); $j++) {
+				$col = $cols[$j];
+				$class = $this->getCurrentColumnClass($j);
+				$colClass = $col->getClass();
+				$classes = new ArrayList();
+				if(!empty($class)) {
+					$classes->add($class);
+				}
+				if(!empty($colClass)) {
+					$classes->add($colClass);
+				}
+				$classAttr = empty($classes) ? "" : " class=\"".$classes->join(",")."\"";
+				$result .= "<td$classAttr>".$col->render($i)."</td>";
 			}
 			$result .= "</tr>";
 		}

@@ -14,7 +14,7 @@ class OutputDate extends Component {
 
 	public function doRender($row=null) {
 		$date = $this->getConvertedValue($this->value, $row);
-		$format = empty($this->format) ? Date::DEFAULT_FORMAT : $this->format;
+		$format = empty($this->format) ? Date::DEFAULT_FORMAT : $this->getConvertedValue($this->format);
 		$value = $date->format($format);
 		return "<span>$value</span>";
 	}
