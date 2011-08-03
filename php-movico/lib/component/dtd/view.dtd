@@ -80,6 +80,11 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT inputDate EMPTY>
+<!ATTLIST inputDate
+	value CDATA #REQUIRED
+>
+
 <!ELEMENT inputHidden EMPTY>
 <!ATTLIST inputHidden 
 	value CDATA #REQUIRED

@@ -1,22 +1,33 @@
 <?php
 class InputDate extends Component {
 	
+	const DATE_TRANSFER_FORMAT = "%d-%m-%Y";
+	
 	private $value;
-	private $format;
 	
 	public function setValue($value) {
 		$this->value = $value;
 	}
 	
-	public function setFormat($format) {
-		$this->format = $format;
+	public function doRender($index=null) {
+		$name = $this->value;
+		$dateObj = $this->getConvertedValue($name, $index);
+		$day = intval($dateObj->format("%d"));
+		$month = intval($dateObj->format("%m"));
+		$year = intval($dateObj->format("%Y"));
+		$val = $dateObj->format(self::DATE_TRANSFER_FORMAT);
+		return $this->ascList("d", 1, 31, $day).$this->ascList("m", 1, 12, $month).$this->ascList("y", 2000, 2050, $year).
+			"<input type=\"hidden\" name=\"$name\" value=\"$val\"/>".
+			"<input type=\"hidden\" name=\"_type_$name\" value=\"Date\"/>";
 	}
 	
-	public function doRender($index=null) {
-		return "<input type=\"text\" id=\"".$this->id."\" name=\"".$this->value."\"/>".
-			"<input type=\"hidden\" name=\"_type_".$this->value."\" value=\"Date\"/>".
-			"<input type=\"hidden\" name=\"_format_".$this->value."\" value=\"".$this->format."\"/>".
-			"<script>$(\"#".$this->id."\").datepicker({dateFormat:'".$this->format."'});</script>";
+	private function ascList($name, $from, $to, $selected) {
+		$result = "<select name=\"{$this->id}_$name\">";
+		for($i=$from; $i<=$to; $i++) {
+			$sel = $i===$selected ? " selected=\"selected\"" : "";
+			$result .= "<option$sel>$i</option>";
+		}
+		return $result."</select>";
 	}
 	
 	public function getValidParents() {

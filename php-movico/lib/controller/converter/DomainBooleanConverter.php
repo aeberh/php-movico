@@ -5,9 +5,5 @@ class DomainBooleanConverter implements DomainConverter {
 		return String::create($strValue);
 	}
 	
-	public function fromDomtoView($objValue) {
-		return $objValue->__toString();
-	}
-	
 }
 ?>

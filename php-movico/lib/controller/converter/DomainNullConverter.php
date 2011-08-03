@@ -5,9 +5,5 @@ class DomainNullConverter implements DomainConverter {
 		return $value;
 	}
 	
-	public function fromDomtoView($objValue) {
-		return $objValue;
-	}
-	
 }
 ?>

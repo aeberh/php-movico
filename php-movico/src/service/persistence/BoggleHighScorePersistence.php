@@ -5,7 +5,7 @@ class BoggleHighScorePersistence extends Persistence {
 
 	public function findByLang($lang, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `lang`='$lang'ORDER BY `points` desc$limitStr");
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `lang`='".Singleton::create("NullConverter")->fromDOMtoDB($lang)."'ORDER BY `points` desc$limitStr");
 		return $this->getAsObjects($result->getResult());
 	}
 
