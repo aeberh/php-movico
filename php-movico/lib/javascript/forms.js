@@ -233,5 +233,5 @@ function doAjaxRequest(formObj, ajaxTimeout, redirect) {
 	});
 }
 function showLoading(status) {
-	$("img.AjaxLoading").attr("src", "lib/component/ajax/img/connect_"+status+".gif");
+	$("img.AjaxLoading").attr("status", status).attr("src", "lib/component/ajax/img/connect_"+status+".gif");
 }
