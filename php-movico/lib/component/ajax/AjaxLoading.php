@@ -10,7 +10,7 @@ class AjaxLoading extends Component {
 		$src = isset($this->src) ? $this->src : "loading.gif";
 		$form = $this->getFirstAncestorOfType("Form");
 		$id = $form->getId()."Loading";
-		return "<img src=\"lib/component/ajax/img/connect_idle.gif\" class=\"".self::CLASS_NAME."\"/>";
+		return "<img status=\"idle\" src=\"lib/component/ajax/img/connect_idle.gif\" class=\"".self::CLASS_NAME."\"/>";
 	}
 	
 	public function getValidParents() {

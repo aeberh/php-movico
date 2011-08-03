@@ -75,6 +75,10 @@ p, table {
 	top: -33px;
 }
 
+img[status="idle"] {
+	visibility: hidden;
+}
+
 #layout {
 	background: #fff;
 	border: 1px solid #ccc;

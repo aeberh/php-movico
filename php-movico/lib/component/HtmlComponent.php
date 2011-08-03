@@ -19,7 +19,7 @@ class HtmlComponent extends Component {
 	public function doRender($row=null) {
 		$tag = $this->tagName;
 		$result = "<$tag".$this->getExpandedAttrs();
-		if(empty($this->children) && empty($this->text) && $tag !== "div") {
+		if(empty($this->children) && empty($this->text) && $tag != "div") {
 			return "$result/>";
 		}
 		$result .= ">";

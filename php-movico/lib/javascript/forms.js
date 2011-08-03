@@ -8,7 +8,28 @@ function startupActions(ajaxTime) {
 	setupTimers(ajaxTime);
 	setupPagination();
 	setSelectedLink();
+	initDates();
 	initMaps();
+}
+
+// Initialize Date components
+function initDates() {
+	$("input[name^=_type][value=Date]").each(function() {
+		var valueEl = $(this).prev();
+		var yearEl = valueEl.prev();
+		var monthEl = yearEl.prev();
+		var dayEl = monthEl.prev();
+		updateVal();
+		var updateValFunc = function() {
+			updateVal();
+		}
+		dayEl.change(updateValFunc);
+		monthEl.change(updateValFunc);
+		yearEl.change(updateValFunc);
+		function updateVal() {
+			valueEl.val(dayEl.val()+"-"+monthEl.val()+"-"+yearEl.val());
+		}
+	});
 }
 
 // Initialize Google Maps
@@ -212,5 +233,5 @@ function doAjaxRequest(formObj, ajaxTimeout, redirect) {
 	});
 }
 function showLoading(status) {
-	$("img.AjaxLoading").attr("src", "lib/component/ajax/img/connect_"+status+".gif");
+	$("img.AjaxLoading").attr("status", status).attr("src", "lib/component/ajax/img/connect_"+status+".gif");
 }
