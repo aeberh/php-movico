@@ -10,7 +10,7 @@ class InputTextArea extends Component {
 	public function doRender($index=null) {
 		$name = $this->value;
 		$val = $this->getConvertedValue($name, $index);
-		return "<textarea id=\"".$this->id."\" name=\"$name\">$val</textarea>";
+		return "<textarea id=\"".$this->id."\" class=\"".$this->class."\" name=\"$name\">$val</textarea>";
 	}
 	
 	public function getValidParents() {

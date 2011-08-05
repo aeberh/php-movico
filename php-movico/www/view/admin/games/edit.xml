@@ -8,14 +8,28 @@
 				<form>
 					<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
 					<p>
+						<outputLabel for="date" value="Datum (dd-mm-yyyy)"/>
+						<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
+					</p>
+					<p>
+						<outputLabel for="home" value="Thuisploeg"/>
+						<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
+						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+					</p>
+					<p>
+						<outputLabel for="out" value="Uitploeg"/>
+						<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
+						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+					</p>
+					<p>
 						<outputLabel for="score" value="Score"/>
-						<inputText value="#{ManageGamesBean.selected.homeTeamPts}"/>
+						<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.homeTeamPts}"/>
 						<outputText value=" - "/>
-						<inputText value="#{ManageGamesBean.selected.outTeamPts}"/>
+						<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.outTeamPts}"/>
 					</p>
 					<p>
 						<outputLabel for="review" value="Review"/>
-						<inputTextArea value="#{ManageGamesBean.selected.review}"/>
+						<inputTextArea class="game-admin-review" value="#{ManageGamesBean.selected.review}"/>
 					</p>
 					<p>
 						<commandButton action="#{ManageGamesBean.save}" value="Opslaan"/>

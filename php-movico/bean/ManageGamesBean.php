@@ -22,8 +22,7 @@ class ManageGamesBean extends RequestBean {
 	// Action methods
 	
 	public function create() {
-		$date = Date::fromString($this->date.$this->time, ApplicationConstants::DATE_FORMAT.ApplicationConstants::TIME_FORMAT);
-		PingpongGameServiceUtil::create($date, $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo);
+		PingpongGameServiceUtil::create($this->selected->getDate(), $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo);
 		return "admin/games/overview";
 	}
 	
@@ -35,11 +34,16 @@ class ManageGamesBean extends RequestBean {
 	
 	public function edit($gameId) {
 		$this->selected = PingpongGameServiceUtil::getPingpongGame($gameId);
+		$this->homeClubId = $this->selected->getHomeTeam()->getClubId();
+		$this->homeTeamNo = $this->selected->getHomeTeam()->getTeamNo();
+		$this->outClubId = $this->selected->getOutTeam()->getClubId();
+		$this->outTeamNo = $this->selected->getOutTeam()->getTeamNo();
 		return "admin/games/edit";
 	}
 	
 	public function save() {
-		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
+		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getDate(), $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo,
+			$this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
 		MessageUtil::info("Wedstrijd werd succesvol aangepast!");
 		return "admin/games/overview";
 	}
@@ -68,22 +72,6 @@ class ManageGamesBean extends RequestBean {
 	}
 	
 	// Field getters and setters
-	
-	public function getDate() {
-		return $this->date;
-	}
-	
-	public function setDate($date) {
-		$this->date = $date;
-	}
-	
-	public function getTime() {
-		return $this->time;
-	}
-	
-	public function setTime($time) {
-		$this->time = $time;
-	}
 	
 	public function getHomeClubId() {
 		return $this->homeClubId;
@@ -115,30 +103,6 @@ class ManageGamesBean extends RequestBean {
 	
 	public function setOutTeamNo($outTeamNo) {
 		$this->outTeamNo = $outTeamNo;
-	}
-	
-	public function getHomeTeamPts() {
-		return $this->homeTeamPts;
-	}
-	
-	public function setHomeTeamPts() {
-		$this->homeTeamPts = $homeTeamPts;
-	}
-	
-	public function getOutTeamPts() {
-		return $this->outTeamPts;
-	}
-	
-	public function setOutTeamPts($outTeamPts) {
-		$this->outTeamPts = $outTeamPts;
-	}
-	
-	public function getReview() {
-		return $this->review;
-	}
-	
-	public function setReview($review) {
-		$this->review = $review;
 	}
 	
 }

@@ -90,6 +90,9 @@ img[status="idle"] {
 	clear: both;
 }
 
+.left {
+	float: left;
+}
 
 #logo {
 	position: absolute;

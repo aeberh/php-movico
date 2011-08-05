@@ -12,10 +12,16 @@ class ManageClubsBean extends RequestBean {
 	}
 	
 	public function create() {
-		PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getShortName(), $this->selected->getName(), $this->selected->getAddress(),
-			$this->selected->getDistance(), $this->selected->getPhone());
-		MessageUtil::info("Club werd succesvol toegevoegd!");
-		return "admin/clubs/overview";
+		try {
+			PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getShortName(),
+				$this->selected->getName(), $this->selected->getBuilding(), $this->selected->getStreet(), 
+				$this->selected->getPlace(), $this->selected->getDistance(), $this->selected->getPhone());
+			MessageUtil::info("Club werd succesvol toegevoegd!");
+			return "admin/clubs/overview";
+		} catch(RequiredInformationException $e) {
+			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
+			return null;
+		}
 	}
 	
 	public function edit($clubId) {
@@ -24,10 +30,16 @@ class ManageClubsBean extends RequestBean {
 	}
 	
 	public function save() {
-		PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getNumber(), $this->selected->getShortName(), $this->selected->getName(), $this->selected->getAddress(),
-			$this->selected->getDistance(), $this->selected->getPhone());
-		MessageUtil::info("Club werd succesvol aangepast!");
-		return "admin/clubs/overview";
+		try {
+			PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getNumber(), 
+				$this->selected->getShortName(), $this->selected->getName(), $this->selected->getBuilding(), $this->selected->getStreet(), 
+				$this->selected->getPlace(), $this->selected->getDistance(), $this->selected->getPhone());
+			MessageUtil::info("Club werd succesvol aangepast!");
+			return "admin/clubs/overview";
+		} catch(RequiredInformationException $e) {
+			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
+			return null;
+		}
 	}
 	
 	public function delete($clubId) {

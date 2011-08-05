@@ -16,9 +16,11 @@ function startupActions(ajaxTime) {
 function initDates() {
 	$("input[name^=_type][value=Date]").each(function() {
 		var valueEl = $(this).prev();
-		var yearEl = valueEl.prev();
-		var monthEl = yearEl.prev();
-		var dayEl = monthEl.prev();
+		var dayEl = $(this).next("select");
+		var monthEl = dayEl.next("select");
+		var yearEl = monthEl.next("select");
+		var hourEl = yearEl.next("select");
+		var minEl = hourEl.next("select");
 		updateVal();
 		var updateValFunc = function() {
 			updateVal();
@@ -26,8 +28,13 @@ function initDates() {
 		dayEl.change(updateValFunc);
 		monthEl.change(updateValFunc);
 		yearEl.change(updateValFunc);
+		hourEl.change(updateValFunc);
+		minEl.change(updateValFunc);
 		function updateVal() {
-			valueEl.val(dayEl.val()+"-"+monthEl.val()+"-"+yearEl.val());
+			valueEl.val(dayEl.val()+"-"+monthEl.val()+"-"+yearEl.val()+" "+getVal(hourEl)+":"+getVal(minEl));
+		}
+		function getVal(el) {
+			return typeof(el.val()) === "undefined" ? "0" : el.val();
 		}
 	});
 }

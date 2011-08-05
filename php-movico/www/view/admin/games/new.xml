@@ -8,11 +8,7 @@
 				<form>
 					<p>
 						<outputLabel for="date" value="Datum (dd-mm-yyyy)"/>
-						<inputText id="date" value="#{ManageGamesBean.date}" autoFocus="true"/>
-					</p>
-					<p>
-						<outputLabel for="time" value="Tijd (hh:mm)"/>
-						<inputText id="time" value="#{ManageGamesBean.time}"/>
+						<inputDate value="#{ManageGamesBean.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
 					</p>
 					<p>
 						<outputLabel for="home" value="Thuisploeg"/>

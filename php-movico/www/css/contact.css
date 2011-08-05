@@ -1,8 +1,8 @@
-#address span, #contact span {
+.club-address span, .club-contact span {
 	display: block;
 }
 
-#contact span:first-letter {
+.club-contact span:first-letter {
 	font-weight: bold;
 }
 

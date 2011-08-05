@@ -41,14 +41,34 @@ abstract class PingpongClubModel extends Model {
 		$this->name = $name;
 	}
 
-	private $address;
+	private $building;
 
-	public function getAddress() {
-		return $this->address;
+	public function getBuilding() {
+		return $this->building;
 	}
 
-	public function setAddress($address) {
-		$this->address = $address;
+	public function setBuilding($building) {
+		$this->building = $building;
+	}
+
+	private $street;
+
+	public function getStreet() {
+		return $this->street;
+	}
+
+	public function setStreet($street) {
+		$this->street = $street;
+	}
+
+	private $place;
+
+	public function getPlace() {
+		return $this->place;
+	}
+
+	public function setPlace($place) {
+		$this->place = $place;
 	}
 
 	private $distance;

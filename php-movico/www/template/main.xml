@@ -60,12 +60,12 @@
 						<div>
 							<h2>Contact</h2>
 							<div>
-								<p id="address">
+								<p class="club-address">
 									<span>T.T.C. Jevota Lanaken</span>
 									<span>Biesweg 16</span>
 									<span>3620 Gellik</span>
 								</p>
-								<p id="contact">
+								<p class="club-contact">
 									<span>T 089/71.45.35</span>
 									<span>E info@jevota.be</span>
 								</p>

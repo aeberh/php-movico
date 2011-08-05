@@ -13,6 +13,18 @@ class PingpongClub extends PingpongClubModel {
 		return PingpongTeamServiceUtil::findByClub($this->getClubId());
 	}
 	
+	public function isHasBuilding() {
+		return !String::create($this->getBuilding())->trim()->isEmpty();
+	}
+	
+	public function isHasPhone() {
+		return !String::create($this->getPhone())->trim()->isEmpty();
+	}
+	
+	public function getAddress() {
+		return $this->getStreet().", ".$this->getPlace();
+	}
+	
 	public function getGames() {
 		$result = array();
 		foreach($this->getTeams() as $team) {

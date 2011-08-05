@@ -28,19 +28,19 @@
 							</commandLink>
 							<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
 						</column>
-						<column class="game-home-team-pts"/>
+						<column class="game-home-team-pts"><span></span></column>
 						<column class="game-dash">
 							<outputText value="-"/>
 						</column>
-						<column class="game-out-team-pts"/>
+						<column class="game-out-team-pts"><span></span></column>
 						<column class="game-out-team">
 							<commandLink action="#{ClubDetailsBean.showDetails}" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 								<param value="#{game.outTeam.clubId}"/>
 							</commandLink>
 							<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
 						</column>
-						<column class="game-review"/>
-						<column class="game-travel"/>
+						<column class="game-review"><span></span></column>
+						<column class="game-travel"><span></span></column>
 					</dataTable>
 				</form>
 			</div>

@@ -9,8 +9,8 @@ class PingpongGameServiceUtil {
 		return self::getService()->delete($game);
 	}
 
-	public static function update($gameId, $homeTeamPts, $outTeamPts, $review) {
-		return self::getService()->update($gameId, $homeTeamPts, $outTeamPts, $review);
+	public static function update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review) {
+		return self::getService()->update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review);
 	}
 
 	public static function getFirstUpcomingGames() {

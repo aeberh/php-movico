@@ -35,6 +35,19 @@ input#club-phone {
 	width: 130px;
 }
 
-input#club-address {
-	width: 250px;
+input#club-street {
+	width: 200px;
+}
+
+input#club-place {
+	width: 150px;
+}
+
+input.game-admin-pts {
+	width: 30px;
+}
+
+textarea.game-admin-review {
+	width: 300px;
+	height: 100px;
 }

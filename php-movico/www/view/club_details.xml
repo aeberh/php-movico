@@ -3,10 +3,16 @@
 <composition template="main">
 	<define name="body">
 		<div>
-			<h2><outputText value="#{ClubDetailsBean.club.name}"/></h2>
+			<h2><outputText value="#{ClubDetailsBean.club.shortName}"/></h2>
 			<div>
-				<p>
-					<outputText value="#{ClubDetailsBean.club.address}"/>
+				<p class="club-address">
+					<outputText value="#{ClubDetailsBean.club.name} (#{ClubDetailsBean.club.fullNumber})"/>
+					<outputText value="#{ClubDetailsBean.club.building}" rendered="#{ClubDetailsBean.club.hasBuilding}"/>
+					<outputText value="#{ClubDetailsBean.club.street}"/>
+					<outputText value="#{ClubDetailsBean.club.place}"/>
+				</p>
+				<p class="club-contact">
+					<outputText value="T #{ClubDetailsBean.club.phone}" rendered="#{ClubDetailsBean.club.hasPhone}"/>
 				</p>
 				<googleMap address="#{ClubDetailsBean.club.address}" height="300" width="400" zoomLevel="12"/>
 			</div>

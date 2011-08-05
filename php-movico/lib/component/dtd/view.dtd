@@ -63,6 +63,7 @@
 	height CDATA #IMPLIED
 	width CDATA #IMPLIED
 	zoomLevel CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT booleanCheckbox EMPTY>
@@ -83,6 +84,11 @@
 <!ELEMENT inputDate EMPTY>
 <!ATTLIST inputDate
 	value CDATA #REQUIRED
+	showTime CDATA #IMPLIED
+	id CDATA #IMPLIED
+	yearStart CDATA #IMPLIED
+	yearEnd CDATA #IMPLIED
+	minutesInterval CDATA #IMPLIED
 >
 
 <!ELEMENT inputHidden EMPTY>

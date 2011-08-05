@@ -25,6 +25,34 @@ class Date {
 		return strftime($format, $this->time);
 	}
 	
+	public function getDay() {
+		return $this->getIntField("%d");
+	}
+	
+	public function getMonth() {
+		return $this->getIntField("%m");
+	}
+	
+	public function getYear() {
+		return $this->getIntField("%Y");
+	}
+	
+	public function getHour() {
+		return $this->getIntField("%H");
+	}
+	
+	public function getMinutes() {
+		return $this->getIntField("%M");
+	}
+	
+	public function getSeconds() {
+		return $this->getIntField("%S");
+	}
+	
+	private function getIntField($char) {
+		return intval($this->format($char));
+	}
+	
 	public function __toString() {
 		return $this->format();
 	}
