@@ -24,20 +24,20 @@
 						<inputText maxLength="30" id="club-building" value="#{ManageClubsBean.selected.building}"/>
 					</p>
 					<p>
-						<outputLabel for="club-street" value="Straat (bv. Groenstraat 20)"/>
-						<inputText maxLength="70" id="club-street" value="#{ManageClubsBean.selected.street}"/>
+						<outputLabel for="street" value="Straat (bv. Groenstraat 20)"/>
+						<inputText maxLength="70" id="street" value="#{ManageClubsBean.selected.street}"/>
 					</p>
 					<p>
-						<outputLabel for="club-place" value="Plaats (bv. 3650 Dilsen-Stokkem)"/>
-						<inputText maxLength="30" id="club-place" value="#{ManageClubsBean.selected.place}"/>
+						<outputLabel for="place" value="Plaats (bv. 3650 Dilsen-Stokkem)"/>
+						<inputText maxLength="30" id="place" value="#{ManageClubsBean.selected.place}"/>
 					</p>
 					<p>
 						<outputLabel for="club-distance" value="Afstand in km (bv. 23)"/>
 						<inputText maxLength="3" id="club-distance" value="#{ManageClubsBean.selected.distance}"/>	
 					</p>
 					<p>
-						<outputLabel for="club-phone" value="Telefoonnummer (bv. 089/71.61.34)"/>
-						<inputText maxLength="20" id="club-phone" value="#{ManageClubsBean.selected.phone}"/>	
+						<outputLabel for="phone" value="Telefoonnummer (bv. 089/71.61.34)"/>
+						<inputText maxLength="20" id="phone" value="#{ManageClubsBean.selected.phone}"/>	
 					</p>
 					<p>
 						<commandButton action="#{ManageClubsBean.create}" value="Opslaan"/>

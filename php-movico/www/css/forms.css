@@ -11,7 +11,7 @@ label {
 	display: block;
 }
 
-#email, #pass {
+#login-email, #login-pass {
 	width: 100%;
 }
 
@@ -31,15 +31,27 @@ input#club-distance {
 	width: 30px;
 }
 
-input#club-phone {
+input#phone {
 	width: 130px;
 }
 
-input#club-street {
+input#street {
 	width: 200px;
 }
 
-input#club-place {
+input#place {
+	width: 150px;
+}
+
+input#player-memberNo {
+	width: 50px;
+}
+
+input#player-startYear {
+	width: 40px;
+}
+
+input#email {
 	width: 150px;
 }
 

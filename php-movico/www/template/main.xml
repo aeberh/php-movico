@@ -33,12 +33,12 @@
 							<div>
 								<form rendered="#{!LoginBean.loggedIn}">
 									<p>
-										<outputLabel for="email" value="E-mailadres"/>
-										<inputText id="email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
+										<outputLabel for="login-email" value="E-mailadres"/>
+										<inputText id="login-email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
 									</p>
 									<p>
-										<outputLabel for="pass" value="Wachtwoord"/>
-										<inputSecret id="pass" value="#{LoginBean.password}"/>
+										<outputLabel for="login-pass" value="Wachtwoord"/>
+										<inputSecret id="login-pass" value="#{LoginBean.password}"/>
 									</p>
 									<p>
 										<commandButton action="#{LoginBean.login}" value="Inloggen"/>
@@ -48,7 +48,7 @@
 									<p><outputText value="Welkom, #{LoginBean.account.emailAddress}"/></p>
 									<panelGroup rendered="#{LoginBean.admin}">
 										<p>
-											<commandLink action="admin/clubs/overview" value="Controlepaneel"/>
+											<commandLink action="admin/clubs/overview" value="Controlepaneel" link="true"/>
 										</p>
 									</panelGroup>
 									<p>

@@ -8,6 +8,16 @@
 	float: left;
 }
 
+.col.very-small {
+	width: 15%;
+	float: left;
+}
+
+.col.very-wide {
+	width: 85%;
+	float: left;
+}
+
 .col > div:not(.msg) {
 	margin: 15px;
 	margin-left: 0;

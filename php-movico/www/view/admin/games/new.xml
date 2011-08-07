@@ -13,12 +13,12 @@
 					<p>
 						<outputLabel for="home" value="Thuisploeg"/>
 						<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
 					</p>
 					<p>
 						<outputLabel for="out" value="Uitploeg"/>
 						<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ManageGamesBean.teamNos}"/>
+						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
 					</p>
 					<p>
 						<commandButton action="#{ManageGamesBean.create}" value="Opslaan"/>

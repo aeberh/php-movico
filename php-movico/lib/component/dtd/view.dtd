@@ -150,6 +150,7 @@
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
 	action CDATA #IMPLIED
+	id CDATA #IMPLIED
 	class CDATA #IMPLIED
 >
 

@@ -54,14 +54,6 @@ class ManageGamesBean extends RequestBean {
 		return PingpongGameServiceUtil::getPingpongGames();
 	}
 	
-	public function getTeamNos() {
-		return ArrayUtil::makeAssociative(
-			array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
-			"REC A", "REC B", "REC C", "REC D", "REC E", "REC F",
-			"REC G", "REC H", "REC I", "REC J")
-		);
-	}
-	
 	public function getClubs() {
 		$clubs = PingpongClubServiceUtil::getPingpongClubs();
 		return ArrayUtil::toIndexedArray($clubs, "clubId", "name");

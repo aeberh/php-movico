@@ -9,6 +9,20 @@
 			<finder-column name="emailAddress"/>
 		</finder>
 	</entity>
+	<entity name="PingpongPlayer">
+		<column name="playerId" type="int" primary="true" auto-increment="true"/>
+		<column name="firstName" type="String" size="20"/>
+		<column name="lastName" type="String" size="30"/>
+		<column name="street" type="String" size="70"/>
+		<column name="place" type="String" size="30"/>
+		<column name="memberNo" type="int"/>
+		<column name="startYear" type="int"/>
+		<column name="ranking" type="String" size="2"/>
+		<column name="phone" type="String" size="20"/>
+		<column name="emailAddress" type="String" size="30"/>
+		<column name="recreation" type="boolean"/>
+		<column name="active" type="boolean"/>
+	</entity>
 	<entity name="PingpongClub">
 		<column name="clubId" type="int" primary="true" auto-increment="true"/>
 		<column name="number" type="String" size="3"/>

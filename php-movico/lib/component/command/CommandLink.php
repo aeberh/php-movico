@@ -1,6 +1,12 @@
 <?
 class CommandLink extends AbstractCommand {
 	
+	private $selectedPrefix;
+	
+	public function setSelectedPrefix($selectedPrefix) {
+		$this->selectedPrefix = $selectedPrefix;
+	}
+	
 	public function doRender($index=null) {
 		$formId = $this->getFirstAncestorOfType("Form")->getId();
 		$onclick = "var formEl=document.getElementById('$formId');formEl.ACTION.value='".$this->action."';";
@@ -16,7 +22,8 @@ class CommandLink extends AbstractCommand {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
 		}
-		return "<a href=\"{$this->getHref()}\" onclick=\"$onclick\">".$this->getConvertedValue($this->value, $index)."</a>".$this->renderParams($index);
+		$selPrefix = empty($this->selectedPrefix) ? "" : " selectedPrefix=\"".$this->selectedPrefix."\"";
+		return "<a href=\"{$this->getHref()}\"$selPrefix onclick=\"$onclick\">".$this->getConvertedValue($this->value, $index)."</a>".$this->renderParams($index);
 	}
 
 }

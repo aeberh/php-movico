@@ -191,6 +191,12 @@ function setSelectedLink() {
 		return;
 	}
 	$("a[href='"+hash+"']").addClass("selected");
+	$("a[selectedPrefix]").each(function() {
+		var prefix = $(this).attr("selectedPrefix");
+		if(prefix != "" && hash.indexOf("#"+prefix) == 0) {
+			$(this).addClass("selected");
+		}
+	});
 }
 
 // AJAX

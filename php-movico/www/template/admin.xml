@@ -9,7 +9,7 @@
 			<ul id="nav">
 				<li><commandLink action="index" value="Home" link="true"/></li>
 				<panelGroup rendered="#{LoginBean.admin}">
-					<li><commandLink action="admin/clubs/overview" value="Admin" link="true"/></li>
+					<li><commandLink action="admin/clubs/overview" value="Admin" link="true" selectedPrefix="admin"/></li>
 				</panelGroup>
 			</ul>
 			<ajaxLoading/>
@@ -18,15 +18,16 @@
 		<div id="border-main">
 			<div id="main">
 				<div id="layout">
-					<div class="col small">
+					<div class="col very-small">
 						<form>
 							<ul>
-								<li><commandLink action="admin/clubs/overview" value="Clubbeheer" link="true"/></li>
-								<li><commandLink action="admin/games/overview" value="Wedstrijdbeheer" link="true"/></li>
+								<li><commandLink action="admin/players/overview" value="Spelers" link="true"/></li>
+								<li><commandLink action="admin/clubs/overview" value="Clubs" link="true"/></li>
+								<li><commandLink action="admin/games/overview" value="Wedstrijden" link="true"/></li>
 							</ul>
 						</form>
 					</div>
-					<div class="col wide">
+					<div class="col very-wide">
 						<message/>
 						<insert name="body"/>
 					</div>
