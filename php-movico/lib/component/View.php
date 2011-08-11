@@ -9,9 +9,9 @@ class View extends Component {
 	}
 	
 	public function doRender($index=null) {
-		$ajax = Singleton::create("Settings")->isAjaxEnabled();
-		$gmapsApiKey = Singleton::create("Settings")->getGmapsApiKey();
-		$context = Singleton::create("Settings")->getContextPath();
+		$ajax = parent::$settings->isAjaxEnabled();
+		$gmapsApiKey = parent::$settings->getGmapsApiKey();
+		$context = parent::$settings->getContextPath();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
@@ -21,25 +21,22 @@ class View extends Component {
 			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/357c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
 			"$(function() {";
-		$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();
+		$ajaxTimeout = parent::$settings->getAjaxTimeout();
+		$ctx = parent::$settings->getContextPath();
 		if($ajax) {
-			$result .= "registerForms('$ajaxTimeout');";
+			$result .= "registerForms('$ajaxTimeout', '$ctx');";
 		}
 		$result .= "
-				checkRedirect('$ajaxTimeout');
-				startupActions(0);
-				fixUrl();
+				startupActions(true);
 				unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();
-		$result .= "\t</head>\n\t<body view=\"".$context."/".$this->url."\">\n\n";
-		$result .= $this->renderBodyChildren();
-		$result .= "\n{$this->renderRedirectForm()}";
+		$result .= "\t</head>\n\t<body>\n\n".$this->renderBodyChildren();
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}
-		return $result."\t</body>\n</html>";
+		return $result."\t</body></html>";
 	}
 	
 	private function renderHeadChildren() {
@@ -47,14 +44,8 @@ class View extends Component {
 	}
 	
 	public function renderBodyChildren() {
-		return $this->renderChildren(array(), array("Css", "Js"));
-	}
-	
-	private function renderRedirectForm() {
-		return "<form id=\"RedirectForm\" action=\"#\" method=\"post\" style=\"display:none\">".
-			"<input type=\"hidden\" name=\"REDIRECT\" value=\"\">".
-			"<button type=\"Submit\">Dummy</button>".
-			"</form>";
+		return $this->renderChildren(array(), array("Css", "Js")).
+			"<span style=\"display:none\" id=\"MovicoView\">".parent::$settings->getContextPath()."/".$this->url."</span>";
 	}
 	
 	private function renderIframeReplace() {

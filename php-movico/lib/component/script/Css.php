@@ -10,7 +10,7 @@ class Css extends Component {
 	}
 	
 	public function doRender($index=null) {
-		$context = Singleton::create("Settings")->getContextPath();
+		$context = parent::$settings->getContextPath();
 		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$context."/".self::PATH.$this->src."\">";
 	}
 	

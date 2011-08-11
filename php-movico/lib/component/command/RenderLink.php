@@ -13,7 +13,7 @@ class RenderLink extends Component {
 	}
 	
 	public function doRender($rowIndex=null) {
-		$context = Singleton::create("Settings")->getContextPath();
+		$context = parent::$settings->getContextPath();
 		$view = $this->getConvertedValue($this->view, $rowIndex);
 		$value = $this->getConvertedValue($this->value, $rowIndex);
 		$params = new ArrayList("String");
@@ -24,7 +24,7 @@ class RenderLink extends Component {
 		if(!$params->isEmpty()) {
 			$url .= ViewForward::URL_DELIMITER.$params->join("/")->getPrimitive();
 		}
-		return "<a href=\"{$context}/{$url}\">$value</a>";
+		return "<a class=\"RenderLink\" href=\"{$context}/{$url}\">$value</a>";
 	}
 	
 	public function getValidParents() {

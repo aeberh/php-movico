@@ -5,7 +5,7 @@ class Form extends Component {
 		$isFileUpload = $this->hasDescendantOfType("FileUpload");
 		$enctype = $isFileUpload ? "multipart/form-data" : "application/x-www-form-urlencoded";
 		$target = $isFileUpload ? "fileUpload".$this->id : "_self";
-		$context = Singleton::create("Settings")->getContextPath()."/index.php";
+		$context = parent::$settings->getContextPath()."/index.php";
 		$action = $isFileUpload ? "$context?upload=1" : $context;
 		$result = "<form enctype=\"$enctype\" name=\"form".$this->id."\" id=\"".$this->id."\" method=\"post\" action=\"$action\" target=\"$target\">";
 		$result .= $this->renderChildren();

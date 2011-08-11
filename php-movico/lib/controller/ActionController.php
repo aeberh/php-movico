@@ -12,7 +12,8 @@ class ActionController {
 		
 		$req = new MovicoRequest($get, $post, $files);
 		if($req->isRenderUrl()) {
-			$url = $req->getUrl();
+			$renderUrl = $req->getUrl();
+			$url = empty($renderUrl) ? $url : $renderUrl;
 		} elseif($req->isActionUrl()) {
 			$url = $req->getPreviousUrl();
 			$this->updateModel($req);

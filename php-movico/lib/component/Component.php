@@ -6,10 +6,15 @@ abstract class Component {
 	protected $id;
 	protected $class;
 	
+	protected static $settings = null;
+	
 	protected $rendered = "true";
 	
 	public function __construct() {
 		$this->id = rand(100000, 999999);
+		if(is_null(self::$settings)) {
+			self::$settings = Singleton::create("Settings");
+		}
 	}
 	
 	public function addChild(Component $component) {
