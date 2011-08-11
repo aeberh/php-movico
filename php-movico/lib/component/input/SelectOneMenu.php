@@ -13,7 +13,7 @@ class SelectOneMenu extends Component {
 		$name = $this->value;
 		$val = $this->getConvertedValue($name, $rowIndex);
 		$buttonId = rand(10000, 99999);
-		$onchange = isset($this->action) ? " onchange=\"this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
+		$onchange = isset($this->action) ? " onchange=\"this.form.".MovicoRequest::ACTION.".value='".$this->action."';$('#$buttonId').click();\"" : "";
 		$result = "<select id=\"".$this->id."\" name=\"$name\"$onchange>";
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {

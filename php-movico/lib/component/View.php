@@ -2,45 +2,41 @@
 class View extends Component {
 	
 	private $title;
-	private $page;
-	
-	const DEFAULT_VIEW = "index";
+	private $url;
 	
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 	
 	public function doRender($index=null) {
-		$ajax = Singleton::create("Settings")->isAjaxEnabled();
-		$gmapsApiKey = Singleton::create("Settings")->getGmapsApiKey();
+		$ajax = parent::$settings->isAjaxEnabled();
+		$gmapsApiKey = parent::$settings->getGmapsApiKey();
+		$context = parent::$settings->getContextPath();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
-			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.6.1.min.js\"></script>".
-			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
-			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>".
+			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>".
 			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
 			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/357c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
 			"$(function() {";
-		$ajaxTimeout = Singleton::create("Settings")->getAjaxTimeout();
+		$ajaxTimeout = parent::$settings->getAjaxTimeout();
+		$ctx = parent::$settings->getContextPath();
 		if($ajax) {
-			$result .= "registerForms('$ajaxTimeout');";
+			$result .= "registerForms('$ajaxTimeout', '$ctx');";
 		}
 		$result .= "
-				checkRedirect('$ajaxTimeout');
-				startupActions(0);
-				setHash();
+				startupActions('$ctx', true);
 				unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();
-		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
-		$result .= "\t</head>\n\t<body$view>\n\n";
-		$result .= $this->renderBodyChildren();
-		$result .= "\n{$this->renderRedirectForm()}";
+		$result .= "\t</head>\n\t<body>\n\n".$this->renderBodyChildren();
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}
-		return $result."\t</body>\n</html>";
+		return $result."\t</body></html>";
 	}
 	
 	private function renderHeadChildren() {
@@ -48,14 +44,8 @@ class View extends Component {
 	}
 	
 	public function renderBodyChildren() {
-		return $this->renderChildren(array(), array("Css", "Js"));
-	}
-	
-	private function renderRedirectForm() {
-		return "<form id=\"RedirectForm\" action=\"#\" method=\"post\" style=\"display:none\">".
-			"<input type=\"hidden\" name=\"REDIRECT\" value=\"\">".
-			"<button type=\"Submit\">Dummy</button>".
-			"</form>";
+		return $this->renderChildren(array(), array("Css", "Js")).
+			"<span style=\"display:none\" id=\"MovicoView\">".parent::$settings->getContextPath()."/".$this->url."</span>";
 	}
 	
 	private function renderIframeReplace() {
@@ -68,12 +58,12 @@ class View extends Component {
 		return array();
 	}
 	
-	public function setPage($page) {
-		$this->page = $page;
+	public function setUrl($url) {
+		$this->url = $url;
 	}
 	
-	public function getPage() {
-		return $this->page;
+	public function getUrl() {
+		return $this->url;
 	}
 	
 }

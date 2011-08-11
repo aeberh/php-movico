@@ -1,8 +1,6 @@
 <?
 class DataTable extends DataSeries {
 	
-	const DATATABLE_ROW = "DATATABLE_ROW";
-	
 	/*
 	 * <dataTable value="#{Bean.rows}" var="row" rows="10"
 	 */
@@ -17,7 +15,7 @@ class DataTable extends DataSeries {
 			$result .= $this->renderPagination();
 		}
 		if($this->hasAnchestorOfType("Form")) {
-			$result .= "<input type=\"hidden\" name=\"".self::DATATABLE_ROW."\"/>";
+			$result .= "<input type=\"hidden\" name=\"".MovicoRequest::ROW_INDEX."\"/>";
 		}
 		return "$result</div>";
 	}

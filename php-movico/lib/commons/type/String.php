@@ -15,6 +15,18 @@ class String implements IteratorAggregate {
 		return $result;
 	}
 	
+	public static function toPrimitives(ArrayList $strings, $assoc=false) {
+		$result = array();
+		foreach ($strings as $key=>$val) {
+			if($assoc) {
+				$result[$key] = $val->getPrimitive();
+			} else {
+				$result[] = $val->getPrimitive();
+			}
+		}
+		return $result;
+	}
+	
 	public static function create($str) {
 		return new String($str);
 	}

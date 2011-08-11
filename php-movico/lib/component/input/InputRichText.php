@@ -8,7 +8,7 @@ class InputRichText extends Component {
 	}
 	
 	public function doRender($index=null) {
-		$ctx = Singleton::create("Settings")->getContextPath();
+		$ctx = parent::$settings->getContextPath();
 		$editor = new CKEditor("$ctx/lib/component/input/ckeditor/");
 		$editor->returnOutput = true;
 		$editor->config['toolbar'] = array(

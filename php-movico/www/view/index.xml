@@ -2,12 +2,14 @@
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="main">
 	<define name="body">
+		<!-- 
 		<div>
 			<h2>Laatste Nieuws</h2>
 			<div>
 				<p>...</p>
 			</div>
 		</div>
+		-->
 		<div>
 			<h2>Aankomende wedstrijden</h2>
 			<div>
@@ -23,9 +25,9 @@
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 						</column>
 						<column class="game-home-team">
-							<commandLink action="#{ClubDetailsBean.showDetails}" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
+							<renderLink view="club_details" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
 								<param value="#{game.homeTeam.clubId}"/>
-							</commandLink>
+							</renderLink>
 							<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
 						</column>
 						<column class="game-home-team-pts"><span></span></column>
@@ -34,9 +36,9 @@
 						</column>
 						<column class="game-out-team-pts"><span></span></column>
 						<column class="game-out-team">
-							<commandLink action="#{ClubDetailsBean.showDetails}" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
+							<renderLink view="club_details" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 								<param value="#{game.outTeam.clubId}"/>
-							</commandLink>
+							</renderLink>
 							<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
 						</column>
 						<column class="game-review"><span></span></column>
@@ -77,9 +79,11 @@
 						<column class="game-review">
 							<img rendered="#{game.hasReview}" src="report.png" popup="#{game.review}"/>
 						</column>
+						<!-- 
 						<column class="game-travel">
 							<img src="car.png"/>
 						</column>
+						 -->
 					</dataTable>
 				</form>
 			</div>

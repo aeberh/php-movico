@@ -2,11 +2,11 @@
 class NullConverter implements DatabaseFieldConverter {
 	
 	public function fromDBtoDOM($dbValue) {
-		return $dbValue;
+		return stripslashes($dbValue);
 	}
 	
 	function fromDOMtoDB($domValue) {
-		return $domValue;
+		return addslashes($domValue);
 	}
 	
 }

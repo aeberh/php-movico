@@ -22,6 +22,13 @@
 		<column name="emailAddress" type="String" size="30"/>
 		<column name="recreation" type="boolean"/>
 		<column name="active" type="boolean"/>
+		<finder name="Active">
+			<finder-column name="active"/>
+		</finder>
+		<order>
+			<order-column name="ranking" order-by="asc"/>
+			<order-column name="lastName" order-by="asc"/>
+		</order>
 	</entity>
 	<entity name="PingpongClub">
 		<column name="clubId" type="int" primary="true" auto-increment="true"/>

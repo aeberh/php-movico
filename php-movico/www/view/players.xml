@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Ledenoverzicht</h2>
+			<dataTable value="#{PlayerOverviewBean.players}" var="player">
+				<column>
+					<colHeader>
+						<outputText value="Volgnr"/>
+					</colHeader>
+					<outputText value="#{player.referenceNo}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Lidnummer"/>
+					</colHeader>
+					<outputText value="#{player.memberNo}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Achternaam"/>
+					</colHeader>
+					<outputText value="#{player.lastName}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Voornaam"/>
+					</colHeader>
+					<outputText value="#{player.firstName}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Index"/>
+					</colHeader>
+					<outputText value="#{player.index}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Klas"/>
+					</colHeader>
+					<outputText value="#{player.ranking}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Rec"/>
+					</colHeader>
+					<outputText value="#{player.recString}"/>
+				</column>
+				<column rendered="#{LoginBean.loggedIn}">
+					<outputText value="#{player.phone}"/>
+				</column>
+			</dataTable>
+		</div>
+	</define>
+</composition>

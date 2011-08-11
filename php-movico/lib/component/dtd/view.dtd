@@ -52,6 +52,15 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT renderLink (param*)>
+<!ATTLIST renderLink
+	value CDATA #REQUIRED
+	view CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+	selectedPrefix CDATA #IMPLIED
+>
+
 <!ELEMENT param EMPTY>
 <!ATTLIST param
 	value CDATA #REQUIRED

@@ -16,9 +16,19 @@ class HashMap implements IteratorAggregate {
 	public static function fromArray($keyType, $valueType, array $array) {
 		$map = new self($keyType, $valueType);
 		foreach($array as $key=>$value) {
-			$map->put($key, $value);
+			$val = is_array($value) ? self::fromArray("?", "?", $value) : $value;
+			$map->put($key, $val);
 		}
 		return $map;
+	}
+	
+	public function toArray() {
+		$result = array();
+		foreach($this as $key=>$value) {
+			$val = ($value instanceof HashMap) ? $value->toArray() : $value;
+			$result[$key] = $val;
+		}
+		return $result;
 	}
 	
 	public function put($key, $value) {

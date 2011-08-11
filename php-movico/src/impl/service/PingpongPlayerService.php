@@ -1,6 +1,10 @@
 <?php
 class PingpongPlayerService extends PingpongPlayerServiceBase {
 
+	public function getActivePlayers() {
+		return $this->findByActive(true);
+	}
+	
 	public function create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
 		$player = $this->createPingpongPlayer();
 		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);

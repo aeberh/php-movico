@@ -23,7 +23,7 @@ class BooleanCheckbox extends Component {
 		$checked = $value ? " checked=\"checked\"" : "";
 		$defValue = $value ? "1" : "0";
 		$buttonId = rand(10000, 99999);
-		$onchangesubmit = isset($this->action) ? "this.form.ACTION.value='".$this->action."';$('#$buttonId').click();\"" : "";
+		$onchangesubmit = isset($this->action) ? "this.form.".MovicoRequest::ACTION.".value='".$this->action."';$('#$buttonId').click();\"" : "";
 		$result = "<input type=\"checkbox\" id=\"{$this->id}\"$checked onclick=\"toggleBooleanValue('hidden_{$this->id}');$onchangesubmit\"/>".
 			"<input type=\"hidden\" id=\"hidden_{$this->id}\" name=\"$name\" value=\"$defValue\">";
 			//"<input type=\"hidden\" name=\"_type_".$name."\" value=\"Boolean\"/>";

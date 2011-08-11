@@ -3,9 +3,9 @@ class ClubDetailsBean extends RequestBean {
 	
 	private $club;
 	
-	public function showDetails($clubId) {
+	public function __construct() {
+		$clubId = Params::get(0);
 		$this->club = PingpongClubServiceUtil::getPingpongClub($clubId);
-		return "club_details";
 	}
 	
 	public function getClub() {
