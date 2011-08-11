@@ -39,13 +39,13 @@ class PingpongTeamPersistence extends Persistence {
 	}
 
 	public function update(PingpongTeam $object) {
-		$q = "UPDATE ".self::TABLE." SET `clubId`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', `teamNo`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', `recreation`='".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."' WHERE teamId='".addslashes($object->getTeamId())."'";
+		$q = "UPDATE ".self::TABLE." SET `clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId())."', `teamNo`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo())."', `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."' WHERE teamId='".addslashes($object->getTeamId())."'";
 		$pk = $object->getTeamId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo()))."', '".addslashes(Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`clubId`, `teamNo`, `recreation`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getClubId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamNo())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."')";
 			}
 		}
 		$this->db->updateQuery($q);

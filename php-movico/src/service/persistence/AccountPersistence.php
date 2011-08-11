@@ -33,13 +33,13 @@ class AccountPersistence extends Persistence {
 	}
 
 	public function update(Account $object) {
-		$q = "UPDATE ".self::TABLE." SET `emailAddress`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress()))."', `password`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword()))."' WHERE accountId='".addslashes($object->getAccountId())."'";
+		$q = "UPDATE ".self::TABLE." SET `emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', `password`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."' WHERE accountId='".addslashes($object->getAccountId())."'";
 		$pk = $object->getAccountId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`emailAddress`, `password`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`emailAddress`, `password`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`emailAddress`, `password`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getAccountId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`emailAddress`, `password`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getAccountId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."')";
 			}
 		}
 		$this->db->updateQuery($q);
