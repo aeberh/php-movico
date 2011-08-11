@@ -19,7 +19,8 @@ CREATE TABLE `PingpongPlayer` (
 	`emailAddress` VARCHAR(30) NOT NULL,
 	`recreation` TINYINT(1) NOT NULL,
 	`active` TINYINT(1) NOT NULL,
-	PRIMARY KEY (`playerId`)
+	PRIMARY KEY (`playerId`),
+	KEY `IX_ACTIVE` (`active`)
 );
 
 CREATE TABLE `PingpongClub` (

@@ -1,6 +1,10 @@
 <?php
 class PingpongPlayerServiceBase {
 
+	public function findByActive($active, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByActive($active, $from, $limit);
+	}
+
 	public function createPingpongPlayer($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

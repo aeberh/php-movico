@@ -1,12 +1,20 @@
 <?php
 class PingpongPlayerServiceUtil {
 
+	public static function getActivePlayers() {
+		return self::getService()->getActivePlayers();
+	}
+
 	public static function create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
 		return self::getService()->create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
 	}
 
-	public static function update($clubId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
-		return self::getService()->update($clubId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+	public static function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+		return self::getService()->update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+	}
+
+	public static function findByActive($active, $from=-1, $limit=-1) {
+		return self::getService()->findByActive($active, $from, $limit);
 	}
 
 	public static function createPingpongPlayer($pk=0) {
