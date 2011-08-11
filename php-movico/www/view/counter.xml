@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<composition xmlns="http://php-movi.co" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://php-movi.co view.xsd" template="main">
+	<define name="title">
+		<outputText value="CounterBean (application scope)"/>
+	</define>
+	<define name="body">
+		<p><outputText value="Current count: #{CounterBean.count}"/></p>
+	    <form>
+	        <commandButton action="#{CounterBean.increment}" value="Increment"/>
+	    </form>
+	</define>
+</composition>

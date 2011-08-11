@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://php-movi.co" targetNamespace="http://php-movi.co">
+	
+	<xs:element name="composition">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="define" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="template" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="define">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="component" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="outputText">
+		<xs:complexType>
+			<xs:attributeGroup ref="componentAttrs"/>
+			<xs:attribute name="value" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:attributeGroup name="componentAttrs">
+		<xs:attribute name="rendered" type="xs:boolean"/>
+		<xs:attribute name="id" type="xs:string"/>
+		<xs:attribute name="class" type="xs:string"/>
+	</xs:attributeGroup>
+</xs:schema>
