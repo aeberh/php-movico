@@ -30,12 +30,7 @@ abstract class Component {
 	}
 	
 	public function render($index=null) {
-		if(StringUtil::contains($this->rendered, "!")) {
-			$render = !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
-		} else {
-			$render = $this->getConvertedValue($this->rendered, $index);
-		}
-		return $render ? $this->doRender($index) : "";
+		return $this->shouldBeRendered($index) ? $this->doRender($index) : "";
 	}
 	
 	public abstract function doRender($index=null);
@@ -177,6 +172,14 @@ abstract class Component {
 	
 	public function setRendered($rendered) {
 		$this->rendered = $rendered;
+	}
+	
+	public function shouldBeRendered($index) {
+		if(StringUtil::contains($this->rendered, "!")) {
+			return !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
+		} else {
+			return $this->getConvertedValue($this->rendered, $index);
+		}
 	}
 	
 }

@@ -31,6 +31,10 @@ class PingpongPlayer extends PingpongPlayerModel {
 		return $this->isRecreation() ? "R" : "";
 	}
 	
+	public function getActiveString() {
+		return $this->isActive() ? "A" : "";
+	}
+	
 	private function getActivePlayerList() {
 		return ArrayList::fromArray("PingpongPlayer", PingpongPlayerServiceUtil::getActivePlayers());
 	}

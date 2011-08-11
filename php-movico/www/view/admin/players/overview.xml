@@ -11,10 +11,40 @@
 					</p>
 					<dataTable value="#{ManagePlayersBean.players}" var="player">
 						<column>
+							<outputText value="#{player.activeString}"/>
+						</column>
+						<column>
+							<outputText value="#{player.recString}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Lidnr"/>
+							</colHeader>
+							<outputText value="#{player.memberNo}"/>
+						</column>
+						<column>
 							<colHeader>
 								<outputText value="Naam"/>
 							</colHeader>
 							<outputText value="#{player.fullName}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Ranking"/>
+							</colHeader>
+							<outputText value="#{player.ranking}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Telefoon"/>
+							</colHeader>
+							<outputText value="#{player.phone}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="E-mailadres"/>
+							</colHeader>
+							<outputText value="#{player.emailAddress}"/>
 						</column>
 						<column>
 							<commandButton action="#{ManagePlayersBean.edit}" value="Wijzigen">

@@ -48,6 +48,9 @@
 					<outputText value="#{player.recString}"/>
 				</column>
 				<column rendered="#{LoginBean.loggedIn}">
+					<colHeader>
+						<outputText value="Telefoon"/>
+					</colHeader>
 					<outputText value="#{player.phone}"/>
 				</column>
 			</dataTable>

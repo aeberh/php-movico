@@ -38,6 +38,9 @@ class DataTable extends DataSeries {
 		$numHeaders = 0;
 		$result = "<tr>";
 		foreach($cols as $col) {
+			if(!$col->shouldBeRendered(null)) {
+				continue;
+			}
 			$result .= "<th>";
 			$headers = $col->getChildrenOfType("ColHeader");
 			if(!empty($headers)) {
@@ -68,6 +71,9 @@ class DataTable extends DataSeries {
 			$result .= "<tr class=\"page p$page\">";
 			for($j=0; $j<count($cols); $j++) {
 				$col = $cols[$j];
+				if(!$col->shouldBeRendered($i)) {
+					continue;
+				}
 				$class = $this->getCurrentColumnClass($j);
 				$colClass = $col->getClass();
 				$classes = new ArrayList();

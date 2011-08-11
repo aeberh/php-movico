@@ -46,7 +46,7 @@
 	    color-stop(1, #ddd)
 	);
 	background-image: -moz-linear-gradient(
-	    center bottom,
+	    center top,
 	    #ccc 0%,
 	    #ddd 100%
 	);
