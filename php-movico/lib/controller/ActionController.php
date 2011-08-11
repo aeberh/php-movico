@@ -36,15 +36,10 @@ class ActionController {
 	}
 
 	private function updateModel(MovicoRequest $req) {
-		$postedFields = $req->getPostVars();
-		foreach($postedFields as $key=>$val) {
-			$expr = new ValueExpression($key);
-			if($expr->isSingleExpression()) {
-				$type = $postedFields->has("_type_$key") ? $postedFields->get("_type_$key") : "Null";
-				$objValue = Singleton::create("Domain".$type."Converter")->fromViewToDom($val);
-				list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($key, true);
-				ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $objValue);
-			}
+		$vars = $req->getPostVars();
+		foreach($vars as $var) {
+			list($beanClass, $nestedProperty) = BeanUtil::getBeanAndProperties($var->getName(), true);
+			ReflectionUtil::callNestedSetter(BeanLocator::get($beanClass), $nestedProperty, $var->getConvertedValue());
 		}
 		$files = $req->getFiles();
 		foreach($files as $key=>$fileArray) {

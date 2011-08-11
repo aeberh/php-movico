@@ -7,17 +7,26 @@ class MovicoRequest {
 	const ACTION_PARAM = "MovicoActionParam";
 	const URL = "u";
 	
+	const TYPE_PREFIX = "_type_";
+	const DEFAULT_TYPE = "Null";
+	
 	private $post;
 	private $get;
 	private $files;
 	
+	private $postVars;
+	
 	public function __construct($get, $post, $files) {
 		$this->get = HashMap::fromArray("string", "?", $get);
 		$this->post = HashMap::fromArray("string", "?", $post);
-		$this->files = HashMap::fromArray("string", "?", $files);
-		PrintUtil::out($get);
-		PrintUtil::out($post);
-		PrintUtil::out($files);
+		$this->files = $files;
+		$this->postVars = new ArrayList("MovicoPostVar");
+		foreach($post as $name=>$value) {
+			if(String::create($name)->startsWith("#")) {
+				$type = isset($post[self::TYPE_PREFIX.$name]) ? $post[self::TYPE_PREFIX.$name] : self::DEFAULT_TYPE;
+				$this->postVars->add(new MovicoPostVar($name, $value, $type));
+			}
+		}
 	}
 	
 	public function isRenderUrl() {
@@ -52,7 +61,7 @@ class MovicoRequest {
 	}
 	
 	public function getPostVars() {
-		return $this->post;
+		return $this->postVars;
 	}
 	
 	public function getFiles() {

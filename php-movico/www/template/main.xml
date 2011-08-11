@@ -6,7 +6,7 @@
 	<css src="bubble.css"/>
 	<h1>Movico Sample Browser</h1>
 	<panelGrid columns="2">
-		<form id="nav">
+		<div id="nav">
 			<h2>Bean Examples</h2>
 			<ul>
 				<li><renderLink view="beans/request/hello" value="HelloBean (request)"/></li>
@@ -41,7 +41,7 @@
 				<li><renderLink view="games/bubblesort/menu" value="Bubble Sort"/></li>
 			</ul>
 			<ajaxLoading/>
-		</form>	
+		</div>	
 		<div id="main">
 			<h2><insert name="title"/></h2>
 			<insert name="body"/>
