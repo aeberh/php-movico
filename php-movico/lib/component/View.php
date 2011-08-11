@@ -2,9 +2,7 @@
 class View extends Component {
 	
 	private $title;
-	private $page;
-	
-	const DEFAULT_VIEW = "index";
+	private $url;
 	
 	public function setTitle($title) {
 		$this->title = $title;
@@ -13,10 +11,12 @@ class View extends Component {
 	public function doRender($index=null) {
 		$ajax = Singleton::create("Settings")->isAjaxEnabled();
 		$gmapsApiKey = Singleton::create("Settings")->getGmapsApiKey();
+		$context = Singleton::create("Settings")->getContextPath();
 		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
-			"<script type=\"text/javascript\" src=\"lib/javascript/jquery-1.6.1.min.js\"></script>".
-			"<script type=\"text/javascript\" src=\"lib/javascript/forms.js\"></script>".
-			"<script type=\"text/javascript\" src=\"lib/component/input/ckeditor/ckeditor.js\"></script>".
+			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>".
 			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
 			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/357c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
@@ -28,13 +28,12 @@ class View extends Component {
 		$result .= "
 				checkRedirect('$ajaxTimeout');
 				startupActions(0);
-				setHash();
+				fixUrl();
 				unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();
-		$view = isset($_POST["REDIRECT"]) ? " view=\"".$_POST["REDIRECT"]."\"" : "";
-		$result .= "\t</head>\n\t<body$view>\n\n";
+		$result .= "\t</head>\n\t<body view=\"".$context."/".$this->url."\">\n\n";
 		$result .= $this->renderBodyChildren();
 		$result .= "\n{$this->renderRedirectForm()}";
 		if($ajax) {
@@ -68,12 +67,12 @@ class View extends Component {
 		return array();
 	}
 	
-	public function setPage($page) {
-		$this->page = $page;
+	public function setUrl($url) {
+		$this->url = $url;
 	}
 	
-	public function getPage() {
-		return $this->page;
+	public function getUrl() {
+		return $this->url;
 	}
 	
 }

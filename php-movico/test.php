@@ -22,6 +22,7 @@ new StringRemoveTest();
 new StringIndexOfTest();
 new StringIndexesOfTest();
 new StringCharAtTest();
+new StringFromPrimitivesTest();
 
 // ArrayList tests
 new ListAddElementTest();

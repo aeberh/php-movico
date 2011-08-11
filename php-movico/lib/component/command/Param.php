@@ -6,7 +6,7 @@ class Param extends Component {
 	public function doRender($index=null) {
 		$action = $this->getParent()->getAction();
 		$value = $this->getConvertedValue($this->value, $index);
-		return "<input type=\"hidden\" disabled name=\"ACTION_PARAM[{$action}_{$index}][]\" value=\"$value\"/>";
+		return "<input type=\"hidden\" disabled name=\"".MovicoRequest::ACTION_PARAM."[{$action}_{$index}][]\" value=\"$value\"/>";
 	}
 	
 	public function getValidParents() {

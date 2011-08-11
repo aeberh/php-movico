@@ -16,9 +16,11 @@ function startupActions(ajaxTime) {
 function initDates() {
 	$("input[name^=_type][value=Date]").each(function() {
 		var valueEl = $(this).prev();
-		var yearEl = valueEl.prev();
-		var monthEl = yearEl.prev();
-		var dayEl = monthEl.prev();
+		var dayEl = $(this).next("select");
+		var monthEl = dayEl.next("select");
+		var yearEl = monthEl.next("select");
+		var hourEl = yearEl.next("select");
+		var minEl = hourEl.next("select");
 		updateVal();
 		var updateValFunc = function() {
 			updateVal();
@@ -26,8 +28,13 @@ function initDates() {
 		dayEl.change(updateValFunc);
 		monthEl.change(updateValFunc);
 		yearEl.change(updateValFunc);
+		hourEl.change(updateValFunc);
+		minEl.change(updateValFunc);
 		function updateVal() {
-			valueEl.val(dayEl.val()+"-"+monthEl.val()+"-"+yearEl.val());
+			valueEl.val(dayEl.val()+"-"+monthEl.val()+"-"+yearEl.val()+" "+getVal(hourEl)+":"+getVal(minEl));
+		}
+		function getVal(el) {
+			return typeof(el.val()) === "undefined" ? "0" : el.val();
 		}
 	});
 }
@@ -65,6 +72,7 @@ function initMaps() {
 
 // Automatic redirect by hash
 function checkRedirect(ajaxTimeout) {
+	/*
 	var hash = window.location.hash;
 	if(hash == "#" || hash == "") {
 		return;
@@ -73,12 +81,11 @@ function checkRedirect(ajaxTimeout) {
 	$("#RedirectForm").attr("action", "#");
 	$("#RedirectForm input").val(hash.slice(1));
 	doAjaxRequest($("#RedirectForm"), ajaxTimeout, true);
+	*/
 }
-function setHash() {
-	var view = $("body").attr("view");
-	if(typeof view !== 'undefined' && view !== false) {
-		window.location.hash = "#"+view;
-	}
+function fixUrl() {
+	var url = $("body").attr("view");
+	window.history.pushState("whatever", "Title", url);
 }
 
 // Countdown timer

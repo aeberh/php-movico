@@ -36,7 +36,7 @@ class ViewRenderer extends ApplicationBean {
 	
 	private function parseView($view, XmlElement $root) {
 		$viewRoot = $this->parseNode($root);
-		$viewRoot->setPage($view);
+		$viewRoot->setUrl($view);
 		return $viewRoot;
 	}
 		

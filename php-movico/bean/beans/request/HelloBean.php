@@ -5,7 +5,7 @@ class HelloBean extends RequestBean {
     private $message;
 
     public function sayHello() {
-        $this->message = String::create("Hello, ")->append($this->name);
+        $this->message = "Hello, ".$this->name;
         return null;
     }
     
@@ -13,7 +13,7 @@ class HelloBean extends RequestBean {
         return $this->name;
     }
         
-    public function setName(String $name) {
+    public function setName($name) {
         $this->name = $name;
     }
         

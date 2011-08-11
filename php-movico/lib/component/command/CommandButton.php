@@ -2,10 +2,10 @@
 class CommandButton extends AbstractCommand {
 
 	public function doRender($index=null) {
-		$onclick = "this.form.ACTION.value='".$this->action."';";
+		$onclick = "this.form.".MovicoRequest::ACTION.".value='".$this->action."';";
 		if($this->hasAnchestorOfType("DataTable") && $this->hasAnchestorOfType("Form")) {
 			$action = str_replace(array("#", "{", "}", "."), array("\\\\#", "\\\\{", "\\\\}", "\\\\."), $this->action);
-			$onclick .= "this.form.".DataTable::DATATABLE_ROW.".value='$index'; jQuery('input[name^=ACTION_PARAM\\\\[{$action}_{$index}\\\\]]').removeAttr('disabled');";
+			$onclick .= "this.form.".MovicoRequest::ROW_INDEX.".value='$index'; jQuery('input[name^=".MovicoRequest::ACTION_PARAM."\\\\[{$action}_{$index}\\\\]]').removeAttr('disabled');";
 		}
 		if($this->link) {
 			$onclick .= "formEl.action='#{$this->getHash()}';";

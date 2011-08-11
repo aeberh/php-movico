@@ -52,6 +52,14 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT renderLink (param*)>
+<!ATTLIST renderLink
+	value CDATA #REQUIRED
+	view CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+>
+
 <!ELEMENT param EMPTY>
 <!ATTLIST param
 	value CDATA #REQUIRED
@@ -83,6 +91,11 @@
 <!ELEMENT inputDate EMPTY>
 <!ATTLIST inputDate
 	value CDATA #REQUIRED
+	showTime CDATA #IMPLIED
+	id CDATA #IMPLIED
+	yearStart CDATA #IMPLIED
+	yearEnd CDATA #IMPLIED
+	minutesInterval CDATA #IMPLIED
 >
 
 <!ELEMENT inputHidden EMPTY>

@@ -10,7 +10,8 @@ class Css extends Component {
 	}
 	
 	public function doRender($index=null) {
-		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".self::PATH.$this->src."\">";
+		$context = Singleton::create("Settings")->getContextPath();
+		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$context."/".self::PATH.$this->src."\">";
 	}
 	
 	public function getValidParents() {

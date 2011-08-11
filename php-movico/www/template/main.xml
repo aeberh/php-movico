@@ -9,36 +9,36 @@
 		<form id="nav">
 			<h2>Bean Examples</h2>
 			<ul>
-				<li><commandLink action="beans/request/hello" value="HelloBean (request)" link="false"/></li>
-				<li><commandLink action="beans/session/login" value="LoginBean (session)" link="true"/></li>
-				<li><commandLink action="beans/application/counter" value="CounterBean (application)" link="true"/></li>
+				<li><renderLink view="beans/request/hello" value="HelloBean (request)"/></li>
+				<li><renderLink view="beans/session/login" value="LoginBean (session)"/></li>
+				<li><renderLink view="beans/application/counter" value="CounterBean (application)"/></li>
 			</ul>
 			<h2>Service Examples</h2>
 			<ul>
-				<li><commandLink action="services/onetomany/teams" value="One-to-many relationship" link="true"/></li>
-				<li><commandLink action="services/manytomany/classes" value="Many-to-many relationship" link="true"/></li>
+				<li><renderLink view="services/onetomany/teams" value="One-to-many relationship"/></li>
+				<li><renderLink view="services/manytomany/classes" value="Many-to-many relationship"/></li>
 			</ul>
 			<h2>Component Examples</h2>
 			<ul>
-				<li><commandLink action="components/inputrichtext/rich" value="Rich Text Editor" link="true"/></li>
-				<li><commandLink action="components/inputdate/inputdate" value="Input Date and Time" link="true"/></li>
-				<li><commandLink action="components/onchangesubmit/onchange" value="OnChange Submit" link="true"/></li>
-				<li><commandLink action="components/datatable/normal/users" value="DataTable" link="true"/></li>
-				<li><commandLink action="components/datatable/editable/users" value="Editable DataTable" link="true"/></li>
-				<li><commandLink action="components/datatable/pagination/countries" value="DataTable Pagination" link="true"/></li>
-				<li><commandLink action="components/listbox/countries" value="ListBox" link="true"/></li>
-				<li><commandLink action="components/fileupload/upload_file" value="File Upload" link="true"/></li>
-				<li><commandLink action="components/panelseries/contacts" value="PanelSeries" link="true"/></li>
-				<li><commandLink action="components/countdown/timer" value="Countdown Timer" link="true"/></li>
+				<li><renderLink view="components/inputrichtext/rich" value="Rich Text Editor"/></li>
+				<li><renderLink view="components/inputdate/inputdate" value="Input Date and Time"/></li>
+				<li><renderLink view="components/onchangesubmit/onchange" value="OnChange Submit"/></li>
+				<li><renderLink view="components/datatable/normal/users" value="DataTable"/></li>
+				<li><renderLink view="components/datatable/editable/users" value="Editable DataTable"/></li>
+				<li><renderLink view="components/datatable/pagination/countries" value="DataTable Pagination"/></li>
+				<li><renderLink view="components/listbox/countries" value="ListBox"/></li>
+				<li><renderLink view="components/fileupload/upload_file" value="File Upload"/></li>
+				<li><renderLink view="components/panelseries/contacts" value="PanelSeries"/></li>
+				<li><renderLink view="components/countdown/timer" value="Countdown Timer"/></li>
 			</ul>
 			<h2>Lib Examples</h2>
 			<ul>
-				<li><commandLink action="libs/ajaxerrors/ajaxerrors" value="Ajax Errors" link="true"/></li>
+				<li><renderLink view="libs/ajaxerrors/ajaxerrors" value="Ajax Errors"/></li>
 			</ul>
 			<h2>Games</h2>
 			<ul>
-				<li><commandLink action="games/boggle/menu" value="Boggle" link="true"/></li>
-				<li><commandLink action="games/bubblesort/menu" value="Bubble Sort" link="true"/></li>
+				<li><renderLink view="games/boggle/menu" value="Boggle"/></li>
+				<li><renderLink view="games/bubblesort/menu" value="Bubble Sort"/></li>
 			</ul>
 			<ajaxLoading/>
 		</form>	

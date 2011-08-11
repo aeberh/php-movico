@@ -1,8 +1,6 @@
 <?
 class PanelGridSeries extends PanelSeries {
 	
-	const DATATABLE_ROW = "DATATABLE_ROW";
-	
 	private $columns;
 	
 	public function setColumns($columns) {
@@ -24,7 +22,7 @@ class PanelGridSeries extends PanelSeries {
 		}
 		$result .= "</tr></table>";
 		if($this->hasAnchestorOfType("Form")) {
-			$result .= "<input type=\"hidden\" name=\"".self::DATATABLE_ROW."\"/>";
+			$result .= "<input type=\"hidden\" name=\"".MovicoRequest::ROW_INDEX."\"/>";
 		}
 		return $result."</div>";
 	}

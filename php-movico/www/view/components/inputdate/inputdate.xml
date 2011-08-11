@@ -5,8 +5,14 @@
 		<outputText value="Input Date and Time"/>
 	</define>
 	<define name="body">
+		<p>Input date element without attributes</p>
 	    <form>
 	        <inputDate value="#{InputDateBean.date}"/>
+	        <p><commandButton action="#{InputDateBean.submit}" value="Submit"/></p>
+	    </form>
+	    <p>Input date + time element with year range and minutes interval attributes</p>
+	    <form>
+	        <inputDate value="#{InputDateBean.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="15"/>
 	        <p><commandButton action="#{InputDateBean.submit}" value="Submit"/></p>
 	    </form>
 	    <div>
