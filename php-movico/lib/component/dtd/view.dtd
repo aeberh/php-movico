@@ -71,6 +71,7 @@
 	height CDATA #IMPLIED
 	width CDATA #IMPLIED
 	zoomLevel CDATA #IMPLIED
+	class CDATA #IMPLIED
 >
 
 <!ELEMENT booleanCheckbox EMPTY>
@@ -157,6 +158,7 @@
 	options CDATA #REQUIRED
 	value CDATA #REQUIRED
 	action CDATA #IMPLIED
+	id CDATA #IMPLIED
 	class CDATA #IMPLIED
 >
 

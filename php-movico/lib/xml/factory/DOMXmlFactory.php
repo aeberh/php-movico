@@ -2,7 +2,7 @@
 class DOMXmlFactory implements XmlFactory {
 	
 	private function getXmlElement(DOMElement $el) {
-		$result = new XMLElement(String::create($el->tagName));
+		$result = new XmlElement(String::create($el->tagName));
 		for($i=0; $i<$el->childNodes->length; $i++) {
 			$child = $el->childNodes->item($i);
 			if($child instanceof DOMText) {

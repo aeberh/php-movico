@@ -97,7 +97,7 @@ class XmlElement {
 		return $this->name;
 	}
 	
-	public function addChild(XMLElement $element) {
+	public function addChild(XmlElement $element) {
 		$this->children->add($element);
 	}
 	

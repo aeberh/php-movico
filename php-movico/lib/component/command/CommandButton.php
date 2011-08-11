@@ -7,9 +7,6 @@ class CommandButton extends AbstractCommand {
 			$action = str_replace(array("#", "{", "}", "."), array("\\\\#", "\\\\{", "\\\\}", "\\\\."), $this->action);
 			$onclick .= "this.form.".MovicoRequest::ROW_INDEX.".value='$index'; jQuery('input[name^=".MovicoRequest::ACTION_PARAM."\\\\[{$action}_{$index}\\\\]]').removeAttr('disabled');";
 		}
-		if($this->link) {
-			$onclick .= "formEl.action='#{$this->getHash()}';";
-		}
 		if(!empty($this->popup)) {
 			$msg = $this->getConvertedValue($this->popup, $index);
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
