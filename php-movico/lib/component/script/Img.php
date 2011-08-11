@@ -16,7 +16,8 @@ class Img extends Component {
 	
 	public function doRender($index=null) {
 		$popup = $this->getConvertedValue($this->popup, $index);
-		return "<img id=\"".$this->id."\" title=\"$popup\" src=\"".self::PATH.$this->src."\">";
+		$ctx = parent::$settings->getContextPath();
+		return "<img id=\"".$this->id."\" title=\"$popup\" src=\"".$ctx."/".self::PATH.$this->src."\">";
 	}
 	
 	public function getValidParents() {

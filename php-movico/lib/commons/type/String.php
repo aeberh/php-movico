@@ -19,9 +19,9 @@ class String implements IteratorAggregate {
 		$result = array();
 		foreach ($strings as $key=>$val) {
 			if($assoc) {
-				$result[$key] = $val->toPrimitive();
+				$result[$key] = $val->getPrimitive();
 			} else {
-				$result[] = $val->toPrimitive();
+				$result[] = $val->getPrimitive();
 			}
 		}
 		return $result;

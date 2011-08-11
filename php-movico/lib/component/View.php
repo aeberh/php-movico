@@ -27,7 +27,7 @@ class View extends Component {
 			$result .= "registerForms('$ajaxTimeout', '$ctx');";
 		}
 		$result .= "
-				startupActions(true);
+				startupActions('$ctx', true);
 				unloadHtmlAreas();
 			});
 		</script>";

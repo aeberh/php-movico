@@ -3,6 +3,11 @@ class RenderLink extends Component {
 	
 	private $view;
 	private $value;
+	private $selectedPrefix;
+	
+	public function setSelectedPrefix($selectedPrefix) {
+		$this->selectedPrefix = $selectedPrefix;
+	}
 	
 	public function setView($view) {
 		$this->view = $view;
@@ -18,13 +23,15 @@ class RenderLink extends Component {
 		$value = $this->getConvertedValue($this->value, $rowIndex);
 		$params = new ArrayList("String");
 		foreach($this->getChildrenOfType("Param") as $param) {
-			$params->add(String::create($param->getValue()));
+			$paramVal = $this->getConvertedValue($param->getValue(), $rowIndex);
+			$params->add(String::create($paramVal));
 		}
 		$url = $view;
 		if(!$params->isEmpty()) {
 			$url .= ViewForward::URL_DELIMITER.$params->join("/")->getPrimitive();
 		}
-		return "<a class=\"RenderLink\" href=\"{$context}/{$url}\">$value</a>";
+		$selPrefix = empty($this->selectedPrefix) ? $url : $this->selectedPrefix;
+		return "<a selectedPrefix=\"$selPrefix\" class=\"RenderLink\" href=\"{$context}/{$url}\">$value</a>";
 	}
 	
 	public function getValidParents() {

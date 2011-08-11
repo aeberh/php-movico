@@ -38,7 +38,7 @@ class InputDate extends Component {
 		$val = $dateObj->format(self::DATE_TRANSFER_FORMAT);
 		$result = $this->datePicker($dateObj);
 		if($this->showTime) {
-			$result .= $this->timePicker($dateObj);
+			$result .= "&nbsp;&nbsp;&nbsp;".$this->timePicker($dateObj);
 		}
 		return "<input type=\"hidden\" name=\"$name\" value=\"$val\"/>".
 			"<input type=\"hidden\" name=\"_type_$name\" value=\"Date\"/>".$result;
@@ -64,7 +64,7 @@ class InputDate extends Component {
 	}
 	
 	private function ascList($name, $from, $to, $selected, $interval=1) {
-		$result = "<select name=\"{$this->id}_$name\">";
+		$result = "<select name=\"{$this->id}_$name\" class=\"inputdate_$name\">";
 		for($i=$from; $i<=$to; $i++) {
 			if($i % $interval == 0) {
 				$sel = $i===$selected ? " selected=\"selected\"" : "";

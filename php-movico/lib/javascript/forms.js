@@ -3,15 +3,15 @@ function toggleBooleanValue(elementId) {
 	elem.value = (elem.value == '1') ? '0' : '1';
 }
 
-function startupActions(mustPushState) {
-	autoFocus();
-	setupPagination();
-	setSelectedLink();
-	initDates();
-	initMaps();
+function startupActions(ctx, mustPushState) {
 	if(mustPushState) {
 		pushState();
 	}
+	autoFocus();
+	setSelectedLink(ctx);
+	initDates();
+	setupPagination();
+	initMaps();
 }
 
 // Initialize Date components
@@ -73,7 +73,7 @@ function initMaps() {
 }
 
 function pushState() {
-	var url = $("#MovicoView").text();
+	var url = getCurrentView();
 	window.history.pushState(url, "", url);
 }
 
@@ -81,6 +81,10 @@ function setOnPopState(ajaxTimeout, ctx) {
 	window.onpopstate = function(event) {
 		doAjaxRequest(event.state, "", "GET", ajaxTimeout, ctx, false);
 	}	
+}
+
+function getCurrentView() {
+	return $("#MovicoView").text();
 }
 
 // Autofocus
@@ -141,12 +145,14 @@ function updateHtmlAreas() {
 }
 
 // Selected link add "selected" class
-function setSelectedLink() {
-	var hash = window.location.hash;
-	if(hash == "#" || hash == "") {
-		return;
-	}
-	$("a[href='"+hash+"']").addClass("selected");
+function setSelectedLink(ctx) {
+	var currentView = getCurrentView();
+	$("a[selectedPrefix]").each(function() {
+		var prefix = ctx+"/"+$(this).attr("selectedPrefix");
+		if(prefix != "" && currentView.indexOf(prefix) == 0) {
+			$(this).addClass("selected");
+		}
+	});
 }
 
 // AJAX
@@ -187,7 +193,7 @@ function doAjaxRequest(url, data, type, ajaxTimeout, ctx, mustPushState) {
 			$("body").html(data.body);
 			registerForms(ajaxTimeout, ctx);
 			showLoading("idle", ctx);
-			startupActions(mustPushState);
+			startupActions(ctx, mustPushState);
 			setOnPopState(ajaxTimeout, ctx);
 		},
 		error: function(request, errorType, errorThrown) {

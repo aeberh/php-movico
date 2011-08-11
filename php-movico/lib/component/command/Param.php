@@ -17,5 +17,9 @@ class Param extends Component {
 		$this->value = $value;
 	}
 	
+	public function getValue() {
+		return $this->value;
+	}
+	
 }
 ?>
