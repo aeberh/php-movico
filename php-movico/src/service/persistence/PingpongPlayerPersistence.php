@@ -5,16 +5,27 @@ class PingpongPlayerPersistence extends Persistence {
 
 	public function findByActive($active, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `ranking` asc, `lastName` asc$limitStr");
-		return $this->getAsObjects($result->getResult());
+		$whereClause = "`active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `ranking` asc, `lastName` asc".$limitStr;
+		if($this->dbCache->hasFinder('PingpongPlayer', $whereClause)) {
+			return $this->dbCache->getFinder('PingpongPlayer', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
+		$result = $this->getAsObjects($result->getResult());
+		$this->dbCache->setFinder('PingpongPlayer', $whereClause, $result);
+		return $result;
 	}
 
 	public function findByPrimaryKey($playerId) {
+		if($this->dbCache->hasSingle("PingpongPlayer", $playerId)) {
+			return $this->dbCache->getSingle("PingpongPlayer", $playerId);
+		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE playerId='".addslashes($playerId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchPingpongPlayerException($playerId);
 		}
-		return $this->getAsObject($result->getSingleRow());
+		$result = $this->getAsObject($result->getSingleRow());
+		$this->dbCache->setSingle("PingpongPlayer", $playerId, $result);
+		return $result;
 	}
 
 	public function create($playerId) {
@@ -27,6 +38,8 @@ class PingpongPlayerPersistence extends Persistence {
 	public function remove($playerId) {
 		$this->findByPrimaryKey($playerId);
 		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE playerId='".addslashes($playerId)."'");
+		$this->dbCache->resetEntity('PingpongPlayer');
+		$this->dbCache->resetSingle("PingpongPlayer", $playerId, $result);
 	}
 
 	public function update(PingpongPlayer $object) {
@@ -43,15 +56,26 @@ class PingpongPlayerPersistence extends Persistence {
 		if(empty($pk)) {
 			$pk = $this->db->selectQuery("SELECT playerId from ".self::TABLE." ORDER BY playerId DESC limit 1")->getSingleton();
 		}
-		return $this->findByPrimaryKey($pk);
+		$result = $this->findByPrimaryKey($pk);
+		$this->dbCache->resetEntity("PingpongPlayer");
+		$this->dbCache->setSingle("PingpongPlayer", $pk, $result);
+		return $result;
 	}
 
 	public function findAll($from, $limit) {
+		if($this->dbCache->hasAll('PingpongPlayer')) {
+			return $this->dbCache->getAll('PingpongPlayer');
+		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `ranking` asc, `lastName` asc LIMIT $from,$limit")->getResult();
-		return $this->getAsObjects($rows);
+		$objects = $this->getAsObjects($rows);
+		$this->dbCache->setAll('PingpongPlayer', $objects);
+		return $objects;
 	}
 
 	public function count() {
+		if($this->dbCache->hasAll('PingpongPlayer')) {
+			return count($this->dbCache->getAll('PingpongPlayer'));
+		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}
 

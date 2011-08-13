@@ -5,19 +5,30 @@ class AccountPersistence extends Persistence {
 
 	public function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'$limitStr");
+		$whereClause = "`emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'".$limitStr;
+		if($this->dbCache->hasFinder('Account', $whereClause)) {
+			return $this->dbCache->getFinder('Account', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		if($result->isEmpty()) {
 			throw new NoSuchAccountException();
 		}
-		return $this->getAsObject($result->getSingleRow());
+		$result = $this->getAsObject($result->getSingleRow());
+		$this->dbCache->setFinder('Account', $whereClause, $result);
+		return $result;
 	}
 
 	public function findByPrimaryKey($accountId) {
+		if($this->dbCache->hasSingle("Account", $accountId)) {
+			return $this->dbCache->getSingle("Account", $accountId);
+		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE accountId='".addslashes($accountId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchAccountException($accountId);
 		}
-		return $this->getAsObject($result->getSingleRow());
+		$result = $this->getAsObject($result->getSingleRow());
+		$this->dbCache->setSingle("Account", $accountId, $result);
+		return $result;
 	}
 
 	public function create($accountId) {
@@ -30,6 +41,8 @@ class AccountPersistence extends Persistence {
 	public function remove($accountId) {
 		$this->findByPrimaryKey($accountId);
 		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE accountId='".addslashes($accountId)."'");
+		$this->dbCache->resetEntity('Account');
+		$this->dbCache->resetSingle("Account", $accountId, $result);
 	}
 
 	public function update(Account $object) {
@@ -46,15 +59,26 @@ class AccountPersistence extends Persistence {
 		if(empty($pk)) {
 			$pk = $this->db->selectQuery("SELECT accountId from ".self::TABLE." ORDER BY accountId DESC limit 1")->getSingleton();
 		}
-		return $this->findByPrimaryKey($pk);
+		$result = $this->findByPrimaryKey($pk);
+		$this->dbCache->resetEntity("Account");
+		$this->dbCache->setSingle("Account", $pk, $result);
+		return $result;
 	}
 
 	public function findAll($from, $limit) {
+		if($this->dbCache->hasAll('Account')) {
+			return $this->dbCache->getAll('Account');
+		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
-		return $this->getAsObjects($rows);
+		$objects = $this->getAsObjects($rows);
+		$this->dbCache->setAll('Account', $objects);
+		return $objects;
 	}
 
 	public function count() {
+		if($this->dbCache->hasAll('Account')) {
+			return count($this->dbCache->getAll('Account'));
+		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}
 
