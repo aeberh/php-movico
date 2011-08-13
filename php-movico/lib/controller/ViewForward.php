@@ -5,8 +5,10 @@ class ViewForward {
 	
 	private $view;
 	private $params;
+	private $url;
 	
 	public function __construct($url) {
+		$this->url = $url;
 		$viewParts = String::create($url)->split("/p/", 2);
 		$this->view = $viewParts->get(0)->getPrimitive();
 		$this->params = $viewParts->size() > 1 ? String::toPrimitives($viewParts->get(1)->split("/")) : array();
@@ -18,6 +20,10 @@ class ViewForward {
 	
 	public function getParams() {
 		return $this->params;
+	}
+	
+	public function getUrl() {
+		return $this->url;
 	}
 	
 }

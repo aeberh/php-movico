@@ -13,6 +13,8 @@ class ManageGamesBean extends RequestBean {
 	
 	private $selected;
 	
+	const GAMES_PER_PAGE = 20;
+	
 	// Constructor
 	
 	public function __construct() {
@@ -51,7 +53,27 @@ class ManageGamesBean extends RequestBean {
 	// Bean getters
 	
 	public function getGames() {
-		return PingpongGameServiceUtil::getPingpongGames();
+		return PingpongGameServiceUtil::getPingpongGames($this->getFrom(), self::GAMES_PER_PAGE);
+	}
+	
+	private function getFrom() {
+		return Params::has(0) ? Params::get(0) : 0;
+	}
+	
+	public function isHasPrevFrom() {
+		return $this->getPrevFrom() >= 0;
+	}
+	
+	public function isHasNextFrom() {
+		return $this->getNextFrom() < PingpongGameServiceUtil::countPingpongGames();
+	}
+	
+	public function getNextFrom() {
+		return $this->getFrom() + self::GAMES_PER_PAGE;
+	}
+	
+	public function getPrevFrom() {
+		return $this->getFrom() - self::GAMES_PER_PAGE;
 	}
 	
 	public function getClubs() {

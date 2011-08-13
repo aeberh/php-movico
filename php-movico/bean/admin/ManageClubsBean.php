@@ -4,6 +4,7 @@ class ManageClubsBean extends RequestBean {
 	private $selected;
 	
 	public function __construct() {
+		//$this->selected = Params::has(0) ? PingpongClubServiceUtil::getPingpongClub(Params::get(0)) : new PingpongClub();
 		$this->selected = new PingpongClub();
 	}
 	

@@ -73,14 +73,18 @@ function initMaps() {
 }
 
 function pushState() {
-	var url = getCurrentView();
-	window.history.pushState(url, "", url);
+	if(!(typeof history.pushState === 'undefined')) {
+		var url = getCurrentView();
+		window.history.pushState(url, "", url);
+	}
 }
 
 function setOnPopState(ajaxTimeout, ctx) {
-	window.onpopstate = function(event) {
-		doAjaxRequest(event.state, "", "GET", ajaxTimeout, ctx, false);
-	}	
+	if(!(typeof window.onpopstate === 'undefined')) {
+		window.onpopstate = function(event) {
+			doAjaxRequest(event.state, "", "GET", ajaxTimeout, ctx, false);
+		}
+	}
 }
 
 function getCurrentView() {

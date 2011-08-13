@@ -9,6 +9,14 @@
 					<p>
 						<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
 					</p>
+					<p>
+						<renderLink view="admin/games/overview" value="Vorige" rendered="#{ManageGamesBean.hasPrevFrom}">
+							<param value="#{ManageGamesBean.prevFrom}"/>
+						</renderLink>
+						<renderLink view="admin/games/overview" value="Volgende" rendered="#{ManageGamesBean.hasNextFrom}">
+							<param value="#{ManageGamesBean.nextFrom}"/>
+						</renderLink>
+					</p>
 					<dataTable value="#{ManageGamesBean.games}" var="game">
 						<column>
 							<colHeader>

@@ -22,7 +22,10 @@ class PingpongClub extends PingpongClubModel {
 	}
 	
 	public function getAddress() {
-		return $this->getStreet().", ".$this->getPlace();
+		$street = $this->getStreet();
+		$place = $this->getPlace();
+		$comma = empty($street) || empty($place) ? "" : ", ";
+		return $street.$comma.$place;
 	}
 	
 	public function getGames() {

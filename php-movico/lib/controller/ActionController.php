@@ -24,7 +24,7 @@ class ActionController {
 		}
 		$forward = new ViewForward($url);
 		Params::init($forward->getParams());
-		return $forward->getView();
+		return $forward;
 	}
 	
 	private function executeAction(MovicoRequest $req) {

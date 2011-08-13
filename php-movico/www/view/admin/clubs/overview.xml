@@ -41,6 +41,11 @@
 							<outputText value="#{club.phone}"/>
 						</column>
 						<column>
+							<!--
+							<renderLink view="admin/clubs/edit" value="Wijzigen">
+								<param value="#{club.clubId}"/>
+							</renderLink>
+							-->
 							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen">
 								<param value="#{club.clubId}"/>
 							</commandButton>

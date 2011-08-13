@@ -1,0 +1,286 @@
+NR,14-01-12,19:00,Lanaken A,LK009 Leopoldsburg B
+R,11-01-12,20:30,Lanaken A,LK007 Bree A
+NR,14-01-12,19:00,Lanaken B,LK087 Bocholt A
+R,11-01-12,20:00,LK007 Bree B,Lanaken B
+NR,13-01-12,20:30,LK093 Malpertuus D,Lanaken C
+R,11-01-12,20:30,Lanaken C,Lanaken D
+NR,14-01-12,19:00,LK095 Zutendaal A,Lanaken D
+R,11-01-12,20:30,Lanaken C,Lanaken D
+R,09-01-12,20:00,LK049 Herckenrode B,Lanaken E
+NR,13-01-12,20:00,LK100 ALKEN B,Lanaken E
+NR,14-01-12,19:00,Lanaken F,LK103 Hoeselt I
+NR,14-01-12,19:00,LK103 Hoeselt H,Lanaken G
+NR,14-01-12,19:00,Lanaken H,LK007 Bree I
+NR,21-01-12,19:00,LK071 TTC RS Bilzen B,Lanaken A
+R,-,-,Vrij ,Lanaken A
+NR,20-01-12,20:00,LK017 Voorshoven B,Lanaken B
+R,19-01-12,20:00,Lanaken B,LK084 Centrum B
+R,-,-,Vrij ,Lanaken C
+NR,21-01-12,19:00,Lanaken C,LK007 Bree C
+NR,21-01-12,19:00,Lanaken D,LK058 Opglabbeek A
+R,18-01-12,20:30,Lanaken D,LK049 Herckenrode A
+R,18-01-12,20:30,Lanaken E,LK049 Herckenrode C
+NR,21-01-12,19:00,Lanaken E,LK111 Diepenbeek A
+NR,20-01-12,20:00,LK068 Tongeren B,Lanaken F
+NR,21-01-12,19:00,Lanaken G,LK051 STAG Hasselt D
+NR,21-01-12,19:00,LK085 Mattec G,Lanaken H
+R,25-01-12,20:30,Lanaken A,LK017 Voorshoven B
+NR,28-01-12,19:00,Lanaken A,LK060 Westel A
+R,26-01-12,20:30,LK093 Malpertuus E,Lanaken B
+NR,28-01-12,19:00,Lanaken B,LK024 Aarschot B
+NR,27-01-12,20:30,LK084 Centrum D,Lanaken C
+R,25-01-12,20:30,Lanaken C,LK010 Houthalen B
+NR,27-01-12,20:00,LK017 Voorshoven C,Lanaken D
+R,26-01-12,20:00,LK084 Centrum D,Lanaken D
+NR,27-01-12,20:30,LK093 Malpertuus C,Lanaken E
+R,25-01-12,20:00,LK095 Zutendaal A,Lanaken E
+NR,28-01-12,19:00,Lanaken F,LK071 TTC RS Bilzen F
+NR,27-01-12,20:00,LK010 Houthalen B,Lanaken G
+NR,28-01-12,19:00,Lanaken H,LK049 Herckenrode J
+NR,03-02-12,20:30,LK024 Aarschot A,Lanaken A
+R,02-02-12,20:30,LK093 Malpertuus A,Lanaken A
+NR,04-02-12,19:00,LK051 STAG Hasselt B,Lanaken B
+R,02-02-12,20:00,Lanaken B,LK051 STAG Hasselt A
+NR,03-02-12,20:30,LK105 Stokrooie B,Lanaken C
+R,01-02-12,20:30,Lanaken C,LK049 Herckenrode A
+R,-,-,Vrij ,Lanaken D
+NR,04-02-12,19:00,Lanaken D,LK089 Hechtel-Eksel B
+R,01-02-12,20:30,Lanaken E,LK103 Hoeselt J
+NR,04-02-12,19:00,Lanaken E,LK103 Hoeselt F
+NR,04-02-12,19:00,Lanaken F,LK105 Stokrooie C
+NR,03-02-12,20:00,LK052 Schulen G,Lanaken G
+NR,04-02-12,19:00,Lanaken H,LK110 Molenbeersel C
+NR,18-02-12,19:00,Lanaken A,LK085 Mattec A
+R,15-02-12,20:30,Lanaken A,LK103 Hoeselt B
+NR,18-02-12,19:00,Lanaken B,LK007 Bree B
+R,16-02-12,20:30,LK093 Malpertuus D,Lanaken B
+NR,18-02-12,19:00,Lanaken C,LK092 St.-Truiden B
+R,16-02-12,20:00,LK084 Centrum D,Lanaken C
+NR,18-02-12,19:00,LK115 Peer B,Lanaken D
+R,15-02-12,20:30,Lanaken D,LK010 Houthalen B
+R,16-02-12,20:30,LK093 Malpertuus F,Lanaken E
+NR,18-02-12,20:30,LK084 Centrum C,Lanaken E
+NR,17-02-12,20:00,LK100 ALKEN C,Lanaken F
+NR,18-02-12,19:00,Lanaken G,LK061 Paal D
+NR,18-02-12,14:00,LK086 Dilsen F,Lanaken H
+NR,02-03-12,20:00,LK052 Schulen D,Lanaken A
+R,-,-,Vrij ,Lanaken A
+NR,03-03-12,19:00,LK086 Dilsen B,Lanaken B
+R,-,-,Lanaken B,Vrij 
+NR,03-03-12,19:00,LK016 Heusden C,Lanaken C
+R,02-03-12,20:00,LK103 Hoeselt H,Lanaken C
+NR,03-03-12,19:00,Lanaken D,LK037 Bambi A
+R,29-02-12,20:30,Lanaken D,LK103 Hoeselt G
+R,29-02-12,20:30,Lanaken E,LK024 Aarschot A
+NR,03-03-12,19:00,Lanaken E,LK026 Rijkel-Borgloon A
+NR,03-03-12,19:00,Lanaken F,LK049 Herckenrode H
+NR,02-03-12,20:00,LK071 TTC RS Bilzen C,Lanaken G
+NR,03-03-12,19:00,Lanaken H,LK033 AS B
+NR,10-03-12,19:00,Lanaken A,LK086 Dilsen A
+R,07-03-12,20:30,Lanaken A,LK052 Schulen A
+NR,10-03-12,19:00,Lanaken B,LK085 Mattec B
+R,08-03-12,20:00,LK061 Paal B,Lanaken B
+NR,10-03-12,19:00,Lanaken C,LK024 Aarschot C
+R,-,-,Lanaken C,Vrij 
+NR,09-03-12,20:00,LK085 Mattec C,Lanaken D
+R,06-03-12,20:00,LK017 Voorshoven C,Lanaken D
+R,-,-,Vrij ,Lanaken E
+NR,10-03-12,20:00,LK061 Paal B,Lanaken E
+NR,10-03-12,19:00,LK111 Diepenbeek C,Lanaken F
+NR,10-03-12,19:00,Lanaken G,LK071 TTC RS Bilzen E
+NR,10-03-12,14:00,LK058 Opglabbeek C,Lanaken H
+NR,17-03-12,19:00,LK049 Herckenrode C,Lanaken A
+R,13-03-12,20:00,LK017 Voorshoven A,Lanaken A
+NR,17-03-12,19:00,Lanaken B,LK012 Lipalet B
+R,15-03-12,20:00,Lanaken B,LK084 Centrum C
+NR,17-03-12,19:00,Lanaken C,LK103 Hoeselt G
+R,15-03-12,20:30,LK052 Schulen C,Lanaken C
+NR,16-03-12,20:30,LK062 Genk A,Lanaken D
+R,14-03-12,20:30,Lanaken D,LK089 Hechtel-Eksel A
+R,14-03-12,20:30,Lanaken E,LK010 Houthalen C
+NR,17-03-12,19:00,Lanaken E,LK092 St.-Truiden A
+NR,17-03-12,19:00,Lanaken F,LK026 Rijkel-Borgloon B
+NR,16-03-12,20:00,LK049 Herckenrode G,Lanaken G
+NR,16-03-12,20:00,LK085 Mattec F,Lanaken H
+NR,24-03-12,19:00,Lanaken A,LK093 Malpertuus B
+R,21-03-12,20:30,Lanaken A,LK103 Hoeselt C
+NR,24-03-12,19:00,LK103 Hoeselt E,Lanaken B
+R,23-03-12,20:00,LK103 Hoeselt F,Lanaken B
+NR,23-03-12,20:00,LK100 ALKEN A,Lanaken C
+R,21-03-12,20:00,LK089 Hechtel-Eksel A,Lanaken C
+NR,24-03-12,19:00,Lanaken D,LK110 Molenbeersel A
+R,21-03-12,20:30,Lanaken D,LK052 Schulen C
+R,21-03-12,20:00,LK105 Stokrooie A,Lanaken E
+NR,24-03-12,19:00,LK051 STAG Hasselt C,Lanaken E
+NR,23-03-12,20:30,LK092 St.-Truiden C,Lanaken F
+NR,24-03-12,19:00,Lanaken G,LK111 Diepenbeek B
+NR,24-03-12,19:00,Lanaken H,LK062 Genk B
+NR,14-04-12,19:00,Lanaken A,LK084 Centrum B
+R,11-04-12,20:30,Lanaken A,LK103 Hoeselt A
+NR,14-04-12,19:00,Lanaken B,LK093 Malpertuus A
+R,09-04-12,20:30,LK100 ALKEN C,Lanaken B
+NR,13-04-12,20:00,LK049 Herckenrode E,Lanaken C
+R,11-04-12,20:30,Lanaken C,LK017 Voorshoven C
+R,13-04-12,20:00,LK103 Hoeselt H,Lanaken D
+NR,14-04-12,19:00,LK007 Bree E,Lanaken D
+R,09-04-12,20:00,LK089 Hechtel-Eksel B,Lanaken E
+NR,13-04-12,20:00,LK049 Herckenrode D,Lanaken E
+NR,14-04-12,19:00,Lanaken F,LK071 TTC RS Bilzen D
+NR,14-04-12,20:30,LK033 AS A,Lanaken G
+NR,-,-,Lanaken H,Vrij 
+NR,20-04-12,20:00,LK109 NEERPELT A,Lanaken A
+R,16-04-12,20:00,LK100 ALKEN A,Lanaken A
+NR,20-04-12,20:00,LK052 Schulen E,Lanaken B
+R,-,-,Lanaken B,Vrij 
+R,20-04-12,20:00,LK103 Hoeselt G,Lanaken C
+NR,21-04-12,19:00,Lanaken C,LK009 Leopoldsburg C
+NR,21-04-12,19:00,Lanaken D,LK086 Dilsen C
+R,-,-,Lanaken D,Vrij 
+R,18-04-12,20:30,Lanaken E,LK103 Hoeselt I
+NR,21-04-12,19:00,Lanaken E,LK052 Schulen F
+NR,21-04-12,19:00,LK016 Heusden D,Lanaken F
+NR,21-04-12,19:00,Lanaken G,LK084 Centrum E
+NR,21-04-12,14:00,LK071 TTC RS Bilzen G,Lanaken H
+NR,16-09-11,20:30,LK009 Leopoldsburg B,Lanaken A
+R,14-09-11,20:00,LK007 Bree A,Lanaken A
+R,15-09-11,20:00,Lanaken B,LK007 Bree B
+NR,16-09-11,20:00,LK087 Bocholt A,Lanaken B
+NR,17-09-11,19:00,Lanaken C,LK093 Malpertuus D
+R,14-09-11,20:30,Lanaken D,Lanaken C
+NR,17-09-11,19:00,Lanaken D,LK095 Zutendaal A
+R,14-09-11,20:30,Lanaken D,Lanaken C
+R,14-09-11,20:30,Lanaken E,LK049 Herckenrode B
+NR,17-09-11,19:00,Lanaken E,LK100 ALKEN B
+NR,17-09-11,19:00,LK103 Hoeselt I,Lanaken F
+NR,17-09-11,19:00,Lanaken G,LK103 Hoeselt H
+NR,17-09-11,19:00,LK007 Bree I,Lanaken H
+NR,24-09-11,19:00,Lanaken A,LK071 TTC RS Bilzen B
+R,-,-,Lanaken A,Vrij 
+R,22-09-11,20:00,LK084 Centrum B,Lanaken B
+NR,24-09-11,19:00,Lanaken B,LK017 Voorshoven B
+NR,23-09-11,20:30,LK007 Bree C,Lanaken C
+R,-,-,Lanaken C,Vrij 
+NR,23-09-11,20:00,LK058 Opglabbeek A,Lanaken D
+R,19-09-11,20:00,LK049 Herckenrode A,Lanaken D
+R,19-09-11,20:00,LK049 Herckenrode C,Lanaken E
+NR,24-09-11,19:00,LK111 Diepenbeek A,Lanaken E
+NR,24-09-11,19:00,Lanaken F,LK068 Tongeren B
+NR,24-09-11,19:00,LK051 STAG Hasselt D,Lanaken G
+NR,24-09-11,19:00,Lanaken H,LK085 Mattec G
+NR,30-09-11,20:30,LK060 Westel A,Lanaken A
+R,27-09-11,20:00,LK017 Voorshoven B,Lanaken A
+R,29-09-11,20:00,Lanaken B,LK093 Malpertuus E
+NR,30-09-11,20:30,LK024 Aarschot B,Lanaken B
+NR,01-10-11,19:00,Lanaken C,LK084 Centrum D
+R,29-09-11,20:00,LK010 Houthalen B,Lanaken C
+NR,01-10-11,19:00,Lanaken D,LK017 Voorshoven C
+R,28-09-11,20:30,Lanaken D,LK084 Centrum D
+R,28-09-11,20:30,Lanaken E,LK095 Zutendaal A
+NR,01-10-11,19:00,Lanaken E,LK093 Malpertuus C
+NR,30-09-11,20:00,LK071 TTC RS Bilzen F,Lanaken F
+NR,01-10-11,19:00,Lanaken G,LK010 Houthalen B
+NR,30-09-11,20:00,LK049 Herckenrode J,Lanaken H
+NR,08-10-11,19:00,Lanaken A,LK024 Aarschot A
+R,05-10-11,20:30,Lanaken A,LK093 Malpertuus A
+R,03-10-11,20:30,LK051 STAG Hasselt A,Lanaken B
+NR,08-10-11,19:00,Lanaken B,LK051 STAG Hasselt B
+NR,08-10-11,19:00,Lanaken C,LK105 Stokrooie B
+R,03-10-11,20:00,LK049 Herckenrode A,Lanaken C
+NR,07-10-11,20:00,LK089 Hechtel-Eksel B,Lanaken D
+R,-,-,Lanaken D,Vrij 
+R,07-10-11,20:00,LK103 Hoeselt J,Lanaken E
+NR,08-10-11,19:00,LK103 Hoeselt F,Lanaken E
+NR,07-10-11,20:30,LK105 Stokrooie C,Lanaken F
+NR,08-10-11,19:00,Lanaken G,LK052 Schulen G
+NR,08-10-11,14:00,LK110 Molenbeersel C,Lanaken H
+NR,22-10-11,19:00,LK085 Mattec A,Lanaken A
+R,21-10-11,20:00,LK103 Hoeselt B,Lanaken A
+R,20-10-11,20:00,Lanaken B,LK093 Malpertuus D
+NR,22-10-11,19:00,LK007 Bree B,Lanaken B
+NR,21-10-11,20:30,LK092 St.-Truiden B,Lanaken C
+R,19-10-11,20:30,Lanaken C,LK084 Centrum D
+NR,22-10-11,19:00,Lanaken D,LK115 Peer B
+R,20-10-11,20:00,LK010 Houthalen B,Lanaken D
+R,19-10-11,20:30,Lanaken E,LK093 Malpertuus F
+NR,22-10-11,19:00,Lanaken E,LK084 Centrum C
+NR,22-10-11,19:00,Lanaken F,LK100 ALKEN C
+NR,22-10-11,20:00,LK061 Paal D,Lanaken G
+NR,22-10-11,19:00,Lanaken H,LK086 Dilsen F
+NR,05-11-11,19:00,Lanaken A,LK052 Schulen D
+R,-,-,Lanaken A,Vrij 
+R,-,-,Vrij ,Lanaken B
+NR,05-11-11,19:00,Lanaken B,LK086 Dilsen B
+NR,05-11-11,19:00,Lanaken C,LK016 Heusden C
+R,02-11-11,20:30,Lanaken C,LK103 Hoeselt H
+NR,05-11-11,19:00,LK037 Bambi A,Lanaken D
+R,04-11-11,20:00,LK103 Hoeselt G,Lanaken D
+R,02-11-11,20:30,LK024 Aarschot A,Lanaken E
+NR,04-11-11,20:00,LK026 Rijkel-Borgloon A,Lanaken E
+NR,04-11-11,20:00,LK049 Herckenrode H,Lanaken F
+NR,05-11-11,19:00,Lanaken G,LK071 TTC RS Bilzen C
+NR,05-11-11,20:30,LK033 AS B,Lanaken H
+NR,12-11-11,19:00,LK086 Dilsen A,Lanaken A
+R,10-11-11,20:30,LK052 Schulen A,Lanaken A
+R,10-11-11,20:00,Lanaken B,LK061 Paal B
+NR,12-11-11,19:00,LK085 Mattec B,Lanaken B
+NR,11-11-11,20:30,LK024 Aarschot C,Lanaken C
+R,-,-,Vrij ,Lanaken C
+NR,12-11-11,19:00,Lanaken D,LK085 Mattec C
+R,09-11-11,20:30,Lanaken D,LK017 Voorshoven C
+R,-,-,Lanaken E,Vrij 
+NR,12-11-11,19:00,Lanaken E,LK061 Paal B
+NR,12-11-11,19:00,Lanaken F,LK111 Diepenbeek C
+NR,11-11-11,20:00,LK071 TTC RS Bilzen E,Lanaken G
+NR,12-11-11,19:00,Lanaken H,LK058 Opglabbeek C
+NR,19-11-11,19:00,Lanaken A,LK049 Herckenrode C
+R,16-11-11,20:30,Lanaken A,LK017 Voorshoven A
+R,17-11-11,20:00,LK084 Centrum C,Lanaken B
+NR,18-11-11,20:30,LK012 Lipalet B,Lanaken B
+NR,19-11-11,19:00,LK103 Hoeselt G,Lanaken C
+R,16-11-11,20:30,Lanaken C,LK052 Schulen C
+NR,19-11-11,19:00,Lanaken D,LK062 Genk A
+R,16-11-11,20:00,LK089 Hechtel-Eksel A,Lanaken D
+R,17-11-11,20:00,LK010 Houthalen C,Lanaken E
+NR,18-11-11,20:30,LK092 St.-Truiden A,Lanaken E
+NR,18-11-11,20:00,LK026 Rijkel-Borgloon B,Lanaken F
+NR,19-11-11,19:00,Lanaken G,LK049 Herckenrode G
+NR,19-11-11,19:00,Lanaken H,LK085 Mattec F
+NR,25-11-11,20:30,LK093 Malpertuus B,Lanaken A
+R,25-11-11,20:00,LK103 Hoeselt C,Lanaken A
+R,24-11-11,20:00,Lanaken B,LK103 Hoeselt F
+NR,26-11-11,19:00,Lanaken B,LK103 Hoeselt E
+NR,26-11-11,19:00,Lanaken C,LK100 ALKEN A
+R,23-11-11,20:30,Lanaken C,LK089 Hechtel-Eksel A
+NR,25-11-11,20:00,LK110 Molenbeersel A,Lanaken D
+R,24-11-11,20:30,LK052 Schulen C,Lanaken D
+R,23-11-11,20:30,Lanaken E,LK105 Stokrooie A
+NR,26-11-11,19:00,Lanaken E,LK051 STAG Hasselt C
+NR,26-11-11,19:00,Lanaken F,LK092 St.-Truiden C
+NR,26-11-11,19:00,LK111 Diepenbeek B,Lanaken G
+NR,25-11-11,20:30,LK062 Genk B,Lanaken H
+NR,02-12-11,20:30,LK084 Centrum B,Lanaken A
+R,02-12-11,20:00,LK103 Hoeselt A,Lanaken A
+R,01-12-11,20:00,Lanaken B,LK100 ALKEN C
+NR,02-12-11,20:30,LK093 Malpertuus A,Lanaken B
+NR,03-12-11,19:00,Lanaken C,LK049 Herckenrode E
+R,29-11-11,20:00,LK017 Voorshoven C,Lanaken C
+NR,03-12-11,19:00,Lanaken D,LK007 Bree E
+R,30-11-11,20:30,Lanaken D,LK103 Hoeselt H
+R,30-11-11,20:30,Lanaken E,LK089 Hechtel-Eksel B
+NR,03-12-11,19:00,Lanaken E,LK049 Herckenrode D
+NR,03-12-11,19:00,LK071 TTC RS Bilzen D,Lanaken F
+NR,03-12-11,19:00,Lanaken G,LK033 AS A
+NR,-,-,Vrij ,Lanaken H
+NR,10-12-11,19:00,Lanaken A,LK109 NEERPELT A
+R,07-12-11,20:30,Lanaken A,LK100 ALKEN A
+NR,10-12-11,19:00,Lanaken B,LK052 Schulen E
+R,-,-,Vrij ,Lanaken B
+NR,09-12-11,20:30,LK009 Leopoldsburg C,Lanaken C
+R,07-12-11,20:30,Lanaken C,LK103 Hoeselt G
+NR,10-12-11,19:00,LK086 Dilsen C,Lanaken D
+R,-,-,Vrij ,Lanaken D
+R,09-12-11,20:00,LK103 Hoeselt I,Lanaken E
+NR,09-12-11,20:00,LK052 Schulen F,Lanaken E
+NR,10-12-11,19:00,Lanaken F,LK016 Heusden D
+NR,10-12-11,14:00,LK084 Centrum E,Lanaken G
+NR,10-12-11,19:00,Lanaken H,LK071 TTC RS Bilzen G

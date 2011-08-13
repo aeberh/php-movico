@@ -26,11 +26,11 @@ class PingpongGameService extends PingpongGameServiceBase {
 	}
 	
 	public function getFirstUpcomingGames() {
-		return $this->findByAfterDate(Date::createNow(), 0, 10);
+		return $this->findByAfterDate(Date::createNow(), 0, 15);
 	}
 	
 	public function getRecentlyPlayedGames() {
-		return $this->findByBeforeDate(Date::createNow(), 0, 10);
+		return $this->findByBeforeDate(Date::createNow(), 0, 15);
 	}
 	
 }
