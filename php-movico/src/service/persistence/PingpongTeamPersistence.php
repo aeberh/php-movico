@@ -6,40 +6,40 @@ class PingpongTeamPersistence extends Persistence {
 	public function findByClubAndTeam($clubId, $teamNo, $recreation, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."' AND `teamNo`='".Singleton::create("NullConverter")->fromDOMtoDB($teamNo)."' AND `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($recreation)."'".$limitStr;
-		if($this->dbCache->hasFinder('PingpongTeam', $whereClause)) {
-			return $this->dbCache->getFinder('PingpongTeam', $whereClause);
+		if(parent::$dbCache->hasFinder('PingpongTeam', $whereClause)) {
+			return parent::$dbCache->getFinder('PingpongTeam', $whereClause);
 		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		if($result->isEmpty()) {
 			throw new NoSuchPingpongTeamException();
 		}
 		$result = $this->getAsObject($result->getSingleRow());
-		$this->dbCache->setFinder('PingpongTeam', $whereClause, $result);
+		parent::$dbCache->setFinder('PingpongTeam', $whereClause, $result);
 		return $result;
 	}
 
 	public function findByClub($clubId, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'".$limitStr;
-		if($this->dbCache->hasFinder('PingpongTeam', $whereClause)) {
-			return $this->dbCache->getFinder('PingpongTeam', $whereClause);
+		if(parent::$dbCache->hasFinder('PingpongTeam', $whereClause)) {
+			return parent::$dbCache->getFinder('PingpongTeam', $whereClause);
 		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		$result = $this->getAsObjects($result->getResult());
-		$this->dbCache->setFinder('PingpongTeam', $whereClause, $result);
+		parent::$dbCache->setFinder('PingpongTeam', $whereClause, $result);
 		return $result;
 	}
 
 	public function findByPrimaryKey($teamId) {
-		if($this->dbCache->hasSingle("PingpongTeam", $teamId)) {
-			return $this->dbCache->getSingle("PingpongTeam", $teamId);
+		if(parent::$dbCache->hasSingle("PingpongTeam", $teamId)) {
+			return parent::$dbCache->getSingle("PingpongTeam", $teamId);
 		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchPingpongTeamException($teamId);
 		}
 		$result = $this->getAsObject($result->getSingleRow());
-		$this->dbCache->setSingle("PingpongTeam", $teamId, $result);
+		parent::$dbCache->setSingle("PingpongTeam", $teamId, $result);
 		return $result;
 	}
 
@@ -53,8 +53,8 @@ class PingpongTeamPersistence extends Persistence {
 	public function remove($teamId) {
 		$this->findByPrimaryKey($teamId);
 		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
-		$this->dbCache->resetEntity('PingpongTeam');
-		$this->dbCache->resetSingle("PingpongTeam", $teamId, $result);
+		parent::$dbCache->resetEntity('PingpongTeam');
+		parent::$dbCache->resetSingle("PingpongTeam", $teamId);
 	}
 
 	public function update(PingpongTeam $object) {
@@ -72,24 +72,24 @@ class PingpongTeamPersistence extends Persistence {
 			$pk = $this->db->selectQuery("SELECT teamId from ".self::TABLE." ORDER BY teamId DESC limit 1")->getSingleton();
 		}
 		$result = $this->findByPrimaryKey($pk);
-		$this->dbCache->resetEntity("PingpongTeam");
-		$this->dbCache->setSingle("PingpongTeam", $pk, $result);
+		parent::$dbCache->resetEntity("PingpongTeam");
+		parent::$dbCache->setSingle("PingpongTeam", $pk, $result);
 		return $result;
 	}
 
 	public function findAll($from, $limit) {
-		if($this->dbCache->hasAll('PingpongTeam')) {
-			return $this->dbCache->getAll('PingpongTeam');
+		if(parent::$dbCache->hasAll('PingpongTeam')) {
+			return parent::$dbCache->getAll('PingpongTeam');
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		$this->dbCache->setAll('PingpongTeam', $objects);
+		parent::$dbCache->setAll('PingpongTeam', $objects);
 		return $objects;
 	}
 
 	public function count() {
-		if($this->dbCache->hasAll('PingpongTeam')) {
-			return count($this->dbCache->getAll('PingpongTeam'));
+		if(parent::$dbCache->hasAll('PingpongTeam')) {
+			return count(parent::$dbCache->getAll('PingpongTeam'));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

@@ -65,8 +65,8 @@ class EntityPersistenceGenerator {
 	
 	private function generateGetCount(Entity $entity) {
 		return "\tpublic function count() {\n".
-			"\t\tif(\$this->dbCache->hasAll('{$entity->getName()}')) {\n".
-			"\t\t\treturn count(\$this->dbCache->getAll('{$entity->getName()}'));\n".
+			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}')) {\n".
+			"\t\t\treturn count(parent::\$dbCache->getAll('{$entity->getName()}'));\n".
 			"\t\t}\n".
 			"\t\treturn \$this->db->selectQuery(\"SELECT COUNT(*) FROM \".self::TABLE)->getSingleton();\n".
 			"\t}\n\n";
@@ -77,8 +77,8 @@ class EntityPersistenceGenerator {
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
 			"\t\t\$limitStr = (\$from == -1 && \$limit == -1) ? \"\" : \" LIMIT \$from,\$limit\";\n".
 			"\t\t\$whereClause = \"".implode(" AND ",$finder->getWhereClauses()).$orderByClause."\".\$limitStr;\n".
-			"\t\tif(\$this->dbCache->hasFinder('{$entity->getName()}', \$whereClause)) {\n".
-			"\t\t\treturn \$this->dbCache->getFinder('{$entity->getName()}', \$whereClause);\n".
+			"\t\tif(parent::\$dbCache->hasFinder('{$entity->getName()}', \$whereClause)) {\n".
+			"\t\t\treturn parent::\$dbCache->getFinder('{$entity->getName()}', \$whereClause);\n".
 			"\t\t}\n".
 			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE \$whereClause\");\n";
 		if($finder->isUnique()) {
@@ -89,7 +89,7 @@ class EntityPersistenceGenerator {
 		} else {
 			$result .= "\t\t\$result = \$this->getAsObjects(\$result->getResult());\n";
 		}
-		return "$result\t\t\$this->dbCache->setFinder('{$entity->getName()}', \$whereClause, \$result);\n".
+		return "$result\t\tparent::\$dbCache->setFinder('{$entity->getName()}', \$whereClause, \$result);\n".
 			"\t\treturn \$result;\n\t}\n\n";
 	}
 	
@@ -97,25 +97,25 @@ class EntityPersistenceGenerator {
 		$pk = $entity->getPrimaryKey()->getName();
 		$name = $entity->getName();
 		return "\tpublic function findByPrimaryKey(\$$pk) {\n".
-			"\t\tif(\$this->dbCache->hasSingle(\"{$entity->getName()}\", \$$pk)) {\n".
-			"\t\t\treturn \$this->dbCache->getSingle(\"{$entity->getName()}\", \$$pk);\n".
+			"\t\tif(parent::\$dbCache->hasSingle(\"{$entity->getName()}\", \$$pk)) {\n".
+			"\t\t\treturn parent::\$dbCache->getSingle(\"{$entity->getName()}\", \$$pk);\n".
 			"\t\t}\n".
 			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE $pk='\".addslashes(\$$pk).\"'\");\n".
 			"\t\tif(\$result->isEmpty()) {\n\t\t\tthrow new NoSuch{$name}Exception(\$$pk);\n\t\t}\n".
 			"\t\t\$result = \$this->getAsObject(\$result->getSingleRow());\n".
-			"\t\t\$this->dbCache->setSingle(\"{$entity->getName()}\", \$$pk, \$result);\n".
+			"\t\tparent::\$dbCache->setSingle(\"{$entity->getName()}\", \$$pk, \$result);\n".
 			"\t\treturn \$result;\n".
 			"\t}\n\n";
 	}
 
 	private function generateFindAll(Entity $entity) {
 		return "\tpublic function findAll(\$from, \$limit) {\n".
-			"\t\tif(\$this->dbCache->hasAll('{$entity->getName()}')) {\n".
-			"\t\t\treturn \$this->dbCache->getAll('{$entity->getName()}');\n".
+			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}')) {\n".
+			"\t\t\treturn parent::\$dbCache->getAll('{$entity->getName()}');\n".
 			"\t\t}\n".
 			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" {$entity->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\t\$objects = \$this->getAsObjects(\$rows);\n".
-			"\t\t\$this->dbCache->setAll('{$entity->getName()}', \$objects);\n".
+			"\t\tparent::\$dbCache->setAll('{$entity->getName()}', \$objects);\n".
 			"\t\treturn \$objects;\n".
 			"\t}\n\n";
 	}
@@ -168,8 +168,8 @@ class EntityPersistenceGenerator {
 			"\t\t\t\$pk = \$this->db->selectQuery(\"SELECT {$pk->getName()} from \".self::TABLE.\" ORDER BY {$pk->getName()} DESC limit 1\")->getSingleton();\n".
 			"\t\t}\n".
 			"\t\t\$result = \$this->findByPrimaryKey(\$pk);\n".
-			"\t\t\$this->dbCache->resetEntity(\"{$entity->getName()}\");\n".
-			"\t\t\$this->dbCache->setSingle(\"{$entity->getName()}\", \$pk, \$result);\n".
+			"\t\tparent::\$dbCache->resetEntity(\"{$entity->getName()}\");\n".
+			"\t\tparent::\$dbCache->setSingle(\"{$entity->getName()}\", \$pk, \$result);\n".
 			"\t\treturn \$result;\n".
 			"\t}\n\n";
 		return $result;
@@ -180,8 +180,8 @@ class EntityPersistenceGenerator {
 		return "\tpublic function remove(\$$pk) {\n".
 			"\t\t\$this->findByPrimaryKey(\$$pk);\n".
 			"\t\t\$this->db->updateQuery(\"DELETE FROM \".self::TABLE.\" WHERE $pk='\".addslashes(\$$pk).\"'\");\n".
-			"\t\t\$this->dbCache->resetEntity('{$entity->getName()}');\n".
-			"\t\t\$this->dbCache->resetSingle(\"{$entity->getName()}\", \$$pk, \$result);\n".
+			"\t\tparent::\$dbCache->resetEntity('{$entity->getName()}');\n".
+			"\t\tparent::\$dbCache->resetSingle(\"{$entity->getName()}\", \$$pk);\n".
 			"\t}\n\n";
 	}
 
