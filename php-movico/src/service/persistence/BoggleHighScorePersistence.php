@@ -5,16 +5,27 @@ class BoggleHighScorePersistence extends Persistence {
 
 	public function findByLang($lang, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE `lang`='".Singleton::create("NullConverter")->fromDOMtoDB($lang)."'ORDER BY `points` desc$limitStr");
-		return $this->getAsObjects($result->getResult());
+		$whereClause = "`lang`='".Singleton::create("NullConverter")->fromDOMtoDB($lang)."'ORDER BY `points` desc".$limitStr;
+		if(parent::$dbCache->hasFinder('BoggleHighScore', $whereClause)) {
+			return parent::$dbCache->getFinder('BoggleHighScore', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
+		$result = $this->getAsObjects($result->getResult());
+		parent::$dbCache->setFinder('BoggleHighScore', $whereClause, $result);
+		return $result;
 	}
 
 	public function findByPrimaryKey($hscoreId) {
+		if(parent::$dbCache->hasSingle("BoggleHighScore", $hscoreId)) {
+			return parent::$dbCache->getSingle("BoggleHighScore", $hscoreId);
+		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE hscoreId='".addslashes($hscoreId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchBoggleHighScoreException($hscoreId);
 		}
-		return $this->getAsObject($result->getSingleRow());
+		$result = $this->getAsObject($result->getSingleRow());
+		parent::$dbCache->setSingle("BoggleHighScore", $hscoreId, $result);
+		return $result;
 	}
 
 	public function create($hscoreId) {
@@ -27,31 +38,44 @@ class BoggleHighScorePersistence extends Persistence {
 	public function remove($hscoreId) {
 		$this->findByPrimaryKey($hscoreId);
 		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE hscoreId='".addslashes($hscoreId)."'");
+		parent::$dbCache->resetEntity('BoggleHighScore');
+		parent::$dbCache->resetSingle("BoggleHighScore", $hscoreId);
 	}
 
 	public function update(BoggleHighScore $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', `lang`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', `grid`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', `points`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', `playDate`='".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."' WHERE hscoreId='".addslashes($object->getHscoreId())."'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', `lang`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getLang())."', `grid`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid())."', `points`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints())."', `playDate`='".Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate())."' WHERE hscoreId='".addslashes($object->getHscoreId())."'";
 		$pk = $object->getHscoreId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLang())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints())."', '".Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getHscoreId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getLang()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints()))."', '".addslashes(Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`, `lang`, `grid`, `points`, `playDate`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getHscoreId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLang())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getGrid())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPoints())."', '".Singleton::create("DateConverter")->fromDOMtoDB($object->getPlayDate())."')";
 			}
 		}
 		$this->db->updateQuery($q);
 		if(empty($pk)) {
 			$pk = $this->db->selectQuery("SELECT hscoreId from ".self::TABLE." ORDER BY hscoreId DESC limit 1")->getSingleton();
 		}
-		return $this->findByPrimaryKey($pk);
+		$result = $this->findByPrimaryKey($pk);
+		parent::$dbCache->resetEntity("BoggleHighScore");
+		parent::$dbCache->setSingle("BoggleHighScore", $pk, $result);
+		return $result;
 	}
 
 	public function findAll($from, $limit) {
+		if(parent::$dbCache->hasAll('BoggleHighScore')) {
+			return parent::$dbCache->getAll('BoggleHighScore');
+		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `points` desc LIMIT $from,$limit")->getResult();
-		return $this->getAsObjects($rows);
+		$objects = $this->getAsObjects($rows);
+		parent::$dbCache->setAll('BoggleHighScore', $objects);
+		return $objects;
 	}
 
 	public function count() {
+		if(parent::$dbCache->hasAll('BoggleHighScore')) {
+			return count(parent::$dbCache->getAll('BoggleHighScore'));
+		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}
 

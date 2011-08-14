@@ -9,6 +9,10 @@ class PrintUtil {
 		echo "$text\n";
 	}
 	
+	public static function printTime() {
+		echo time()."<br/>";
+	}
+	
 	public static function out($var) {
 		echo "<pre>";
 		print_r($var);

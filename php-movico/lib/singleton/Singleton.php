@@ -15,7 +15,7 @@ class Singleton {
 	}
 
 	private static function doInstantiate($className) {
-		if(!class_exists($className)) {
+		if(!ClassCache::exists($className)) {
 			throw new SingletonException("Cannot create singleton for class $className: class does not exist.");
 		}
 		$name = new $className;

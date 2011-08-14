@@ -21,10 +21,10 @@ class RenderLink extends Component {
 		$context = parent::$settings->getContextPath();
 		$view = $this->getConvertedValue($this->view, $rowIndex);
 		$value = $this->getConvertedValue($this->value, $rowIndex);
-		$params = new ArrayList("String");
+		$params = new ArrayList("string");
 		foreach($this->getChildrenOfType("Param") as $param) {
 			$paramVal = $this->getConvertedValue($param->getValue(), $rowIndex);
-			$params->add(String::create($paramVal));
+			$params->add(strval($paramVal));
 		}
 		$url = $view;
 		if(!$params->isEmpty()) {

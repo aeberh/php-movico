@@ -8,18 +8,22 @@ class DatabaseManager {
 
 	private $host, $db, $user, $pass;
 	private $conn = false;
+	
+	private $nbQueries = 0;
+	private $showSql;
 
 	/**
 	 * Initializes a new DatabaseManager
 	 */
 	public function __construct() {
-		$group = Singleton::create("Settings")->getEnvironment();
-		$this->importParameters($group);
+		$settings = Singleton::create("Settings");
+		$this->showSql = $settings->showSql();
+		$this->importParameters($settings->getEnvironment());
 	}
 
-	private function importParameters($group) {
+	private function importParameters($env) {
 		$dbConfig = new ConfigurationFile(ConfigurationConstants::DB_CONFIG);
-		$params = $dbConfig->getGroup($group);
+		$params = $dbConfig->getGroup($env);
 		$this->host = $params->getParam("mysql_host")->getValue();
 		$this->db = $params->getParam("mysql_db")->getValue();
 		$this->user = $params->getParam("mysql_user")->getValue();
@@ -51,6 +55,7 @@ class DatabaseManager {
 	 * @return  ResultSet containing the result of the query.
 	 */
 	public function selectQuery($query) {
+		$this->logQuery($query);
 		$this->connect();
 		$resource = @mysql_query($query, $this->conn);
 		if(get_resource_type($resource) === false)
@@ -69,6 +74,7 @@ class DatabaseManager {
 	 * @throws  DatabaseException if an error occurred during the query execution.
 	 */
 	public function updateQuery($query) {
+		$this->logQuery($query);
 		$this->connect();
 		$ok = @mysql_query($query, $this->conn);
 		if(!$ok) {
@@ -83,6 +89,13 @@ class DatabaseManager {
 			}
 		}
 		$this->disconnect();
+	}
+	
+	private function logQuery($query) {
+		if($this->showSql) {
+			$this->nbQueries++;
+			echo $this->nbQueries.". ".$query."<br/>";
+		}
 	}
 
 }

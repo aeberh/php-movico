@@ -1,15 +1,17 @@
-<?
-abstract class Chrono {
+<?php
+class Chrono {
 	
 	private $started;
-	private $start;
+	private $startTime;
 	private $time;
+	
+	private $stops;
 	
 	public function start() {
 		if($this->started) {
-			throw new ChronoAlreadyStartedException($this->getTime());
+			throw new ChronoAlreadyStartedException();
 		}
-		$this->start = $this->getCurrentTime();
+		$this->tick("START");
 		$this->started = true;
 	}
 	
@@ -17,16 +19,32 @@ abstract class Chrono {
 		if(!$this->started) {
 			throw new ChronoNotYetStartedException();
 		}
+		$this->tick("STOP");
 		$this->started = false;
-		$this->time = $this->getCurrentTime() - $this->start;
-		return $this->time;
+		$this->printInfo();
 	}
 	
-	public function getTime() {
-		return $this->started ? $this->getCurrentTime() - $this->start : $this->time;
+	public function tick($label) {
+		$this->stops[] = new ChronoStop($label, $this->getCurrentTime());
 	}
 	
-	protected abstract function getCurrentTime();
+	private function printInfo() {
+		$curTime = $this->stops[0]->getTime();
+		$totalTime = 0;
+		foreach($this->stops as $stop) {
+			$diffTime = $stop->getTime() - $curTime;
+			$totalTime += $diffTime;
+			//if($roundedDiff > 0) {
+				echo $stop->getLabel()." - ".round($totalTime)."ms (+".round($diffTime)."ms)<br/>";
+			//}
+			$curTime = $stop->getTime();
+		}
+		echo "TOTAL: {$totalTime}ms";
+	}
+	
+	private function getCurrentTime() {
+		return microtime(true)*1000;
+	}
 	
 }
 ?>

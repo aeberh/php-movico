@@ -9,9 +9,9 @@ class ViewRenderer extends ApplicationBean {
 		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
 	}
 	
-	public function render($view) {
-		$root = $this->getXmlElement($view);
-		$comp = $this->parseView($view, $root);
+	public function render($viewForward) {
+		$root = $this->getXmlElement($viewForward->getView());
+		$comp = $this->parseView($viewForward->getUrl(), $root);
 		return $this->renderComponent($comp);
 	}
 	
@@ -34,15 +34,15 @@ class ViewRenderer extends ApplicationBean {
 		return $result;
 	}
 	
-	private function parseView($view, XmlElement $root) {
+	private function parseView($url, XmlElement $root) {
 		$viewRoot = $this->parseNode($root);
-		$viewRoot->setUrl($view);
+		$viewRoot->setUrl($url);
 		return $viewRoot;
 	}
 		
 	private function parseNode(XmlElement $node) {
 		$className = ucfirst($node->getName());
-		if(!class_exists($className)) {
+		if(!ClassCache::exists($className)) {
 			$instance = new HtmlComponent($node->getName(), $node->getText(), $node->getAttributes());
 		} else {
 			if(!ClassUtil::isSubclassOf($className, "Component")) {

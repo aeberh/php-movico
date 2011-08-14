@@ -12,6 +12,7 @@ class Settings {
 	private $locale;
 	private $gmapsApiKey;
 	private $viewCacheEnabled;
+	private $showSql;
 	
 	public function __construct() {
 		$config = new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
@@ -23,6 +24,7 @@ class Settings {
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
 		$this->gmapsApiKey = $config->getParam("gmaps_api_key", "")->getValue();
 		$this->viewCacheEnabled = $config->getParam("view_cache_enabled", "true")->getValue();
+		$this->showSql = $config->getParam("show_sql", "false")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -63,6 +65,10 @@ class Settings {
 	
 	public function isViewCacheEnabled() {
 		return $this->viewCacheEnabled;
+	}
+	
+	public function showSql() {
+		return $this->showSql;
 	}
 
 }

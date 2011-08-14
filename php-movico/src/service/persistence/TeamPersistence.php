@@ -4,11 +4,16 @@ class TeamPersistence extends Persistence {
 	const TABLE = "movico_team";
 
 	public function findByPrimaryKey($teamId) {
+		if(parent::$dbCache->hasSingle("Team", $teamId)) {
+			return parent::$dbCache->getSingle("Team", $teamId);
+		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
 		if($result->isEmpty()) {
 			throw new NoSuchTeamException($teamId);
 		}
-		return $this->getAsObject($result->getSingleRow());
+		$result = $this->getAsObject($result->getSingleRow());
+		parent::$dbCache->setSingle("Team", $teamId, $result);
+		return $result;
 	}
 
 	public function create($teamId) {
@@ -21,31 +26,44 @@ class TeamPersistence extends Persistence {
 	public function remove($teamId) {
 		$this->findByPrimaryKey($teamId);
 		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE teamId='".addslashes($teamId)."'");
+		parent::$dbCache->resetEntity('Team');
+		parent::$dbCache->resetSingle("Team", $teamId);
 	}
 
 	public function update(Team $object) {
-		$q = "UPDATE ".self::TABLE." SET `name`='".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."' WHERE teamId='".addslashes($object->getTeamId())."'";
+		$q = "UPDATE ".self::TABLE." SET `name`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."' WHERE teamId='".addslashes($object->getTeamId())."'";
 		$pk = $object->getTeamId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId()))."', '".addslashes(Singleton::create("NullConverter")->fromDOMtoDB($object->getName()))."')";
+				$q = "INSERT INTO ".self::TABLE." (`name`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getTeamId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getName())."')";
 			}
 		}
 		$this->db->updateQuery($q);
 		if(empty($pk)) {
 			$pk = $this->db->selectQuery("SELECT teamId from ".self::TABLE." ORDER BY teamId DESC limit 1")->getSingleton();
 		}
-		return $this->findByPrimaryKey($pk);
+		$result = $this->findByPrimaryKey($pk);
+		parent::$dbCache->resetEntity("Team");
+		parent::$dbCache->setSingle("Team", $pk, $result);
+		return $result;
 	}
 
 	public function findAll($from, $limit) {
+		if(parent::$dbCache->hasAll('Team')) {
+			return parent::$dbCache->getAll('Team');
+		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
-		return $this->getAsObjects($rows);
+		$objects = $this->getAsObjects($rows);
+		parent::$dbCache->setAll('Team', $objects);
+		return $objects;
 	}
 
 	public function count() {
+		if(parent::$dbCache->hasAll('Team')) {
+			return count(parent::$dbCache->getAll('Team'));
+		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}
 

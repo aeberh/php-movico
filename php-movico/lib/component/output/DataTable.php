@@ -65,11 +65,12 @@ class DataTable extends DataSeries {
 	private function renderRows($cols) {
 		$rows = $this->getRows();
 		$result = "";
-		for($i=0; $i<count($rows); $i++) {
+		$nbRows = count($rows);
+		for($i=0; $i<$nbRows; $i++) {
 			$page = isset($this->rows) ? floor($i/$this->rows)+1 : 1;
-			$row = $rows[$i];
 			$result .= "<tr class=\"page p$page\">";
-			for($j=0; $j<count($cols); $j++) {
+			$nbCols = count($cols);
+			for($j=0; $j<$nbCols; $j++) {
 				$col = $cols[$j];
 				if(!$col->shouldBeRendered($i)) {
 					continue;
