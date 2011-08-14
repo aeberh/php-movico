@@ -18,20 +18,25 @@
 		<div id="border-main">
 			<div id="main">
 				<div id="layout">
-					<div class="col very-small">
-						<form>
-							<ul>
-								<li><renderLink view="admin/players/overview" value="Spelers"/></li>
-								<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
-								<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
-							</ul>
-						</form>
-					</div>
-					<div class="col very-wide">
-						<message/>
-						<insert name="body"/>
-					</div>
-					<div class="clear"></div>
+					<panelGroup rendered="#{LoginBean.admin}">
+						<div class="col very-small">
+							<form>
+								<ul>
+									<li><renderLink view="admin/players/overview" value="Spelers"/></li>
+									<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
+									<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
+								</ul>
+							</form>
+						</div>
+						<div class="col very-wide">
+							<message/>
+							<insert name="body"/>
+						</div>
+						<div class="clear"></div>
+					</panelGroup>
+					<panelGroup rendered="!#{LoginBean.admin}">
+						<p>Je hebt niet genoeg rechten om deze pagina te bekijken.</p>
+					</panelGroup>
 				</div>
 			</div>
 		</div>
