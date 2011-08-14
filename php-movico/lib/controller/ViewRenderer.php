@@ -42,7 +42,7 @@ class ViewRenderer extends ApplicationBean {
 		
 	private function parseNode(XmlElement $node) {
 		$className = ucfirst($node->getName());
-		if(!class_exists($className)) {
+		if(!ClassCache::exists($className)) {
 			$instance = new HtmlComponent($node->getName(), $node->getText(), $node->getAttributes());
 		} else {
 			if(!ClassUtil::isSubclassOf($className, "Component")) {
