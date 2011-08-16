@@ -15,7 +15,6 @@
 
 .dataTable th {
 	padding: 4px 5px;
-	text-align: left;
 	background-color: #bbb;
 	background-image: -webkit-gradient(
 	    linear,
@@ -64,7 +63,7 @@
 }
 
 .game-day, .game-date, .game-time {
-	color: #999;
+	color: #777;
 }
 
 .game-day {
@@ -84,7 +83,7 @@
 }
 
 .game-home-team, .game-out-team {
-	width: 120px;
+	width: 135px;
 }
 
 .game-home-team-pts, .game-out-team-pts {
@@ -100,6 +99,14 @@
 	text-align: center;
 }
 
-.game-out-team {
-	
+.l {
+	text-align: left;
+}
+
+.r {
+	text-align: right;
+}
+
+.c {
+	text-align: center;
 }

@@ -24,7 +24,7 @@ class PingpongClub extends PingpongClubModel {
 	public function getAddress() {
 		$street = $this->getStreet();
 		$place = $this->getPlace();
-		$comma = empty($street) || empty($place) ? "" : ", ";
+		$comma = empty($street) || empty($place) ? "" : "<br/>";
 		return $street.$comma.$place;
 	}
 	

@@ -3,7 +3,7 @@
 <composition template="admin">
 	<define name="body">
 		<div>
-			<h2><outputText value="Spelerbeheer - Wijzig speler #{ManagePlayersBean.selected.fullName}"/></h2>
+			<h2><outputText value="Ledenbeheer - Wijzig lid #{ManagePlayersBean.selected.fullName}"/></h2>
 			<div>
 				<form>
 					<inputHidden value="#{ManagePlayersBean.selected.playerId}"/>

@@ -37,6 +37,9 @@
 							<outputText value="#{game.homeTeamPts}"/>
 						</column>
 						<column>
+							<outputText value="-"/>
+						</column>
+						<column>
 							<colHeader>
 								<outputText value="P"/>
 							</colHeader>

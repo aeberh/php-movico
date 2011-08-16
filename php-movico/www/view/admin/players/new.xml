@@ -3,7 +3,7 @@
 <composition template="admin">
 	<define name="body">
 		<div>
-			<h2>Spelerbeheer - Maak nieuwe speler</h2>
+			<h2>Ledenbeheer - Maak nieuw lid</h2>
 			<div>
 				<form>
 					<p>
@@ -21,10 +21,6 @@
 					<p>
 						<outputLabel for="player-ranking" value="Klassement (bv. C3)"/>
 						<selectOneMenu id="player-ranking" options="#{ApplicationConstants.rankings}" value="#{ManagePlayersBean.selected.ranking}"/>
-					</p>
-					<p>
-						<outputLabel for="player-active" value="Actief?"/>
-						<booleanCheckbox id="player-active" value="#{ManagePlayersBean.selected.active}"/>
 					</p>
 					<p>
 						<outputLabel for="player-rec" value="Recreatiespeler?"/>

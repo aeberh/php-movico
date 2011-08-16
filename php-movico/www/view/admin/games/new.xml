@@ -7,7 +7,7 @@
 			<div>
 				<form>
 					<p>
-						<outputLabel for="date" value="Datum"/>
+						<outputLabel for="date" value="Datum en tijd"/>
 						<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
 					</p>
 					<p>

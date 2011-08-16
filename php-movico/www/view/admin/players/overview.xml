@@ -3,36 +3,30 @@
 <composition template="admin">
 	<define name="body">
 		<div>
-			<h2>Spelerbeheer - Overzicht</h2>
+			<h2>Ledenbeheer - Overzicht</h2>
 			<div>
 				<form>
 					<p>
-						<commandButton action="admin/players/new" value="Maak nieuwe speler"/>
+						<commandButton action="admin/players/new" value="Maak nieuw lid"/>
 					</p>
 					<dataTable value="#{ManagePlayersBean.players}" var="player">
 						<column>
-							<outputText value="#{player.activeString}"/>
-						</column>
-						<column>
-							<outputText value="#{player.recString}"/>
-						</column>
-						<column>
 							<colHeader>
-								<outputText value="Lidnr"/>
+								<outputText value="Lidnr."/>
 							</colHeader>
 							<outputText value="#{player.memberNo}"/>
 						</column>
 						<column>
 							<colHeader>
-								<outputText value="Naam"/>
+								<outputText value="Achternaam"/>
 							</colHeader>
-							<outputText value="#{player.fullName}"/>
+							<outputText value="#{player.lastName}"/>
 						</column>
 						<column>
 							<colHeader>
-								<outputText value="Ranking"/>
+								<outputText value="Voornaam"/>
 							</colHeader>
-							<outputText value="#{player.ranking}"/>
+							<outputText value="#{player.firstName}"/>
 						</column>
 						<column>
 							<colHeader>
@@ -47,12 +41,27 @@
 							<outputText value="#{player.emailAddress}"/>
 						</column>
 						<column>
+							<outputText value="#{player.activeString}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Rank."/>
+							</colHeader>
+							<outputText value="#{player.ranking}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Rec."/>
+							</colHeader>
+							<outputText value="#{player.recString}"/>
+						</column>
+						<column>
 							<commandButton action="#{ManagePlayersBean.edit}" value="Wijzigen">
 								<param value="#{player.playerId}"/>
 							</commandButton>
 						</column>
 						<column>
-							<commandButton action="#{ManagePlayersBean.delete}" value="X" popup="Weet je zeker dat je deze speler verwijdert?">
+							<commandButton action="#{ManagePlayersBean.delete}" value="X" popup="Weet je zeker dat je dit lid verwijdert?">
 								<param value="#{player.playerId}"/>
 							</commandButton>
 						</column>

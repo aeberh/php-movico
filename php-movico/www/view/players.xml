@@ -5,53 +5,61 @@
 		<div>
 			<h2>Ledenoverzicht</h2>
 			<dataTable value="#{PlayerOverviewBean.players}" var="player">
-				<column>
-					<colHeader>
-						<outputText value="Volgnr"/>
+				<column class="r">
+					<colHeader class="r">
+						<outputText value="Nr"/>
 					</colHeader>
 					<outputText value="#{player.referenceNo}"/>
 				</column>
-				<column>
-					<colHeader>
-						<outputText value="Lidnummer"/>
+				<column class="r">
+					<colHeader class="r">
+						<outputText value="Index"/>
 					</colHeader>
-					<outputText value="#{player.memberNo}"/>
+					<outputText value="#{player.index}"/>
+				</column>
+				<column class="c">
+					<colHeader class="c">
+						<outputText value="Lidnr."/>
+					</colHeader>
+					<outputText value="#{player.memberNoString}"/>
 				</column>
 				<column>
-					<colHeader>
+					<colHeader class="l">
 						<outputText value="Achternaam"/>
 					</colHeader>
 					<outputText value="#{player.lastName}"/>
 				</column>
 				<column>
-					<colHeader>
+					<colHeader class="l">
 						<outputText value="Voornaam"/>
 					</colHeader>
 					<outputText value="#{player.firstName}"/>
 				</column>
-				<column>
-					<colHeader>
-						<outputText value="Index"/>
-					</colHeader>
-					<outputText value="#{player.index}"/>
-				</column>
-				<column>
-					<colHeader>
-						<outputText value="Klas"/>
-					</colHeader>
-					<outputText value="#{player.ranking}"/>
-				</column>
-				<column>
-					<colHeader>
-						<outputText value="Rec"/>
-					</colHeader>
-					<outputText value="#{player.recString}"/>
-				</column>
-				<column rendered="#{LoginBean.loggedIn}">
-					<colHeader>
+				<column rendered="#{LoginBean.loggedIn}" class="r">
+					<colHeader class="r">
 						<outputText value="Telefoon"/>
 					</colHeader>
 					<outputText value="#{player.phone}"/>
+				</column>
+				<!--
+				<column rendered="#{LoginBean.loggedIn}">
+					<colHeader class="l">
+						<outputText value="E-mail"/>
+					</colHeader>
+					<outputText value="#{player.emailAddress}"/>
+				</column>
+				-->
+				<column class="c">
+					<colHeader>
+						<outputText value="Rank."/>
+					</colHeader>
+					<outputText value="#{player.ranking}"/>
+				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Rec."/>
+					</colHeader>
+					<outputText value="#{player.recString}"/>
 				</column>
 			</dataTable>
 		</div>

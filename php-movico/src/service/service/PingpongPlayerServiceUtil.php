@@ -5,8 +5,8 @@ class PingpongPlayerServiceUtil {
 		return self::getService()->getActivePlayers();
 	}
 
-	public static function create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
-		return self::getService()->create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+	public static function create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+		return self::getService()->create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone);
 	}
 
 	public static function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {

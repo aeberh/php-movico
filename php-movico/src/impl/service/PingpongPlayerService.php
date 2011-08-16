@@ -5,9 +5,9 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		return $this->findByActive(true);
 	}
 	
-	public function create($firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+	public function create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
 		$player = $this->createPingpongPlayer();
-		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, true, $recreation, $startYear, $street, $place, $emailAddress, $phone);
 	}
 	
 	public function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
@@ -16,7 +16,7 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 	}
 	
 	private function doUpdate(PingpongPlayer $player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
-		if(empty($firstName) || empty($lastName) || empty($memberNo)) {
+		if(empty($firstName) || empty($lastName)) {
 			throw new RequiredInformationException();
 		}
 		$player->setFirstName($firstName);

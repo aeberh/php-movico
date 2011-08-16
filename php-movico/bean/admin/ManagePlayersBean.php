@@ -14,9 +14,9 @@ class ManagePlayersBean extends RequestBean {
 	public function create() {
 		try {
 			PingpongPlayerServiceUtil::create($this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
-				$this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), $this->selected->getStartYear(),
+				$this->selected->getRanking(), $this->selected->isRecreation(), $this->selected->getStartYear(),
 				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone());
-			MessageUtil::info("Speler werd succesvol toegevoegd!");
+			MessageUtil::info("Lid werd succesvol toegevoegd!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -34,7 +34,7 @@ class ManagePlayersBean extends RequestBean {
 			PingpongPlayerServiceUtil::update($this->selected->getPlayerId(), $this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
 				$this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), $this->selected->getStartYear(),
 				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone());
-			MessageUtil::info("Speler werd succesvol aangepast!");
+			MessageUtil::info("Lid werd succesvol aangepast!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -44,7 +44,7 @@ class ManagePlayersBean extends RequestBean {
 	
 	public function delete($playerId) {
 		PingpongPlayerServiceUtil::deletePingpongPlayer($playerId);
-		MessageUtil::info("Speler werd succesvol verwijderd!");
+		MessageUtil::info("Lid werd succesvol verwijderd!");
 		return null;
 	}
 	

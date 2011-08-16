@@ -18,7 +18,7 @@ class View extends Component {
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>".
 			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
-			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/357c/maps2.api/main.js\" type=\"text/javascript\"></script>".
+			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/361c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
 			"$(function() {";
 		$ajaxTimeout = parent::$settings->getAjaxTimeout();

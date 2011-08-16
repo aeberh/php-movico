@@ -22,7 +22,7 @@
 						<div class="col very-small">
 							<form>
 								<ul>
-									<li><renderLink view="admin/players/overview" value="Spelers"/></li>
+									<li><renderLink view="admin/players/overview" value="Leden"/></li>
 									<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
 									<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
 								</ul>

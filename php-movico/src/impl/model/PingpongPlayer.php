@@ -20,11 +20,11 @@ class PingpongPlayer extends PingpongPlayerModel {
 		for($i=$ref; $i<$players->size(); $i++) {
 			$player = $players->get($i);
 			if($players->get($i)->getRanking() != $this->getRanking()) {
-				$result = $player->getReferenceNo()-1;
+				return $player->getReferenceNo()-1;
 				break;
 			}
 		}
-		return $result;
+		return $players->size();
 	}
 	
 	public function getRecString() {
@@ -33,6 +33,10 @@ class PingpongPlayer extends PingpongPlayerModel {
 	
 	public function getActiveString() {
 		return $this->isActive() ? "A" : "";
+	}
+	
+	public function getMemberNoString() {
+		return $this->getMemberNo() == 0 ? "" : $this->getMemberNo();
 	}
 	
 	private function getActivePlayerList() {
