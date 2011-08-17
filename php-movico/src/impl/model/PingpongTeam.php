@@ -3,8 +3,7 @@ class PingpongTeam extends PingpongTeamModel {
 
 	public function getTeamStr() {
 		$clubName = PingpongClubServiceUtil::getPingpongClub($this->getClubId())->getShortName();
-		$rec = $this->isRecreation() ? " REC" : "";
-		return $clubName.$rec." ".$this->getTeamNo();
+		return $clubName." ".$this->getFullTeamNo();
 	}
 	
 	public function getGames() {
@@ -15,6 +14,10 @@ class PingpongTeam extends PingpongTeamModel {
 	
 	public function getClub() {
 		return PingpongClubServiceUtil::getPingpongClub($this->getClubId());
+	}
+	
+	public function getFullTeamNo() {
+		return $this->isRecreation() ? "REC ".$this->getTeamNo() : $this->getTeamNo();
 	}
 	
 }

@@ -9,6 +9,7 @@
 			<ul id="nav">
 				<li><renderLink view="index" value="Home" selectedPrefix="index"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
+				<li><renderLink view="games" value="Wedstrijden"/></li>
 				<panelGroup rendered="#{LoginBean.admin}">
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>

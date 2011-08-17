@@ -63,3 +63,11 @@ textarea.game-admin-review {
 	width: 300px;
 	height: 100px;
 }
+
+.filterContainer {
+	margin: 10px;
+}
+
+form.filter {
+	margin: 0 15px;
+	text-align: center;

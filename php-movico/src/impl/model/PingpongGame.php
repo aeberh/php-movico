@@ -25,6 +25,10 @@ class PingpongGame extends PingpongGameModel {
 		return $this->isPlayed() ? $this->getOutTeamPts() : "";
 	}
 	
+	public function isTeamParticipating($teamId) {
+		return $this->getHomeTeamId() == $teamId || $this->getOutTeamId() == $teamId;
+	}
+	
 	public function isPlayed() {
 		return $this->getDate()->isAfter(Date::createNow());
 	}

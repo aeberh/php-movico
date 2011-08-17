@@ -170,6 +170,10 @@ abstract class Component {
 		return $this->class;
 	}
 	
+	public function getClassStr() {
+		return empty($this->class) ? "" : " class=\"".$this->class."\"";
+	}
+	
 	public function setRendered($rendered) {
 		$this->rendered = $rendered;
 	}

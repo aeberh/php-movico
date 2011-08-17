@@ -25,6 +25,35 @@ class PingpongGameService extends PingpongGameServiceBase {
 		return $this->updatePingpongGame($game);
 	}
 	
+	public function filterByWeek($weekNo) {
+		$result = array();
+		foreach($this->getPingpongGames() as $game) {
+			if($game->getDate()->getWeek() == $weekNo) {
+				$result[] = $game;
+			}
+		}
+		return $result;
+	}
+	
+	public function filterByTeam($teamId) {
+		$result = array();
+		foreach($this->getPingpongGames() as $game) {
+			if($game->isTeamParticipating($teamId)) {
+				$result[$game->getGameId()] = $game;
+			}
+		}
+		return array_values($result);
+	}
+	
+	public function getPlayingWeeks() {
+		$result = array();
+		foreach($this->getPingpongGames() as $game) {
+			$week = $game->getDate()->getWeek();
+			$result[$week] = $week;
+		}
+		return $result;
+	}
+	
 	public function getFirstUpcomingGames() {
 		return $this->findByAfterDate(Date::createNow(), 0, 15);
 	}

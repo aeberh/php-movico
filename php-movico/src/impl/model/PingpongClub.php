@@ -1,12 +1,14 @@
 <?php
 class PingpongClub extends PingpongClubModel {
 
+	const JEVOTA_CLUB_NO = "031";
+	
 	public function getFullNumber() {
 		return "LK".$this->getNumber();
 	}
 	
 	public function isLanaken() {
-		return $this->getShortName() === "Lanaken";
+		return $this->getClubId() === self::JEVOTA_CLUB_NO;
 	}
 	
 	public function getTeams() {

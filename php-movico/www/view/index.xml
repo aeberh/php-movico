@@ -14,7 +14,7 @@
 			<h2>Aankomende wedstrijden</h2>
 			<div>
 				<form>
-					<dataTable id="upcoming-games" value="#{HomeBean.upcoming}" var="game">
+					<dataTable value="#{GamesBean.upcoming}" var="game">
 						<column class="game-day">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
 						</column>
@@ -51,7 +51,7 @@
 			<h2>Afgelopen wedstrijden</h2>
 			<div>
 				<form>
-					<dataTable id="past-games" value="#{HomeBean.past}" var="game">
+					<dataTable value="#{GamesBean.past}" var="game">
 						<column class="game-day">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
 						</column>

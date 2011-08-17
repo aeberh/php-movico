@@ -33,5 +33,9 @@ class PingpongClubService extends PingpongClubServiceBase {
 		return $this->deletePingpongClub($club->getClubId());
 	}
 	
+	public function getJevota() {
+		return $this->findByNumber(PingpongClub::JEVOTA_CLUB_NO);
+	}
+	
 }
 ?>

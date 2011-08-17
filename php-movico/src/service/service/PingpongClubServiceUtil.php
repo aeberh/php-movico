@@ -13,12 +13,20 @@ class PingpongClubServiceUtil {
 		return self::getService()->delete($club);
 	}
 
+	public static function getJevota() {
+		return self::getService()->getJevota();
+	}
+
 	public static function findByName($name, $from=-1, $limit=-1) {
 		return self::getService()->findByName($name, $from, $limit);
 	}
 
 	public static function findByShortName($shortName, $from=-1, $limit=-1) {
 		return self::getService()->findByShortName($shortName, $from, $limit);
+	}
+
+	public static function findByNumber($number, $from=-1, $limit=-1) {
+		return self::getService()->findByNumber($number, $from, $limit);
 	}
 
 	public static function createPingpongClub($pk=0) {

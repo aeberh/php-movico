@@ -9,6 +9,13 @@
 			<finder-column name="emailAddress"/>
 		</finder>
 	</entity>
+	<entity name="News">
+		<column name="newsId" type="int" primary="true" auto-increment="true"/>
+		<column name="date" type="Date"/>
+		<column name="title" type="String" size="30"/>
+		<column name="content" type="String" size="500"/>
+		<column name="creatorId" type="int"/>
+	</entity>
 	<entity name="PingpongPlayer">
 		<column name="playerId" type="int" primary="true" auto-increment="true"/>
 		<column name="firstName" type="String" size="20"/>
@@ -45,6 +52,9 @@
 		</finder>
 		<finder name="ShortName" unique="true">
 			<finder-column name="shortName"/>
+		</finder>
+		<finder name="Number" unique="true">
+			<finder-column name="number"/>
 		</finder>
 		<order>
 			<order-column name="shortName" order-by="asc"/>

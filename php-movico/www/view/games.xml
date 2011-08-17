@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Wedstrijden</h2>
+			<div class="filterContainer">
+				<p class="left">Filter op</p>
+				<form class="left filter">
+					<p>
+						<outputLabel id="filterByWeek" value="Week"/>
+						<selectOneMenu id="filterByWeek" value="#{GamesBean.filterByWeek}" options="#{GamesBean.weeks}" action="#{GamesBean.filter}"/>
+					</p>
+				</form>
+				<p class="left">of</p>
+				<form class="left filter">
+					<p>
+						<outputLabel id="filterByTeam" value="Team"/>
+						<selectOneMenu id="filterByTeam" value="#{GamesBean.filterByTeam}" options="#{GamesBean.teams}" action="#{GamesBean.filter}"/>
+					</p>
+				</form>
+				<div class="clear"/>
+			</div>
+			<dataTable value="#{GamesBean.filteredGames}" var="game">
+				<column class="game-day">
+					<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
+				</column>
+				<column class="game-date">
+					<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
+				</column>
+				<column class="game-time">
+					<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
+				</column>
+				<column class="game-home-team">
+					<renderLink view="club_details" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
+						<param value="#{game.homeTeam.clubId}"/>
+					</renderLink>
+					<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
+				</column>
+				<column class="game-home-team-pts"><span></span></column>
+				<column class="game-dash">
+					<outputText value="-"/>
+				</column>
+				<column class="game-out-team-pts"><span></span></column>
+				<column class="game-out-team">
+					<renderLink view="club_details" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
+						<param value="#{game.outTeam.clubId}"/>
+					</renderLink>
+					<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
+				</column>
+				<column class="game-review"><span></span></column>
+				<column class="game-travel"><span></span></column>
+			</dataTable>
+		</div>
+	</define>
+</composition>

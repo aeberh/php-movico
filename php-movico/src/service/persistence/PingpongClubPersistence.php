@@ -33,6 +33,21 @@ class PingpongClubPersistence extends Persistence {
 		return $result;
 	}
 
+	public function findByNumber($number, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$whereClause = "`number`='".Singleton::create("NullConverter")->fromDOMtoDB($number)."'ORDER BY `shortName` asc".$limitStr;
+		if(parent::$dbCache->hasFinder('PingpongClub', $whereClause)) {
+			return parent::$dbCache->getFinder('PingpongClub', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
+		if($result->isEmpty()) {
+			throw new NoSuchPingpongClubException();
+		}
+		$result = $this->getAsObject($result->getSingleRow());
+		parent::$dbCache->setFinder('PingpongClub', $whereClause, $result);
+		return $result;
+	}
+
 	public function findByPrimaryKey($clubId) {
 		if(parent::$dbCache->hasSingle("PingpongClub", $clubId)) {
 			return parent::$dbCache->getSingle("PingpongClub", $clubId);

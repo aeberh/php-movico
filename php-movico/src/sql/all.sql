@@ -6,6 +6,15 @@ CREATE TABLE `Account` (
 	UNIQUE KEY `IX_EMAILADDRESS` (`emailAddress`)
 );
 
+CREATE TABLE `News` (
+	`newsId` INTEGER NOT NULL AUTO_INCREMENT,
+	`date` DATETIME NOT NULL,
+	`title` VARCHAR(30) NOT NULL,
+	`content` VARCHAR(500) NOT NULL,
+	`creatorId` INTEGER NOT NULL,
+	PRIMARY KEY (`newsId`)
+);
+
 CREATE TABLE `PingpongPlayer` (
 	`playerId` INTEGER NOT NULL AUTO_INCREMENT,
 	`firstName` VARCHAR(20) NOT NULL,
@@ -35,7 +44,8 @@ CREATE TABLE `PingpongClub` (
 	`phone` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (`clubId`),
 	UNIQUE KEY `IX_NAME` (`name`),
-	UNIQUE KEY `IX_SHORTNAME` (`shortName`)
+	UNIQUE KEY `IX_SHORTNAME` (`shortName`),
+	UNIQUE KEY `IX_NUMBER` (`number`)
 );
 
 CREATE TABLE `PingpongTeam` (

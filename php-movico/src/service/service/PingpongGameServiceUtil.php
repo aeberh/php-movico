@@ -13,6 +13,18 @@ class PingpongGameServiceUtil {
 		return self::getService()->update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review);
 	}
 
+	public static function filterByWeek($weekNo) {
+		return self::getService()->filterByWeek($weekNo);
+	}
+
+	public static function filterByTeam($teamId) {
+		return self::getService()->filterByTeam($teamId);
+	}
+
+	public static function getPlayingWeeks() {
+		return self::getService()->getPlayingWeeks();
+	}
+
 	public static function getFirstUpcomingGames() {
 		return self::getService()->getFirstUpcomingGames();
 	}
