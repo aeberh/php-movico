@@ -17,6 +17,18 @@ class PingpongGame extends PingpongGameModel {
 		return $this->getTeamStr($this->getOutTeamId());
 	}
 	
+	public function getHomeTeamPtsStr() {
+		return $this->isPlayed() ? $this->getHomeTeamPts() : "";
+	}
+	
+	public function getOutTeamPtsStr() {
+		return $this->isPlayed() ? $this->getOutTeamPts() : "";
+	}
+	
+	public function isPlayed() {
+		return $this->getDate()->isAfter(Date::createNow());
+	}
+	
 	public function isHasReview() {
 		$r = $this->getReview();
 		return !empty($r);

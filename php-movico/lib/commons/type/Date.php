@@ -53,6 +53,14 @@ class Date {
 		return intval($this->format($char));
 	}
 	
+	public function isAfter(Date $other) {
+		$this->time > $other->time;
+	}
+	
+	public function isBefore(Date $other) {
+		$this->time < $other->time;
+	}
+	
 	public function __toString() {
 		return $this->format();
 	}

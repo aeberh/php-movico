@@ -31,19 +31,13 @@
 							<outputText value="#{game.homeTeamStr}"/>
 						</column>
 						<column>
-							<colHeader>
-								<outputText value="P"/>
-							</colHeader>
-							<outputText value="#{game.homeTeamPts}"/>
+							<outputText value="#{game.homeTeamPtsStr}"/>
 						</column>
 						<column>
 							<outputText value="-"/>
 						</column>
 						<column>
-							<colHeader>
-								<outputText value="P"/>
-							</colHeader>
-							<outputText value="#{game.outTeamPts}"/>
+							<outputText value="#{game.outTeamPtsStr}"/>
 						</column>
 						<column>
 							<colHeader>

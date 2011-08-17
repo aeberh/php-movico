@@ -8,6 +8,7 @@
 		<form id="nav-form">
 			<ul id="nav">
 				<li><renderLink view="index" value="Home" selectedPrefix="index"/></li>
+				<li><renderLink view="players" value="Leden"/></li>
 				<panelGroup rendered="#{LoginBean.admin}">
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
