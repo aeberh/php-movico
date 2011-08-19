@@ -28,7 +28,10 @@
 							<renderLink view="club_details" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
 								<param value="#{game.homeTeam.clubId}"/>
 							</renderLink>
-							<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
+							<renderLink view="games" value="#{game.homeTeamStr}" rendered="#{game.homeTeam.club.lanaken}" class="bold">
+								<param value="-"/>
+								<param value="#{game.homeTeam.teamId}"/>
+							</renderLink>
 						</column>
 						<column class="game-home-team-pts"><span></span></column>
 						<column class="game-dash">
@@ -39,7 +42,10 @@
 							<renderLink view="club_details" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 								<param value="#{game.outTeam.clubId}"/>
 							</renderLink>
-							<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
+							<renderLink view="games" value="#{game.outTeamStr}" rendered="#{game.outTeam.club.lanaken}" class="bold">
+								<param value="-"/>
+								<param value="#{game.outTeam.teamId}"/>
+							</renderLink>
 						</column>
 						<column class="game-review"><span></span></column>
 						<column class="game-travel"><span></span></column>

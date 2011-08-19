@@ -8,7 +8,7 @@ class PingpongClub extends PingpongClubModel {
 	}
 	
 	public function isLanaken() {
-		return $this->getClubId() === self::JEVOTA_CLUB_NO;
+		return $this->getNumber() === self::JEVOTA_CLUB_NO;
 	}
 	
 	public function getTeams() {

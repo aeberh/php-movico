@@ -9,6 +9,10 @@ class PingpongTeamServiceUtil {
 		return self::getService()->getOrCreateClubId($clubId, $teamNo);
 	}
 
+	public static function getJevotaTeam($teamNo, $rec) {
+		return self::getService()->getJevotaTeam($teamNo, $rec);
+	}
+
 	public static function findByClubAndTeam($clubId, $teamNo, $recreation, $from=-1, $limit=-1) {
 		return self::getService()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
 	}

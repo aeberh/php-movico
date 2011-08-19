@@ -54,15 +54,19 @@ class GamesBean extends RequestBean {
 	
 	// Request param helpers
 	private function getFilterByWeekParam() {
-		return $this->getParam(0);
+		return $this->isParamsEmpty() ? /*Date::createNow()->getWeek()*/ 40 : $this->getParam(0);
 	}
 	
 	private function getFilterByTeamParam() {
-		return $this->getParam(1);
+		return $this->isParamsEmpty() ? "-" : $this->getParam(1);
 	}
 	
 	private function getParam($i) {
 		return Params::has($i) ? (Params::get($i) == "-" ? null : Params::get($i)) : null;
+	}
+	
+	private function isParamsEmpty() {
+		return !Params::has(0) && !Params::has(1);
 	}
 	
 	// Getters & setters

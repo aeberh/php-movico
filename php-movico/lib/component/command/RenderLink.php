@@ -31,7 +31,8 @@ class RenderLink extends Component {
 			$url .= ViewForward::URL_DELIMITER.$params->join("/")->getPrimitive();
 		}
 		$selPrefix = empty($this->selectedPrefix) ? $url : $this->selectedPrefix;
-		return "<a selectedPrefix=\"$selPrefix\" class=\"RenderLink\" href=\"{$context}/{$url}\">$value</a>";
+		$cl = empty($this->class) ? "" : " ".$this->class;
+		return "<a selectedPrefix=\"$selPrefix\" class=\"RenderLink$cl\" href=\"{$context}/{$url}\">$value</a>";
 	}
 	
 	public function getValidParents() {

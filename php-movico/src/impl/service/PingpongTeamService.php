@@ -21,5 +21,9 @@ class PingpongTeamService extends PingpongTeamServiceBase {
 		return $team->getTeamId();
 	}
 	
+	public function getJevotaTeam($teamNo, $rec) {
+		return $this->findByClubAndTeam(PingpongClubServiceUtil::getJevota()->getClubId(), $teamNo, $rec);
+	}
+	
 }
 ?>

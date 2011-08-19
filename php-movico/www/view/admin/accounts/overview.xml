@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="body">
+		<div>
+			<h2>Gebruikersbeheer - Overzicht (Under Construction)</h2>
+			<div>
+				<!-- 
+				<form>
+					<p>
+						<commandButton action="admin/players/new" value="Maak nieuw lid"/>
+					</p>
+					<dataTable value="#{ManagePlayersBean.players}" var="player">
+						<column>
+							<colHeader>
+								<outputText value="Lidnr."/>
+							</colHeader>
+							<outputText value="#{player.memberNo}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Achternaam"/>
+							</colHeader>
+							<outputText value="#{player.lastName}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Voornaam"/>
+							</colHeader>
+							<outputText value="#{player.firstName}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Telefoon"/>
+							</colHeader>
+							<outputText value="#{player.phone}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="E-mailadres"/>
+							</colHeader>
+							<outputText value="#{player.emailAddress}"/>
+						</column>
+						<column>
+							<outputText value="#{player.activeString}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Rank."/>
+							</colHeader>
+							<outputText value="#{player.ranking}"/>
+						</column>
+						<column>
+							<colHeader>
+								<outputText value="Rec."/>
+							</colHeader>
+							<outputText value="#{player.recString}"/>
+						</column>
+						<column>
+							<commandButton action="#{ManagePlayersBean.edit}" value="Wijzigen">
+								<param value="#{player.playerId}"/>
+							</commandButton>
+						</column>
+						<column>
+							<commandButton action="#{ManagePlayersBean.delete}" value="X" popup="Weet je zeker dat je dit lid verwijdert?">
+								<param value="#{player.playerId}"/>
+							</commandButton>
+						</column>
+					</dataTable>
+				</form>
+				 -->
+			</div>
+		</div>
+	</define>
+</composition>
