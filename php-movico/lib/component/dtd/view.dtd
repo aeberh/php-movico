@@ -161,6 +161,7 @@
 	action CDATA #IMPLIED
 	id CDATA #IMPLIED
 	class CDATA #IMPLIED
+	addEmptyOption CDATA #IMPLIED
 >
 
 <!ELEMENT selectManyListBox EMPTY>

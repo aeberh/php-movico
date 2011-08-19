@@ -9,14 +9,14 @@
 				<form class="left filter">
 					<p>
 						<outputLabel id="filterByWeek" value="Week"/>
-						<selectOneMenu id="filterByWeek" value="#{GamesBean.filterByWeek}" options="#{GamesBean.weeks}" action="#{GamesBean.filter}"/>
+						<selectOneMenu id="filterByWeek" value="#{GamesBean.filterByWeek}" options="#{GamesBean.weeks}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
 				<p class="left">of</p>
 				<form class="left filter">
 					<p>
 						<outputLabel id="filterByTeam" value="Team"/>
-						<selectOneMenu id="filterByTeam" value="#{GamesBean.filterByTeam}" options="#{GamesBean.teams}" action="#{GamesBean.filter}"/>
+						<selectOneMenu id="filterByTeam" value="#{GamesBean.filterByTeam}" options="#{GamesBean.teams}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
 				<div class="clear"/>
