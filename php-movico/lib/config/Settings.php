@@ -12,6 +12,7 @@ class Settings {
 	private $locale;
 	private $gmapsApiKey;
 	private $viewCacheEnabled;
+	private $dbCacheEnabled;
 	private $showSql;
 	
 	public function __construct() {
@@ -24,6 +25,7 @@ class Settings {
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
 		$this->gmapsApiKey = $config->getParam("gmaps_api_key", "")->getValue();
 		$this->viewCacheEnabled = $config->getParam("view_cache_enabled", "true")->getValue();
+		$this->dbCacheEnabled = $config->getParam("db_cache_enabled", "true")->getValue();
 		$this->showSql = $config->getParam("show_sql", "false")->getValue();
 	}
 	
@@ -65,6 +67,10 @@ class Settings {
 	
 	public function isViewCacheEnabled() {
 		return $this->viewCacheEnabled;
+	}
+	
+	public function isDbCacheEnabled() {
+		return $this->dbCacheEnabled;
 	}
 	
 	public function showSql() {

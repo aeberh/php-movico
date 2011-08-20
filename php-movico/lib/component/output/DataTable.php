@@ -41,11 +41,15 @@ class DataTable extends DataSeries {
 			if(!$col->shouldBeRendered(null)) {
 				continue;
 			}
-			$result .= "<th>";
 			$headers = $col->getChildrenOfType("ColHeader");
-			if(!empty($headers)) {
+			if(empty($headers)) {
+				$result .= "<th>";
+			} else {
 				$header = $headers[0];
 				$children = $header->getChildren();
+				$class = $header->getClass();
+				$cl = empty($class) ? "" : " class=\"$class\"";
+				$result .= "<th$cl>";
 				if(!empty($children)) {
 					$numHeaders++;
 					$result .= $col->renderChildren(array("ColHeader"));
@@ -84,7 +88,7 @@ class DataTable extends DataSeries {
 				if(!empty($colClass)) {
 					$classes->add($colClass);
 				}
-				$classAttr = empty($classes) ? "" : " class=\"".$classes->join(",")."\"";
+				$classAttr = $classes->isEmpty() ? "" : " class=\"".$classes->join(",")."\"";
 				$result .= "<td$classAttr>".$col->render($i)."</td>";
 			}
 			$result .= "</tr>";

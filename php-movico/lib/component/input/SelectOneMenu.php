@@ -1,6 +1,7 @@
 <?
 class SelectOneMenu extends Component {
 	
+	private $addEmptyOption;
 	private $value;
 	private $options;
 	private $action;
@@ -15,6 +16,9 @@ class SelectOneMenu extends Component {
 		$buttonId = rand(10000, 99999);
 		$onchange = isset($this->action) ? " onchange=\"this.form.".MovicoRequest::ACTION.".value='".$this->action."';$('#$buttonId').click();\"" : "";
 		$result = "<select id=\"".$this->id."\" name=\"$name\"$onchange>";
+		if($this->addEmptyOption === "true") {
+			$result .= "<option value=\"\"></option>";
+		}
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
 		foreach($optionList as $oValue=>$oLabel) {
 			$sel = (strval($val) == strval($oValue)) ? " selected=\"selected\"" : "";
@@ -37,6 +41,10 @@ class SelectOneMenu extends Component {
 	
 	public function setAction($action) {
 		$this->action = $action;
+	}
+	
+	public function setAddEmptyOption($addEmptyOption) {
+		$this->addEmptyOption = $addEmptyOption;
 	}
 	
 	public function getValidParents() {

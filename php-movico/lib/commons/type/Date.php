@@ -25,6 +25,14 @@ class Date {
 		return strftime($format, $this->time);
 	}
 	
+	public function minusDays($nbDays) {
+		return Date::create($this->time - $nbDays*24*60*60);
+	}
+	
+	public function plusDays($nbDays) {
+		return Date::create($this->time + $nbDays*24*60*60);
+	}
+	
 	public function getDay() {
 		return $this->getIntField("%d");
 	}
@@ -49,8 +57,20 @@ class Date {
 		return $this->getIntField("%S");
 	}
 	
+	public function getWeek() {
+		return $this->getIntField("%W");
+	}
+	
 	private function getIntField($char) {
 		return intval($this->format($char));
+	}
+	
+	public function isAfter(Date $other) {
+		$this->time > $other->time;
+	}
+	
+	public function isBefore(Date $other) {
+		$this->time < $other->time;
 	}
 	
 	public function __toString() {
