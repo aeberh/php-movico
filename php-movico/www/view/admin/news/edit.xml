@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="body">
+		<div>
+			<h2>Nieuwsbeheer - Wijzig item</h2>
+			<div>
+				<form>
+					<inputHidden value="#{ManageNewsBean.selected.itemId}"/>
+					<p>
+						<outputLabel for="news-title" value="Titel"/>
+						<inputText maxLength="30" id="news-title" value="#{ManageNewsBean.selected.title}" autoFocus="true"/>
+					</p>
+					<p>
+						<outputLabel for="news-content" value="Inhoud"/>
+						<inputRichText id="news-content" value="#{ManageNewsBean.selected.content}"/>
+					</p>
+					<p>
+						<commandButton action="#{ManageNewsBean.save}" value="Opslaan"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</define>
+</composition>

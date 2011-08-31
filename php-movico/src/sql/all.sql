@@ -1,18 +1,10 @@
-CREATE TABLE `Account` (
-	`accountId` INTEGER NOT NULL AUTO_INCREMENT,
-	`emailAddress` VARCHAR(30) NOT NULL,
-	`password` VARCHAR(20) NOT NULL,
-	PRIMARY KEY (`accountId`),
-	UNIQUE KEY `IX_EMAILADDRESS` (`emailAddress`)
-);
-
-CREATE TABLE `News` (
-	`newsId` INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE `NewsItem` (
+	`itemId` INTEGER NOT NULL AUTO_INCREMENT,
 	`date` DATETIME NOT NULL,
 	`title` VARCHAR(30) NOT NULL,
 	`content` VARCHAR(500) NOT NULL,
 	`creatorId` INTEGER NOT NULL,
-	PRIMARY KEY (`newsId`)
+	PRIMARY KEY (`itemId`)
 );
 
 CREATE TABLE `PingpongPlayer` (
@@ -26,9 +18,11 @@ CREATE TABLE `PingpongPlayer` (
 	`ranking` VARCHAR(2) NOT NULL,
 	`phone` VARCHAR(20) NOT NULL,
 	`emailAddress` VARCHAR(30) NOT NULL,
+	`password` VARCHAR(20) NOT NULL,
 	`recreation` TINYINT(1) NOT NULL,
 	`active` TINYINT(1) NOT NULL,
 	PRIMARY KEY (`playerId`),
+	UNIQUE KEY `IX_EMAILADDRESS` (`emailAddress`),
 	KEY `IX_ACTIVE` (`active`)
 );
 

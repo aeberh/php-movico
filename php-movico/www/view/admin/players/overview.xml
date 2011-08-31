@@ -8,8 +8,9 @@
 				<form>
 					<p>
 						<commandButton action="admin/players/new" value="Maak nieuw lid"/>
+						<commandButton action="admin/players/passgen" value="Genereer wachtwoorden"/>
 					</p>
-					<dataTable value="#{ManagePlayersBean.players}" var="player">
+					<dataTable value="#{ManagePlayersBean.players}" var="player" rows="10" pagination="true">
 						<column>
 							<colHeader>
 								<outputText value="Lidnr."/>

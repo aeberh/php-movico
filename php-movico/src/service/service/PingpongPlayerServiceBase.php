@@ -1,6 +1,10 @@
 <?php
 class PingpongPlayerServiceBase {
 
+	public function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByEmailAddress($emailAddress, $from, $limit);
+	}
+
 	public function findByActive($active, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByActive($active, $from, $limit);
 	}

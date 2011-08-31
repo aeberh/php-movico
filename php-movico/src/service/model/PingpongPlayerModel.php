@@ -101,6 +101,16 @@ abstract class PingpongPlayerModel extends Model {
 		$this->emailAddress = $emailAddress;
 	}
 
+	private $password;
+
+	public function getPassword() {
+		return $this->password;
+	}
+
+	public function setPassword($password) {
+		$this->password = $password;
+	}
+
 	private $recreation;
 
 	public function isRecreation() {

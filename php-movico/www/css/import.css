@@ -1,10 +1,9 @@
-@import url("main.css");
-@import url("layout.css");
-@import url("headers.css");
-@import url("forms.css");
-@import url("messages.css");
-@import url("nav.css");
+@import url("body.css");
+@import url("header.css");
+@import url("page.css");
 @import url("tables.css");
+@import url("news.css");
+@import url("forms.css");
 @import url("contact.css");
-@import url("links.css");
 @import url("maps.css");
+@import url("footer.css");

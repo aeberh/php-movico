@@ -4,7 +4,23 @@ form {
 }
 
 input[type="text"],input[type="password"] {
-	border-radius: 5px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	padding: 3px 5px;
+	background-color: #eee;
+	background-image: -webkit-gradient(
+	    linear,
+	    left center,
+	    right center,
+	    color-stop(0, #ddd),
+	    color-stop(0.5, #fff)
+	);
+	background-image: -moz-linear-gradient(
+	    left center,
+	    #fff 0%,
+	    #ddd 100%
+	);
+	color: #555;
 }
 
 label {
@@ -71,3 +87,8 @@ textarea.game-admin-review {
 form.filter {
 	margin: 0 15px;
 	text-align: center;
+}
+
+input#news-title {
+	width: 200px;
+}

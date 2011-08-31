@@ -8,26 +8,26 @@
 				<p class="left">Filter op</p>
 				<form class="left filter">
 					<p>
-						<outputLabel id="filterByWeek" value="Week"/>
+						<outputLabel id="filterByWeek" value="week"/>
 						<selectOneMenu id="filterByWeek" value="#{GamesBean.filterByWeek}" options="#{GamesBean.weeks}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
 				<p class="left">of</p>
 				<form class="left filter">
 					<p>
-						<outputLabel id="filterByTeam" value="Team"/>
+						<outputLabel id="filterByTeam" value="team"/>
 						<selectOneMenu id="filterByTeam" value="#{GamesBean.filterByTeam}" options="#{GamesBean.teams}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
 				<div class="clear"/>
 				<dataTable value="#{GamesBean.filteredGames}" var="game">
-					<column class="game-day">
+					<column class="game-day time">
 						<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
 					</column>
-					<column class="game-date">
+					<column class="game-date time">
 						<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
 					</column>
-					<column class="game-time">
+					<column class="game-time time">
 						<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 					</column>
 					<column class="game-home-team">

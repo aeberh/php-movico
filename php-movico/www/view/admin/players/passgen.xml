@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="body">
+		<div>
+			<h2>Ledenbeheer - Genereer wachtwoorden</h2>
+			<div>
+				<p>
+					Selecteer de spelers voor wie een nieuw wachtwoord gegeneerd moet worden.
+					Het wachtwoord wordt via e-mail naar de betrokken spelers gestuurd.
+					Enkel voor spelers met een geldig e-mailadres kan een nieuw wachtwoord gegenereerd worden!
+				</p>
+				<form>
+					<p>
+						<outputLabel for="pass-players" value="Spelers"/>
+						<selectManyListBox id="pass-players" options="#{ManagePlayersBean.playersWithEmail}" value="#{ManagePlayersBean.selectedPassPlayers}"/>
+					</p>
+					<p>
+						<commandButton action="#{ManagePlayersBean.generatePasswords}" value="Genereer wachtwoorden"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</define>
+</composition>

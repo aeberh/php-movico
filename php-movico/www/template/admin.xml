@@ -2,12 +2,12 @@
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <template>
 	<css src="import.css"/>
-	<div id="gradient"></div>
-	<div id="wrapper">
-		<h1>T.T.C. Jevota Lanaken</h1>
-		<form id="nav-form">
+	<div id="header">
+		<div id="header-inner">
+			<h1>T.T.C. Jevota Lanaken</h1>
 			<ul id="nav">
-				<li><renderLink view="index" value="Home" selectedPrefix="index"/></li>
+				<li><renderLink view="index" value="Home"/></li>
+				<li><renderLink view="news" value="Nieuws"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
 				<li><renderLink view="games" value="Wedstrijden"/></li>
 				<panelGroup rendered="#{LoginBean.admin}">
@@ -15,34 +15,26 @@
 				</panelGroup>
 			</ul>
 			<ajaxLoading/>
-		</form>
-		<img id="logo" src="jevota-small.png"/>
-		<div id="border-main">
-			<div id="main">
-				<div id="layout">
-					<panelGroup rendered="#{LoginBean.admin}">
-						<div class="col very-small">
-							<form>
-								<ul>
-									<li><renderLink view="admin/accounts/overview" value="Gebruikers"/></li>
-									<li><renderLink view="admin/news/overview" value="Nieuws"/></li>
-									<li><renderLink view="admin/players/overview" value="Leden"/></li>
-									<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
-									<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
-								</ul>
-							</form>
-						</div>
-						<div class="col very-wide">
-							<message/>
-							<insert name="body"/>
-						</div>
-						<div class="clear"></div>
-					</panelGroup>
-					<panelGroup rendered="!#{LoginBean.admin}">
-						<p>Je hebt niet genoeg rechten om deze pagina te bekijken.</p>
-					</panelGroup>
-				</div>
-			</div>
 		</div>
+	</div>
+	<div id="page">
+		<panelGroup rendered="#{LoginBean.admin}">
+			<ul id="subnav">
+				<li><renderLink view="admin/news/overview" value="Nieuws"/></li>
+				<li><renderLink view="admin/players/overview" value="Leden"/></li>
+				<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
+				<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
+			</ul>
+			<div class="col">
+				<message/>
+				<insert name="body"/>
+			</div>
+		</panelGroup>
+		<panelGroup rendered="!#{LoginBean.admin}">
+			<p>Je hebt niet genoeg rechten om deze pagina te bekijken.</p>
+		</panelGroup>
+	</div>
+	<div id="footer">
+		<p>Ontwikkeld door T.T.C. Jevota Lanaken.</p>
 	</div>
 </template>

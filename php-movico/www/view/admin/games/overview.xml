@@ -17,7 +17,7 @@
 							<param value="#{ManageGamesBean.nextFrom}"/>
 						</renderLink>
 					</p>
-					<dataTable value="#{ManageGamesBean.games}" var="game">
+					<dataTable value="#{ManageGamesBean.games}" var="game" rows="10" pagination="true">
 						<column>
 							<colHeader>
 								<outputText value="Datum"/>

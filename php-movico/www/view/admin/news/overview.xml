@@ -3,72 +3,43 @@
 <composition template="admin">
 	<define name="body">
 		<div>
-			<h2>Nieuwsbeheer - Overzicht (Under Construction)</h2>
+			<h2>Nieuwsbeheer</h2>
 			<div>
-				<!-- 
 				<form>
 					<p>
-						<commandButton action="admin/players/new" value="Maak nieuw lid"/>
+						<commandButton action="admin/news/new" value="Maak nieuw item"/>
 					</p>
-					<dataTable value="#{ManagePlayersBean.players}" var="player">
+					<dataTable value="#{ManageNewsBean.items}" var="item" rows="10" pagination="true">
 						<column>
 							<colHeader>
-								<outputText value="Lidnr."/>
+								<outputText value="Datum"/>
 							</colHeader>
-							<outputText value="#{player.memberNo}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Achternaam"/>
-							</colHeader>
-							<outputText value="#{player.lastName}"/>
+							<outputDate value="#{item.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
 						</column>
 						<column>
 							<colHeader>
-								<outputText value="Voornaam"/>
+								<outputText value="Titel"/>
 							</colHeader>
-							<outputText value="#{player.firstName}"/>
+							<outputText value="#{item.title}"/>
 						</column>
 						<column>
 							<colHeader>
-								<outputText value="Telefoon"/>
+								<outputText value="Schrijver"/>
 							</colHeader>
-							<outputText value="#{player.phone}"/>
+							<outputText value="#{item.creator.emailAddress}"/>
 						</column>
 						<column>
-							<colHeader>
-								<outputText value="E-mailadres"/>
-							</colHeader>
-							<outputText value="#{player.emailAddress}"/>
-						</column>
-						<column>
-							<outputText value="#{player.activeString}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Rank."/>
-							</colHeader>
-							<outputText value="#{player.ranking}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Rec."/>
-							</colHeader>
-							<outputText value="#{player.recString}"/>
-						</column>
-						<column>
-							<commandButton action="#{ManagePlayersBean.edit}" value="Wijzigen">
-								<param value="#{player.playerId}"/>
+							<commandButton action="#{ManageNewsBean.edit}" value="Wijzigen">
+								<param value="#{item.itemId}"/>
 							</commandButton>
 						</column>
 						<column>
-							<commandButton action="#{ManagePlayersBean.delete}" value="X" popup="Weet je zeker dat je dit lid verwijdert?">
-								<param value="#{player.playerId}"/>
+							<commandButton action="#{ManageNewsBean.delete}" value="X" popup="Weet je zeker dat je dit nieuws verwijdert?">
+								<param value="#{item.itemId}"/>
 							</commandButton>
 						</column>
 					</dataTable>
 				</form>
-				 -->
 			</div>
 		</div>
 	</define>

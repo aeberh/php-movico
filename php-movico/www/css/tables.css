@@ -5,7 +5,7 @@
 }
 
 .dataTable td {
-	padding: 2px 5px;
+	padding: 4px 8px;
 	border-top: 1px solid #fff;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .dataTable th {
-	padding: 4px 5px;
+	padding: 6px 8px;
 	background-color: #bbb;
 	background-image: -webkit-gradient(
 	    linear,
@@ -30,9 +30,10 @@
 	);
 	color: #fff;
 	font-family: Trebuchet MS;
-	font-weight: normal;
+	font-weight: bold;
 }
 
+/*
 .dataTable tr {
 	background-color: #eee;
 	background-image: -webkit-gradient(
@@ -40,13 +41,22 @@
 	    left top,
 	    left bottom,
 	    color-stop(0, #fff),
-	    color-stop(1, #eee)
+	    color-stop(1, #ddd)
 	);
 	background-image: -moz-linear-gradient(
 	    center bottom,
 	    #fff 0%,
-	    #eee 100%
+	    #ddd 100%
 	);
+}
+*/
+
+.dataTable tr:nth-child(odd) {
+	background: #ddd;
+}
+
+.dataTable tr:nth-child(even) {
+	background: #eee;
 }
 
 #news td:first-child {
@@ -61,27 +71,24 @@
 	color: #999;
 	font-style: italic;
 }
-
-.game-day, .game-date, .game-time {
-	color: #777;
-}
-
+/*
 .game-day {
 	width: 20px;
 }
 
 .game-date {
-	width: 80px;
+	width: 140px;
 }
 
 .game-time {
 	width: 40px;
 }
+*/
 
 .game-home-team {
 	text-align: right;
 }
-
+/*
 .game-home-team, .game-out-team {
 	width: 135px;
 }
@@ -89,13 +96,14 @@
 .game-home-team-pts, .game-out-team-pts {
 	width: 20px;
 }
+*/
 
 .game-home-team-pts {
 	text-align: right;
 }
 	
 .game-dash {
-	width: 5px;
+	/*width: 5px;*/
 	text-align: center;
 }
 
@@ -109,4 +117,13 @@
 
 .c {
 	text-align: center;
+}
+
+a.bold {
+	font-weight: bold;
+}
+
+.time {
+	color: #777;
+	font-size: 0.75em;
 }

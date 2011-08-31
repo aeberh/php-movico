@@ -1,0 +1,14 @@
+td.news-date {
+	width: 100px;
+}
+
+td.news-creator, div.news-metadata p {
+	text-align: right;
+	color: #888;
+}
+
+div.news-metadata p {
+	margin-bottom: 25px;
+	padding: 15px 0;
+	border-bottom: 1px solid #eee;
+}

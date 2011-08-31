@@ -3,6 +3,21 @@ class PingpongPlayerPersistence extends Persistence {
 
 	const TABLE = "PingpongPlayer";
 
+	public function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$whereClause = "`emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'ORDER BY `ranking` asc, `lastName` asc".$limitStr;
+		if(parent::$dbCache->hasFinder('PingpongPlayer', $whereClause)) {
+			return parent::$dbCache->getFinder('PingpongPlayer', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
+		if($result->isEmpty()) {
+			throw new NoSuchPingpongPlayerException();
+		}
+		$result = $this->getAsObject($result->getSingleRow());
+		parent::$dbCache->setFinder('PingpongPlayer', $whereClause, $result);
+		return $result;
+	}
+
 	public function findByActive($active, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `ranking` asc, `lastName` asc".$limitStr;
@@ -43,13 +58,13 @@ class PingpongPlayerPersistence extends Persistence {
 	}
 
 	public function update(PingpongPlayer $object) {
-		$q = "UPDATE ".self::TABLE." SET `firstName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', `lastName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', `street`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', `place`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', `memberNo`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', `startYear`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', `ranking`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', `phone`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', `emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', `active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."' WHERE playerId='".addslashes($object->getPlayerId())."'";
+		$q = "UPDATE ".self::TABLE." SET `firstName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', `lastName`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', `street`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', `place`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', `memberNo`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', `startYear`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', `ranking`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', `phone`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', `emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', `password`='".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."', `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', `active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."' WHERE playerId='".addslashes($object->getPlayerId())."'";
 		$pk = $object->getPlayerId();
 		if($object->isNew()) {
 			if(empty($pk)) {
-				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `street`, `place`, `memberNo`, `startYear`, `ranking`, `phone`, `emailAddress`, `recreation`, `active`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."')";
+				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `street`, `place`, `memberNo`, `startYear`, `ranking`, `phone`, `emailAddress`, `password`, `recreation`, `active`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."')";
 			} else {
-				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `street`, `place`, `memberNo`, `startYear`, `ranking`, `phone`, `emailAddress`, `recreation`, `active`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlayerId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."')";
+				$q = "INSERT INTO ".self::TABLE." (`firstName`, `lastName`, `street`, `place`, `memberNo`, `startYear`, `ranking`, `phone`, `emailAddress`, `password`, `recreation`, `active`) VALUES ('".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlayerId())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getFirstName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getLastName())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStreet())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPlace())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getMemberNo())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getStartYear())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getRanking())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPhone())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getEmailAddress())."', '".Singleton::create("NullConverter")->fromDOMtoDB($object->getPassword())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isRecreation())."', '".Singleton::create("BooleanConverter")->fromDOMtoDB($object->isActive())."')";
 			}
 		}
 		$this->db->updateQuery($q);
@@ -92,6 +107,7 @@ class PingpongPlayerPersistence extends Persistence {
 		$result->setRanking(Singleton::create("NullConverter")->fromDBtoDOM($row["ranking"]));
 		$result->setPhone(Singleton::create("NullConverter")->fromDBtoDOM($row["phone"]));
 		$result->setEmailAddress(Singleton::create("NullConverter")->fromDBtoDOM($row["emailAddress"]));
+		$result->setPassword(Singleton::create("NullConverter")->fromDBtoDOM($row["password"]));
 		$result->setRecreation(Singleton::create("BooleanConverter")->fromDBtoDOM($row["recreation"]));
 		$result->setActive(Singleton::create("BooleanConverter")->fromDBtoDOM($row["active"]));
 		return $result;

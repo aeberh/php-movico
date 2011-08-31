@@ -2,6 +2,7 @@
 class ManagePlayersBean extends RequestBean {
 	
 	private $selected;
+	private $selectedPassPlayers;
 	
 	public function __construct() {
 		$this->selected = new PingpongPlayer();
@@ -9,6 +10,10 @@ class ManagePlayersBean extends RequestBean {
 	
 	public function getPlayers() {
 		return PingpongPlayerServiceUtil::getPingpongPlayers();
+	}
+	
+	public function getPlayersWithEmail() {
+		return PingpongPlayerServiceUtil::getPlayersWithEmail();
 	}
 	
 	public function create() {
@@ -48,8 +53,20 @@ class ManagePlayersBean extends RequestBean {
 		return null;
 	}
 	
+	public function generatePasswords() {
+		return null;
+	}
+	
 	public function getSelected() {
 		return $this->selected;
+	}
+	
+	public function getSelectedPassPlayers() {
+		return $this->selectedPassPlayers;
+	}
+	
+	public function setSelectedPassPlayers($selectedPassPlayers) {
+		$this->selectedPassPlayers = $selectedPassPlayers;
 	}
 	
 }

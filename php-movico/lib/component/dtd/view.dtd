@@ -144,6 +144,15 @@
 	value CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	class CDATA #IMPLIED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT outputDiv EMPTY>
+<!ATTLIST outputDiv
+	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+	id CDATA #IMPLIED
 >
 
 <!ELEMENT outputDate EMPTY>

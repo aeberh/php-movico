@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<panelSeries value="#{NewsItemBean.items}" var="item">
+			<panelGroup>
+				<h2><outputText value="#{item.title}"/></h2>
+				<div>
+					<div class="news-content">
+						<outputDiv value="#{item.content}"/>
+					</div>
+					<div class="news-metadata">
+						<p>
+							<outputText value="Geschreven door #{item.creator.emailAddress} op "/>
+							<outputDate value="#{item.date}" format="#{ApplicationConstants.dateFormat}"/>
+							<outputText value=" om "/>
+							<outputDate value="#{item.date}" format="#{ApplicationConstants.timeFormat}"/>
+						</p>
+					</div>
+				</div>
+			</panelGroup>
+		</panelSeries>
+	</define>
+</composition>

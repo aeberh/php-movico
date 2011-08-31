@@ -3,24 +3,25 @@ class LoginBean extends SessionBean {
 	
 	private $emailAddress;
 	private $password;
-	private $password2;
+	//private $password2;
 	
-	private $account = null;
+	private $player = null;
 
 	public function login() {
 		try {
-			$this->account = AccountServiceUtil::login($this->emailAddress, $this->password);
+			$this->player = PingpongPlayerServiceUtil::login($this->emailAddress, $this->password);
 		} catch(LoginException $e) {
 			MessageUtil::error("Logingegevens zijn onjuist!");
-		} catch(NoSuchAccountException $e) {
+		} catch(NoSuchPingpongPlayerException $e) {
 			MessageUtil::error("Logingegevens zijn onjuist!");
 		}
 		return null;
 	}
 	
+	/*
 	public function register() {
 		try {
-			AccountServiceUtil::register($this->emailAddress, $this->password, $this->password2);
+			PingpongPlayerServiceUtil::register($this->emailAddress, $this->password, $this->password2);
 			return $this->login();
 			MessageUtil::info("Gebruiker geregistreerd!");
 		} catch(PasswordsDontMatchException $e) {
@@ -34,24 +35,29 @@ class LoginBean extends SessionBean {
 		}
 		return null;
 	}
+	*/
 	
 	public function logout() {
-		$this->account = null;
+		$this->player = null;
 	}
 	
 	public function isLoggedIn() {
-		return !is_null($this->account);
+		return !is_null($this->player);
 	}
 	
 	public function isAdmin() {
 		if(!$this->isLoggedIn()) {
 			return false;
 		}
-		return $this->account->getEmailAddress() === "admin@jevota.be";
+		return $this->player->getEmailAddress() === "limburgie@gmail.com";
 	}
 	
-	public function getAccount() {
-		return $this->account;
+	public function getPlayer() {
+		return $this->player;
+	}
+	
+	public function getPlayerId() {
+		return $this->player->getPlayerId();
 	}
 		
 	public function getEmailAddress() {

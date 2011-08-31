@@ -1,14 +1,14 @@
 <?php
-abstract class NewsModel extends Model {
+abstract class NewsItemModel extends Model {
 
-	private $newsId;
+	private $itemId;
 
-	public function getNewsId() {
-		return $this->newsId;
+	public function getItemId() {
+		return $this->itemId;
 	}
 
-	public function setNewsId($newsId) {
-		$this->newsId = $newsId;
+	public function setItemId($itemId) {
+		$this->itemId = $itemId;
 	}
 
 	private $date;

@@ -1,20 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder SYSTEM "../lib/servicebuilder/dtd/service.dtd">
 <service-builder>
-	<entity name="Account">
-		<column name="accountId" type="int" primary="true" auto-increment="true"/>
-		<column name="emailAddress" type="String" size="30"/>
-		<column name="password" type="String" size="20"/>
-		<finder name="EmailAddress" unique="true">
-			<finder-column name="emailAddress"/>
-		</finder>
-	</entity>
-	<entity name="News">
-		<column name="newsId" type="int" primary="true" auto-increment="true"/>
+	<entity name="NewsItem">
+		<column name="itemId" type="int" primary="true" auto-increment="true"/>
 		<column name="date" type="Date"/>
 		<column name="title" type="String" size="30"/>
 		<column name="content" type="String" size="500"/>
 		<column name="creatorId" type="int"/>
+		<order>
+			<order-column name="date" order-by="desc"/>
+		</order>
 	</entity>
 	<entity name="PingpongPlayer">
 		<column name="playerId" type="int" primary="true" auto-increment="true"/>
@@ -27,8 +22,12 @@
 		<column name="ranking" type="String" size="2"/>
 		<column name="phone" type="String" size="20"/>
 		<column name="emailAddress" type="String" size="30"/>
+		<column name="password" type="String" size="20"/>
 		<column name="recreation" type="boolean"/>
 		<column name="active" type="boolean"/>
+		<finder name="EmailAddress" unique="true">
+			<finder-column name="emailAddress"/>
+		</finder>
 		<finder name="Active">
 			<finder-column name="active"/>
 		</finder>

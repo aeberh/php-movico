@@ -1,3 +1,10 @@
+#page {
+	width: 800px;
+	margin: 0 auto;
+	min-height: 500px;
+	font-size: 0.6em;
+}
+
 .col.wide {
 	width: 75%;
 	float: left;
@@ -19,14 +26,6 @@
 }
 
 .col > div:not(.msg) {
-	margin: 15px;
+	margin: 30px;
 	margin-left: 0;
-}
-
-.col > div > div {
-	padding: 7px;
-}
-
-.col.wide > div {
-	margin-left: 15px;
 }

@@ -2,26 +2,36 @@
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="main">
 	<define name="body">
-		<!-- 
 		<div>
 			<h2>Laatste Nieuws</h2>
 			<div>
-				<p>...</p>
+				<dataTable value="#{ManageNewsBean.items}" var="item">
+					<column class="news-date time">
+						<outputDate value="#{item.date}" format="#{ApplicationConstants.dateFormat}"/>
+					</column>
+					<column class="news-title">
+						<renderLink view="news" value="#{item.title}">
+							<param value="#{item.itemId}"/>
+						</renderLink>
+					</column>
+					<column class="news-creator">
+						<outputText value="#{item.creator.emailAddress}"/>
+					</column>
+				</dataTable>
 			</div>
 		</div>
-		-->
 		<div>
 			<h2>Aankomende wedstrijden</h2>
 			<div>
 				<form>
 					<dataTable value="#{GamesBean.upcoming}" var="game">
-						<column class="game-day">
+						<column class="game-day time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
 						</column>
-						<column class="game-date">
+						<column class="game-date time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
 						</column>
-						<column class="game-time">
+						<column class="game-time time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 						</column>
 						<column class="game-home-team">

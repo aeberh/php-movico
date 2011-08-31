@@ -34,7 +34,7 @@ class Settings {
 	}
 	
 	public function isAjaxEnabled() {
-		return $this->ajaxEnabled == "true";
+		return $this->ajaxEnabled;
 	}
 	
 	public function getAjaxTimeout() {
@@ -66,16 +66,16 @@ class Settings {
 	}
 	
 	public function isViewCacheEnabled() {
-		return $this->viewCacheEnabled == "true";
+		return $this->viewCacheEnabled;
 	}
 	
 	public function isDbCacheEnabled() {
-		return $this->dbCacheEnabled == "true";
+		return $this->dbCacheEnabled;
 	}
 	
 	public function showSql() {
 		return $this->showSql;
 	}
-
+	
 }
 ?>

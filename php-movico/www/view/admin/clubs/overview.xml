@@ -9,7 +9,7 @@
 					<p>
 						<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
 					</p>
-					<dataTable value="#{ManageClubsBean.clubs}" var="club">
+					<dataTable value="#{ManageClubsBean.clubs}" var="club" rows="10" pagination="true">
 						<column>
 							<colHeader>
 								<outputText value="Nummer"/>
@@ -32,7 +32,8 @@
 							<colHeader>
 								<outputText value="Adres"/>
 							</colHeader>
-							<outputText value="#{club.address}"/>
+							<div><outputText value="#{club.street}"/></div>
+							<div><outputText value="#{club.place}"/></div>
 						</column>
 						<column>
 							<colHeader>
