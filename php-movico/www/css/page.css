@@ -3,6 +3,17 @@
 	margin: 0 auto;
 	min-height: 500px;
 	font-size: 0.6em;
+	position: relative;
+}
+
+img.AjaxLoading {
+	position: absolute;
+	left: -40px;
+	top: 30px;
+}
+
+img.AjaxLoading[status="idle"] {
+	display: none;
 }
 
 .col.wide {

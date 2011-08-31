@@ -14,10 +14,10 @@
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
 			</ul>
-			<ajaxLoading/>
 		</div>
 	</div>
 	<div id="page">
+		<ajaxLoading/>
 		<panelGroup rendered="#{LoginBean.admin}">
 			<ul id="subnav">
 				<li><renderLink view="admin/news/overview" value="Nieuws"/></li>

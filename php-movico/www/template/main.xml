@@ -14,10 +14,10 @@
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
 			</ul>
-			<ajaxLoading/>
 		</div>
 	</div>
 	<div id="page">
+		<ajaxLoading/>
 		<div class="col wide">
 			<message/>
 			<insert name="body"/>

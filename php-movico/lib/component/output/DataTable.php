@@ -21,7 +21,10 @@ class DataTable extends DataSeries {
 	}
 	
 	private function renderPagination() {
-		$nbPages = count($this->getRows())/$this->rows+1;
+		if(empty($this->rows)) {
+			return "";
+		}
+		$nbPages = floor(count($this->getRows())/$this->rows)+1;
 		if($nbPages == 1) {
 			return "";
 		}

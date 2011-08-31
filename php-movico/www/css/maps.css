@@ -1,5 +1,6 @@
 .googleMap {
 	border: 1px solid #bbb;
+	margin-top: 10px;
 }
 
 .googleMap > div.gmnoprint > a[title], .googleMap > div > span, .googleMap > div > a.terms-of-use-link {
