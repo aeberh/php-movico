@@ -72,7 +72,7 @@
 					<form>
 						<p id="contact-link">
 							<renderLink value="Meer informatie" view="club_details">
-								<param value="#{ClubDetailsBean.jevotaClubId}"/>
+								<param value="#{ApplicationConstants.jevotaClubId}"/>
 							</renderLink>
 						</p>
 					</form>

@@ -8,6 +8,8 @@ class ApplicationConstants extends ApplicationBean {
 	private $teamNos;
 	private $rankings;
 	
+	private $jevotaClubId;
+	
 	public function __construct() {
 		$this->teamNos = ArrayUtil::makeAssociative(
 			array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
@@ -18,6 +20,7 @@ class ApplicationConstants extends ApplicationBean {
 			array("NG", "E6", "E4", "E2", "E0", "D6", "D4", "D2", "D0",
 			"C6", "C4", "C2", "C0")
 		);
+		$this->jevotaClubId = PingpongClubServiceUtil::getJevota()->getClubId();
 	}
 	
 	public function getDayFormat() {
@@ -42,6 +45,10 @@ class ApplicationConstants extends ApplicationBean {
 	
 	public function getRankings() {
 		return $this->rankings;
+	}
+	
+	public function getJevotaClubId() {
+		return $this->jevotaClubId;
 	}
 	
 }
