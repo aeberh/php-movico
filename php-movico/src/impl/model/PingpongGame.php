@@ -30,12 +30,16 @@ class PingpongGame extends PingpongGameModel {
 	}
 	
 	public function isPlayed() {
-		return $this->getDate()->isAfter(Date::createNow());
+		return $this->getDate()->isBefore(Date::createNow());
 	}
 	
 	public function isHasReview() {
 		$r = $this->getReview();
 		return !empty($r);
+	}
+	
+	public function getHasReviewStr() {
+		return $this->isHasReview() ? "X" : "";
 	}
 	
 	private function getTeamStr($teamId) {

@@ -6,24 +6,16 @@ class PingpongGamePersistence extends Persistence {
 	public function findByAfterDate($date, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`date`>'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` asc".$limitStr;
-		if(parent::$dbCache->hasFinder('PingpongGame', $whereClause)) {
-			return parent::$dbCache->getFinder('PingpongGame', $whereClause);
-		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		$result = $this->getAsObjects($result->getResult());
-		parent::$dbCache->setFinder('PingpongGame', $whereClause, $result);
 		return $result;
 	}
 
 	public function findByBeforeDate($date, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`date`<'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` desc".$limitStr;
-		if(parent::$dbCache->hasFinder('PingpongGame', $whereClause)) {
-			return parent::$dbCache->getFinder('PingpongGame', $whereClause);
-		}
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		$result = $this->getAsObjects($result->getResult());
-		parent::$dbCache->setFinder('PingpongGame', $whereClause, $result);
 		return $result;
 	}
 
@@ -99,18 +91,18 @@ class PingpongGamePersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('PingpongGame')) {
-			return parent::$dbCache->getAll('PingpongGame');
+		if(parent::$dbCache->hasAll('PingpongGame', $from, $limit)) {
+			return parent::$dbCache->getAll('PingpongGame', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `date` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('PingpongGame', $objects);
+		parent::$dbCache->setAll('PingpongGame', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('PingpongGame')) {
-			return count(parent::$dbCache->getAll('PingpongGame'));
+		if(parent::$dbCache->hasAll('PingpongGame', -1, -1)) {
+			return count(parent::$dbCache->getAll('PingpongGame', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

@@ -33,7 +33,7 @@ class ApplicationConstants extends ApplicationBean {
 	}
 	
 	public function getDateTimeFormat() {
-		return self::DATE_FORMAT." ".self::TIME_FORMAT;
+		return self::DATE_FORMAT."&nbsp;&nbsp;&nbsp;".self::TIME_FORMAT;
 	}
 	
 	public function getTeamNos() {

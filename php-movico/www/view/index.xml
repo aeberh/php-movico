@@ -5,7 +5,7 @@
 		<div>
 			<h2>Laatste Nieuws</h2>
 			<div>
-				<dataTable value="#{ManageNewsBean.items}" var="item">
+				<dataTable value="#{ManageNewsBean.items}" var="item" rows="3">
 					<column class="news-date time">
 						<outputDate value="#{item.date}" format="#{ApplicationConstants.dateFormat}"/>
 					</column>
@@ -15,7 +15,7 @@
 						</renderLink>
 					</column>
 					<column class="news-creator">
-						<outputText value="#{item.creator.emailAddress}"/>
+						<outputText value="#{item.creator.fullName}"/>
 					</column>
 				</dataTable>
 			</div>
@@ -68,13 +68,13 @@
 			<div>
 				<form>
 					<dataTable value="#{GamesBean.past}" var="game">
-						<column class="game-day">
+						<column class="game-day time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
 						</column>
-						<column class="game-date">
+						<column class="game-date time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
 						</column>
-						<column class="game-time">
+						<column class="game-time time">
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 						</column>
 						<column class="game-home-team">
@@ -92,14 +92,18 @@
 						<column class="game-out-team">
 							<outputText value="#{game.outTeamStr}"/>
 						</column>
-						<column class="game-review">
-							<img rendered="#{game.hasReview}" src="report.png" popup="#{game.review}"/>
+						<column class="game-info">
+							<renderLink view="game_info" rendered="#{game.hasReview}">
+								<param value="#{game.gameId}"/>
+								<img src="info.png" popup="Wedstrijdinfo"/>
+							</renderLink>
 						</column>
-						<!-- 
-						<column class="game-travel">
-							<img src="car.png"/>
+						<column class="game-edit">
+							<renderLink view="admin/games/edit" rendered="#{LoginBean.admin}">
+								<param value="#{game.gameId}"/>
+								<img src="edit.png" popup="Aanpassen"/>
+							</renderLink>
 						</column>
-						 -->
 					</dataTable>
 				</form>
 			</div>

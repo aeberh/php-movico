@@ -3,8 +3,34 @@
 <composition template="main">
 	<define name="body">
 		<div>
-			<h2><outputText value="#{ClubDetailsBean.club.shortName}"/></h2>
+			<h2><outputText value="#{ClubDetailsBean.club.name}"/></h2>
 			<div>
+
+				<panelGroup rendered="#{ClubDetailsBean.club.lanaken}">
+					<h3>Openingsuren</h3>
+					<ul>
+						<li>Di: 18u30 - 24u00</li>
+						<li>Wo: 19u00 - 24u00</li>
+						<li>Do: 10u00 - 12u00 en 19u00 - 24u00</li>
+						<li>Za: 10u00 - 12u00 en na 18u00</li>
+					</ul>
+					<h3>Trainingen</h3>
+					<ul>
+						<li><span>Beginnelingen</span>
+							<ul>
+								<li>Di: 18u30-20u00</li>
+								<li>Za: 10u00-11u30</li>
+							</ul>
+						</li>
+						<li><span>Gevorderden</span>
+							<ul>
+								<li>Di: 20u00-21u30</li>
+								<li>Do: 19u00-20u30</li>
+							</ul>
+						</li>
+					</ul>
+					<h3>Contact</h3>
+				</panelGroup>
 				<p class="club-address">
 					<outputText value="#{ClubDetailsBean.club.name} (#{ClubDetailsBean.club.fullNumber})"/>
 					<outputText value="#{ClubDetailsBean.club.building}" rendered="#{ClubDetailsBean.club.hasBuilding}"/>

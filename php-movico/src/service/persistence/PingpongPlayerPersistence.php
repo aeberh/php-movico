@@ -78,18 +78,18 @@ class PingpongPlayerPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('PingpongPlayer')) {
-			return parent::$dbCache->getAll('PingpongPlayer');
+		if(parent::$dbCache->hasAll('PingpongPlayer', $from, $limit)) {
+			return parent::$dbCache->getAll('PingpongPlayer', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `ranking` asc, `lastName` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('PingpongPlayer', $objects);
+		parent::$dbCache->setAll('PingpongPlayer', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('PingpongPlayer')) {
-			return count(parent::$dbCache->getAll('PingpongPlayer'));
+		if(parent::$dbCache->hasAll('PingpongPlayer', -1, -1)) {
+			return count(parent::$dbCache->getAll('PingpongPlayer', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

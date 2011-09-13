@@ -73,6 +73,9 @@ class DataTable extends DataSeries {
 		$rows = $this->getRows();
 		$result = "";
 		$nbRows = count($rows);
+		if(!empty($this->rows)) {
+			$nbRows = $this->rows;
+		}
 		for($i=0; $i<$nbRows; $i++) {
 			$page = isset($this->rows) ? floor($i/$this->rows)+1 : 1;
 			$result .= "<tr class=\"page p$page\">";

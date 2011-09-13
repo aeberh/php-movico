@@ -1,61 +1,59 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<outputText value="Ledenbeheer - Wijzig lid #{ManagePlayersBean.selected.fullName}"/>
+	</define>
 	<define name="body">
-		<div>
-			<h2><outputText value="Ledenbeheer - Wijzig lid #{ManagePlayersBean.selected.fullName}"/></h2>
-			<div>
-				<form>
-					<inputHidden value="#{ManagePlayersBean.selected.playerId}"/>
-					<p>
-						<outputLabel for="player-firstName" value="Voornaam"/>
-						<inputText maxLength="20" id="player-firstName" value="#{ManagePlayersBean.selected.firstName}" autoFocus="true"/>
-					</p>
-					<p>
-						<outputLabel for="player-lastName" value="Achternaam"/>
-						<inputText maxLength="30" id="player-lastName" value="#{ManagePlayersBean.selected.lastName}"/>
-					</p>
-					<p>
-						<outputLabel for="player-memberNo" value="Lidnummer (bv. 506680)"/>
-						<inputText maxLength="6" id="player-memberNo" value="#{ManagePlayersBean.selected.memberNo}"/>
-					</p>
-					<p>
-						<outputLabel for="player-ranking" value="Klassement (bv. C3)"/>
-						<selectOneMenu id="player-ranking" options="#{ApplicationConstants.rankings}" value="#{ManagePlayersBean.selected.ranking}"/>
-					</p>
-					<p>
-						<outputLabel for="player-active" value="Actief?"/>
-						<booleanCheckbox id="player-active" value="#{ManagePlayersBean.selected.active}"/>
-					</p>
-					<p>
-						<outputLabel for="player-rec" value="Recreatiespeler?"/>
-						<booleanCheckbox id="player-rec" value="#{ManagePlayersBean.selected.recreation}"/>
-					</p>
-					<p>
-						<outputLabel for="player-startYear" value="Aansluitingsjaar (bv. 2004)"/>
-						<inputText maxLength="4" id="player-startYear" value="#{ManagePlayersBean.selected.startYear}"/>
-					</p>
-					<p>
-						<outputLabel for="street" value="Straat (bv. Daalstraat 23)"/>
-						<inputText maxLength="70" id="street" value="#{ManagePlayersBean.selected.street}"/>
-					</p>
-					<p>
-						<outputLabel for="place" value="Plaats (bv. 3620 Lanaken)"/>
-						<inputText maxLength="30" id="place" value="#{ManagePlayersBean.selected.place}"/>
-					</p>
-					<p>
-						<outputLabel for="email" value="E-mailadres (bv. test@example.com)"/>
-						<inputText maxLength="30" id="email" value="#{ManagePlayersBean.selected.emailAddress}"/>
-					</p>
-					<p>
-						<outputLabel for="phone" value="Telefoon (bv. 089/71.61.34)"/>
-						<inputText maxLength="20" id="phone" value="#{ManagePlayersBean.selected.phone}"/>
-					</p>
-					<p>
-						<commandButton action="#{ManagePlayersBean.save}" value="Opslaan"/>
-					</p>
-				</form>
-			</div>
-		</div>
+		<form>
+			<inputHidden value="#{ManagePlayersBean.selected.playerId}"/>
+			<p>
+				<outputLabel for="player-firstName" value="Voornaam"/>
+				<inputText maxLength="20" id="player-firstName" value="#{ManagePlayersBean.selected.firstName}" autoFocus="true"/>
+			</p>
+			<p>
+				<outputLabel for="player-lastName" value="Achternaam"/>
+				<inputText maxLength="30" id="player-lastName" value="#{ManagePlayersBean.selected.lastName}"/>
+			</p>
+			<p>
+				<outputLabel for="player-memberNo" value="Lidnummer (bv. 506680)"/>
+				<inputText maxLength="6" id="player-memberNo" value="#{ManagePlayersBean.selected.memberNo}"/>
+			</p>
+			<p>
+				<outputLabel for="player-ranking" value="Klassement (bv. C3)"/>
+				<selectOneMenu id="player-ranking" options="#{ApplicationConstants.rankings}" value="#{ManagePlayersBean.selected.ranking}"/>
+			</p>
+			<p>
+				<outputLabel for="player-active" value="Actief?"/>
+				<booleanCheckbox id="player-active" value="#{ManagePlayersBean.selected.active}"/>
+			</p>
+			<p>
+				<outputLabel for="player-rec" value="Recreatiespeler?"/>
+				<booleanCheckbox id="player-rec" value="#{ManagePlayersBean.selected.recreation}"/>
+			</p>
+			<p>
+				<outputLabel for="player-startYear" value="Aansluitingsjaar (bv. 2004)"/>
+				<inputText maxLength="4" id="player-startYear" value="#{ManagePlayersBean.selected.startYear}"/>
+			</p>
+			<p>
+				<outputLabel for="street" value="Straat (bv. Daalstraat 23)"/>
+				<inputText maxLength="70" id="street" value="#{ManagePlayersBean.selected.street}"/>
+			</p>
+			<p>
+				<outputLabel for="place" value="Plaats (bv. 3620 Lanaken)"/>
+				<inputText maxLength="30" id="place" value="#{ManagePlayersBean.selected.place}"/>
+			</p>
+			<p>
+				<outputLabel for="email" value="E-mailadres (bv. test@example.com)"/>
+				<inputText maxLength="30" id="email" value="#{ManagePlayersBean.selected.emailAddress}"/>
+			</p>
+			<p>
+				<outputLabel for="phone" value="Telefoon (bv. 089/71.61.34)"/>
+				<inputText maxLength="20" id="phone" value="#{ManagePlayersBean.selected.phone}"/>
+			</p>
+			<p>
+				<commandButton action="#{ManagePlayersBean.save}" value="Opslaan"/>
+			</p>
+		</form>
 	</define>
 </composition>

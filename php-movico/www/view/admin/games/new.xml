@@ -1,30 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Wedstrijdbeheer - Maak nieuwe wedstrijd</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Wedstrijdbeheer - Maak nieuwe wedstrijd</h2>
-			<div>
-				<form>
-					<p>
-						<outputLabel for="date" value="Datum en tijd"/>
-						<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
-					</p>
-					<p>
-						<outputLabel for="home" value="Thuisploeg"/>
-						<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
-					</p>
-					<p>
-						<outputLabel for="out" value="Uitploeg"/>
-						<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
-					</p>
-					<p>
-						<commandButton action="#{ManageGamesBean.create}" value="Opslaan"/>
-					</p>
-				</form>
-			</div>
-		</div>
+		<form>
+			<p>
+				<outputLabel for="date" value="Datum en tijd"/>
+				<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
+			</p>
+			<p>
+				<outputLabel for="home" value="Thuisploeg"/>
+				<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
+				<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
+			</p>
+			<p>
+				<outputLabel for="out" value="Uitploeg"/>
+				<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
+				<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
+			</p>
+			<p>
+				<commandButton action="#{ManageGamesBean.create}" value="Opslaan"/>
+			</p>
+		</form>
 	</define>
 </composition>

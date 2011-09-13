@@ -54,6 +54,20 @@ class ManagePlayersBean extends RequestBean {
 	}
 	
 	public function generatePasswords() {
+		$failed = array();
+		foreach($this->selectedPassPlayers as $playerId) {
+			try {
+				PingpongPlayerServiceUtil::generateNewPassword($playerId);
+			} catch(Exception $e) {
+				$player = PingpongPlayerServiceUtil::getPingpongPlayer($playerId);
+				$failed[] = $player->getFullName()." (".$player->getEmailAddress().")";
+			}
+		}
+		if(empty($failed)) {
+			MessageUtil::info("Wachtwoorden werden succesvol gewijzigd en opgestuurd!");
+		} else {
+			MessageUtil::error("Door een fout hebben volgende spelers geen email ontvangen: ".implode(", ", $failed));
+		}
 		return null;
 	}
 	

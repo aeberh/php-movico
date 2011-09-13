@@ -1,49 +1,47 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Clubbeheer - Maak nieuwe club</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Clubbeheer - Maak nieuwe club</h2>
-			<div>
-				<form>
-					<p>
-						<outputLabel for="club-number" value="Stamnummer"/>
-						<span>LK</span>
-						<inputText maxLength="3" id="club-number" value="#{ManageClubsBean.selected.number}" autoFocus="true"/>
-					</p>
-					<p>
-						<outputLabel for="club-shortname" value="Korte naam (bv. Bree)"/>
-						<inputText maxLength="20" id="club-short-name" value="#{ManageClubsBean.selected.shortName}"/>
-					</p>
-					<p>
-						<outputLabel for="club-name" value="Naam (bv. T.T.C. Meteor Bree)"/>
-						<inputText maxLength="30" id="club-name" value="#{ManageClubsBean.selected.name}"/>
-					</p>
-					<p>
-						<outputLabel for="club-building" value="Gebouw (bv. Wijkschool)"/>
-						<inputText maxLength="30" id="club-building" value="#{ManageClubsBean.selected.building}"/>
-					</p>
-					<p>
-						<outputLabel for="street" value="Straat (bv. Groenstraat 20)"/>
-						<inputText maxLength="70" id="street" value="#{ManageClubsBean.selected.street}"/>
-					</p>
-					<p>
-						<outputLabel for="place" value="Plaats (bv. 3650 Dilsen-Stokkem)"/>
-						<inputText maxLength="30" id="place" value="#{ManageClubsBean.selected.place}"/>
-					</p>
-					<p>
-						<outputLabel for="club-distance" value="Afstand in km (bv. 23)"/>
-						<inputText maxLength="3" id="club-distance" value="#{ManageClubsBean.selected.distance}"/>	
-					</p>
-					<p>
-						<outputLabel for="phone" value="Telefoonnummer (bv. 089/71.61.34)"/>
-						<inputText maxLength="20" id="phone" value="#{ManageClubsBean.selected.phone}"/>	
-					</p>
-					<p>
-						<commandButton action="#{ManageClubsBean.create}" value="Opslaan"/>
-					</p>
-				</form>
-			</div>
-		</div>
+		<form>
+			<p>
+				<outputLabel for="club-number" value="Stamnummer"/>
+				<span>LK</span>
+				<inputText maxLength="3" id="club-number" value="#{ManageClubsBean.selected.number}" autoFocus="true"/>
+			</p>
+			<p>
+				<outputLabel for="club-shortname" value="Korte naam (bv. Bree)"/>
+				<inputText maxLength="20" id="club-short-name" value="#{ManageClubsBean.selected.shortName}"/>
+			</p>
+			<p>
+				<outputLabel for="club-name" value="Naam (bv. T.T.C. Meteor Bree)"/>
+				<inputText maxLength="30" id="club-name" value="#{ManageClubsBean.selected.name}"/>
+			</p>
+			<p>
+				<outputLabel for="club-building" value="Gebouw (bv. Wijkschool)"/>
+				<inputText maxLength="30" id="club-building" value="#{ManageClubsBean.selected.building}"/>
+			</p>
+			<p>
+				<outputLabel for="street" value="Straat (bv. Groenstraat 20)"/>
+				<inputText maxLength="70" id="street" value="#{ManageClubsBean.selected.street}"/>
+			</p>
+			<p>
+				<outputLabel for="place" value="Plaats (bv. 3650 Dilsen-Stokkem)"/>
+				<inputText maxLength="30" id="place" value="#{ManageClubsBean.selected.place}"/>
+			</p>
+			<p>
+				<outputLabel for="club-distance" value="Afstand in km (bv. 23)"/>
+				<inputText maxLength="3" id="club-distance" value="#{ManageClubsBean.selected.distance}"/>	
+			</p>
+			<p>
+				<outputLabel for="phone" value="Telefoonnummer (bv. 089/71.61.34)"/>
+				<inputText maxLength="20" id="phone" value="#{ManageClubsBean.selected.phone}"/>	
+			</p>
+			<p>
+				<commandButton action="#{ManageClubsBean.create}" value="Opslaan"/>
+			</p>
+		</form>
 	</define>
 </composition>

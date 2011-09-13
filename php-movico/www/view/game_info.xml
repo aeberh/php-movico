@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="body">
+		<div>
+			<h2>Wedstrijdinformatie</h2>
+			<div>
+				<p>
+					<h3><outputText value="#{GameDetailsBean.game.homeTeamStr} (#{GameDetailsBean.game.homeTeamPts} - #{GameDetailsBean.game.outTeamPts}) #{GameDetailsBean.game.outTeamStr}"/></h3>
+				</p>
+				<p>
+					<outputText class="label" value="Wedstrijdverslag: "/>
+					<outputText value="#{GameDetailsBean.game.review}" rendered="#{GameDetailsBean.game.hasReview}"/>
+					
+					<panelGroup rendered="#{!GameDetailsBean.game.hasReview}">
+						<outputText value="Er is nog geen verslag toegevoegd voor deze wedstrijd"/>
+						<renderLink view="admin/games/edit" value="Wees de eerste!" rendered="#{LoginBean.admin}"/>
+					</panelGroup>
+				</p>
+			</div>
+		</div>
+	</define>
+</composition>

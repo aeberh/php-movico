@@ -1,46 +1,44 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Nieuwsbeheer</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Nieuwsbeheer</h2>
-			<div>
-				<form>
-					<p>
-						<commandButton action="admin/news/new" value="Maak nieuw item"/>
-					</p>
-					<dataTable value="#{ManageNewsBean.items}" var="item" rows="10" pagination="true">
-						<column>
-							<colHeader>
-								<outputText value="Datum"/>
-							</colHeader>
-							<outputDate value="#{item.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Titel"/>
-							</colHeader>
-							<outputText value="#{item.title}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Schrijver"/>
-							</colHeader>
-							<outputText value="#{item.creator.emailAddress}"/>
-						</column>
-						<column>
-							<commandButton action="#{ManageNewsBean.edit}" value="Wijzigen">
-								<param value="#{item.itemId}"/>
-							</commandButton>
-						</column>
-						<column>
-							<commandButton action="#{ManageNewsBean.delete}" value="X" popup="Weet je zeker dat je dit nieuws verwijdert?">
-								<param value="#{item.itemId}"/>
-							</commandButton>
-						</column>
-					</dataTable>
-				</form>
-			</div>
-		</div>
+		<form>
+			<p>
+				<commandButton action="admin/news/new" value="Maak nieuw item"/>
+			</p>
+			<dataTable value="#{ManageNewsBean.items}" var="item">
+				<column>
+					<colHeader>
+						<outputText value="Datum"/>
+					</colHeader>
+					<outputDate value="#{item.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Titel"/>
+					</colHeader>
+					<outputText value="#{item.title}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Schrijver"/>
+					</colHeader>
+					<outputText value="#{item.creator.emailAddress}"/>
+				</column>
+				<column>
+					<commandButton action="#{ManageNewsBean.edit}" value="Wijzigen">
+						<param value="#{item.itemId}"/>
+					</commandButton>
+				</column>
+				<column>
+					<commandButton action="#{ManageNewsBean.delete}" value="X" popup="Weet je zeker dat je dit nieuws verwijdert?">
+						<param value="#{item.itemId}"/>
+					</commandButton>
+				</column>
+			</dataTable>
+		</form>
 	</define>
 </composition>

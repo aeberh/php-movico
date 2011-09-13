@@ -9,7 +9,12 @@
 				<li><renderLink view="index" value="Home"/></li>
 				<li><renderLink view="news" value="Nieuws"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
-				<li><renderLink view="games" value="Wedstrijden"/></li>
+				<li>
+					<renderLink view="games" value="Wedstrijden">
+						<param value="#{GamesBean.currentWeekNo}"/>
+						<param value="-"/>
+					</renderLink>
+				</li>
 				<panelGroup rendered="#{LoginBean.admin}">
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
@@ -20,14 +25,19 @@
 		<ajaxLoading/>
 		<panelGroup rendered="#{LoginBean.admin}">
 			<ul id="subnav">
-				<li><renderLink view="admin/news/overview" value="Nieuws"/></li>
-				<li><renderLink view="admin/players/overview" value="Leden"/></li>
-				<li><renderLink view="admin/clubs/overview" value="Clubs"/></li>
-				<li><renderLink view="admin/games/overview" value="Wedstrijden"/></li>
+				<li><renderLink view="admin/news/overview" value="Nieuws" selectedPrefix="admin/news"/></li>
+				<li><renderLink view="admin/players/overview" value="Leden" selectedPrefix="admin/players"/></li>
+				<li><renderLink view="admin/clubs/overview" value="Clubs" selectedPrefix="admin/clubs"/></li>
+				<li><renderLink view="admin/games/overview" value="Wedstrijden" selectedPrefix="admin/games"/></li>
 			</ul>
 			<div class="col">
-				<message/>
-				<insert name="body"/>
+				<div>
+					<h2><insert name="title"/></h2>
+					<div>
+						<message/>
+						<insert name="body"/>
+					</div>
+				</div>
 			</div>
 		</panelGroup>
 		<panelGroup rendered="!#{LoginBean.admin}">
@@ -35,6 +45,6 @@
 		</panelGroup>
 	</div>
 	<div id="footer">
-		<p>Ontwikkeld door T.T.C. Jevota Lanaken.</p>
+		<p>Ontwikkeld door The Web Factory.</p>
 	</div>
 </template>

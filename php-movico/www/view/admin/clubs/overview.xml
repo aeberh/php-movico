@@ -1,59 +1,58 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Clubbeheer - Overzicht</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Clubbeheer - Overzicht</h2>
-			<div>
-				<form>
-					<p>
-						<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
-					</p>
-					<dataTable value="#{ManageClubsBean.clubs}" var="club" rows="10" pagination="true">
-						<column>
-							<colHeader>
-								<outputText value="Nummer"/>
-							</colHeader>
-							<outputText value="#{club.fullNumber}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Naam"/>
-							</colHeader>
-							<outputText value="#{club.shortName}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Volledige naam"/>
-							</colHeader>
-							<outputText value="#{club.name}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Adres"/>
-							</colHeader>
-							<div><outputText value="#{club.street}"/></div>
-							<div><outputText value="#{club.place}"/></div>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Telefoon"/>
-							</colHeader>
-							<outputText value="#{club.phone}"/>
-						</column>
-						<column>
-							<commandButton action="#{ManageClubsBean.edit}" value="Wijzigen">
-								<param value="#{club.clubId}"/>
-							</commandButton>
-						</column>
-						<column>
-							<commandButton action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?">
-								<param value="#{club.clubId}"/>
-							</commandButton>
-						</column>
-					</dataTable>
-				</form>
-			</div>
-		</div>
+		<form>
+			<p>
+				<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
+			</p>
+			<dataTable value="#{ManageClubsBean.clubs}" var="club">
+				<column>
+					<colHeader>
+						<outputText value="Nummer"/>
+					</colHeader>
+					<outputText value="#{club.fullNumber}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Naam"/>
+					</colHeader>
+					<outputText value="#{club.shortName}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Volledige naam"/>
+					</colHeader>
+					<outputText value="#{club.name}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Adres"/>
+					</colHeader>
+					<div><outputText value="#{club.street}"/></div>
+					<div><outputText value="#{club.place}"/></div>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Telefoon"/>
+					</colHeader>
+					<outputText value="#{club.phone}"/>
+				</column>
+				<column>
+					<renderLink view="admin/clubs/edit">
+						<param value="#{club.clubId}"/>
+						<img src="edit.png"/>
+					</renderLink>
+				</column>
+				<column>
+					<commandButton action="#{ManageClubsBean.delete}" value="X" popup="Weet je zeker dat je deze club verwijdert?">
+						<param value="#{club.clubId}"/>
+					</commandButton>
+				</column>
+			</dataTable>
+		</form>
 	</define>
 </composition>

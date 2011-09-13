@@ -81,10 +81,10 @@
 		<column name="homeTeamPts" type="int"/>
 		<column name="outTeamPts" type="int"/>
 		<column name="review" type="String" size="500"/>
-		<finder name="AfterDate">
+		<finder name="AfterDate" cacheable="false">
 			<finder-column name="date" comparator="&gt;"/>
 		</finder>
-		<finder name="BeforeDate">
+		<finder name="BeforeDate" cacheable="false">
 			<finder-column name="date" comparator="&lt;"/>
 			<order>
 				<order-column name="date" order-by="desc"/>

@@ -96,18 +96,18 @@ class PingpongClubPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('PingpongClub')) {
-			return parent::$dbCache->getAll('PingpongClub');
+		if(parent::$dbCache->hasAll('PingpongClub', $from, $limit)) {
+			return parent::$dbCache->getAll('PingpongClub', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `shortName` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('PingpongClub', $objects);
+		parent::$dbCache->setAll('PingpongClub', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('PingpongClub')) {
-			return count(parent::$dbCache->getAll('PingpongClub'));
+		if(parent::$dbCache->hasAll('PingpongClub', -1, -1)) {
+			return count(parent::$dbCache->getAll('PingpongClub', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

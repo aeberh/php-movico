@@ -1,63 +1,68 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Wedstrijdbeheer - Overzicht</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Wedstrijdbeheer - Overzicht</h2>
-			<div>
-				<form>
-					<p>
-						<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
-					</p>
-					<p>
-						<renderLink view="admin/games/overview" value="Vorige" rendered="#{ManageGamesBean.hasPrevFrom}">
-							<param value="#{ManageGamesBean.prevFrom}"/>
-						</renderLink>
-						<renderLink view="admin/games/overview" value="Volgende" rendered="#{ManageGamesBean.hasNextFrom}">
-							<param value="#{ManageGamesBean.nextFrom}"/>
-						</renderLink>
-					</p>
-					<dataTable value="#{ManageGamesBean.games}" var="game">
-						<column>
-							<colHeader>
-								<outputText value="Datum"/>
-							</colHeader>
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Thuis"/>
-							</colHeader>
-							<outputText value="#{game.homeTeamStr}"/>
-						</column>
-						<column>
-							<outputText value="#{game.homeTeamPtsStr}"/>
-						</column>
-						<column>
-							<outputText value="-"/>
-						</column>
-						<column>
-							<outputText value="#{game.outTeamPtsStr}"/>
-						</column>
-						<column>
-							<colHeader>
-								<outputText value="Uit"/>
-							</colHeader>
-							<outputText value="#{game.outTeamStr}"/>
-						</column>
-						<column>
-							<commandButton action="#{ManageGamesBean.edit}" value="Wijzigen">
-								<param value="#{game.gameId}"/>
-							</commandButton>
-						</column>
-						<column>
-							<commandButton action="#{ManageGamesBean.delete}" value="X" popup="Weet je zeker dat je deze wedstrijd verwijdert?">
-								<param value="#{game.gameId}"/>
-							</commandButton>
-						</column>
-					</dataTable>
-				</form>
-			</div>
-		</div>
+		<form>
+			<p>
+				<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
+			</p>
+			<p>
+				<renderLink view="admin/games/overview" value="Vorige" rendered="#{ManageGamesBean.hasPrevFrom}">
+					<param value="#{ManageGamesBean.prevFrom}"/>
+				</renderLink>
+				<renderLink view="admin/games/overview" value="Volgende" rendered="#{ManageGamesBean.hasNextFrom}">
+					<param value="#{ManageGamesBean.nextFrom}"/>
+				</renderLink>
+			</p>
+			<dataTable value="#{ManageGamesBean.games}" var="game">
+				<column>
+					<colHeader>
+						<outputText value="Datum en tijd"/>
+					</colHeader>
+					<outputDate value="#{game.date}" format="#{ApplicationConstants.dateTimeFormat}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Thuisploeg"/>
+					</colHeader>
+					<outputText value="#{game.homeTeamStr}"/>
+				</column>
+				<column>
+					<outputText value="#{game.homeTeamPtsStr}"/>
+				</column>
+				<column>
+					<outputText value="-"/>
+				</column>
+				<column>
+					<outputText value="#{game.outTeamPtsStr}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Uitploeg"/>
+					</colHeader>
+					<outputText value="#{game.outTeamStr}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Review?"/>
+					</colHeader>
+					<outputText value="#{game.hasReviewStr}"/>
+				</column>
+				<column>
+					<renderLink view="admin/games/edit">
+						<param value="#{game.gameId}"/>
+						<img src="edit.png"/>
+					</renderLink>
+				</column>
+				<column>
+					<commandButton action="#{ManageGamesBean.delete}" value="X" popup="Weet je zeker dat je deze wedstrijd verwijdert?">
+						<param value="#{game.gameId}"/>
+					</commandButton>
+				</column>
+			</dataTable>
+		</form>
 	</define>
 </composition>

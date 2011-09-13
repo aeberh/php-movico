@@ -1,0 +1,22 @@
+.msg {
+	border: 1px solid #000;
+	padding: 5px 8px;
+}
+
+.msg.info {
+	border-color: #26a;
+	color: #26a;
+	background-color: #cef;
+}
+
+.msg.error {
+	border-color: #c44;
+	color: #c44;
+	background-color: #fee;
+}
+
+.msg.success {
+	border-color: #4a4;
+	color: #4a4;
+	background-color: #ded;
+}

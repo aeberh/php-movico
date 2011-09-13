@@ -34,3 +34,7 @@ div.clear {
 .left {
 	float: left;
 }
+
+li {
+	list-style-type: circle;
+}

@@ -1,15 +1,10 @@
 <?php
 class ManageGamesBean extends RequestBean {
 	
-	private $date;
-	private $time;
 	private $homeClubId;
 	private $homeTeamNo;
 	private $outClubId;
 	private $outTeamNo;
-	private $homeTeamPts;
-	private $outTeamPts;
-	private $review;
 	
 	private $selected;
 	
@@ -18,7 +13,15 @@ class ManageGamesBean extends RequestBean {
 	// Constructor
 	
 	public function __construct() {
-		$this->selected = new PingpongGame();
+		if(Context::hasParam(0)) {
+			$this->selected = PingpongGameServiceUtil::getPingpongGame(Context::getParam(0));
+			$this->homeClubId = $this->selected->getHomeTeam()->getClubId();
+			$this->homeTeamNo = $this->selected->getHomeTeam()->getTeamNo();
+			$this->outClubId = $this->selected->getOutTeam()->getClubId();
+			$this->outTeamNo = $this->selected->getOutTeam()->getTeamNo();
+		} else {
+			$this->selected = new PingpongGame();
+		}
 	}
 	
 	// Action methods
@@ -32,15 +35,6 @@ class ManageGamesBean extends RequestBean {
 		PingpongGameServiceUtil::delete(PingpongGameServiceUtil::getPingpongGame($gameId));
 		MessageUtil::info("Wedstrijd werd succesvol verwijderd!");
 		return "admin/games/overview";
-	}
-	
-	public function edit($gameId) {
-		$this->selected = PingpongGameServiceUtil::getPingpongGame($gameId);
-		$this->homeClubId = $this->selected->getHomeTeam()->getClubId();
-		$this->homeTeamNo = $this->selected->getHomeTeam()->getTeamNo();
-		$this->outClubId = $this->selected->getOutTeam()->getClubId();
-		$this->outTeamNo = $this->selected->getOutTeam()->getTeamNo();
-		return "admin/games/edit";
 	}
 	
 	public function save() {
@@ -57,7 +51,7 @@ class ManageGamesBean extends RequestBean {
 	}
 	
 	private function getFrom() {
-		return Params::has(0) ? Params::get(0) : 0;
+		return Context::hasParam(0) ? Context::getParam(0) : 0;
 	}
 	
 	public function isHasPrevFrom() {

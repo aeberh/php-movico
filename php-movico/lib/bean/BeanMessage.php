@@ -3,6 +3,7 @@ class BeanMessage {
 	
 	const SEVERITY_INFO = "info";
 	const SEVERITY_ERROR = "error";
+	const SEVERITY_SUCCESS = "success";
 	
 	private $severity;
 	private $message;

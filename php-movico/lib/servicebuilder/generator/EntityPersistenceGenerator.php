@@ -65,8 +65,8 @@ class EntityPersistenceGenerator {
 	
 	private function generateGetCount(Entity $entity) {
 		return "\tpublic function count() {\n".
-			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}')) {\n".
-			"\t\t\treturn count(parent::\$dbCache->getAll('{$entity->getName()}'));\n".
+			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}', -1, -1)) {\n".
+			"\t\t\treturn count(parent::\$dbCache->getAll('{$entity->getName()}', -1, -1));\n".
 			"\t\t}\n".
 			"\t\treturn \$this->db->selectQuery(\"SELECT COUNT(*) FROM \".self::TABLE)->getSingleton();\n".
 			"\t}\n\n";
@@ -76,11 +76,13 @@ class EntityPersistenceGenerator {
 		$orderByClause = $finder->hasOrder() ? $finder->getOrderByClause() : $entity->getOrderByClause();
 		$result = "\tpublic function {$finder->getMethodSignature()} {\n".
 			"\t\t\$limitStr = (\$from == -1 && \$limit == -1) ? \"\" : \" LIMIT \$from,\$limit\";\n".
-			"\t\t\$whereClause = \"".implode(" AND ",$finder->getWhereClauses()).$orderByClause."\".\$limitStr;\n".
-			"\t\tif(parent::\$dbCache->hasFinder('{$entity->getName()}', \$whereClause)) {\n".
-			"\t\t\treturn parent::\$dbCache->getFinder('{$entity->getName()}', \$whereClause);\n".
-			"\t\t}\n".
-			"\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE \$whereClause\");\n";
+			"\t\t\$whereClause = \"".implode(" AND ",$finder->getWhereClauses()).$orderByClause."\".\$limitStr;\n";
+		if($finder->isCacheable()) {
+			$result .= "\t\tif(parent::\$dbCache->hasFinder('{$entity->getName()}', \$whereClause)) {\n".
+				"\t\t\treturn parent::\$dbCache->getFinder('{$entity->getName()}', \$whereClause);\n".
+				"\t\t}\n";
+		}
+		$result .= "\t\t\$result = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" WHERE \$whereClause\");\n";
 		if($finder->isUnique()) {
 			$result .= "\t\tif(\$result->isEmpty()) {\n".
 				"\t\t\tthrow new NoSuch{$entity->getName()}Exception();\n".
@@ -89,8 +91,10 @@ class EntityPersistenceGenerator {
 		} else {
 			$result .= "\t\t\$result = \$this->getAsObjects(\$result->getResult());\n";
 		}
-		return "$result\t\tparent::\$dbCache->setFinder('{$entity->getName()}', \$whereClause, \$result);\n".
-			"\t\treturn \$result;\n\t}\n\n";
+		if($finder->isCacheable()) {
+			$result .= "\t\tparent::\$dbCache->setFinder('{$entity->getName()}', \$whereClause, \$result);\n";
+		}
+		return $result."\t\treturn \$result;\n\t}\n\n";
 	}
 	
 	private function generateFindByPrimaryKey(Entity $entity) {
@@ -110,12 +114,12 @@ class EntityPersistenceGenerator {
 
 	private function generateFindAll(Entity $entity) {
 		return "\tpublic function findAll(\$from, \$limit) {\n".
-			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}')) {\n".
-			"\t\t\treturn parent::\$dbCache->getAll('{$entity->getName()}');\n".
+			"\t\tif(parent::\$dbCache->hasAll('{$entity->getName()}', \$from, \$limit)) {\n".
+			"\t\t\treturn parent::\$dbCache->getAll('{$entity->getName()}', \$from, \$limit);\n".
 			"\t\t}\n".
 			"\t\t\$rows = \$this->db->selectQuery(\"SELECT * FROM \".self::TABLE.\" {$entity->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\t\$objects = \$this->getAsObjects(\$rows);\n".
-			"\t\tparent::\$dbCache->setAll('{$entity->getName()}', \$objects);\n".
+			"\t\tparent::\$dbCache->setAll('{$entity->getName()}', \$objects, \$from, \$limit);\n".
 			"\t\treturn \$objects;\n".
 			"\t}\n\n";
 	}

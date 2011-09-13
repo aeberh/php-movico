@@ -9,7 +9,12 @@
 				<li><renderLink view="index" value="Home"/></li>
 				<li><renderLink view="news" value="Nieuws"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
-				<li><renderLink view="games" value="Wedstrijden"/></li>
+				<li>
+					<renderLink view="games" value="Wedstrijden">
+						<param value="#{GamesBean.currentWeekNo}"/>
+						<param value=""/>
+					</renderLink>
+				</li>
 				<panelGroup rendered="#{LoginBean.admin}">
 					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
@@ -19,13 +24,13 @@
 	<div id="page">
 		<ajaxLoading/>
 		<div class="col wide">
-			<message/>
 			<insert name="body"/>
 		</div>
 		<div class="col small">
 			<div>
 				<h2>Login</h2>
 				<div>
+					<message/>
 					<form rendered="#{!LoginBean.loggedIn}">
 						<p>
 							<outputLabel for="login-email" value="E-mailadres"/>
@@ -67,7 +72,7 @@
 					<form>
 						<p id="contact-link">
 							<renderLink value="Meer informatie" view="club_details">
-								<param value="1"/>
+								<param value="#{ClubDetailsBean.jevotaClubId}"/>
 							</renderLink>
 						</p>
 					</form>
@@ -77,6 +82,8 @@
 		<div class="clear"></div>
 	</div>
 	<div id="footer">
-		<p>Ontwikkeld door T.T.C. Jevota Lanaken.</p>
+		<p>
+			Ontwikkeld door The Web Factory.
+		</p>
 	</div>
 </template>

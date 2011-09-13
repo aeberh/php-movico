@@ -55,10 +55,10 @@ class GamesBean extends RequestBean {
 		if(!empty($this->filterByWeek)) {
 			return $this->filterByWeek;
 		}
-		if(Params::has(0) && Params::get(0) !== "-") {
-			return Params::get(0);
+		if(Context::hasParam(0) && Context::getParam(0) !== "-") {
+			return Context::getParam(0);
 		}
-		if(!Params::has(0) && !Params::has(1) && empty($this->filterByTeam)) {
+		if(!Context::hasParam(0) && !Context::hasParam(1) && empty($this->filterByTeam)) {
 			return Date::createNow()->getWeek();
 		}
 		return null;
@@ -68,30 +68,15 @@ class GamesBean extends RequestBean {
 		if(!empty($this->filterByTeam)) {
 			return $this->filterByTeam;
 		}
-		if(Params::has(1) && Params::get(1) !== "-") {
-			return Params::get(1);
+		if(Context::hasParam(1) && Context::getParam(1) !== "-") {
+			return Context::getParam(1);
 		}
 		return null;
 	}
 	
-	/*
-	
-	private function getFilterByWeekParam() {
-		return $this->isParamsEmpty() ? Date::createNow()->getWeek() : $this->getParam(0);
+	public function getCurrentWeekNo() {
+		return Date::createNow()->getWeek();
 	}
-	
-	private function getFilterByTeamParam() {
-		return $this->isParamsEmpty() ? null : $this->getParam(1);
-	}
-	
-	private function getParam($i) {
-		return Params::has($i) ? (Params::get($i) == "-" ? null : Params::get($i)) : null;
-	}
-	
-	private function isParamsEmpty() {
-		return !Params::has(0) && !Params::has(1);
-	}
-	*/
 	
 	// Getters & setters
 	public function setFilterByWeek($filterByWeek) {

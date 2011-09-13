@@ -42,9 +42,9 @@
 	class CDATA #IMPLIED
 >
 
-<!ELEMENT commandLink (param*)>
+<!ELEMENT commandLink ANY>
 <!ATTLIST commandLink
-	value CDATA #REQUIRED
+	value CDATA #IMPLIED
 	action CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	popup CDATA #IMPLIED
@@ -52,9 +52,9 @@
 	class CDATA #IMPLIED
 >
 
-<!ELEMENT renderLink (param*)>
+<!ELEMENT renderLink ANY>
 <!ATTLIST renderLink
-	value CDATA #REQUIRED
+	value CDATA #IMPLIED
 	view CDATA #REQUIRED
 	rendered CDATA #IMPLIED
 	class CDATA #IMPLIED

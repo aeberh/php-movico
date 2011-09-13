@@ -51,18 +51,18 @@ class NewsItemPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('NewsItem')) {
-			return parent::$dbCache->getAll('NewsItem');
+		if(parent::$dbCache->hasAll('NewsItem', $from, $limit)) {
+			return parent::$dbCache->getAll('NewsItem', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `date` desc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('NewsItem', $objects);
+		parent::$dbCache->setAll('NewsItem', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('NewsItem')) {
-			return count(parent::$dbCache->getAll('NewsItem'));
+		if(parent::$dbCache->hasAll('NewsItem', -1, -1)) {
+			return count(parent::$dbCache->getAll('NewsItem', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

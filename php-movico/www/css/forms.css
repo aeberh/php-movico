@@ -17,8 +17,8 @@ input[type="text"],input[type="password"] {
 	);
 	background-image: -moz-linear-gradient(
 	    left center,
-	    #fff 0%,
-	    #ddd 100%
+	    #ddd 0%,
+	    #fff 50%
 	);
 	color: #555;
 }
@@ -27,12 +27,17 @@ label {
 	display: block;
 }
 
+.label {
+	font-weight: bold;
+	display: block;
+}
+
 #login-email, #login-pass {
 	width: 100%;
 }
 
 input#club-number {
-	width: 30px;
+	width: 40px;
 }
 
 input#club-short-name {
@@ -41,6 +46,10 @@ input#club-short-name {
 
 input#club-name {
 	width: 200px;
+}
+
+input#club-building {
+	width: 250px;
 }
 
 input#club-distance {
@@ -60,11 +69,11 @@ input#place {
 }
 
 input#player-memberNo {
-	width: 50px;
+	width: 75px;
 }
 
 input#player-startYear {
-	width: 40px;
+	width: 50px;
 }
 
 input#email {

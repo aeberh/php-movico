@@ -41,7 +41,7 @@ abstract class DataSeries extends Component {
 	}
 	
 	public function isPagination() {
-		return $this->pagination;
+		return $this->pagination == "true";
 	}
 	
 	public function setPagination($pagination) {

@@ -4,8 +4,7 @@ class ManageClubsBean extends RequestBean {
 	private $selected;
 	
 	public function __construct() {
-		//$this->selected = Params::has(0) ? PingpongClubServiceUtil::getPingpongClub(Params::get(0)) : new PingpongClub();
-		$this->selected = new PingpongClub();
+		$this->selected = Context::hasParam(0) ? PingpongClubServiceUtil::getPingpongClub(Context::getParam(0)) : new PingpongClub();
 	}
 	
 	public function getClubs() {
@@ -24,12 +23,7 @@ class ManageClubsBean extends RequestBean {
 			return null;
 		}
 	}
-	
-	public function edit($clubId) {
-		$this->selected = PingpongClubServiceUtil::getPingpongClub($clubId);
-		return "admin/clubs/edit";
-	}
-	
+
 	public function save() {
 		try {
 			PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getNumber(), 

@@ -1,41 +1,39 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
 <composition template="admin">
+	<define name="title">
+		<span>Wedstrijdbeheer - Wijzig wedstrijd</span>
+	</define>
 	<define name="body">
-		<div>
-			<h2>Wedstrijdbeheer - Wijzig wedstrijd</h2>
-			<div>
-				<form>
-					<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
-					<p>
-						<outputLabel for="date" value="Datum en tijd"/>
-						<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
-					</p>
-					<p>
-						<outputLabel for="home" value="Thuisploeg"/>
-						<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
-					</p>
-					<p>
-						<outputLabel for="out" value="Uitploeg"/>
-						<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
-						<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
-					</p>
-					<p>
-						<outputLabel for="score" value="Score"/>
-						<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.homeTeamPts}"/>
-						<outputText value=" - "/>
-						<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.outTeamPts}"/>
-					</p>
-					<p>
-						<outputLabel for="review" value="Review"/>
-						<inputTextArea class="game-admin-review" value="#{ManageGamesBean.selected.review}"/>
-					</p>
-					<p>
-						<commandButton action="#{ManageGamesBean.save}" value="Opslaan"/>
-					</p>
-				</form>
-			</div>
-		</div>
+		<form>
+			<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
+			<p>
+				<outputLabel for="date" value="Datum en tijd"/>
+				<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>
+			</p>
+			<p>
+				<outputLabel for="home" value="Thuisploeg"/>
+				<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
+				<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
+			</p>
+			<p>
+				<outputLabel for="out" value="Uitploeg"/>
+				<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
+				<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
+			</p>
+			<p>
+				<outputLabel for="score" value="Score"/>
+				<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.homeTeamPts}"/>
+				<outputText value=" - "/>
+				<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.outTeamPts}"/>
+			</p>
+			<p>
+				<outputLabel for="review" value="Review"/>
+				<inputTextArea class="game-admin-review" value="#{ManageGamesBean.selected.review}"/>
+			</p>
+			<p>
+				<commandButton action="#{ManageGamesBean.save}" value="Opslaan"/>
+			</p>
+		</form>
 	</define>
 </composition>

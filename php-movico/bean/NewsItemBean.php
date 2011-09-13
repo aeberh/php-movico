@@ -4,8 +4,8 @@ class NewsItemBean extends RequestBean {
 	private $items = array();
 	
 	public function __construct() {
-		if(Params::has(0)) {
-			$itemId = Params::get(0);
+		if(Context::hasParam(0)) {
+			$itemId = Context::getParam(0);
 			$this->items[] = NewsItemServiceUtil::getNewsItem($itemId);
 		} else {
 			$this->items = NewsItemServiceUtil::getNewsItems();

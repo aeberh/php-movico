@@ -68,7 +68,7 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 	
 	public function login($emailAddress, $password) {
 		$user = $this->findByEmailAddress($emailAddress);
-		if($user->getPassword() !== $password) {
+		if(empty($emailAddress) || empty($password) || $user->getPassword() !== $password) {
 			throw new LoginException();
 		}
 		return $user;
