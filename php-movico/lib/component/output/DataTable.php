@@ -74,7 +74,7 @@ class DataTable extends DataSeries {
 		$result = "";
 		$nbRows = count($rows);
 		if(!empty($this->rows)) {
-			$nbRows = $this->rows;
+			$nbRows = min($nbRows, $this->rows);
 		}
 		for($i=0; $i<$nbRows; $i++) {
 			$page = isset($this->rows) ? floor($i/$this->rows)+1 : 1;
