@@ -46,10 +46,33 @@ class LoginBean extends SessionBean {
 	}
 	
 	public function isAdmin() {
-		if(!$this->isLoggedIn()) {
-			return false;
-		}
-		return $this->player->getEmailAddress() === "limburgie@gmail.com";
+		return $this->hasRole(ApplicationConstants::ROLE_GLOBAL_ADMIN);
+	}
+	
+	public function isNewsManager() {
+		return $this->hasRole(ApplicationConstants::ROLE_NEWS_ADMIN);
+	}
+	
+	public function isClubManager() {
+		return $this->hasRole(ApplicationConstants::ROLE_CLUB_ADMIN);
+	}
+	
+	public function isGameManager() {
+		return $this->hasRole(ApplicationConstants::ROLE_GAME_ADMIN);
+	}
+	
+	public function isPlayerManager() {
+		return $this->hasRole(ApplicationConstants::ROLE_PLAYER_ADMIN);
+	}
+	
+	public function isSpecialUser() {
+		return $this->isLoggedIn() && count($this->player->getRoles())>0;
+	}
+	
+	private function hasRole($roleName) {
+		return $this->isLoggedIn() && 
+			(in_array(RoleServiceUtil::findByName(ApplicationConstants::ROLE_GLOBAL_ADMIN), $this->player->getRoles()) || 
+			in_array(RoleServiceUtil::findByName($roleName), $this->player->getRoles()));
 	}
 	
 	public function getPlayer() {

@@ -5,6 +5,7 @@
 		<span>Clubbeheer - Overzicht</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.clubManager}">
 		<form>
 			<p>
 				<commandButton action="admin/clubs/new" value="Maak nieuwe club"/>
@@ -54,5 +55,6 @@
 				</column>
 			</dataTable>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

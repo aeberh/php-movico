@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="title">
+		<span>Rolbeheer - Wijzig spelers met rol</span>
+	</define>
+	<define name="body">
+		<form>
+			<inputHidden value="#{ManageRolesBean.selected.roleId}"/>
+			<p>
+				<outputText class="bold" value="#{ManageRolesBean.selected.name}"/>
+			</p>
+			<p>
+				Selecteer een speler die je wil toevoegen voor deze rol.
+			</p>
+			<p>
+				<selectOneMenu options="#{ManageRolesBean.allPlayers}" value="#{ManageRolesBean.selectedPlayerId}"/>
+			</p>
+			<p>
+				<commandButton action="#{ManageRolesBean.addPlayer}" value="Toevoegen"/>
+			</p>
+			<dataTable value="#{ManageRolesBean.playersWithRole}" var="player">
+				<column>
+					<outputText value="#{player.fullName}"/>
+				</column>
+				<column>
+					<commandButton action="#{ManageRolesBean.deletePlayer}" value="X" popup="Weet je zeker dat je #{player.fullName} deze rol wilt ontnemen?">
+						<param value="#{player.playerId}"/>
+					</commandButton>
+				</column>
+			</dataTable>
+		</form>
+	</define>
+</composition>

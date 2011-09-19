@@ -5,6 +5,7 @@
 		<span>Clubbeheer - Maak nieuwe club</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.clubManager}">
 		<form>
 			<p>
 				<outputLabel for="club-number" value="Stamnummer"/>
@@ -43,5 +44,6 @@
 				<commandButton action="#{ManageClubsBean.create}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

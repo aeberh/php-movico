@@ -5,6 +5,7 @@
 		<span>Nieuwsbeheer - Wijzig item</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.newsManager}">
 		<form>
 			<inputHidden value="#{ManageNewsBean.selected.itemId}"/>
 			<p>
@@ -19,5 +20,6 @@
 				<commandButton action="#{ManageNewsBean.save}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

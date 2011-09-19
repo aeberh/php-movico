@@ -39,6 +39,10 @@ class PingpongPlayer extends PingpongPlayerModel {
 		return $this->getMemberNo() == 0 ? "" : $this->getMemberNo();
 	}
 	
+	public function __toString() {
+		return $this->getFullName();
+	}
+	
 	private function getActivePlayerList() {
 		return ArrayList::fromArray("PingpongPlayer", PingpongPlayerServiceUtil::getActivePlayers());
 	}

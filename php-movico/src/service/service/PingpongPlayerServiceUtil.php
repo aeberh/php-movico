@@ -29,12 +29,24 @@ class PingpongPlayerServiceUtil {
 		return self::getService()->generateNewPassword($playerId);
 	}
 
+	public static function getUsersSortedByFirstName() {
+		return self::getService()->getUsersSortedByFirstName();
+	}
+
 	public static function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
 		return self::getService()->findByEmailAddress($emailAddress, $from, $limit);
 	}
 
 	public static function findByActive($active, $from=-1, $limit=-1) {
 		return self::getService()->findByActive($active, $from, $limit);
+	}
+
+	public static function findByRoleId($roleId, $from, $limit) {
+		return self::getService()->findByRoleId($roleId, $from, $limit);
+	}
+
+	public static function setRoles($playerId, $roleIds) {
+		self::getService()->setRoles($playerId, $roleIds);
 	}
 
 	public static function createPingpongPlayer($pk=0) {

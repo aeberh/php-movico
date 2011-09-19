@@ -5,6 +5,7 @@
 		<span>Wedstrijdbeheer - Wijzig wedstrijd</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.gameManager}">
 		<form>
 			<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
 			<p>
@@ -35,5 +36,6 @@
 				<commandButton action="#{ManageGamesBean.save}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

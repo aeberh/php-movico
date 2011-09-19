@@ -5,6 +5,7 @@
 		<span>Nieuwsbeheer</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.newsManager}">
 		<form>
 			<p>
 				<commandButton action="admin/news/new" value="Maak nieuw item"/>
@@ -26,7 +27,7 @@
 					<colHeader>
 						<outputText value="Schrijver"/>
 					</colHeader>
-					<outputText value="#{item.creator.emailAddress}"/>
+					<outputText value="#{item.creator.fullName}"/>
 				</column>
 				<column>
 					<commandButton action="#{ManageNewsBean.edit}" value="Wijzigen">
@@ -40,5 +41,6 @@
 				</column>
 			</dataTable>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

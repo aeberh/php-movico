@@ -67,6 +67,19 @@ CREATE TABLE `PingpongGame` (
 	KEY `IX_OUTTEAM` (`outTeamId`)
 );
 
+CREATE TABLE `Role` (
+	`roleId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(30) NOT NULL,
+	PRIMARY KEY (`roleId`),
+	UNIQUE KEY `IX_NAME` (`name`)
+);
+
+CREATE TABLE `Users_Roles` (
+	`roleId` INTEGER NOT NULL,
+	`playerId` INTEGER NOT NULL,
+	 PRIMARY KEY (`roleId`,`playerId`)
+);
+
 INSERT INTO `Account` (emailAddress, password) VALUES ('admin@jevota.be', 'admin123');
 
 INSERT INTO `PingpongClub` (number, name, shortName, street, place, phone) VALUES ('31', 'T.T.C. Jevota', 'Lanaken', 'Biesweg 16', '3620 Gellik', '089/71.45.35');

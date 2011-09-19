@@ -5,8 +5,15 @@ class ApplicationConstants extends ApplicationBean {
 	const DATE_FORMAT = "%d-%m-%Y";
 	const TIME_FORMAT = "%H:%M";
 	
+	const ROLE_GLOBAL_ADMIN = "Administrator";
+	const ROLE_PLAYER_ADMIN = "PlayerManager";
+	const ROLE_NEWS_ADMIN = "NewsManager";
+	const ROLE_CLUB_ADMIN = "ClubManager";
+	const ROLE_GAME_ADMIN = "GameManager";
+	
 	private $teamNos;
 	private $rankings;
+	private $roles;
 	
 	private $jevotaClubId;
 	
@@ -21,6 +28,7 @@ class ApplicationConstants extends ApplicationBean {
 			"C6", "C4", "C2", "C0")
 		);
 		$this->jevotaClubId = PingpongClubServiceUtil::getJevota()->getClubId();
+		$this->roles = array(self::ROLE_GLOBAL_ADMIN, self::ROLE_NEWS_ADMIN, self::ROLE_CLUB_ADMIN, self::ROLE_GAME_ADMIN, self::ROLE_PLAYER_ADMIN);
 	}
 	
 	public function getDayFormat() {
@@ -49,6 +57,10 @@ class ApplicationConstants extends ApplicationBean {
 	
 	public function getJevotaClubId() {
 		return $this->jevotaClubId;
+	}
+	
+	public function getRoles() {
+		return $this->roles;
 	}
 	
 }

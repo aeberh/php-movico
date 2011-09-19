@@ -5,6 +5,7 @@
 		<outputText value="Ledenbeheer - Wijzig lid #{ManagePlayersBean.selected.fullName}"/>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.playerManager}">
 		<form>
 			<inputHidden value="#{ManagePlayersBean.selected.playerId}"/>
 			<p>
@@ -55,5 +56,6 @@
 				<commandButton action="#{ManagePlayersBean.save}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

@@ -113,5 +113,22 @@ class PingpongPlayerPersistence extends Persistence {
 		return $result;
 	}
 
+	public function findByRoleId($roleId, $from, $limit) {
+		$rows = $this->db->selectQuery("SELECT t.* FROM Users_Roles mapping,".self::TABLE." t WHERE mapping.roleId='$roleId' AND mapping.playerId=t.playerId LIMIT $from,$limit")->getResult();
+		return $this->getAsObjects($rows);
+	}
+
+	public function setRoles($playerId, $roleIds) {
+		$this->db->updateQuery("DELETE FROM Users_Roles WHERE playerId='$playerId'");
+		if(empty($roleIds)) {
+			return;
+		}
+		$insertValues = array();
+		foreach($roleIds as $roleId) {
+			$insertValues[] = "('$playerId', '$roleId')";
+		}
+		$this->db->updateQuery("INSERT INTO Users_Roles (playerId, roleId) VALUES ".implode(", ", $insertValues));
+	}
+
 }
 ?>

@@ -15,20 +15,31 @@
 						<param value="-"/>
 					</renderLink>
 				</li>
-				<panelGroup rendered="#{LoginBean.admin}">
-					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
+				<panelGroup rendered="#{LoginBean.specialUser}">
+					<li><renderLink view="admin/index" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
 			</ul>
 		</div>
 	</div>
 	<div id="page">
 		<ajaxLoading/>
-		<panelGroup rendered="#{LoginBean.admin}">
+		<panelGroup rendered="#{LoginBean.specialUser}">
 			<ul id="subnav">
-				<li><renderLink view="admin/news/overview" value="Nieuws" selectedPrefix="admin/news"/></li>
-				<li><renderLink view="admin/players/overview" value="Leden" selectedPrefix="admin/players"/></li>
-				<li><renderLink view="admin/clubs/overview" value="Clubs" selectedPrefix="admin/clubs"/></li>
-				<li><renderLink view="admin/games/overview" value="Wedstrijden" selectedPrefix="admin/games"/></li>
+				<panelGroup rendered="#{LoginBean.newsManager}">
+					<li><renderLink view="admin/news/overview" value="Nieuws" selectedPrefix="admin/news"/></li>
+				</panelGroup>
+				<panelGroup rendered="#{LoginBean.playerManager}">
+					<li><renderLink view="admin/players/overview" value="Leden" selectedPrefix="admin/players"/></li>
+				</panelGroup>
+				<panelGroup rendered="#{LoginBean.clubManager}">
+					<li><renderLink view="admin/clubs/overview" value="Clubs" selectedPrefix="admin/clubs"/></li>
+				</panelGroup>
+				<panelGroup rendered="#{LoginBean.gameManager}">
+					<li><renderLink view="admin/games/overview" value="Wedstrijden" selectedPrefix="admin/games"/></li>
+				</panelGroup>
+				<panelGroup rendered="#{LoginBean.admin}">
+					<li><renderLink view="admin/roles/overview" value="Rollen" selectedPrefix="admin/roles"/></li>
+				</panelGroup>
 			</ul>
 			<div class="col">
 				<div>
@@ -40,7 +51,7 @@
 				</div>
 			</div>
 		</panelGroup>
-		<panelGroup rendered="!#{LoginBean.admin}">
+		<panelGroup rendered="!#{LoginBean.specialUser}">
 			<p>Je hebt niet genoeg rechten om deze pagina te bekijken.</p>
 		</panelGroup>
 	</div>

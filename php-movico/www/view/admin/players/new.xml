@@ -5,6 +5,7 @@
 		<span>Ledenbeheer - Maak nieuw lid</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.playerManager}">
 		<form>
 			<p>
 				<outputLabel for="player-firstName" value="Voornaam"/>
@@ -50,5 +51,6 @@
 				<commandButton action="#{ManagePlayersBean.create}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

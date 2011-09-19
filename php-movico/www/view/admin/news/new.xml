@@ -5,6 +5,7 @@
 		<span>Nieuwsbeheer - Maak nieuw item</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.newsManager}">
 		<form>
 			<p>
 				<outputLabel for="news-title" value="Titel"/>
@@ -18,5 +19,6 @@
 				<commandButton action="#{ManageNewsBean.create}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="title">
+		<span>Rollenbeheer - Overzicht</span>
+	</define>
+	<define name="body">
+		<form>
+			<dataTable value="#{ManageRolesBean.roles}" var="role">
+				<column>
+					<colHeader>
+						<outputText value="Rol"/>
+					</colHeader>
+					<outputText value="#{role.name}"/>
+				</column>
+				<column>
+					<colHeader>
+						<outputText value="Leden"/>
+					</colHeader>
+					<outputText value="#{role.usersConcat}"/>
+				</column>
+				<column>
+					<renderLink view="admin/roles/members">
+						<param value="#{role.roleId}"/>
+						<img src="members.png"/>
+					</renderLink>
+				</column>
+			</dataTable>
+		</form>
+	</define>
+</composition>

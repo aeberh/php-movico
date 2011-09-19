@@ -131,5 +131,9 @@ abstract class PingpongPlayerModel extends Model {
 		$this->active = $active;
 	}
 
+	public function getRoles($from=0, $limit=9999999999) {
+		return RoleServiceUtil::findByPlayerId($this->playerId, $from, $limit);
+	}
+
 }
 ?>

@@ -1,18 +1,15 @@
 <?
 class View extends Component {
 	
-	private $title;
 	private $url;
-	
-	public function setTitle($title) {
-		$this->title = $title;
-	}
 	
 	public function doRender($index=null) {
 		$ajax = parent::$settings->isAjaxEnabled();
 		$gmapsApiKey = parent::$settings->getGmapsApiKey();
 		$context = parent::$settings->getContextPath();
-		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
+		$title = parent::$settings->getTitle();
+		$result = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">".
+			"<html>\n\t<head>\n\t\t<title>$title</title>\n".
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".

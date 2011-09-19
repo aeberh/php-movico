@@ -91,5 +91,17 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		//send email
 	}
 	
+	public function getUsersSortedByFirstName() {
+		$users = $this->getPingpongPlayers();
+		usort($users, function($a, $b) {
+			$c = strcmp($a->getFirstName(), $b->getFirstName());
+			if($c == 0) {
+				$c = strcmp($a->getLastName(), $b->getLastName());
+			}
+			return $c;
+		});
+		return $users;
+	}
+	
 }
 ?>

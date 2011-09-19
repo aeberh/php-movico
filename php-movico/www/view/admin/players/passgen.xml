@@ -5,6 +5,7 @@
 		Ledenbeheer - Genereer wachtwoorden
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.playerManager}">
 		<p>
 			Selecteer de spelers voor wie een nieuw wachtwoord gegeneerd moet worden.
 			Het wachtwoord wordt via e-mail naar de betrokken spelers gestuurd.
@@ -19,5 +20,6 @@
 				<commandButton action="#{ManagePlayersBean.generatePasswords}" value="Genereer wachtwoorden"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

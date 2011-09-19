@@ -5,6 +5,7 @@
 		<span>Ledenbeheer - Overzicht</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.playerManager}">
 		<form>
 			<p>
 				<commandButton action="admin/players/new" value="Maak nieuw lid"/>
@@ -21,15 +22,9 @@
 				</column>
 				<column>
 					<colHeader>
-						<outputText value="Achternaam"/>
+						<outputText value="Naam"/>
 					</colHeader>
-					<outputText value="#{player.lastName}"/>
-				</column>
-				<column>
-					<colHeader>
-						<outputText value="Voornaam"/>
-					</colHeader>
-					<outputText value="#{player.firstName}"/>
+					<outputText value="#{player.fullName}"/>
 				</column>
 				<column class="r">
 					<colHeader>
@@ -70,5 +65,6 @@
 				</column>
 			</dataTable>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

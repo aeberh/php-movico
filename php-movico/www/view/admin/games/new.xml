@@ -5,6 +5,7 @@
 		<span>Wedstrijdbeheer - Maak nieuwe wedstrijd</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.gameManager}">
 		<form>
 			<p>
 				<outputLabel for="date" value="Datum en tijd"/>
@@ -24,5 +25,6 @@
 				<commandButton action="#{ManageGamesBean.create}" value="Opslaan"/>
 			</p>
 		</form>
+		</panelGroup>
 	</define>
 </composition>

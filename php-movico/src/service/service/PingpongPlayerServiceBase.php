@@ -37,5 +37,13 @@ class PingpongPlayerServiceBase {
 		return Singleton::create("PingpongPlayerPersistence");
 	}
 
+	public function findByRoleId($roleId, $from, $limit) {
+		return $this->getPersistence()->findByRoleId($roleId, $from, $limit);
+	}
+
+	public function setRoles($playerId, $roleIds) {
+		$this->getPersistence()->setRoles($playerId, $roleIds);
+	}
+
 }
 ?>

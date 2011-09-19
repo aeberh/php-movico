@@ -15,8 +15,8 @@
 						<param value=""/>
 					</renderLink>
 				</li>
-				<panelGroup rendered="#{LoginBean.admin}">
-					<li><renderLink view="admin/clubs/overview" value="Admin" selectedPrefix="admin"/></li>
+				<panelGroup rendered="#{LoginBean.specialUser}">
+					<li><renderLink view="admin/index" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
 			</ul>
 		</div>

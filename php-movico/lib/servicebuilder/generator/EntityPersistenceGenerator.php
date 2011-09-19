@@ -51,7 +51,7 @@ class EntityPersistenceGenerator {
 		$mappedPkName = Singleton::create("ServiceBuilder")->getEntity($property->getEntityName())->getPrimaryKey()->getName();
 		return "\tpublic function {$property->getFinderSignature()} {\n".
 			"\t\t\$rows = \$this->db->selectQuery(\"SELECT t.* FROM ".$property->getMappingTable()." mapping,\".self::TABLE.\" t WHERE mapping.$columnName='\$$columnName' ".
-				"AND mapping.$mappedPkName=t.$mappedPkName {$property->getEntity()->getOrderByClause()} LIMIT \$from,\$limit\")->getResult();\n".
+				"AND mapping.$mappedPkName=t.$mappedPkName LIMIT \$from,\$limit\")->getResult();\n".
 			"\t\treturn \$this->getAsObjects(\$rows);\n\t}\n\n";
 	}
 	

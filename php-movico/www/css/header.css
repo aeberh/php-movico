@@ -87,6 +87,10 @@ h2 {
 	border-radius: 0 10px 10px 0;
 }
 
+#subnav > li:first-child:last-child a {
+	border-radius: 10px;
+}
+
 #nav > li {
 	list-style: none;
 	padding: 0px 5px;

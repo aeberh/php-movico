@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="admin">
+	<define name="title">
+		<span>Administratiepaneel</span>
+	</define>
+	<define name="body">
+		<p>
+			Welkom in het administratiepaneel.
+		</p>
+	</define>
+</composition>

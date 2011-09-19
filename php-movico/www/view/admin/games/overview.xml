@@ -5,6 +5,7 @@
 		<span>Wedstrijdbeheer - Overzicht</span>
 	</define>
 	<define name="body">
+		<panelGroup rendered="#{LoginBean.gameManager}">
 		<form>
 			<p>
 				<commandButton action="admin/games/new" value="Maak nieuwe wedstrijd"/>
@@ -64,5 +65,6 @@
 				</column>
 			</dataTable>
 		</form>
+		</panelGroup>
 	</define>
 </composition>
