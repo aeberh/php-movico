@@ -1,7 +1,7 @@
 <?
 class Img extends Component {
 	
-	const PATH = "www/img/";
+	const PATH = "/www/img";
 	
 	private $src;
 	private $popup;
@@ -17,7 +17,7 @@ class Img extends Component {
 	public function doRender($index=null) {
 		$popup = $this->getConvertedValue($this->popup, $index);
 		$ctx = parent::$settings->getContextPath();
-		return "<img id=\"".$this->id."\" title=\"$popup\" src=\"".$ctx."/".self::PATH.$this->src."\">";
+		return "<img id=\"".$this->id."\" title=\"$popup\" src=\"".$ctx.self::PATH."/".$this->src."\">";
 	}
 	
 	public function getValidParents() {

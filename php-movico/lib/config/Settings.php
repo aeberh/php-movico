@@ -2,6 +2,7 @@
 class Settings {
 
 	private $config;
+	private $title;
 	
 	private $environment;
 	private $ajaxEnabled;
@@ -15,8 +16,17 @@ class Settings {
 	private $dbCacheEnabled;
 	private $showSql;
 	
+	private $smtpHost;
+	private $smtpPort;
+	private $smtpAuth;
+	private $smtpUsername;
+	private $smtpPassword;
+	private $smtpDefaultFromEmail;
+	private $smtpDefaultFromName;
+	
 	public function __construct() {
 		$config = new ConfigurationFile(ConfigurationConstants::MAIN_CONFIG);
+		$this->title = $config->getParam("title", "")->getValue();
 		$this->environment = $config->getParam("environment", "prod")->getValue();
 		$this->ajaxEnabled = $config->getParam("ajax_enabled", "true")->getValue();
 		$this->ajaxTimeout = $config->getParam("ajax_timeout", "3000")->getValue();
@@ -27,6 +37,13 @@ class Settings {
 		$this->viewCacheEnabled = $config->getParam("view_cache_enabled", "true")->getValue();
 		$this->dbCacheEnabled = $config->getParam("db_cache_enabled", "true")->getValue();
 		$this->showSql = $config->getParam("show_sql", "false")->getValue();
+		$this->smtpHost = $config->getParam("smtp_host", "localhost")->getValue();
+		$this->smtpPort = $config->getParam("smtp_port", "25")->getValue();
+		$this->smtpUsername = $config->getParam("smtp_username", "")->getValue();
+		$this->smtpPassword = $config->getParam("smtp_password", "")->getValue();
+		$this->smtpDefaultFromEmail = $config->getParam("smtp_default_from_email", "")->getValue();
+		$this->smtpDefaultFromName = $config->getParam("smtp_default_from_name", "")->getValue();
+		$this->smtpAuth = $config->getParam("smtp_auth", "false")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -76,6 +93,38 @@ class Settings {
 	public function showSql() {
 		return $this->showSql;
 	}
-
+	
+	public function getSmtpHost() {
+		return $this->smtpHost;
+	}
+	
+	public function getSmtpPort() {
+		return $this->smtpPort;
+	}
+	
+	public function getSmtpAuth() {
+		return $this->smtpAuth;
+	}
+	
+	public function getSmtpUsername() {
+		return $this->smtpUsername;
+	}
+	
+	public function getSmtpPassword() {
+		return $this->smtpPassword;
+	}
+	
+	public function getSmtpDefaultFromEmail() {
+		return $this->smtpDefaultFromEmail;
+	}
+	
+	public function getSmtpDefaultFromName() {
+		return $this->smtpDefaultFromName;
+	}
+	
+	public function getTitle() {
+		return $this->title;
+	}
+	
 }
 ?>

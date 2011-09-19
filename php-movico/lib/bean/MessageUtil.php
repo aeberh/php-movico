@@ -11,6 +11,10 @@ class MessageUtil {
 		self::setMessage(BeanMessage::SEVERITY_ERROR, $msg);
 	}
 	
+	public static function success($msg) {
+		self::setMessage(BeanMessage::SEVERITY_SUCCESS, $msg);
+	}
+	
 	private static function setMessage($severity, $msg) {
 		self::$msg = new BeanMessage($severity, $msg);
 	}

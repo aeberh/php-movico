@@ -12,22 +12,22 @@ class DatabaseCache extends ApplicationBean {
 		$this->enabled = Singleton::create("Settings")->isDbCacheEnabled();
 	}
 
-	public function getAll($entity) {
-		return $this->cache[$entity][self::ALL];
+	public function getAll($entity, $from, $limit) {
+		return $this->cache[$entity][self::ALL][$from][$limit];
 	}
 	
-	public function hasAll($entity) {
+	public function hasAll($entity, $from, $limit) {
 		if(!$this->enabled) {
 			return false;
 		}
-		return isset($this->cache[$entity][self::ALL]);
+		return isset($this->cache[$entity][self::ALL][$from][$limit]);
 	}
 	
-	public function setAll($entity, $objects) {
+	public function setAll($entity, $objects, $from, $limit) {
 		if(!$this->enabled) {
 			return;
 		}
-		$this->cache[$entity][self::ALL] = $objects;
+		$this->cache[$entity][self::ALL][$from][$limit] = $objects;
 		BeanLocator::storeBean($this);
 	}
 	

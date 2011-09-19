@@ -12,7 +12,37 @@ function startupActions(ctx, mustPushState) {
 	initDates();
 	setupPagination();
 	initMaps();
+	//setupTransferListBox();
 }
+
+// Initialize TransferListBox component
+/*
+function setupTransferListBox() {
+	Array.prototype.diff = function(a) {
+	    return this.filter(function(i) {return !(a.indexOf(i) > -1);});
+	};
+	$(".MovicoTransferListBox").each(function() {
+		var fromListbox = $(this).children().first();
+		var buttonRR = fromListbox.next();
+		var buttonR = buttonFF.next();
+		var buttonL = buttonR.next();
+		var buttonLL = buttonL.next();
+		var toListbox = buttonLL.next();
+		buttonRR.click(function() {
+			toListbox.val(fromListbox.val());
+			fromListbox.val() = new Array();
+		});
+		buttonR.click(function() {
+			toListbox.val(toListbox.val().concat(fromListbox.val()));
+			fromListbox.val
+		});
+		buttonL.click(function() {
+			
+		});
+		buttonLL.click
+	});
+}
+*/
 
 // Initialize Date components
 function initDates() {

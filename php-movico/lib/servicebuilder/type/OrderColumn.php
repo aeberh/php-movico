@@ -21,7 +21,7 @@ class OrderColumn {
 	}
 	
 	public function getClause() {
-		return "`".$this->name."` ".$this->orderBy;
+		return "`{$this->name}` {$this->orderBy}";
 	}
 	
 	private function validate() {

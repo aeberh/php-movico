@@ -92,8 +92,8 @@ class Entity {
 			return "";
 		}
 		$orderTerms = array();
-		foreach($this->orderCols as $order) {
-			$orderTerms[] = $order->getClause();
+		foreach($this->orderCols as $orderCol) {
+			$orderTerms[] = $orderCol->getClause();
 		}
 		return "ORDER BY ".implode(", ", $orderTerms);
 	}

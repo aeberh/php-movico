@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="Transfer ListBox"/>
+	</define>
+	<define name="body">
+		<form>
+			<p>
+				<selectManyTransferListBox
+					options="#{CountrySelectorBean.availableCountries}"
+					value="#{CountrySelectorBean.selectedCountries}"/>
+			</p>
+			<p>
+				<commandButton action="#{CountrySelectorBean.save}" value="Save selection"/>
+			</p>
+			<p>
+				<outputText value="#{CountrySelectorBean.message}"/>
+			</p>
+		</form>
+	</define>
+</composition>

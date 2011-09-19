@@ -103,9 +103,11 @@ class ServiceBuilder {
 			// Insert finders
 			foreach($entityEl->getChildren("finder") as $finderEl) {
 				$finderName = $finderEl->getAttribute("name");
-				$returnType = $finderEl->getAttribute("unique");
-				$unique = $returnType == "true";
-				$finder = new Finder($entity, $finderName, $unique);
+				$unique = $finderEl->getAttribute("unique");
+				$cacheable = $finderEl->getAttribute("cacheable");
+				$unique = ($unique === "true");
+				$cacheable = !($cacheable === "false");
+				$finder = new Finder($entity, $finderName, $unique, $cacheable);
 				foreach($finderEl->getChildren("finder-column") as $fcEl) {
 					$name = $fcEl->getAttribute("name");
 					$comparator = $fcEl->getAttribute("comparator");

@@ -30,6 +30,7 @@
 <!ATTLIST finder
 	name CDATA #REQUIRED
 	unique CDATA #IMPLIED
+	cacheable CDATA #IMPLIED
 >
 
 <!ELEMENT finder-column EMPTY>

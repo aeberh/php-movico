@@ -23,7 +23,7 @@ class CommandLink extends AbstractCommand {
 			$onclick = "if(confirm('$msg')){".$onclick."}else{return false;}";
 		}
 		$selPrefix = empty($this->selectedPrefix) ? "" : " selectedPrefix=\"".$this->selectedPrefix."\"";
-		return "<a href=\"#\"$selPrefix onclick=\"$onclick return false;\">".$this->getConvertedValue($this->value, $index)."</a>".$this->renderParams($index);
+		return "<a href=\"#\"$selPrefix onclick=\"$onclick return false;\">".$this->getConvertedValue($this->value, $index).$this->renderChildren(array(), array(), $index)."</a>".$this->renderParams($index);
 	}
 
 }

@@ -3,13 +3,15 @@ class Finder {
 
 	private $name;
 	private $unique;
+	private $cacheable;
 	private $finderColumns;
 	private $entity;
 	private $orderCols = array();
 
-	public function __construct(Entity $entity, $name, $unique) {
+	public function __construct(Entity $entity, $name, $unique, $cacheable) {
 		$this->name = $name;
 		$this->unique = $unique;
+		$this->cacheable = $cacheable;
 		$this->finderColumns = array();
 		$this->entity = $entity;
 	}
@@ -28,6 +30,10 @@ class Finder {
 
 	public function isUnique() {
 		return $this->unique;
+	}
+	
+	public function isCacheable() {
+		return $this->cacheable;
 	}
 
 	public function getColumns() {

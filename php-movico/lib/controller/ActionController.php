@@ -23,7 +23,7 @@ class ActionController {
 			}
 		}
 		$forward = new ViewForward($url);
-		Params::init($forward->getParams());
+		Context::initParams($forward->getParams());
 		return $forward;
 	}
 	

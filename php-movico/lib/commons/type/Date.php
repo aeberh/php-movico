@@ -66,11 +66,11 @@ class Date {
 	}
 	
 	public function isAfter(Date $other) {
-		$this->time > $other->time;
+		return $this->time > $other->time;
 	}
 	
 	public function isBefore(Date $other) {
-		$this->time < $other->time;
+		return $this->time < $other->time;
 	}
 	
 	public function __toString() {

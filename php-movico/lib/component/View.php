@@ -1,24 +1,20 @@
 <?
 class View extends Component {
 	
-	private $title;
 	private $url;
-	
-	public function setTitle($title) {
-		$this->title = $title;
-	}
 	
 	public function doRender($index=null) {
 		$ajax = parent::$settings->isAjaxEnabled();
 		$gmapsApiKey = parent::$settings->getGmapsApiKey();
 		$context = parent::$settings->getContextPath();
-		$result = "<html>\n\t<head>\n\t\t<title>".$this->title."</title>\n".
+		$title = parent::$settings->getTitle();
+		$result = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">".
+			"<html>\n\t<head>\n\t\t<title>$title</title>\n".
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>".
 			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
-			"<script src=\"http://maps.gstatic.com/intl/nl_ALL/mapfiles/361c/maps2.api/main.js\" type=\"text/javascript\"></script>".
 		"<script type=\"text/javascript\">".
 			"$(function() {";
 		$ajaxTimeout = parent::$settings->getAjaxTimeout();
@@ -26,8 +22,9 @@ class View extends Component {
 		if($ajax) {
 			$result .= "registerForms('$ajaxTimeout', '$ctx');";
 		}
+		$startupActions = $ajax ? "true" : "false";
 		$result .= "
-				startupActions('$ctx', true);
+				startupActions('$ctx', $startupActions);
 				unloadHtmlAreas();
 			});
 		</script>";

@@ -32,7 +32,7 @@ class RenderLink extends Component {
 		}
 		$selPrefix = empty($this->selectedPrefix) ? $url : $this->selectedPrefix;
 		$cl = empty($this->class) ? "" : " ".$this->class;
-		return "<a selectedPrefix=\"$selPrefix\" class=\"RenderLink$cl\" href=\"{$context}/{$url}\">$value</a>";
+		return "<a selectedPrefix=\"$selPrefix\" class=\"RenderLink$cl\" href=\"{$context}/{$url}\">$value{$this->renderChildren(array(), array("Param"), $rowIndex)}</a>";
 	}
 	
 	public function getValidParents() {
