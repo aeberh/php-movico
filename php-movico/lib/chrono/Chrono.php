@@ -21,22 +21,21 @@ class Chrono {
 		}
 		$this->tick("STOP");
 		$this->started = false;
-		$this->printInfo();
 	}
 	
 	public function tick($label) {
 		$this->stops[] = new ChronoStop($label, $this->getCurrentTime());
 	}
 	
-	private function printInfo() {
+	public function out() {
 		$curTime = $this->stops[0]->getTime();
 		$totalTime = 0;
 		foreach($this->stops as $stop) {
 			$diffTime = $stop->getTime() - $curTime;
 			$totalTime += $diffTime;
-			//if($roundedDiff > 0) {
+			if(round($diffTime) > 100) {
 				echo $stop->getLabel()." - ".round($totalTime)."ms (+".round($diffTime)."ms)<br/>";
-			//}
+			}
 			$curTime = $stop->getTime();
 		}
 		echo "TOTAL: {$totalTime}ms";

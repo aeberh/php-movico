@@ -5,7 +5,6 @@
 		<div>
 			<h2><outputText value="#{ClubDetailsBean.club.name}"/></h2>
 			<div>
-
 				<panelGroup rendered="#{ClubDetailsBean.club.lanaken}">
 					<h3>Openingsuren</h3>
 					<ul>

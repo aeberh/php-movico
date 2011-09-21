@@ -6,11 +6,14 @@
 
 .dataTable td {
 	padding: 4px 8px;
-	border-top: 1px solid #fff;
 }
 
 .dataTable th:first-child {
-	border-radius: 2px 0 0 0;
+	border-radius: 5px 0 0 0;
+}
+
+.dataTable th:last-child {
+	border-radius: 0 5px 0 0;
 }
 
 .dataTable th {
@@ -52,11 +55,11 @@
 */
 
 .dataTable tr:nth-child(odd) {
-	background: #ddd;
+	background: #e0e0e0;
 }
 
 .dataTable tr:nth-child(even) {
-	background: #eee;
+	background: #f3f3f3;
 }
 
 #news td:first-child {

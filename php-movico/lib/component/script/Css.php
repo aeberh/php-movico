@@ -11,8 +11,7 @@ class Css extends Component {
 	
 	public function doRender($index=null) {
 		$context = parent::$settings->getContextPath();
-		$theme = empty($theme) ? "" : "/$theme";
-		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"$context".self::PATH.$theme."/".$this->src."\">";
+		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"$context".self::PATH."/".$this->src."\">";
 	}
 	
 	public function getValidParents() {

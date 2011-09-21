@@ -9,28 +9,29 @@ class ViewRenderer extends ApplicationBean {
 		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
 	}
 	
-	public function render($viewForward) {
-		$root = $this->getXmlElement($viewForward->getView());
-		$comp = $this->parseView($viewForward->getUrl(), $root);
-		return $this->renderComponent($comp);
+	public function render($url) {
+		$comp = $this->getViewRoot($url);
+		$out = $this->renderComponent($comp);
+		return $out;
 	}
 	
-	private function getXmlElement($view) {
-		if($this->cacheEnabled && $this->getViewCache()->has($view)) {
-			return $this->getViewCache()->get($view);
-		}
-		$location = "www/view/$view.xml";
+	private function getViewRoot($url) {
+		//if($this->cacheEnabled && $this->getViewCache()->has($url)) {
+		//	return $this->getViewCache()->get($url);
+		//}
+		$location = "www/view/$url.xml";
 		if(!file_exists($location)) {
-			throw new ViewNotExistsException($view);
+			throw new ViewNotExistsException($url);
 		}
 		$doc = $this->xmlFactory->fromFile($location);
 		$result = $doc->getRootElement();
 		while($result->getName() == "composition") {
 			$result = $this->parseTemplate($result);
 		}
-		if($this->cacheEnabled) {
-			$this->getViewCache()->put($view, $result);
-		}
+		$result = $this->parseView($url, $result);
+		//if($this->cacheEnabled) {
+		//	$this->getViewCache()->put($url, $result);
+		//}
 		return $result;
 	}
 	
@@ -61,11 +62,14 @@ class ViewRenderer extends ApplicationBean {
 		return $instance;
 	}
 	
-	private function renderComponent($viewComp) {
+	private function renderComponent(Component $viewComp) {
 		if(isset($_GET["jquery"])) {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
+		$chrono = Singleton::create("Chrono");
+		$chrono->start();
 		$view = $viewComp->render();
+		$chrono->stop();
 		if(isset($_GET["file"])) {
 			$view .= $this->jsRewriteParent();
 		}

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<template>
+	<css src="import.css"/>
+	<div id="header">
+		<div id="header-inner">
+			<h1>T.T.C. Jevota Lanaken</h1>
+			<ul id="nav">
+				<li><renderLink view="index" value="Home"/></li>
+				<li><renderLink view="news" value="Nieuws"/></li>
+				<li><renderLink view="players" value="Leden"/></li>
+				<li>
+					<renderLink view="games" value="Wedstrijden">
+						<param value="#{GamesBean.currentWeekNo}"/>
+						<param value=""/>
+					</renderLink>
+				</li>
+				<panelGroup rendered="#{LoginBean.specialUser}">
+					<li><renderLink view="admin/index" value="Admin" selectedPrefix="admin"/></li>
+				</panelGroup>
+			</ul>
+		</div>
+	</div>
+	<div id="page">
+		<ajaxLoading/>
+		<insert name="main"/>
+	</div>
+	<div id="footer">
+		<p>Ontwikkeld door The Web Factory.</p>
+	</div>
+</template>

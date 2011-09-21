@@ -57,9 +57,14 @@ h2 {
 #subnav > li a {
 	background-color: #eee;
 	border: 1px solid #ccc;
+	border-left: none;
 	padding: 5px 10px;
 	text-decoration: none;
 	color: #555;
+}
+
+#subnav > li:first-child a {
+	border-left: 1px solid #ccc;
 }
 
 #subnav > li a.selected, #subnav > li a:hover {
