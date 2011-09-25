@@ -9,12 +9,12 @@ class PingpongPlayerServiceUtil {
 		return self::getService()->getPlayersWithEmail();
 	}
 
-	public static function create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
-		return self::getService()->create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+	public static function create($firstName, $lastName, $memberNo, $ranking, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
+		return self::getService()->create($firstName, $lastName, $memberNo, $ranking, $recreation, $street, $place, $emailAddress, $phone, $mobile);
 	}
 
-	public static function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
-		return self::getService()->update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+	public static function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
+		return self::getService()->update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile);
 	}
 
 	public static function login($emailAddress, $password) {

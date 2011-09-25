@@ -17,6 +17,12 @@
 					<column class="news-creator">
 						<outputText value="#{item.creator.fullName}"/>
 					</column>
+					<column class="news-edit">
+						<renderLink view="admin/news/edit" rendered="#{LoginBean.newsManager}">
+							<param value="#{item.itemId}"/>
+							<img src="edit.png" popup="Aanpassen"/>
+						</renderLink>
+					</column>
 				</dataTable>
 			</div>
 		</div>

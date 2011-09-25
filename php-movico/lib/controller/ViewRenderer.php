@@ -9,26 +9,27 @@ class ViewRenderer extends ApplicationBean {
 		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
 	}
 	
-	public function render($url) {
-		$comp = $this->getViewRoot($url);
+	public function render(ViewForward $forward) {
+		$comp = $this->getViewRoot($forward);
 		$out = $this->renderComponent($comp);
 		return $out;
 	}
 	
-	private function getViewRoot($url) {
+	private function getViewRoot(ViewForward $forward) {
 		//if($this->cacheEnabled && $this->getViewCache()->has($url)) {
 		//	return $this->getViewCache()->get($url);
 		//}
-		$location = "www/view/$url.xml";
+		$view = $forward->getView();
+		$location = "www/view/$view.xml";
 		if(!file_exists($location)) {
-			throw new ViewNotExistsException($url);
+			throw new ViewNotExistsException($view);
 		}
 		$doc = $this->xmlFactory->fromFile($location);
 		$result = $doc->getRootElement();
 		while($result->getName() == "composition") {
 			$result = $this->parseTemplate($result);
 		}
-		$result = $this->parseView($url, $result);
+		$result = $this->parseView($forward->getUrl(), $result);
 		//if($this->cacheEnabled) {
 		//	$this->getViewCache()->put($url, $result);
 		//}

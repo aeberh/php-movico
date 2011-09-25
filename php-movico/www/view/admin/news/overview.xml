@@ -30,9 +30,10 @@
 					<outputText value="#{item.creator.fullName}"/>
 				</column>
 				<column>
-					<commandButton action="#{ManageNewsBean.edit}" value="Wijzigen">
+					<renderLink view="admin/news/edit">
 						<param value="#{item.itemId}"/>
-					</commandButton>
+						<img src="edit.png"/>
+					</renderLink>
 				</column>
 				<column>
 					<commandButton action="#{ManageNewsBean.delete}" value="X" popup="Weet je zeker dat je dit nieuws verwijdert?">

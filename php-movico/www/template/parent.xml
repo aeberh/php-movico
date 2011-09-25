@@ -10,7 +10,7 @@
 				<li><renderLink view="news" value="Nieuws"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
 				<li>
-					<renderLink view="games" value="Wedstrijden">
+					<renderLink view="games" value="Wedstrijden" selectedPrefix="games">
 						<param value="#{GamesBean.currentWeekNo}"/>
 						<param value=""/>
 					</renderLink>
@@ -26,6 +26,6 @@
 		<insert name="main"/>
 	</div>
 	<div id="footer">
-		<p>Ontwikkeld door The Web Factory.</p>
+		<p>Jevota v1.1 - Ontwikkeld door The Web Factory.</p>
 	</div>
 </template>

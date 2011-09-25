@@ -28,10 +28,6 @@
 				<booleanCheckbox id="player-rec" value="#{ManagePlayersBean.selected.recreation}"/>
 			</p>
 			<p>
-				<outputLabel for="player-startYear" value="Aansluitingsjaar (bv. 2004)"/>
-				<inputText maxLength="4" id="player-startYear" value="#{ManagePlayersBean.selected.startYear}"/>
-			</p>
-			<p>
 				<outputLabel for="street" value="Straat (bv. Daalstraat 23)"/>
 				<inputText maxLength="70" id="street" value="#{ManagePlayersBean.selected.street}"/>
 			</p>
@@ -44,8 +40,12 @@
 				<inputText maxLength="30" id="email" value="#{ManagePlayersBean.selected.emailAddress}"/>
 			</p>
 			<p>
-				<outputLabel for="phone" value="Telefoon (bv. 089/71.61.34)"/>
+				<outputLabel for="phone" value="Telefoonnummer (bv. 089/12.34.56)"/>
 				<inputText maxLength="20" id="phone" value="#{ManagePlayersBean.selected.phone}"/>
+			</p>
+			<p>
+				<outputLabel for="mobile" value="GSM-nummer (bv. 0472/12.34.56)"/>
+				<inputText maxLength="20" id="mobile" value="#{ManagePlayersBean.selected.mobile}"/>
 			</p>
 			<p>
 				<commandButton action="#{ManagePlayersBean.create}" value="Opslaan"/>

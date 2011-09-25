@@ -56,7 +56,7 @@ input#club-distance {
 	width: 30px;
 }
 
-input#phone {
+input#phone, input#mobile {
 	width: 130px;
 }
 

@@ -2,11 +2,11 @@
 class PingpongPlayer extends PingpongPlayerModel {
 
 	public function getFullName() {
-		return $this->getFirstName()." ".$this->getLastName();
+		return $this->firstName." ".$this->lastName;
 	}
 	
 	public function getAddress() {
-		return $this->getStreet().", ".$this->getPlace();
+		return $this->street.", ".$this->place;
 	}
 	
 	public function getReferenceNo() {
@@ -28,15 +28,31 @@ class PingpongPlayer extends PingpongPlayerModel {
 	}
 	
 	public function getRecString() {
-		return $this->isRecreation() ? "R" : "";
+		return $this->recreation ? "R" : "";
 	}
 	
 	public function getActiveString() {
-		return $this->isActive() ? "A" : "";
+		return $this->active ? "A" : "";
+	}
+	
+	public function getHasAddressStr() {
+		return (empty($this->street) || empty($this->place)) ? "" : "X";
+	}
+	
+	public function getHasEmailStr() {
+		return empty($this->emailAddress) ? "" : "X";
+	}
+	
+	public function getHasPhoneStr() {
+		return empty($this->phone) ? "" : "X";
+	}
+	
+	public function getHasMobileStr() {
+		return empty($this->mobile) ? "" : "X";
 	}
 	
 	public function getMemberNoString() {
-		return $this->getMemberNo() == 0 ? "" : $this->getMemberNo();
+		return $this->memberNo == 0 ? "" : $this->memberNo;
 	}
 	
 	public function __toString() {

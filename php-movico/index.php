@@ -8,5 +8,5 @@ set_exception_handler("handleException");
 set_error_handler("handleError", E_ALL);
 
 $view = Singleton::create("ActionController")->perform($_GET, $_POST, $_FILES);
-echo Singleton::create("ViewRenderer")->render($view->getView());
+echo Singleton::create("ViewRenderer")->render($view);
 ?>

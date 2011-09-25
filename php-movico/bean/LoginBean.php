@@ -39,6 +39,7 @@ class LoginBean extends SessionBean {
 	
 	public function logout() {
 		$this->player = null;
+		return null;
 	}
 	
 	public function isLoggedIn() {

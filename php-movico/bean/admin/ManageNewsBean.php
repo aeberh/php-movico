@@ -4,7 +4,11 @@ class ManageNewsBean extends RequestBean {
 	private $selected;
 	
 	public function __construct() {
-		$this->selected = new NewsItem();
+		if(Context::hasParam(0)) {
+			$this->selected = NewsItemServiceUtil::getNewsItem(Context::getParam(0));
+		} else {
+			$this->selected = new NewsItem();
+		}
 	}
 	
 	public function getItems() {
@@ -22,11 +26,6 @@ class ManageNewsBean extends RequestBean {
 			MessageUtil::error("Inhoud van het item is te lang!");
 		}
 		return null;
-	}
-	
-	public function edit($itemId) {
-		$this->selected = NewsItemServiceUtil::getNewsItem($itemId);
-		return "admin/news/edit";
 	}
 	
 	public function save() {

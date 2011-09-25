@@ -27,7 +27,7 @@
 						<p><outputText value="Welkom, #{LoginBean.player.fullName}!"/></p>
 						<panelGroup rendered="#{LoginBean.admin}">
 							<p>
-								<renderLink view="admin/clubs/overview" value="Controlepaneel"/>
+								<renderLink view="admin/index" value="Controlepaneel"/>
 							</p>
 						</panelGroup>
 						<p>

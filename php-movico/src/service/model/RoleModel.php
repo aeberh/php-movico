@@ -1,7 +1,7 @@
 <?php
 abstract class RoleModel extends Model {
 
-	private $roleId;
+	protected $roleId;
 
 	public function getRoleId() {
 		return $this->roleId;
@@ -11,7 +11,7 @@ abstract class RoleModel extends Model {
 		$this->roleId = $roleId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;

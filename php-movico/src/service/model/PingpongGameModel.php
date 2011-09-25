@@ -1,7 +1,7 @@
 <?php
 abstract class PingpongGameModel extends Model {
 
-	private $gameId;
+	protected $gameId;
 
 	public function getGameId() {
 		return $this->gameId;
@@ -11,7 +11,7 @@ abstract class PingpongGameModel extends Model {
 		$this->gameId = $gameId;
 	}
 
-	private $date;
+	protected $date;
 
 	public function getDate() {
 		return $this->date;
@@ -21,7 +21,7 @@ abstract class PingpongGameModel extends Model {
 		$this->date = $date;
 	}
 
-	private $homeTeamId;
+	protected $homeTeamId;
 
 	public function getHomeTeamId() {
 		return $this->homeTeamId;
@@ -31,7 +31,7 @@ abstract class PingpongGameModel extends Model {
 		$this->homeTeamId = $homeTeamId;
 	}
 
-	private $outTeamId;
+	protected $outTeamId;
 
 	public function getOutTeamId() {
 		return $this->outTeamId;
@@ -41,7 +41,7 @@ abstract class PingpongGameModel extends Model {
 		$this->outTeamId = $outTeamId;
 	}
 
-	private $homeTeamPts;
+	protected $homeTeamPts;
 
 	public function getHomeTeamPts() {
 		return $this->homeTeamPts;
@@ -51,7 +51,7 @@ abstract class PingpongGameModel extends Model {
 		$this->homeTeamPts = $homeTeamPts;
 	}
 
-	private $outTeamPts;
+	protected $outTeamPts;
 
 	public function getOutTeamPts() {
 		return $this->outTeamPts;
@@ -61,7 +61,7 @@ abstract class PingpongGameModel extends Model {
 		$this->outTeamPts = $outTeamPts;
 	}
 
-	private $review;
+	protected $review;
 
 	public function getReview() {
 		return $this->review;

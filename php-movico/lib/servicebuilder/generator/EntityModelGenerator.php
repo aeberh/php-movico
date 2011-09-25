@@ -18,7 +18,7 @@ class EntityModelGenerator {
 		$result = "";
 		foreach($entity->getAllProperties() as $property) {
 			$name = $property->getName();
-			$result .= "\tprivate \${$name};\n\n".
+			$result .= "\tprotected \${$name};\n\n".
 				"\tpublic function ".$property->getGetter()." {\n\t\treturn \$this->{$name};\n\t}\n\n".
 				"\tpublic function set".ucfirst($name)."(\${$name}) {\n\t\t\$this->{$name} = \${$name};\n\t}\n\n";
 		}

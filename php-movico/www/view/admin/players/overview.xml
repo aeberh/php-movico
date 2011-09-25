@@ -26,37 +26,53 @@
 					</colHeader>
 					<outputText value="#{player.fullName}"/>
 				</column>
-				<column class="r">
-					<colHeader>
-						<outputText value="Telefoon"/>
-					</colHeader>
-					<outputText value="#{player.phone}"/>
-				</column>
-				<column>
-					<colHeader>
-						<outputText value="E-mailadres"/>
-					</colHeader>
-					<outputText value="#{player.emailAddress}"/>
-				</column>
-				<column>
-					<outputText value="#{player.activeString}"/>
-				</column>
-				<column>
+				<column class="c">
 					<colHeader>
 						<outputText value="Rank."/>
 					</colHeader>
 					<outputText value="#{player.ranking}"/>
 				</column>
-				<column>
+				<column class="c">
 					<colHeader>
 						<outputText value="Rec."/>
 					</colHeader>
 					<outputText value="#{player.recString}"/>
 				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Act."/>
+					</colHeader>
+					<outputText value="#{player.activeString}"/>
+				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Tel"/>
+					</colHeader>
+					<outputText value="#{player.hasPhoneStr}"/>
+				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Gsm"/>
+					</colHeader>
+					<outputText value="#{player.hasMobileStr}"/>
+				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Mail"/>
+					</colHeader>
+					<outputText value="#{player.hasEmailStr}"/>
+				</column>
+				<column class="c">
+					<colHeader>
+						<outputText value="Adres"/>
+					</colHeader>
+					<outputText value="#{player.hasAddressStr}"/>
+				</column>
 				<column>
-					<commandButton action="#{ManagePlayersBean.edit}" value="Wijzigen">
+					<renderLink view="admin/players/edit">
 						<param value="#{player.playerId}"/>
-					</commandButton>
+						<img src="edit.png"/>
+					</renderLink>
 				</column>
 				<column>
 					<commandButton action="#{ManagePlayersBean.delete}" value="X" popup="Weet je zeker dat je dit lid verwijdert?">

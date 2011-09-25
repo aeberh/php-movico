@@ -17,17 +17,17 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		return $result;
 	}
 	
-	public function create($firstName, $lastName, $memberNo, $ranking, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+	public function create($firstName, $lastName, $memberNo, $ranking, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
 		$player = $this->createPingpongPlayer();
-		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, true, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, true, $recreation, $street, $place, $emailAddress, $phone, $mobile);
 	}
 	
-	public function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+	public function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
 		$player = $this->getPingpongPlayer($playerId);
-		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone);
+		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile);
 	}
 	
-	private function doUpdate(PingpongPlayer $player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $startYear, $street, $place, $emailAddress, $phone) {
+	private function doUpdate(PingpongPlayer $player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
 		if(empty($firstName) || empty($lastName)) {
 			throw new RequiredInformationException();
 		}
@@ -37,11 +37,11 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		$player->setRanking($ranking);
 		$player->setActive($active);
 		$player->setRecreation($recreation);
-		$player->setStartYear($startYear);
 		$player->setStreet($street);
 		$player->setPlace($place);
 		$player->setEmailAddress($emailAddress);
 		$player->setPhone($phone);
+		$player->setMobile($mobile);
 		return $this->updatePingpongPlayer($player);
 	}
 	

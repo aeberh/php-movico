@@ -1,7 +1,7 @@
 <?php
 abstract class PingpongClubModel extends Model {
 
-	private $clubId;
+	protected $clubId;
 
 	public function getClubId() {
 		return $this->clubId;
@@ -11,7 +11,7 @@ abstract class PingpongClubModel extends Model {
 		$this->clubId = $clubId;
 	}
 
-	private $number;
+	protected $number;
 
 	public function getNumber() {
 		return $this->number;
@@ -21,7 +21,7 @@ abstract class PingpongClubModel extends Model {
 		$this->number = $number;
 	}
 
-	private $shortName;
+	protected $shortName;
 
 	public function getShortName() {
 		return $this->shortName;
@@ -31,7 +31,7 @@ abstract class PingpongClubModel extends Model {
 		$this->shortName = $shortName;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;
@@ -41,7 +41,7 @@ abstract class PingpongClubModel extends Model {
 		$this->name = $name;
 	}
 
-	private $building;
+	protected $building;
 
 	public function getBuilding() {
 		return $this->building;
@@ -51,7 +51,7 @@ abstract class PingpongClubModel extends Model {
 		$this->building = $building;
 	}
 
-	private $street;
+	protected $street;
 
 	public function getStreet() {
 		return $this->street;
@@ -61,7 +61,7 @@ abstract class PingpongClubModel extends Model {
 		$this->street = $street;
 	}
 
-	private $place;
+	protected $place;
 
 	public function getPlace() {
 		return $this->place;
@@ -71,7 +71,7 @@ abstract class PingpongClubModel extends Model {
 		$this->place = $place;
 	}
 
-	private $distance;
+	protected $distance;
 
 	public function getDistance() {
 		return $this->distance;
@@ -81,7 +81,7 @@ abstract class PingpongClubModel extends Model {
 		$this->distance = $distance;
 	}
 
-	private $phone;
+	protected $phone;
 
 	public function getPhone() {
 		return $this->phone;

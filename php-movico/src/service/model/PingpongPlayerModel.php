@@ -1,7 +1,7 @@
 <?php
 abstract class PingpongPlayerModel extends Model {
 
-	private $playerId;
+	protected $playerId;
 
 	public function getPlayerId() {
 		return $this->playerId;
@@ -11,7 +11,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->playerId = $playerId;
 	}
 
-	private $firstName;
+	protected $firstName;
 
 	public function getFirstName() {
 		return $this->firstName;
@@ -21,7 +21,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->firstName = $firstName;
 	}
 
-	private $lastName;
+	protected $lastName;
 
 	public function getLastName() {
 		return $this->lastName;
@@ -31,7 +31,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->lastName = $lastName;
 	}
 
-	private $street;
+	protected $street;
 
 	public function getStreet() {
 		return $this->street;
@@ -41,7 +41,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->street = $street;
 	}
 
-	private $place;
+	protected $place;
 
 	public function getPlace() {
 		return $this->place;
@@ -51,7 +51,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->place = $place;
 	}
 
-	private $memberNo;
+	protected $memberNo;
 
 	public function getMemberNo() {
 		return $this->memberNo;
@@ -61,17 +61,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->memberNo = $memberNo;
 	}
 
-	private $startYear;
-
-	public function getStartYear() {
-		return $this->startYear;
-	}
-
-	public function setStartYear($startYear) {
-		$this->startYear = $startYear;
-	}
-
-	private $ranking;
+	protected $ranking;
 
 	public function getRanking() {
 		return $this->ranking;
@@ -81,7 +71,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->ranking = $ranking;
 	}
 
-	private $phone;
+	protected $phone;
 
 	public function getPhone() {
 		return $this->phone;
@@ -91,7 +81,17 @@ abstract class PingpongPlayerModel extends Model {
 		$this->phone = $phone;
 	}
 
-	private $emailAddress;
+	protected $mobile;
+
+	public function getMobile() {
+		return $this->mobile;
+	}
+
+	public function setMobile($mobile) {
+		$this->mobile = $mobile;
+	}
+
+	protected $emailAddress;
 
 	public function getEmailAddress() {
 		return $this->emailAddress;
@@ -101,7 +101,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->emailAddress = $emailAddress;
 	}
 
-	private $password;
+	protected $password;
 
 	public function getPassword() {
 		return $this->password;
@@ -111,7 +111,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->password = $password;
 	}
 
-	private $recreation;
+	protected $recreation;
 
 	public function isRecreation() {
 		return $this->recreation;
@@ -121,7 +121,7 @@ abstract class PingpongPlayerModel extends Model {
 		$this->recreation = $recreation;
 	}
 
-	private $active;
+	protected $active;
 
 	public function isActive() {
 		return $this->active;

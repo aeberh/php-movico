@@ -18,9 +18,9 @@
 		<column name="street" type="String" size="70"/>
 		<column name="place" type="String" size="30"/>
 		<column name="memberNo" type="int"/>
-		<column name="startYear" type="int"/>
 		<column name="ranking" type="String" size="2"/>
 		<column name="phone" type="String" size="20"/>
+		<column name="mobile" type="String" size="20"/>
 		<column name="emailAddress" type="String" size="30"/>
 		<column name="password" type="String" size="20"/>
 		<column name="recreation" type="boolean"/>

@@ -5,7 +5,11 @@ class ManagePlayersBean extends RequestBean {
 	private $selectedPassPlayers;
 	
 	public function __construct() {
-		$this->selected = new PingpongPlayer();
+		if(Context::hasParam(0)) {
+			$this->selected = PingpongPlayerServiceUtil::getPingpongPlayer(Context::getParam(0));
+		} else {
+			$this->selected = new PingpongPlayer();
+		}
 	}
 	
 	public function getPlayers() {
@@ -19,8 +23,8 @@ class ManagePlayersBean extends RequestBean {
 	public function create() {
 		try {
 			PingpongPlayerServiceUtil::create($this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
-				$this->selected->getRanking(), $this->selected->isRecreation(), $this->selected->getStartYear(),
-				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone());
+				$this->selected->getRanking(), $this->selected->isRecreation(), $this->selected->getStreet(), $this->selected->getPlace(), 
+				$this->selected->getEmailAddress(), $this->selected->getPhone(), $this->selected->getMobile());
 			MessageUtil::info("Lid werd succesvol toegevoegd!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {
@@ -29,16 +33,12 @@ class ManagePlayersBean extends RequestBean {
 		}
 	}
 	
-	public function edit($playerId) {
-		$this->selected = PingpongPlayerServiceUtil::getPingpongPlayer($playerId);
-		return "admin/players/edit";
-	}
-	
 	public function save() {
 		try {
-			PingpongPlayerServiceUtil::update($this->selected->getPlayerId(), $this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
-				$this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), $this->selected->getStartYear(),
-				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone());
+			PingpongPlayerServiceUtil::update($this->selected->getPlayerId(), $this->selected->getFirstName(), $this->selected->getLastName(), 
+				$this->selected->getMemberNo(), $this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), 
+				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone(),
+				$this->selected->getMobile());
 			MessageUtil::info("Lid werd succesvol aangepast!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {

@@ -1,7 +1,7 @@
 <?php
 abstract class NewsItemModel extends Model {
 
-	private $itemId;
+	protected $itemId;
 
 	public function getItemId() {
 		return $this->itemId;
@@ -11,7 +11,7 @@ abstract class NewsItemModel extends Model {
 		$this->itemId = $itemId;
 	}
 
-	private $date;
+	protected $date;
 
 	public function getDate() {
 		return $this->date;
@@ -21,7 +21,7 @@ abstract class NewsItemModel extends Model {
 		$this->date = $date;
 	}
 
-	private $title;
+	protected $title;
 
 	public function getTitle() {
 		return $this->title;
@@ -31,7 +31,7 @@ abstract class NewsItemModel extends Model {
 		$this->title = $title;
 	}
 
-	private $content;
+	protected $content;
 
 	public function getContent() {
 		return $this->content;
@@ -41,7 +41,7 @@ abstract class NewsItemModel extends Model {
 		$this->content = $content;
 	}
 
-	private $creatorId;
+	protected $creatorId;
 
 	public function getCreatorId() {
 		return $this->creatorId;
