@@ -181,6 +181,14 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT selectManyTransferListBox EMPTY>
+<!ATTLIST selectManyTransferListBox
+	options CDATA #REQUIRED
+	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+>
+
 <!ELEMENT panelGrid ANY>
 <!ATTLIST panelGrid 
 	columns CDATA #REQUIRED
