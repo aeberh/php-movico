@@ -51,18 +51,18 @@ class BubbleHighScorePersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('BubbleHighScore')) {
-			return parent::$dbCache->getAll('BubbleHighScore');
+		if(parent::$dbCache->hasAll('BubbleHighScore', $from, $limit)) {
+			return parent::$dbCache->getAll('BubbleHighScore', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `seconds` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('BubbleHighScore', $objects);
+		parent::$dbCache->setAll('BubbleHighScore', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('BubbleHighScore')) {
-			return count(parent::$dbCache->getAll('BubbleHighScore'));
+		if(parent::$dbCache->hasAll('BubbleHighScore', -1, -1)) {
+			return count(parent::$dbCache->getAll('BubbleHighScore', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

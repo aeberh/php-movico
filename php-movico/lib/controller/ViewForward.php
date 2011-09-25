@@ -9,7 +9,7 @@ class ViewForward {
 	
 	public function __construct($url) {
 		$this->url = $url;
-		$viewParts = String::create($url)->split("/p/", 2);
+		$viewParts = String::create($url)->split(self::URL_DELIMITER, 2);
 		$this->view = $viewParts->get(0)->getPrimitive();
 		$this->params = $viewParts->size() > 1 ? String::toPrimitives($viewParts->get(1)->split("/")) : array();
 	}

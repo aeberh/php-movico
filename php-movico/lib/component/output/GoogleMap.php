@@ -11,6 +11,9 @@ class GoogleMap extends Component {
 	private $zoomLevel;
 	
 	public function doRender($index=null) {
+		if(!parent::$settings->isGmapsEnabled()) {
+			return "";
+		}
 		$address = $this->getConvertedValue($this->address, $index);
 		$height = empty($this->height) ? self::DEFAULT_HEIGHT : $this->getConvertedValue($this->height, $index);
 		$width = empty($this->width) ? self::DEFAULT_WIDTH : $this->getConvertedValue($this->width, $index);

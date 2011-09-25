@@ -1,7 +1,7 @@
 <?php
 abstract class PlayerModel extends Model {
 
-	private $playerId;
+	protected $playerId;
 
 	public function getPlayerId() {
 		return $this->playerId;
@@ -11,7 +11,7 @@ abstract class PlayerModel extends Model {
 		$this->playerId = $playerId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;

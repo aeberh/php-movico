@@ -1,7 +1,7 @@
 <?php
 abstract class BubbleHighScoreModel extends Model {
 
-	private $hscoreId;
+	protected $hscoreId;
 
 	public function getHscoreId() {
 		return $this->hscoreId;
@@ -11,7 +11,7 @@ abstract class BubbleHighScoreModel extends Model {
 		$this->hscoreId = $hscoreId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;
@@ -21,7 +21,7 @@ abstract class BubbleHighScoreModel extends Model {
 		$this->name = $name;
 	}
 
-	private $playDate;
+	protected $playDate;
 
 	public function getPlayDate() {
 		return $this->playDate;
@@ -31,7 +31,7 @@ abstract class BubbleHighScoreModel extends Model {
 		$this->playDate = $playDate;
 	}
 
-	private $seconds;
+	protected $seconds;
 
 	public function getSeconds() {
 		return $this->seconds;

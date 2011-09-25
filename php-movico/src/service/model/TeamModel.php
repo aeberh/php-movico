@@ -1,7 +1,7 @@
 <?php
 abstract class TeamModel extends Model {
 
-	private $teamId;
+	protected $teamId;
 
 	public function getTeamId() {
 		return $this->teamId;
@@ -11,7 +11,7 @@ abstract class TeamModel extends Model {
 		$this->teamId = $teamId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;

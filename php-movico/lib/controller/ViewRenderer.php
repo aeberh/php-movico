@@ -9,16 +9,17 @@ class ViewRenderer extends ApplicationBean {
 		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
 	}
 	
-	public function render($viewForward) {
-		$root = $this->getXmlElement($viewForward->getView());
-		$comp = $this->parseView($viewForward->getUrl(), $root);
-		return $this->renderComponent($comp);
+	public function render(ViewForward $forward) {
+		$comp = $this->getViewRoot($forward);
+		$out = $this->renderComponent($comp);
+		return $out;
 	}
 	
-	private function getXmlElement($view) {
-		if($this->cacheEnabled && $this->getViewCache()->has($view)) {
-			return $this->getViewCache()->get($view);
-		}
+	private function getViewRoot(ViewForward $forward) {
+		//if($this->cacheEnabled && $this->getViewCache()->has($url)) {
+		//	return $this->getViewCache()->get($url);
+		//}
+		$view = $forward->getView();
 		$location = "www/view/$view.xml";
 		if(!file_exists($location)) {
 			throw new ViewNotExistsException($view);
@@ -28,9 +29,10 @@ class ViewRenderer extends ApplicationBean {
 		while($result->getName() == "composition") {
 			$result = $this->parseTemplate($result);
 		}
-		if($this->cacheEnabled) {
-			$this->getViewCache()->put($view, $result);
-		}
+		$result = $this->parseView($forward->getUrl(), $result);
+		//if($this->cacheEnabled) {
+		//	$this->getViewCache()->put($url, $result);
+		//}
 		return $result;
 	}
 	
@@ -61,11 +63,14 @@ class ViewRenderer extends ApplicationBean {
 		return $instance;
 	}
 	
-	private function renderComponent($viewComp) {
+	private function renderComponent(Component $viewComp) {
 		if(isset($_GET["jquery"])) {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
+		$chrono = Singleton::create("Chrono");
+		$chrono->start();
 		$view = $viewComp->render();
+		$chrono->stop();
 		if(isset($_GET["file"])) {
 			$view .= $this->jsRewriteParent();
 		}

@@ -3,6 +3,10 @@ class View extends Component {
 	
 	private $url;
 	
+	public function __construct() {
+		parent::__construct();
+	}
+	
 	public function doRender($index=null) {
 		$ajax = parent::$settings->isAjaxEnabled();
 		$gmapsApiKey = parent::$settings->getGmapsApiKey();
@@ -13,9 +17,11 @@ class View extends Component {
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
-			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>".
-			"<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>".
-		"<script type=\"text/javascript\">".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>";
+		if(parent::$settings->isGmapsEnabled()) {
+			$result .= "<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>";
+		}
+		$result .= "<script type=\"text/javascript\">".
 			"$(function() {";
 		$ajaxTimeout = parent::$settings->getAjaxTimeout();
 		$ctx = parent::$settings->getContextPath();

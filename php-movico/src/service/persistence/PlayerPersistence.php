@@ -51,18 +51,18 @@ class PlayerPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('Player')) {
-			return parent::$dbCache->getAll('Player');
+		if(parent::$dbCache->hasAll('Player', $from, $limit)) {
+			return parent::$dbCache->getAll('Player', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('Player', $objects);
+		parent::$dbCache->setAll('Player', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('Player')) {
-			return count(parent::$dbCache->getAll('Player'));
+		if(parent::$dbCache->hasAll('Player', -1, -1)) {
+			return count(parent::$dbCache->getAll('Player', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

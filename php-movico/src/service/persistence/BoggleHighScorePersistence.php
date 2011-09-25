@@ -63,18 +63,18 @@ class BoggleHighScorePersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('BoggleHighScore')) {
-			return parent::$dbCache->getAll('BoggleHighScore');
+		if(parent::$dbCache->hasAll('BoggleHighScore', $from, $limit)) {
+			return parent::$dbCache->getAll('BoggleHighScore', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `points` desc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('BoggleHighScore', $objects);
+		parent::$dbCache->setAll('BoggleHighScore', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('BoggleHighScore')) {
-			return count(parent::$dbCache->getAll('BoggleHighScore'));
+		if(parent::$dbCache->hasAll('BoggleHighScore', -1, -1)) {
+			return count(parent::$dbCache->getAll('BoggleHighScore', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

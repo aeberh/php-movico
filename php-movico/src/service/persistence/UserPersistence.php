@@ -51,18 +51,18 @@ class UserPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('User')) {
-			return parent::$dbCache->getAll('User');
+		if(parent::$dbCache->hasAll('User', $from, $limit)) {
+			return parent::$dbCache->getAll('User', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('User', $objects);
+		parent::$dbCache->setAll('User', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('User')) {
-			return count(parent::$dbCache->getAll('User'));
+		if(parent::$dbCache->hasAll('User', -1, -1)) {
+			return count(parent::$dbCache->getAll('User', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

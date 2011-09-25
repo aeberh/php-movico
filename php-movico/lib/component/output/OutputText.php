@@ -10,7 +10,7 @@ class OutputText extends Component {
 	public function doRender($row=null) {
 		$c = $this->class;
 		$class = empty($c) ? "" : " class=\"$c\"";
-		return "<span$class>".$this->getConvertedValue($this->value, $row)."</span>";
+		return "<span id=\"{$this->id}\"$class>".$this->getConvertedValue($this->value, $row)."</span>";
 	}
 	
 	public function getValidParents() {

@@ -1,7 +1,7 @@
 <?php
 abstract class UserModel extends Model {
 
-	private $id;
+	protected $id;
 
 	public function getId() {
 		return $this->id;
@@ -11,7 +11,7 @@ abstract class UserModel extends Model {
 		$this->id = $id;
 	}
 
-	private $firstName;
+	protected $firstName;
 
 	public function getFirstName() {
 		return $this->firstName;
@@ -21,7 +21,7 @@ abstract class UserModel extends Model {
 		$this->firstName = $firstName;
 	}
 
-	private $lastName;
+	protected $lastName;
 
 	public function getLastName() {
 		return $this->lastName;
@@ -31,7 +31,7 @@ abstract class UserModel extends Model {
 		$this->lastName = $lastName;
 	}
 
-	private $createDate;
+	protected $createDate;
 
 	public function getCreateDate() {
 		return $this->createDate;
@@ -41,7 +41,7 @@ abstract class UserModel extends Model {
 		$this->createDate = $createDate;
 	}
 
-	private $default;
+	protected $default;
 
 	public function isDefault() {
 		return $this->default;

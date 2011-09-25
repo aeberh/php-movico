@@ -1,7 +1,7 @@
 <?php
 abstract class BoggleHighScoreModel extends Model {
 
-	private $hscoreId;
+	protected $hscoreId;
 
 	public function getHscoreId() {
 		return $this->hscoreId;
@@ -11,7 +11,7 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->hscoreId = $hscoreId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;
@@ -21,7 +21,7 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->name = $name;
 	}
 
-	private $lang;
+	protected $lang;
 
 	public function getLang() {
 		return $this->lang;
@@ -31,7 +31,7 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->lang = $lang;
 	}
 
-	private $grid;
+	protected $grid;
 
 	public function getGrid() {
 		return $this->grid;
@@ -41,7 +41,7 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->grid = $grid;
 	}
 
-	private $points;
+	protected $points;
 
 	public function getPoints() {
 		return $this->points;
@@ -51,7 +51,7 @@ abstract class BoggleHighScoreModel extends Model {
 		$this->points = $points;
 	}
 
-	private $playDate;
+	protected $playDate;
 
 	public function getPlayDate() {
 		return $this->playDate;

@@ -51,18 +51,18 @@ class TeamPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('Team')) {
-			return parent::$dbCache->getAll('Team');
+		if(parent::$dbCache->hasAll('Team', $from, $limit)) {
+			return parent::$dbCache->getAll('Team', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE."  LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('Team', $objects);
+		parent::$dbCache->setAll('Team', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('Team')) {
-			return count(parent::$dbCache->getAll('Team'));
+		if(parent::$dbCache->hasAll('Team', -1, -1)) {
+			return count(parent::$dbCache->getAll('Team', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}

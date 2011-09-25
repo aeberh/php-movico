@@ -1,7 +1,7 @@
 <?php
 abstract class StudentModel extends Model {
 
-	private $studentId;
+	protected $studentId;
 
 	public function getStudentId() {
 		return $this->studentId;
@@ -11,7 +11,7 @@ abstract class StudentModel extends Model {
 		$this->studentId = $studentId;
 	}
 
-	private $name;
+	protected $name;
 
 	public function getName() {
 		return $this->name;

@@ -51,18 +51,18 @@ class TeacherPersistence extends Persistence {
 	}
 
 	public function findAll($from, $limit) {
-		if(parent::$dbCache->hasAll('Teacher')) {
-			return parent::$dbCache->getAll('Teacher');
+		if(parent::$dbCache->hasAll('Teacher', $from, $limit)) {
+			return parent::$dbCache->getAll('Teacher', $from, $limit);
 		}
 		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `name` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
-		parent::$dbCache->setAll('Teacher', $objects);
+		parent::$dbCache->setAll('Teacher', $objects, $from, $limit);
 		return $objects;
 	}
 
 	public function count() {
-		if(parent::$dbCache->hasAll('Teacher')) {
-			return count(parent::$dbCache->getAll('Teacher'));
+		if(parent::$dbCache->hasAll('Teacher', -1, -1)) {
+			return count(parent::$dbCache->getAll('Teacher', -1, -1));
 		}
 		return $this->db->selectQuery("SELECT COUNT(*) FROM ".self::TABLE)->getSingleton();
 	}
@@ -76,7 +76,7 @@ class TeacherPersistence extends Persistence {
 	}
 
 	public function findByStudentId($studentId, $from, $limit) {
-		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.studentId='$studentId' AND mapping.teacherId=t.teacherId  LIMIT $from,$limit")->getResult();
+		$rows = $this->db->selectQuery("SELECT t.* FROM movico_students_teachers mapping,".self::TABLE." t WHERE mapping.studentId='$studentId' AND mapping.teacherId=t.teacherId LIMIT $from,$limit")->getResult();
 		return $this->getAsObjects($rows);
 	}
 

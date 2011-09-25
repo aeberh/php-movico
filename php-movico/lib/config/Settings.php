@@ -82,6 +82,10 @@ class Settings {
 		return $this->gmapsApiKey;
 	}
 	
+	public function isGmapsEnabled() {
+		return !empty($this->gmapsApiKey);
+	}
+	
 	public function isViewCacheEnabled() {
 		return $this->viewCacheEnabled;
 	}

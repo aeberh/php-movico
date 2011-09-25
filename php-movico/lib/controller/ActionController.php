@@ -18,7 +18,7 @@ class ActionController {
 			$url = $req->getPreviousUrl();
 			$this->updateModel($req);
 			$actionResult = $this->executeAction($req);
-			if(!empty($actionResult)) {
+			if(!is_null($actionResult)) {
 				$url = $actionResult;
 			}
 		}
