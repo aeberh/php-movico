@@ -54,12 +54,24 @@
 }
 */
 
+.dataTable tr {
+	background: #f3f3f3;
+}
+
+.dataTable tr td {
+	border-bottom: 1px solid white;
+}
+
 .dataTable tr:nth-child(odd) {
 	background: #e0e0e0;
 }
 
 .dataTable tr:nth-child(even) {
 	background: #f3f3f3;
+}
+
+.dataTable tr:nth-child(odd) td, .dataTable tr:nth-child(even) td {
+	border-bottom: none;
 }
 
 #news td:first-child {
