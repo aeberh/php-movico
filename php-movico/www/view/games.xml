@@ -47,8 +47,13 @@
 						</renderLink>
 						<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
 					</column>
-					<column class="game-review"><span></span></column>
-					<column class="game-travel"><span></span></column>
+					<column class="game-edit">
+						<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
+							<param value="#{game.gameId}"/>
+							<param value="#{GamesBean.currentUrl}"/>
+							<img src="edit.png" popup="Aanpassen"/>
+						</renderLink>
+					</column>
 				</dataTable>
 			</div>
 		</div>

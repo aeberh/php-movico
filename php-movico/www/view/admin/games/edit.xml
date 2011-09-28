@@ -8,6 +8,7 @@
 		<panelGroup rendered="#{LoginBean.gameManager}">
 		<form>
 			<inputHidden value="#{ManageGamesBean.selected.gameId}"/>
+			<inputHidden value="#{ManageGamesBean.redirectUrl}"/>
 			<p>
 				<outputLabel for="date" value="Datum en tijd"/>
 				<inputDate value="#{ManageGamesBean.selected.date}" showTime="true" yearStart="-0" yearEnd="+1" minutesInterval="30"/>

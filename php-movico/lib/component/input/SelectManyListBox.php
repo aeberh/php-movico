@@ -1,8 +1,8 @@
 <?php
 class SelectManyListBox extends Component {
 	
-	private $value;
-	private $options;
+	protected $value;
+	protected $options;
 	
 	public function doRender($rowIndex=null) {
 		$name = $this->value;

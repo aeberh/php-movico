@@ -8,6 +8,8 @@ class ManageGamesBean extends RequestBean {
 	
 	private $selected;
 	
+	private $redirectUrl;
+	
 	const GAMES_PER_PAGE = 20;
 	
 	// Constructor
@@ -16,11 +18,14 @@ class ManageGamesBean extends RequestBean {
 		if(Context::hasParam(0)) {
 			$this->selected = PingpongGameServiceUtil::getPingpongGame(Context::getParam(0));
 			$this->homeClubId = $this->selected->getHomeTeam()->getClubId();
-			$this->homeTeamNo = $this->selected->getHomeTeam()->getTeamNo();
+			$this->homeTeamNo = $this->selected->getHomeTeam()->getFullTeamNo();
 			$this->outClubId = $this->selected->getOutTeam()->getClubId();
-			$this->outTeamNo = $this->selected->getOutTeam()->getTeamNo();
+			$this->outTeamNo = $this->selected->getOutTeam()->getFullTeamNo();
 		} else {
 			$this->selected = new PingpongGame();
+		}
+		if(Context::hasParam(1)) {
+			$this->redirectUrl = str_replace("_", "/", Context::getParam(1));
 		}
 	}
 	
@@ -41,7 +46,7 @@ class ManageGamesBean extends RequestBean {
 		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getDate(), $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo,
 			$this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
 		MessageUtil::info("Wedstrijd werd succesvol aangepast!");
-		return "admin/games/overview";
+		return empty($this->redirectUrl) ? "admin/games/overview" : $this->redirectUrl;
 	}
 	
 	// Bean getters
@@ -72,7 +77,7 @@ class ManageGamesBean extends RequestBean {
 	
 	public function getClubs() {
 		$clubs = PingpongClubServiceUtil::getPingpongClubs();
-		return ArrayUtil::toIndexedArray($clubs, "clubId", "name");
+		return ArrayUtil::toIndexedArray($clubs, "clubId", "shortName");
 	}
 	
 	public function getSelected() {
@@ -111,6 +116,14 @@ class ManageGamesBean extends RequestBean {
 	
 	public function setOutTeamNo($outTeamNo) {
 		$this->outTeamNo = $outTeamNo;
+	}
+	
+	public function getRedirectUrl() {
+		return $this->redirectUrl;
+	}
+	
+	public function setRedirectUrl($redirectUrl) {
+		$this->redirectUrl = $redirectUrl;
 	}
 	
 }

@@ -4,12 +4,15 @@ class ManagePlayersBean extends RequestBean {
 	private $selected;
 	private $selectedPassPlayers;
 	
+	private $redirectUrl;
+	
 	public function __construct() {
 		if(Context::hasParam(0)) {
 			$this->selected = PingpongPlayerServiceUtil::getPingpongPlayer(Context::getParam(0));
 		} else {
 			$this->selected = new PingpongPlayer();
 		}
+		$this->redirectUrl = Context::getParam(1, null);
 	}
 	
 	public function getPlayers() {
@@ -40,7 +43,7 @@ class ManagePlayersBean extends RequestBean {
 				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone(),
 				$this->selected->getMobile());
 			MessageUtil::info("Lid werd succesvol aangepast!");
-			return "admin/players/overview";
+			return empty($this->redirectUrl) ? "admin/players/overview" : $this->redirectUrl;
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
 			return null;
@@ -81,6 +84,14 @@ class ManagePlayersBean extends RequestBean {
 	
 	public function setSelectedPassPlayers($selectedPassPlayers) {
 		$this->selectedPassPlayers = $selectedPassPlayers;
+	}
+	
+	public function getRedirectUrl() {
+		return $this->redirectUrl;
+	}
+	
+	public function setRedirectUrl($redirectUrl) {
+		$this->redirectUrl = $redirectUrl;
 	}
 	
 }

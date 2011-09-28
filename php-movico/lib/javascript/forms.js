@@ -12,6 +12,41 @@ function startupActions(ctx, mustPushState) {
 	initDates();
 	setupPagination();
 	initMaps();
+	setupTransferListBox();
+}
+
+// Initialize TransferListBox component
+function setupTransferListBox() {
+	$(".MovicoTransferListBox").each(function() {
+		var leftListbox = $(this).children().first();
+		var buttonLL = leftListbox.next();
+		var buttonL = buttonLL.next();
+		var buttonR = buttonL.next();
+		var buttonRR = buttonR.next();
+		var rightListbox = buttonRR.next();
+		var realListbox = rightListbox.next();
+		buttonRR.click(function() {
+			return doTransfer(leftListbox, rightListbox, true);
+		});
+		buttonR.click(function() {
+			return doTransfer(leftListbox, rightListbox, false);
+		});
+		buttonL.click(function() {
+			return doTransfer(rightListbox, leftListbox, false);
+		});
+		buttonLL.click(function() {
+			return doTransfer(rightListbox, leftListbox, true);
+		});
+		function doTransfer(from, to, all) {
+			var optionSelector = all ? "option" : "option:selected";
+			var selectedItems = from.children(optionSelector).toArray();
+			to.append(selectedItems);
+			realListbox.children("option").remove();
+			realListbox.append(rightListbox.children("option").clone()).children("option").attr("selected", "selected");
+			selectedItems.remove;
+			return false;
+		}
+	});
 }
 
 // Initialize Date components

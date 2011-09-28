@@ -11,10 +11,8 @@
 					</div>
 					<div class="news-metadata">
 						<p>
-							<outputText value="Geschreven door #{item.creator.fullName} op "/>
+							<outputText value="#{item.creator.firstName}, "/>
 							<outputDate value="#{item.date}" format="#{ApplicationConstants.dateFormat}"/>
-							<outputText value=" om "/>
-							<outputDate value="#{item.date}" format="#{ApplicationConstants.timeFormat}"/>
 						</p>
 					</div>
 				</div>

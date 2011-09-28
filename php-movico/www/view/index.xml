@@ -20,6 +20,7 @@
 					<column class="news-edit">
 						<renderLink view="admin/news/edit" rendered="#{LoginBean.newsManager}">
 							<param value="#{item.itemId}"/>
+							<param value="index"/>
 							<img src="edit.png" popup="Aanpassen"/>
 						</renderLink>
 					</column>
@@ -63,8 +64,13 @@
 								<param value="#{game.outTeam.teamId}"/>
 							</renderLink>
 						</column>
-						<column class="game-review"><span></span></column>
-						<column class="game-travel"><span></span></column>
+						<column class="game-edit">
+							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
+								<param value="#{game.gameId}"/>
+								<param value="index"/>
+								<img src="edit.png" popup="Aanpassen"/>
+							</renderLink>
+						</column>
 					</dataTable>
 				</form>
 			</div>
@@ -105,8 +111,9 @@
 							</renderLink>
 						</column>
 						<column class="game-edit">
-							<renderLink view="admin/games/edit" rendered="#{LoginBean.admin}">
+							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
 								<param value="#{game.gameId}"/>
+								<param value="index"/>
 								<img src="edit.png" popup="Aanpassen"/>
 							</renderLink>
 						</column>

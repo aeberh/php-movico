@@ -8,6 +8,7 @@
 		<panelGroup rendered="#{LoginBean.newsManager}">
 		<form>
 			<inputHidden value="#{ManageNewsBean.selected.itemId}"/>
+			<inputHidden value="#{ManageNewsBean.redirectUrl}"/>
 			<p>
 				<outputLabel for="news-title" value="Titel"/>
 				<inputText maxLength="30" id="news-title" value="#{ManageNewsBean.selected.title}" autoFocus="true"/>

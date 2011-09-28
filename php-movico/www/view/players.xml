@@ -52,6 +52,13 @@
 						</colHeader>
 						<outputText value="#{player.recString}"/>
 					</column>
+					<column>
+						<renderLink view="admin/players/edit" rendered="#{LoginBean.playerManager}">
+							<param value="#{player.playerId}"/>
+							<param value="players"/>
+							<img src="edit.png"/>
+						</renderLink>
+					</column>
 				</dataTable>
 			</div>
 		</div>

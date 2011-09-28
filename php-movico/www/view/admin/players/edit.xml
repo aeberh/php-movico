@@ -8,6 +8,7 @@
 		<panelGroup rendered="#{LoginBean.playerManager}">
 		<form>
 			<inputHidden value="#{ManagePlayersBean.selected.playerId}"/>
+			<inputHidden value="#{ManagePlayersBean.redirectUrl}"/>
 			<p>
 				<outputLabel for="player-firstName" value="Voornaam"/>
 				<inputText maxLength="20" id="player-firstName" value="#{ManagePlayersBean.selected.firstName}" autoFocus="true"/>

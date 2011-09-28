@@ -106,5 +106,9 @@ class GamesBean extends RequestBean {
 		return empty($this->filterByTeam) ? "-" : $this->filterByTeam;
 	}
 	
+	public function getCurrentUrl() {
+		return "games_p_".Context::getParam(0, "")."_".Context::getParam(1, "");
+	}
+	
 }
 ?>

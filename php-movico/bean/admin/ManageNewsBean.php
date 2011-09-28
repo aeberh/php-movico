@@ -2,12 +2,16 @@
 class ManageNewsBean extends RequestBean {
 	
 	private $selected;
+	private $redirectUrl;
 	
 	public function __construct() {
 		if(Context::hasParam(0)) {
 			$this->selected = NewsItemServiceUtil::getNewsItem(Context::getParam(0));
 		} else {
 			$this->selected = new NewsItem();
+		}
+		if(Context::hasParam(1)) {
+			$this->redirectUrl = Context::getParam(1);
 		}
 	}
 	
@@ -32,7 +36,7 @@ class ManageNewsBean extends RequestBean {
 		try {
 			NewsItemServiceUtil::update($this->selected->getItemId(), $this->selected->getTitle(), $this->selected->getContent());
 			MessageUtil::info("Item werd succesvol aangepast!");
-			return "admin/news/overview";
+			return empty($this->redirectUrl) ? "admin/news/overview" : $this->redirectUrl;
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
 		} catch(NewsItemContentTooLongException $e) {
@@ -53,6 +57,14 @@ class ManageNewsBean extends RequestBean {
 	
 	public function getSelected() {
 		return $this->selected;
+	}
+	
+	public function getRedirectUrl() {
+		return $this->redirectUrl;
+	}
+	
+	public function setRedirectUrl($redirectUrl) {
+		$this->redirectUrl = $redirectUrl;
 	}
 	
 }

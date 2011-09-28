@@ -26,6 +26,6 @@
 		<insert name="main"/>
 	</div>
 	<div id="footer">
-		<p>Jevota v1.1 - Ontwikkeld door The Web Factory.</p>
+		<p>Jevota v1.2 - Ontwikkeld door The Web Factory.</p>
 	</div>
 </template>

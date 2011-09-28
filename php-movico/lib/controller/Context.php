@@ -2,14 +2,14 @@
 class Context {
 	
 	private static $params = array();
-	private static $sourceView;
+	private static $previousUrl;
 	
 	public static function hasParam($i) {
 		return isset(self::$params[$i]);
 	}
 	
 	public static function getParam($i, $default=null) {
-		if(!is_null($default) && !self::has($i)) {
+		if(!self::hasParam($i)) {
 			return $default;
 		}
 		return self::$params[$i];
@@ -17,14 +17,6 @@ class Context {
 	
 	public static function initParams($params) {
 		self::$params = $params;
-	}
-	
-	public static function setSourceView($view) {
-		self::$sourceView = $view;
-	}
-	
-	public static function getSourceView() {
-		return self::$sourceView;
 	}
 	
 }
