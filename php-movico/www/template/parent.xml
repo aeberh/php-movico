@@ -26,6 +26,6 @@
 		<insert name="main"/>
 	</div>
 	<div id="footer">
-		<p>Jevota v1.3 - Laatste update: Sep 25 2011 - Ontwikkeld door The Web Factory.</p>
+		<p>Jevota v1.3 - Laatste update: Oct 1 2011 - Ontwikkeld door Peter Mesotten.</p>
 	</div>
 </template>

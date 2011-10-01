@@ -2,7 +2,6 @@
 class Context {
 	
 	private static $params = array();
-	private static $previousUrl;
 	
 	public static function hasParam($i) {
 		return isset(self::$params[$i]);

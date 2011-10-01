@@ -5,15 +5,22 @@
 		<div>
 			<h2><outputText value="#{PlayerBean.player.fullName}"/></h2>
 			<div>
-				<ul>
-					<li><outputText value="Lidnummer: "/><outputText value="#{PlayerBean.player.memberNo}"/></li>
-					<li><outputText value="Klassement: "/><outputText value="#{PlayerBean.player.ranking}"/></li>
-					<panelGroup rendered="#{LoginBean.loggedIn}">
-						<li><outputText value="Telefoonnr: "/><outputText value="#{PlayerBean.player.phone}"/></li>
-						<li><outputText value="GSM-nr: "/><outputText value="#{PlayerBean.player.mobile}"/></li>
-						<li><outputText value="Adres: "/><outputText value="#{PlayerBean.player.address}"/></li>
-					</panelGroup>
-				</ul>
+				<panelGrid columns="2" columnClasses="table-label,bold">
+					<outputText value="Lidnummer"/>
+					<outputText value="#{PlayerBean.player.memberNo}"/>
+					
+					<outputText value="Klassement"/>
+					<outputText value="#{PlayerBean.player.ranking}"/>
+				</panelGrid>
+				<panelGroup rendered="#{LoginBean.loggedIn}">
+					<h3>Contactgegevens</h3>
+					<panelGrid columns="2" columnClasses="table-label,bold">
+						<outputText value="Tel"/><outputText value="#{PlayerBean.player.phone}"/>
+						<outputText value="Gsm"/><outputText value="#{PlayerBean.player.mobile}"/>
+						<outputText value="Adres"/><outputText value="#{PlayerBean.player.address}"/>
+					</panelGrid>
+					<googleMap address="#{PlayerBean.player.address}"/>
+				</panelGroup>
 			</div>
 		</div>
 	</define>

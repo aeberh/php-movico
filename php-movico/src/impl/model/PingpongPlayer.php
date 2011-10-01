@@ -6,7 +6,17 @@ class PingpongPlayer extends PingpongPlayerModel {
 	}
 	
 	public function getAddress() {
-		return $this->street.", ".$this->place;
+		$result = "";
+		if(!empty($this->street)) {
+			$result .= $this->street;
+		}
+		if(!empty($this->street) && !empty($this->place)) {
+			$result .= ", ";
+		}
+		if(!empty($this->place)) {
+			$result .= $this->place;
+		}
+		return $result;
 	}
 	
 	public function getReferenceNo() {
@@ -35,20 +45,37 @@ class PingpongPlayer extends PingpongPlayerModel {
 		return $this->active ? "A" : "";
 	}
 	
+	public function isHasAddress() {
+		$address = $this->getAddress();
+		return !empty($address);
+	}
+	
 	public function getHasAddressStr() {
 		return (empty($this->street) || empty($this->place)) ? "" : "X";
 	}
 	
+	public function isHasEmail() {
+		return !empty($this->emailAddress);
+	}
+	
 	public function getHasEmailStr() {
-		return empty($this->emailAddress) ? "" : "X";
+		return $this->isHasEmail() ? "X" : "";
+	}
+	
+	public function isHasPhone() {
+		return !empty($this->phone);
 	}
 	
 	public function getHasPhoneStr() {
-		return empty($this->phone) ? "" : "X";
+		return $this->isHasPhone() ? "X" : "";
+	}
+	
+	public function isHasMobile() {
+		return !empty($this->mobile);
 	}
 	
 	public function getHasMobileStr() {
-		return empty($this->mobile) ? "" : "X";
+		return $this->isHasMobile() ? "X" : "";
 	}
 	
 	public function getMemberNoString() {

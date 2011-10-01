@@ -134,11 +134,15 @@
 	text-align: center;
 }
 
-a.bold {
+.bold {
 	font-weight: bold;
 }
 
 .time {
 	color: #777;
 	font-size: 0.8em;
+}
+
+.table-label {
+	padding-right: 10px;
 }

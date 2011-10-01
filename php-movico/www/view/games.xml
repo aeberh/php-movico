@@ -36,11 +36,15 @@
 						</renderLink>
 						<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
 					</column>
-					<column class="game-home-team-pts"><span></span></column>
+					<column class="game-home-team-pts">
+						<outputText value="#{game.homeTeamPtsStr}"/>
+					</column>
 					<column class="game-dash">
 						<outputText value="-"/>
 					</column>
-					<column class="game-out-team-pts"><span></span></column>
+					<column class="game-out-team-pts">
+						<outputText value="#{game.outTeamPtsStr}"/>
+					</column>
 					<column class="game-out-team">
 						<renderLink view="club" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 							<param value="#{game.outTeam.clubId}"/>
