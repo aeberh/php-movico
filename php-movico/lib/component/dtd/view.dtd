@@ -1,5 +1,9 @@
 <!ELEMENT composition (define*)>
-<!ATTLIST composition template CDATA #REQUIRED>
+<!ATTLIST composition 
+	template CDATA #REQUIRED
+	title CDATA #IMPLIED
+	description CDATA #IMPLIED
+>
 
 <!ELEMENT define ANY>
 <!ATTLIST define name CDATA #REQUIRED>
@@ -10,7 +14,10 @@
 <!ATTLIST insert name CDATA #REQUIRED> 
 
 <!ELEMENT view ANY>
-<!ATTLIST view title CDATA #IMPLIED>
+<!ATTLIST view 
+	title CDATA #IMPLIED
+	description CDATA #IMPLIED
+>
 
 <!ELEMENT form ANY>
 <!ATTLIST form
@@ -26,6 +33,7 @@
 	id CDATA #IMPLIED 
 	popup CDATA #IMPLIED
 	src CDATA #REQUIRED
+	alt CDATA #REQUIRED
 	class CDATA #IMPLIED
 >
 

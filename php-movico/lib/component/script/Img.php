@@ -5,6 +5,7 @@ class Img extends Component {
 	
 	private $src;
 	private $popup;
+	private $alt;
 	
 	public function setSrc($src) {
 		$this->src = $src;
@@ -14,10 +15,15 @@ class Img extends Component {
 		$this->popup = $popup;
 	}
 	
+	public function setAlt($alt) {
+		$this->alt = $alt;
+	}
+	
 	public function doRender($index=null) {
 		$popup = $this->getConvertedValue($this->popup, $index);
+		$alt = $this->getConvertedValue($this->alt, $index);
 		$ctx = parent::$settings->getContextPath();
-		return "<img id=\"".$this->id."\" title=\"$popup\" src=\"".$ctx.self::PATH."/".$this->src."\">";
+		return "<img id=\"".$this->id."\" title=\"$popup\" alt=\"$alt\" src=\"".$ctx.self::PATH."/".$this->src."\">";
 	}
 	
 	public function getValidParents() {

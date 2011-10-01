@@ -2,11 +2,11 @@
 class ViewRenderer extends ApplicationBean {
 	
 	private $xmlFactory;
-	private $cacheEnabled;
+	private $settings;
 	
 	public function __construct() {
 		$this->xmlFactory = Singleton::create("DOMXmlFactory");
-		$this->cacheEnabled = Singleton::create("Settings")->isViewCacheEnabled();
+		$this->settings = Singleton::create("Settings");
 	}
 	
 	public function render(ViewForward $forward) {
@@ -19,10 +19,13 @@ class ViewRenderer extends ApplicationBean {
 		//if($this->cacheEnabled && $this->getViewCache()->has($url)) {
 		//	return $this->getViewCache()->get($url);
 		//}
-		$view = $forward->getView();
-		$location = "www/view/$view.xml";
+		$viewName = $forward->getView();
+		$location = $this->getViewLocation($viewName);
 		if(!file_exists($location)) {
-			throw new ViewNotExistsException($view);
+			$location = $this->getViewLocation($this->settings->getErrorPage());
+			if(!file_exists($location)) {
+				throw new ViewNotExistsException($view);
+			}
 		}
 		$doc = $this->xmlFactory->fromFile($location);
 		$result = $doc->getRootElement();
@@ -67,10 +70,7 @@ class ViewRenderer extends ApplicationBean {
 		if(isset($_GET["jquery"])) {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
-		$chrono = Singleton::create("Chrono");
-		$chrono->start();
 		$view = $viewComp->render();
-		$chrono->stop();
 		if(isset($_GET["file"])) {
 			$view .= $this->jsRewriteParent();
 		}
@@ -84,15 +84,17 @@ class ViewRenderer extends ApplicationBean {
 	}
 	
 	private function parseTemplate(XmlElement $composition) {
-		$template = $composition->getAttribute("template");
-		$tplXml = "www/template/$template.xml";
+		$templateName = $composition->getAttribute("template");
+		$title = $composition->getAttribute("title");
+		$description = $composition->getAttribute("description");
+		$tplXml = $this->getTemplateLocation($templateName);
 		if(!file_exists($tplXml)) {
-			throw new TemplateNotExistsException($template);
+			throw new TemplateNotExistsException($templateName);
 		}
 		$replaces = array();
 		foreach($composition->getChildren() as $define) {
 			$key = "<insert name=\"{$define->getAttribute("name")}\"/>";
-			$replaces[$key] = $this->getChildrenAsXml($define);
+			$replaces[$key] = $define->asXmlChildren();
 		}
 		
 		$tplNode = $this->xmlFactory->fromFile($tplXml)->getRootElement();
@@ -104,15 +106,22 @@ class ViewRenderer extends ApplicationBean {
 		for($i=0; $i<$inserts; $i++) {
 			$result = StringUtil::replaceAssoc($result, $replaces);
 		}
-		return $this->xmlFactory->fromString($result)->getRootElement();
+		$root = $this->xmlFactory->fromString($result)->getRootElement();
+		if(!is_null($title)) {
+			$root->addAttribute("title", $title);
+		}
+		if(!is_null($description)) {
+			$root->addAttribute("description", $description);
+		}
+		return $root;
 	}
 	
-	private function getChildrenAsXml(XmlElement $parent) {
-		$result = "";
-		foreach($parent->getChildren() as $child) {
-			$result .= $child->asXML();
-		}
-		return $result;
+	private function getViewLocation($viewName) {
+		return "www/view/$viewName.xml";
+	}
+	
+	private function getTemplateLocation($templateName) {
+		return "www/template/$templateName.xml";
 	}
 	
 	private function getViewCache() {

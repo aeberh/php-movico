@@ -31,15 +31,17 @@ function buildDirectoryList($absRoot, $root, &$paths, &$classes) {
 	$dirs = scandir($root);
 	foreach($dirs as $dir) {
 		$absDir = $root."/".$dir;
-		if(is_file($absDir) && strpos($dir, ".php") == strlen($dir)-4 && substr(ucfirst($dir), 0, 1) === substr($dir, 0, 1)) {
-			$classes[] = substr($dir, 0, strlen($dir)-4);
+		$endOfClassName = strpos($dir, ".php");
+		if(is_file($absDir) && $endOfClassName !== -1 && ucfirst($dir) === $dir) {
+			$classes[] = substr($dir, 0, $endOfClassName);
 		}
-		if(!in_array($dir, array(".", "..")) && is_dir($absDir)) {
+		if($dir != "." && $dir != ".." && is_dir($absDir)) {
 			$paths[] = $absRoot."/".$absDir;
 			buildDirectoryList($absRoot, $absDir, $paths, $classes);
 		}
 	}
 }
-Singleton::create("Settings")->setRootPath($root);
-setlocale(LC_ALL, Singleton::create("Settings")->getLocale());
+$settings = Singleton::create("Settings");
+$settings->setRootPath($root);
+setlocale(LC_ALL, $settings->getLocale());
 ?>
