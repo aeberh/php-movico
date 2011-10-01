@@ -3,8 +3,8 @@ function toggleBooleanValue(elementId) {
 	elem.value = (elem.value == '1') ? '0' : '1';
 }
 
-function startupActions(ctx, mustPushState) {
-	if(mustPushState) {
+function startupActions(ctx, ajax) {
+	if(ajax) {
 		pushState();
 	}
 	autoFocus();
@@ -13,6 +13,11 @@ function startupActions(ctx, mustPushState) {
 	setupPagination();
 	initMaps();
 	setupTransferListBox();
+}
+
+function setPageMetaInfo() {
+	document.title = $("#MovicoPageTitle").text();
+	$("meta[name=\"description\"]").attr("content", $("#MovicoPageDescription").text());
 }
 
 // Initialize TransferListBox component
@@ -233,6 +238,7 @@ function doAjaxRequest(url, data, type, ajaxTimeout, ctx, mustPushState) {
 			registerForms(ajaxTimeout, ctx);
 			showLoading("idle", ctx);
 			startupActions(ctx, mustPushState);
+			setPageMetaInfo();
 			setOnPopState(ajaxTimeout, ctx);
 		},
 		error: function(request, errorType, errorThrown) {

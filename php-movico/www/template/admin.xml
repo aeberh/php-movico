@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="parent">
+<composition template="parent" title="Controlepaneel">
 	<define name="main">
 		<panelGroup rendered="#{LoginBean.specialUser}">
 			<ul id="subnav">

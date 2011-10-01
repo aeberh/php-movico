@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="main" title="Ledenoverzicht" description="Sterktelijst van alle leden van T.T.C. Jevota Lanaken.">
 	<define name="body">
 		<div>
 			<h2>Ledenoverzicht</h2>
 			<div>
-				<dataTable value="#{PlayerOverviewBean.players}" var="player">
+				<dataTable value="#{PlayerBean.players}" var="player">
 					<column class="r">
 						<colHeader class="r">
 							<outputText value="Nr"/>
@@ -56,7 +56,7 @@
 						<renderLink view="admin/players/edit" rendered="#{LoginBean.playerManager}">
 							<param value="#{player.playerId}"/>
 							<param value="players"/>
-							<img src="edit.png"/>
+							<img src="edit.png" alt="Aanpassen"/>
 						</renderLink>
 					</column>
 				</dataTable>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="main" description="Dit is de officiële website van T.T.C. Jevota, de tafeltennisclub van Lanaken.">
 	<define name="body">
 		<div>
 			<h2>Laatste Nieuws</h2>
@@ -21,7 +21,7 @@
 						<renderLink view="admin/news/edit" rendered="#{LoginBean.newsManager}">
 							<param value="#{item.itemId}"/>
 							<param value="index"/>
-							<img src="edit.png" popup="Aanpassen"/>
+							<img alt="Aanpassen" src="edit.png"/>
 						</renderLink>
 					</column>
 				</dataTable>
@@ -42,7 +42,7 @@
 							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 						</column>
 						<column class="game-home-team">
-							<renderLink view="club_details" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
+							<renderLink view="club" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
 								<param value="#{game.homeTeam.clubId}"/>
 							</renderLink>
 							<renderLink view="games" value="#{game.homeTeamStr}" rendered="#{game.homeTeam.club.lanaken}" class="bold">
@@ -56,7 +56,7 @@
 						</column>
 						<column class="game-out-team-pts"><span></span></column>
 						<column class="game-out-team">
-							<renderLink view="club_details" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
+							<renderLink view="club" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 								<param value="#{game.outTeam.clubId}"/>
 							</renderLink>
 							<renderLink view="games" value="#{game.outTeamStr}" rendered="#{game.outTeam.club.lanaken}" class="bold">
@@ -68,7 +68,7 @@
 							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
 								<param value="#{game.gameId}"/>
 								<param value="index"/>
-								<img src="edit.png" popup="Aanpassen"/>
+								<img alt="Aanpassen" src="edit.png"/>
 							</renderLink>
 						</column>
 					</dataTable>
@@ -105,16 +105,16 @@
 							<outputText value="#{game.outTeamStr}"/>
 						</column>
 						<column class="game-info">
-							<renderLink view="game_info" rendered="#{game.hasReview}">
+							<renderLink view="game" rendered="#{game.hasReview}">
 								<param value="#{game.gameId}"/>
-								<img src="info.png" popup="Wedstrijdinfo"/>
+								<img src="info.png" alt="Info" popup="Wedstrijdinfo"/>
 							</renderLink>
 						</column>
 						<column class="game-edit">
 							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
 								<param value="#{game.gameId}"/>
 								<param value="index"/>
-								<img src="edit.png" popup="Aanpassen"/>
+								<img src="edit.png" alt="Aanpassen"/>
 							</renderLink>
 						</column>
 					</dataTable>

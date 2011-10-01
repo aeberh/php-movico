@@ -50,7 +50,7 @@
 					</p>
 					<form>
 						<p id="contact-link">
-							<renderLink value="Meer informatie" view="club_details">
+							<renderLink value="Meer informatie" view="club">
 								<param value="#{ApplicationConstants.jevotaClubId}"/>
 							</renderLink>
 						</p>

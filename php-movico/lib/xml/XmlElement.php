@@ -44,8 +44,8 @@ class XmlElement {
 		return $this->attributes;
 	}
 	
-	public function getAttribute($key) {
-		return $this->attributes->get($key);
+	public function getAttribute($key, $default=null) {
+		return $this->attributes->has($key) ? $this->attributes->get($key) : $default;
 	}
 	
 	public function getNbAttributes() {
@@ -75,10 +75,16 @@ class XmlElement {
 		if(isset($this->text)) {
 			$result .= $this->text;
 		}
+		$result .= $this->asXmlChildren();
+		return "$result</".$this->getName().">";
+	}
+	
+	public function asXmlChildren() {
+		$result = "";
 		foreach($this->getChildren() as $child) {
 			$result .= $child->asXml();
 		}
-		return "$result</".$this->getName().">";
+		return $result;
 	}
 	
 	public function setText(String $text) {

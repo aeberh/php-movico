@@ -22,7 +22,7 @@
 				<column>
 					<renderLink view="admin/roles/members">
 						<param value="#{role.roleId}"/>
-						<img src="members.png"/>
+						<img alt="Leden beheren" src="members.png"/>
 					</renderLink>
 				</column>
 			</dataTable>

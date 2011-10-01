@@ -71,7 +71,7 @@
 				<column>
 					<renderLink view="admin/players/edit">
 						<param value="#{player.playerId}"/>
-						<img src="edit.png"/>
+						<img alt="Aanpassen" src="edit.png"/>
 					</renderLink>
 				</column>
 				<column>

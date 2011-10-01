@@ -45,7 +45,7 @@
 				<column>
 					<renderLink view="admin/clubs/edit">
 						<param value="#{club.clubId}"/>
-						<img src="edit.png"/>
+						<img alt="Aanpassen" src="edit.png"/>
 					</renderLink>
 				</column>
 				<column>

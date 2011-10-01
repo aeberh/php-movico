@@ -32,7 +32,7 @@
 				<column>
 					<renderLink view="admin/news/edit">
 						<param value="#{item.itemId}"/>
-						<img src="edit.png"/>
+						<img alt="Aanpassen" src="edit.png"/>
 					</renderLink>
 				</column>
 				<column>

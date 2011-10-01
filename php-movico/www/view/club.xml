@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="main" title="Clubgegevens #{ClubDetailsBean.club.shortName}">
 	<define name="body">
 		<div>
 			<h2><outputText value="#{ClubDetailsBean.club.name}"/></h2>

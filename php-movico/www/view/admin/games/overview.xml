@@ -55,7 +55,7 @@
 				<column>
 					<renderLink view="admin/games/edit">
 						<param value="#{game.gameId}"/>
-						<img src="edit.png"/>
+						<img alt="Aanpassen" src="edit.png"/>
 					</renderLink>
 				</column>
 				<column>

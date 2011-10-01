@@ -53,6 +53,12 @@
 				<outputLabel for="mobile" value="GSM-nummer (bv. 0472/12.34.56)"/>
 				<inputText maxLength="20" id="mobile" value="#{ManagePlayersBean.selected.mobile}"/>
 			</p>
+			<!-- 
+			<p>
+				<outputLabel for="seasons" value="Seizoenen aangesloten"/>
+				<selectManyTransferListBox value="#{ManagePlayersBean.seasons}" options="#{ApplicationConstants.seasons}"/>
+			</p>
+			 -->
 			<p>
 				<commandButton action="#{ManagePlayersBean.save}" value="Opslaan"/>
 			</p>

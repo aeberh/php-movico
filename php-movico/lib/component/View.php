@@ -2,6 +2,8 @@
 class View extends Component {
 	
 	private $url;
+	private $title;
+	private $description;
 	
 	public function __construct() {
 		parent::__construct();
@@ -11,10 +13,12 @@ class View extends Component {
 		$ajax = parent::$settings->isAjaxEnabled();
 		$gmapsApiKey = parent::$settings->getGmapsApiKey();
 		$context = parent::$settings->getContextPath();
-		$title = parent::$settings->getTitle();
+		$title = $this->getPageTitle();
+		$description = $this->getPageDesc();
 		$result = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">".
 			"<html>\n\t<head>\n\t\t<title>$title</title>\n".
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
+			"<meta name=\"description\" content=\"$description\">\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>";
@@ -28,14 +32,14 @@ class View extends Component {
 		if($ajax) {
 			$result .= "registerForms('$ajaxTimeout', '$ctx');";
 		}
-		$startupActions = $ajax ? "true" : "false";
+		$ajaxJs = $ajax ? "true" : "false";
 		$result .= "
-				startupActions('$ctx', $startupActions);
+				startupActions('$ctx', $ajaxJs);
 				unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();
-		$result .= "\t</head>\n\t<body>\n\n".$this->renderBodyChildren();
+		$result .= "\t</head>\n\t<body>\n\n".$this->renderBodyChildren($title);
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}
@@ -48,7 +52,9 @@ class View extends Component {
 	
 	public function renderBodyChildren() {
 		return $this->renderChildren(array(), array("Css", "Js")).
-			"<span style=\"display:none\" id=\"MovicoView\">".parent::$settings->getContextPath()."/".$this->url."</span>";
+			"<span style=\"display:none\" id=\"MovicoView\">".parent::$settings->getContextPath()."/".$this->url."</span>".
+			"<span style=\"display:none\" id=\"MovicoPageTitle\">".$this->getPageTitle()."</span>".
+			"<span style=\"display:none\" id=\"MovicoPageDescription\">".$this->getPageDesc()."</span>";
 	}
 	
 	private function renderIframeReplace() {
@@ -57,8 +63,35 @@ class View extends Component {
 			"</script>";
 	}
 	
+	private function getPageTitle() {
+		$configTitle = parent::$settings->getTitle();
+		$result = "";
+		if(!empty($this->title)) {
+			$result .= $this->getConvertedValue($this->title);
+		}
+		if(!empty($this->title) && !empty($configTitle)) {
+			$result .= " - ";
+		}
+		if(!empty($configTitle)) {
+			$result .= $configTitle;
+		}
+		return $result;
+	}
+	
+	private function getPageDesc() {
+		return $this->getConvertedValue($this->description);
+	}
+	
 	public function getValidParents() {
 		return array();
+	}
+	
+	public function setDescription($description) {
+		$this->description = $description;
+	}
+	
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 	
 	public function setUrl($url) {

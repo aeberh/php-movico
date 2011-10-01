@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main" title="Error">
+	<define name="body">
+		<div>
+			<h2>Sorry!</h2>
+			<div>
+				<p>Deze pagina kan helaas niet worden teruggevonden. Onze excuses voor het ongemak.</p>
+				<p><renderLink view="home" value="Ga naar de homepage"/></p>
+			</div>
+		</div>
+	</define>
+</composition>

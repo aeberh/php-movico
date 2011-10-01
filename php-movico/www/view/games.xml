@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
-<composition template="main">
+<composition template="main" title="Wedstrijdoverzicht" description="Overzicht van voorbije en aankomende wedstrijden van T.T.C. Jevota.">
 	<define name="body">
 		<div>
 			<h2>Wedstrijden</h2>
@@ -31,7 +31,7 @@
 						<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
 					</column>
 					<column class="game-home-team">
-						<renderLink view="club_details" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
+						<renderLink view="club" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
 							<param value="#{game.homeTeam.clubId}"/>
 						</renderLink>
 						<outputText value="#{game.homeTeamStr}" class="bold" rendered="#{game.homeTeam.club.lanaken}"/>
@@ -42,7 +42,7 @@
 					</column>
 					<column class="game-out-team-pts"><span></span></column>
 					<column class="game-out-team">
-						<renderLink view="club_details" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
+						<renderLink view="club" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
 							<param value="#{game.outTeam.clubId}"/>
 						</renderLink>
 						<outputText value="#{game.outTeamStr}" class="bold" rendered="#{game.outTeam.club.lanaken}"/>
@@ -51,7 +51,7 @@
 						<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
 							<param value="#{game.gameId}"/>
 							<param value="#{GamesBean.currentUrl}"/>
-							<img src="edit.png" popup="Aanpassen"/>
+							<img alt="Aanpassen" src="edit.png" popup="Aanpassen"/>
 						</renderLink>
 					</column>
 				</dataTable>

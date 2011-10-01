@@ -8,6 +8,7 @@ class Settings {
 	private $ajaxEnabled;
 	private $ajaxTimeout;
 	private $defaultUrl;
+	private $errorPage;
 	private $rootPath;
 	private $contextPath;
 	private $locale;
@@ -31,6 +32,7 @@ class Settings {
 		$this->ajaxEnabled = $config->getParam("ajax_enabled", "true")->getValue();
 		$this->ajaxTimeout = $config->getParam("ajax_timeout", "3000")->getValue();
 		$this->defaultUrl = $config->getParam("default_url", "index")->getValue();
+		$this->errorPage = $config->getParam("error_page", "error")->getValue();
 		$this->contextPath = $config->getParam("context_path", "/")->getValue();
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
 		$this->gmapsApiKey = $config->getParam("gmaps_api_key", "")->getValue();
@@ -60,6 +62,10 @@ class Settings {
 	
 	public function getDefaultUrl() {
 		return $this->defaultUrl;
+	}
+	
+	public function getErrorPage() {
+		return $this->errorPage;
 	}
 	
 	public function setRootPath($rootPath) {
