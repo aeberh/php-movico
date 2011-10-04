@@ -73,6 +73,10 @@ class Date {
 		return $this->time < $other->time;
 	}
 	
+	public function getTime() {
+		return $this->time;
+	}
+	
 	public function __toString() {
 		return $this->format();
 	}

@@ -85,16 +85,20 @@ class PingpongGameService extends PingpongGameServiceBase {
 	}
 	
 	public function getLastReviewed($max) {
-		$games = array();
-		foreach($this->getPingpongGames() as $game) {
+		$result = array();
+		$games = $this->getPingpongGames();
+		usort($games, function($a, $b) {
+			return $b->getDate()->getTime()-$a->getDate()->getTime();
+		});
+		foreach($games as $game) {
 			if($game->isHasReview()) {
-				$games[] = $game;
-				if(count($games) == $max) {
+				$result[] = $game;
+				if(count($result) == $max) {
 					break;
 				}
 			}
 		}
-		return $games;
+		return $result;
 	}
 	
 }
