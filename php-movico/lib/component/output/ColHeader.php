@@ -1,4 +1,4 @@
-<?
+<?php
 class ColHeader extends Component {
 	
 	public function doRender($index=null) {

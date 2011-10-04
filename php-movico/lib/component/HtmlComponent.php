@@ -1,4 +1,4 @@
-<?
+<?php
 class HtmlComponent extends Component {
 	
 	private $tagName;

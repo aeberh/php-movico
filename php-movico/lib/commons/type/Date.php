@@ -1,4 +1,4 @@
-<?
+<?php
 class Date {
 	
 	private $time;

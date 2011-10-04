@@ -19,4 +19,21 @@
 			</panelGroup>
 		</panelSeries>
 	</define>
+	<define name="side">
+		<div>
+			<h2>Laatste Nieuws</h2>
+			<div>
+				<dataTable value="#{NewsItemBean.items}" var="item">
+					<column class="time">
+						<outputDate value="#{item.date}" format="#{ApplicationConstants.smallDateFormat}"/>
+					</column>
+					<column class="news-title">
+						<renderLink view="news" value="#{item.shortTitle}">
+							<param value="#{item.itemId}"/>
+						</renderLink>
+					</column>
+				</dataTable>
+			</div>
+		</div>
+	</define>
 </composition>

@@ -38,14 +38,14 @@ class ManageGamesBean extends RequestBean {
 	
 	public function delete($gameId) {
 		PingpongGameServiceUtil::delete(PingpongGameServiceUtil::getPingpongGame($gameId));
-		MessageUtil::info("Wedstrijd werd succesvol verwijderd!");
+		MessageUtil::success("Wedstrijd werd succesvol verwijderd!");
 		return "admin/games/overview";
 	}
 	
 	public function save() {
 		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getDate(), $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo,
 			$this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
-		MessageUtil::info("Wedstrijd werd succesvol aangepast!");
+		MessageUtil::success("Wedstrijd werd succesvol aangepast!");
 		return empty($this->redirectUrl) ? "admin/games/overview" : $this->redirectUrl;
 	}
 	

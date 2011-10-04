@@ -62,4 +62,23 @@
 			</div>
 		</div>
 	</define>
+	<define name="side">
+		<div>
+			<h2>Wedstrijdverslagen</h2>
+			<div>
+				<dataTable value="#{GamesBean.reviewed}" var="game">
+					<column class="game-time time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.smallDateFormat}"/>
+					</column>
+					<column>
+						<column>
+							<renderLink view="game" value="#{game.reviewTeamStr}">
+								<param value="#{game.gameId}"/>
+							</renderLink>
+						</column>
+					</column>
+				</dataTable>
+			</div>
+		</div>
+	</define>
 </composition>

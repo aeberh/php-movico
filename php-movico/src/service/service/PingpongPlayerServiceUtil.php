@@ -29,6 +29,10 @@ class PingpongPlayerServiceUtil {
 		return self::getService()->generateNewPassword($playerId);
 	}
 
+	public static function getLatestPlayers($max) {
+		return self::getService()->getLatestPlayers($max);
+	}
+
 	public static function getUsersSortedByFirstName() {
 		return self::getService()->getUsersSortedByFirstName();
 	}
@@ -39,6 +43,10 @@ class PingpongPlayerServiceUtil {
 
 	public static function findByActive($active, $from=-1, $limit=-1) {
 		return self::getService()->findByActive($active, $from, $limit);
+	}
+
+	public static function findByLatest($active, $from=-1, $limit=-1) {
+		return self::getService()->findByLatest($active, $from, $limit);
 	}
 
 	public static function findByRoleId($roleId, $from, $limit) {

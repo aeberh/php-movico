@@ -1,4 +1,4 @@
-<?
+<?php
 class Form extends Component {
 	
 	public function doRender($index=null) {

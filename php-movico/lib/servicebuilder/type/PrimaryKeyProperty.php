@@ -1,4 +1,4 @@
-<?
+<?php
 class PrimaryKeyProperty extends Property {
 	
 	private $autoIncrement;

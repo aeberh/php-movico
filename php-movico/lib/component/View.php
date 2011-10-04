@@ -1,4 +1,4 @@
-<?
+<?php
 class View extends Component {
 	
 	private $url;
@@ -35,7 +35,6 @@ class View extends Component {
 		$ajaxJs = $ajax ? "true" : "false";
 		$result .= "
 				startupActions('$ctx', $ajaxJs);
-				unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();

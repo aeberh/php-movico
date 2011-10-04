@@ -1,4 +1,4 @@
-<?
+<?php
 class Js extends Component {
 	
 	private $src;

@@ -1,4 +1,4 @@
-<?
+<?php
 class TemplateNotExistsException extends Exception {
 	
 	public function __construct($template) {

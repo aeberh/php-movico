@@ -1,4 +1,4 @@
-<?
+<?php
 class ViewRenderer extends ApplicationBean {
 	
 	private $xmlFactory;

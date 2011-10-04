@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class AbstractCommand extends Component {
 	
 	protected $action;

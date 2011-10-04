@@ -6,7 +6,11 @@
 			<h2>Wedstrijdinformatie</h2>
 			<div>
 				<p>
-					<h3><outputText value="#{GameDetailsBean.game.homeTeamStr} (#{GameDetailsBean.game.homeTeamPts} - #{GameDetailsBean.game.outTeamPts}) #{GameDetailsBean.game.outTeamStr}"/></h3>
+					<h3>
+						<outputText value="#{GameDetailsBean.game.homeTeamStr}"/>
+						<outputText class="game-score" value="#{GameDetailsBean.game.homeTeamPts} - #{GameDetailsBean.game.outTeamPts}"/>
+						<outputText value="#{GameDetailsBean.game.outTeamStr}"/>
+					</h3>
 				</p>
 				<p>
 					<outputText class="label" value="Wedstrijdverslag: "/>
@@ -17,7 +21,18 @@
 						<renderLink view="admin/games/edit" value="Wees de eerste!" rendered="#{LoginBean.admin}"/>
 					</panelGroup>
 				</p>
+				<panelGroup rendered="#{LoginBean.gameManager}">
+					<p>
+						<renderLink view="admin/games/edit" value="Aanpassen">
+							<param value="#{GameDetailsBean.game.gameId}"/>
+							<param value="games"/>
+						</renderLink>
+					</p>
+				</panelGroup>
 			</div>
 		</div>
+	</define>
+	<define name="side">
+	
 	</define>
 </composition>

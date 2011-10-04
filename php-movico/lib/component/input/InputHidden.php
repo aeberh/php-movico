@@ -1,4 +1,4 @@
-<?
+<?php
 class InputHidden extends AbstractInput {
 
 	public function getType() {

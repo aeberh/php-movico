@@ -178,13 +178,13 @@ function setupPagination() {
 
 function unloadHtmlAreas() {
 	for(var inst in CKEDITOR.instances) {
-		CKEDITOR.remove(CKEDITOR.instances[inst]);
+		CKEDITOR.remove(inst);
 	}
 }
 
 function updateHtmlAreas() {
 	for(var inst in CKEDITOR.instances) {
-		CKEDITOR.instances[inst].updateElement();
+		inst.updateElement();
 	}
 }
 
@@ -204,6 +204,7 @@ function registerForms(ajaxTimeout, ctx) {
 	$("form").submit(function() {
 		var isUpload = $(this).attr("enctype") == "multipart/form-data";
 		if(isUpload) {
+			showLoading("active", ctx);
 			return true;
 		}
 		doAjaxPostRequest($(this), ajaxTimeout, ctx);

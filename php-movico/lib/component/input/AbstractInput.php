@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class AbstractInput extends Component {
 	
 	private $value;

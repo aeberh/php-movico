@@ -1,4 +1,4 @@
-<?
+<?php
 class InvalidComponentHierarchyException extends Exception {
 	
 	public function __construct($parent, $child) {

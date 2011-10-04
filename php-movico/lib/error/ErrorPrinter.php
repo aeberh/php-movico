@@ -1,4 +1,4 @@
-<?
+<?php
 class ErrorPrinter {
 	
 	public static function printError($type, $msg, $file, $line, $context) {

@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class Component {
 	
 	private $parent;

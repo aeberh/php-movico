@@ -2,22 +2,20 @@
 class PearMailService implements MailService {
 	
 	private $settings;
-	private $emailValidator;
 	
 	public function __construct() {
 		$this->settings = Singleton::create("Settings");
-		$this->emailValidator = Singleton::create("EmailValidator");
 	}
 	
 	public function send(MailMessage $message) {
 		$from = $this->getFrom($message);
 		$to = $this->getTo($message);
-		$cc = $message->getCcAddresses();
-		$bcc = $message->getBccAddresses();
+		//$cc = $message->getCcAddresses();
+		//$bcc = $message->getBccAddresses();
 		
 		$headers = array(
 			"From" => $message->getFrom(),
-			"To" => $message->getToHeader(),
+			"To" => $message->getToAddressList(),
 			"Subject" => $message->getSubject()
 		);
 		$smtp = Mail::factory("smtp", array(
@@ -43,14 +41,12 @@ class PearMailService implements MailService {
 				throw new EmptyFromAddressException();
 			}
 		}
-		$this->emailValidator->validate($result);
+		EmailAddress::validate($result);
 		return $result;
 	}
 	
 	private function getTo(MailMessage $message) {
-		$result = $message->getToAddresses();
-		$this->emailValidator->validateAll($result);
-		return $result;
+		return $message->getToAddresses();
 	}
 	
 }

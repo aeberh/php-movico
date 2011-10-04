@@ -1,4 +1,4 @@
-<?
+<?php
 class ActionController {
 	
 	private $defaultUrl;

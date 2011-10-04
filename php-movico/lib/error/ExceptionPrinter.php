@@ -1,4 +1,4 @@
-<?
+<?php
 class ExceptionPrinter {
 	
 	public static function printException(Exception $e) {

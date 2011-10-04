@@ -9,6 +9,10 @@ class PingpongPlayerServiceBase {
 		return $this->getPersistence()->findByActive($active, $from, $limit);
 	}
 
+	public function findByLatest($active, $from=-1, $limit=-1) {
+		return $this->getPersistence()->findByLatest($active, $from, $limit);
+	}
+
 	public function createPingpongPlayer($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

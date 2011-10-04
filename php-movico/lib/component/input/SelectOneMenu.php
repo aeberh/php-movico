@@ -1,4 +1,4 @@
-<?
+<?php
 class SelectOneMenu extends Component {
 	
 	private $addEmptyOption;

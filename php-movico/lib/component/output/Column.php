@@ -1,4 +1,4 @@
-<?
+<?php
 class Column extends Component {
 	
 	public function getValidParents() {

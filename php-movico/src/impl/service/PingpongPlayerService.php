@@ -91,6 +91,10 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		//send email
 	}
 	
+	public function getLatestPlayers($max) {
+		return $this->findByLatest(true, 0, $max);
+	}
+	
 	public function getUsersSortedByFirstName() {
 		$users = $this->getPingpongPlayers();
 		usort($users, function($a, $b) {

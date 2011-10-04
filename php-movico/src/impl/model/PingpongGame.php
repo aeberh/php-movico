@@ -42,6 +42,27 @@ class PingpongGame extends PingpongGameModel {
 		return $this->isHasReview() ? "X" : "";
 	}
 	
+	public function getReviewTeamStr() {
+		$teams = array();
+		$homeTeam = $this->getHomeTeam();
+		if($homeTeam->isLanaken()) {
+			$teams[] = $homeTeam;
+		}
+		$outTeam = $this->getOutTeam();
+		if($outTeam->isLanaken()) {
+			$teams[] = $outTeam;
+		}
+		$nbTeams = count($teams);
+		if($nbTeams == 1) {
+			return $teams[0]->getTeamStr();
+		} elseif($nbTeams == 2) {
+			$prefix = $teams[0]->isRecreation() ? "" : "Lanaken ";
+			return $prefix.$teams[0]->getFullTeamNo()." vs ".$teams[1]->getFullTeamNo();
+		} else {
+			return "";
+		}
+	}
+	
 	private function getTeamStr($teamId) {
 		return PingpongTeamServiceUtil::getPingpongTeam($teamId)->getTeamStr();
 	}

@@ -1,4 +1,4 @@
-<?
+<?php
 class InputTextArea extends Component {
 	
 	private $value;

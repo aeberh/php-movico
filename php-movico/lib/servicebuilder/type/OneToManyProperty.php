@@ -1,4 +1,4 @@
-<?
+<?php
 class OneToManyProperty extends Property {
 	
 	private $entityName;

@@ -1,4 +1,4 @@
-<?
+<?php
 class Img extends Component {
 	
 	const PATH = "/www/img";

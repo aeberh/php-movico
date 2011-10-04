@@ -16,7 +16,7 @@ class ManageClubsBean extends RequestBean {
 			PingpongClubServiceUtil::create($this->selected->getNumber(), $this->selected->getShortName(),
 				$this->selected->getName(), $this->selected->getBuilding(), $this->selected->getStreet(), 
 				$this->selected->getPlace(), $this->selected->getDistance(), $this->selected->getPhone());
-			MessageUtil::info("Club werd succesvol toegevoegd!");
+			MessageUtil::success("Club werd succesvol toegevoegd!");
 			return "admin/clubs/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -29,7 +29,7 @@ class ManageClubsBean extends RequestBean {
 			PingpongClubServiceUtil::update($this->selected->getClubId(), $this->selected->getNumber(), 
 				$this->selected->getShortName(), $this->selected->getName(), $this->selected->getBuilding(), $this->selected->getStreet(), 
 				$this->selected->getPlace(), $this->selected->getDistance(), $this->selected->getPhone());
-			MessageUtil::info("Club werd succesvol aangepast!");
+			MessageUtil::success("Club werd succesvol aangepast!");
 			return "admin/clubs/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -40,7 +40,7 @@ class ManageClubsBean extends RequestBean {
 	public function delete($clubId) {
 		try {
 			PingpongClubServiceUtil::delete(PingpongClubServiceUtil::getPingpongClub($clubId));
-			MessageUtil::info("Club werd succesvol verwijderd!");
+			MessageUtil::success("Club werd succesvol verwijderd!");
 		} catch(ExistingGamesForClubException $e) {
 			MessageUtil::error("De club kan niet verwijderd worden omdat deze reeds wedstrijden bevat");
 		}

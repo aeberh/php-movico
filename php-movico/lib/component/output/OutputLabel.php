@@ -1,4 +1,4 @@
-<?
+<?php
 class OutputLabel extends Component {
 	
 	private $value;

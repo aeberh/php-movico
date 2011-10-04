@@ -1,4 +1,4 @@
-<?
+<?php
 class OutputText extends Component {
 	
 	private $value;

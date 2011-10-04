@@ -63,4 +63,18 @@
 			</div>
 		</div>
 	</define>
+	<define name="side">
+		<div>
+			<h2>Nieuwe spelers</h2>
+			<div>
+				<dataTable value="#{PlayerBean.latest}" var="player">
+					<column>
+						<renderLink view="player" value="#{player.fullName}">
+							<param value="#{player.playerId}"/>
+						</renderLink>
+					</column>
+				</dataTable>
+			</div>
+		</div>
+	</define>
 </composition>

@@ -86,6 +86,7 @@
 <!ELEMENT booleanCheckbox EMPTY>
 <!ATTLIST booleanCheckbox
 	value CDATA #REQUIRED
+	action CDATA #IMPLIED
 	label CDATA #IMPLIED
 	class CDATA #IMPLIED
 >

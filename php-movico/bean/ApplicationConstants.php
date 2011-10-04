@@ -3,6 +3,7 @@ class ApplicationConstants extends ApplicationBean {
 	
 	const DAY_FORMAT = "%a";
 	const DATE_FORMAT = "%d-%m-%Y";
+	const SMALL_DATE_FORMAT = "%d-%m";
 	const TIME_FORMAT = "%H:%M";
 	
 	const ROLE_GLOBAL_ADMIN = "Administrator";
@@ -37,6 +38,10 @@ class ApplicationConstants extends ApplicationBean {
 	
 	public function getDateFormat() {
 		return self::DATE_FORMAT;
+	}
+	
+	public function getSmallDateFormat() {
+		return self::SMALL_DATE_FORMAT;
 	}
 	
 	public function getTimeFormat() {

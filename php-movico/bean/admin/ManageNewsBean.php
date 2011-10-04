@@ -22,7 +22,7 @@ class ManageNewsBean extends RequestBean {
 	public function create() {
 		try {
 			NewsItemServiceUtil::create($this->getPlayerId(), $this->selected->getTitle(), $this->selected->getContent());
-			MessageUtil::info("Item werd succesvol toegevoegd!");
+			MessageUtil::success("Item werd succesvol toegevoegd!");
 			return "admin/news/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -35,7 +35,7 @@ class ManageNewsBean extends RequestBean {
 	public function save() {
 		try {
 			NewsItemServiceUtil::update($this->selected->getItemId(), $this->selected->getTitle(), $this->selected->getContent());
-			MessageUtil::info("Item werd succesvol aangepast!");
+			MessageUtil::success("Item werd succesvol aangepast!");
 			return empty($this->redirectUrl) ? "admin/news/overview" : $this->redirectUrl;
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -47,7 +47,7 @@ class ManageNewsBean extends RequestBean {
 	
 	public function delete($itemId) {
 		NewsItemServiceUtil::deleteNewsItem($itemId);
-		MessageUtil::info("Item werd succesvol verwijderd!");
+		MessageUtil::success("Item werd succesvol verwijderd!");
 		return null;
 	}
 	

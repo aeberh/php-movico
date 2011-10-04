@@ -1,4 +1,4 @@
-<?
+<?php
 class Boolean {
 	
 	private $bool;

@@ -20,5 +20,9 @@ class PingpongTeam extends PingpongTeamModel {
 		return $this->isRecreation() ? "REC ".$this->getTeamNo() : $this->getTeamNo();
 	}
 	
+	public function isLanaken() {
+		return $this->getClub()->isLanaken();
+	}
+	
 }
 ?>

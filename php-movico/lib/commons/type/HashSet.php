@@ -1,4 +1,4 @@
-<?
+<?php
 class HashSet extends ArrayList implements IteratorAggregate {
 
 	public function add($element) {

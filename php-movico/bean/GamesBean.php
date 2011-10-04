@@ -14,6 +14,10 @@ class GamesBean extends RequestBean {
 		return PingpongGameServiceUtil::getRecentlyPlayedGames();
 	}
 	
+	public function getReviewed() {
+		return PingpongGameServiceUtil::getLastReviewed(10);
+	}
+	
 	public function getWeeks() {
 		return PingpongGameServiceUtil::getPlayingWeeks();
 	}
@@ -59,7 +63,7 @@ class GamesBean extends RequestBean {
 			return Context::getParam(0);
 		}
 		if(!Context::hasParam(0) && !Context::hasParam(1) && empty($this->filterByTeam)) {
-			return Date::createNow()->getWeek();
+			return $this->getCurrentWeekNo();
 		}
 		return null;
 	}
@@ -75,7 +79,7 @@ class GamesBean extends RequestBean {
 	}
 	
 	public function getCurrentWeekNo() {
-		return Date::createNow()->getWeek();
+		return PingpongGameServiceUtil::getWeekIndexByNo(Date::createNow()->getWeek());
 	}
 	
 	// Getters & setters

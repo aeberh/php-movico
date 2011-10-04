@@ -1,4 +1,4 @@
-<?
+<?php
 function handleException($e) {
 	PrintUtil::logln("[EXCEPTION] ".$e->getMessage()."\n\n");
 }

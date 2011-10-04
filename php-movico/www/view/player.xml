@@ -19,8 +19,22 @@
 						<outputText value="Gsm"/><outputText value="#{PlayerBean.player.mobile}"/>
 						<outputText value="Adres"/><outputText value="#{PlayerBean.player.address}"/>
 					</panelGrid>
-					<googleMap address="#{PlayerBean.player.address}"/>
+					<googleMap address="#{PlayerBean.player.address}" height="400" width="500" zoomLevel="12"/>
 				</panelGroup>
+			</div>
+		</div>
+	</define>
+	<define name="side">
+		<div>
+			<h2>Nieuwe spelers</h2>
+			<div>
+				<dataTable value="#{PlayerBean.latest}" var="player">
+					<column>
+						<renderLink view="player" value="#{player.fullName}">
+							<param value="#{player.playerId}"/>
+						</renderLink>
+					</column>
+				</dataTable>
 			</div>
 		</div>
 	</define>

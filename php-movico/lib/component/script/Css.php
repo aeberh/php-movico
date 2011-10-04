@@ -1,4 +1,4 @@
-<?
+<?php
 class Css extends Component {
 	
 	const PATH = "/www/css";

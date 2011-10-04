@@ -28,7 +28,7 @@ class ManagePlayersBean extends RequestBean {
 			PingpongPlayerServiceUtil::create($this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
 				$this->selected->getRanking(), $this->selected->isRecreation(), $this->selected->getStreet(), $this->selected->getPlace(), 
 				$this->selected->getEmailAddress(), $this->selected->getPhone(), $this->selected->getMobile());
-			MessageUtil::info("Lid werd succesvol toegevoegd!");
+			MessageUtil::success("Lid werd succesvol toegevoegd!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -42,7 +42,7 @@ class ManagePlayersBean extends RequestBean {
 				$this->selected->getMemberNo(), $this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), 
 				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone(),
 				$this->selected->getMobile());
-			MessageUtil::info("Lid werd succesvol aangepast!");
+			MessageUtil::success("Lid werd succesvol aangepast!");
 			return empty($this->redirectUrl) ? "admin/players/overview" : $this->redirectUrl;
 		} catch(RequiredInformationException $e) {
 			MessageUtil::error("Een of meer verplichte velden werden niet ingevuld!");
@@ -52,7 +52,7 @@ class ManagePlayersBean extends RequestBean {
 	
 	public function delete($playerId) {
 		PingpongPlayerServiceUtil::deletePingpongPlayer($playerId);
-		MessageUtil::info("Lid werd succesvol verwijderd!");
+		MessageUtil::success("Lid werd succesvol verwijderd!");
 		return null;
 	}
 	
@@ -67,7 +67,7 @@ class ManagePlayersBean extends RequestBean {
 			}
 		}
 		if(empty($failed)) {
-			MessageUtil::info("Wachtwoorden werden succesvol gewijzigd en opgestuurd!");
+			MessageUtil::success("Wachtwoorden werden succesvol gewijzigd en opgestuurd!");
 		} else {
 			MessageUtil::error("Door een fout hebben volgende spelers geen email ontvangen: ".implode(", ", $failed));
 		}

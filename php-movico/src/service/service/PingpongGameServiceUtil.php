@@ -13,12 +13,16 @@ class PingpongGameServiceUtil {
 		return self::getService()->update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review);
 	}
 
-	public static function filterByWeek($weekNo) {
-		return self::getService()->filterByWeek($weekNo);
+	public static function filterByWeek($weekIndex) {
+		return self::getService()->filterByWeek($weekIndex);
 	}
 
 	public static function filterByTeam($teamId) {
 		return self::getService()->filterByTeam($teamId);
+	}
+
+	public static function getWeekIndexByNo($weekNo) {
+		return self::getService()->getWeekIndexByNo($weekNo);
 	}
 
 	public static function getPlayingWeeks() {
@@ -31,6 +35,10 @@ class PingpongGameServiceUtil {
 
 	public static function getRecentlyPlayedGames() {
 		return self::getService()->getRecentlyPlayedGames();
+	}
+
+	public static function getLastReviewed($max) {
+		return self::getService()->getLastReviewed($max);
 	}
 
 	public static function findByAfterDate($date, $from=-1, $limit=-1) {

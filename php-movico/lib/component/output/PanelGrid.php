@@ -1,4 +1,4 @@
-<?
+<?php
 class PanelGrid extends Component {
 	
 	private $columns;

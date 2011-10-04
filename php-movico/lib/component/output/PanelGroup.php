@@ -1,4 +1,4 @@
-<?
+<?php
 class PanelGroup extends Component {
 	
 	public function doRender($rowIndex=null) {

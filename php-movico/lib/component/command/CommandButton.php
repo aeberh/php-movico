@@ -1,4 +1,4 @@
-<?
+<?php
 class CommandButton extends AbstractCommand {
 
 	public function doRender($index=null) {

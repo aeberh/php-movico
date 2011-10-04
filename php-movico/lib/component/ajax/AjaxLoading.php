@@ -1,4 +1,4 @@
-<?
+<?php
 class AjaxLoading extends Component {
 	
 	const CLASS_NAME = "AjaxLoading";

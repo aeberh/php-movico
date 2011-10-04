@@ -42,6 +42,10 @@ class MailMessage {
 		return $this->to->join(", ");
 	}
 	
+	public function getToAddresses() {
+		return $this->to;
+	}
+	
 	public function addCcAddress(EmailAddress $ccAddress) {
 		$this->cc->add($ccAddress);
 	}

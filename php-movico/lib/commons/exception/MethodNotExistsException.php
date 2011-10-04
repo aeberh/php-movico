@@ -1,4 +1,4 @@
-<?
+<?php
 class MethodNotExistsException extends Exception {
 	
 	public function __construct($className, $methodName) {

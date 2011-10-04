@@ -23,7 +23,8 @@ CREATE TABLE `PingpongPlayer` (
 	`active` TINYINT(1) NOT NULL,
 	PRIMARY KEY (`playerId`),
 	UNIQUE KEY `IX_EMAILADDRESS` (`emailAddress`),
-	KEY `IX_ACTIVE` (`active`)
+	KEY `IX_ACTIVE` (`active`),
+	KEY `IX_LATEST` (`active`)
 );
 
 CREATE TABLE `PingpongClub` (

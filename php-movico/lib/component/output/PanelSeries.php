@@ -1,4 +1,4 @@
-<?
+<?php
 class PanelSeries extends DataSeries {
 	
 	public function doRender($index=null) {

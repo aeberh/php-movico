@@ -25,7 +25,8 @@ class PingpongGameService extends PingpongGameServiceBase {
 		return $this->updatePingpongGame($game);
 	}
 	
-	public function filterByWeek($weekNo) {
+	public function filterByWeek($weekIndex) {
+		$weekNo = $this->getWeekByIndex($weekIndex);
 		$result = array();
 		foreach($this->getPingpongGames() as $game) {
 			if($game->getDate()->getWeek() == $weekNo) {
@@ -45,13 +46,34 @@ class PingpongGameService extends PingpongGameServiceBase {
 		return array_values($result);
 	}
 	
-	public function getPlayingWeeks() {
-		$result = array();
+	private function getWeekByIndex($i) {
+		$reverse = array_flip($this->getPlayingWeeksMap());
+		return $reverse[$i];
+	}
+	
+	public function getWeekIndexByNo($weekNo) {
+		$map = $this->getPlayingWeeksMap();
+		return $map[$weekNo];
+	}
+	
+	private function getPlayingWeeksMap() {
+		$weeks = array();
 		foreach($this->getPingpongGames() as $game) {
 			$week = $game->getDate()->getWeek();
-			$result[$week] = $week;
+			$weeks[$week] = $week;
+		}
+		$result = array();
+		$i = 1;
+		foreach($weeks as $week) {
+			$result[$week] = $i;
+			$i++;
 		}
 		return $result;
+	}
+	
+	public function getPlayingWeeks() {
+		$values = array_values($this->getPlayingWeeksMap());
+		return array_combine($values, $values);
 	}
 	
 	public function getFirstUpcomingGames() {
@@ -60,6 +82,19 @@ class PingpongGameService extends PingpongGameServiceBase {
 	
 	public function getRecentlyPlayedGames() {
 		return $this->findByBeforeDate(Date::createNow(), 0, 7);
+	}
+	
+	public function getLastReviewed($max) {
+		$games = array();
+		foreach($this->getPingpongGames() as $game) {
+			if($game->isHasReview()) {
+				$games[] = $game;
+				if(count($games) == $max) {
+					break;
+				}
+			}
+		}
+		return $games;
 	}
 	
 }

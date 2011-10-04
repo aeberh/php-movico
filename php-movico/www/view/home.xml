@@ -20,7 +20,7 @@
 					<column class="news-edit">
 						<renderLink view="admin/news/edit" rendered="#{LoginBean.newsManager}">
 							<param value="#{item.itemId}"/>
-							<param value="index"/>
+							<param value="home"/>
 							<img alt="Aanpassen" src="edit.png"/>
 						</renderLink>
 					</column>
@@ -30,95 +30,110 @@
 		<div>
 			<h2>Aankomende wedstrijden</h2>
 			<div>
-				<form>
-					<dataTable value="#{GamesBean.upcoming}" var="game">
-						<column class="game-day time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
-						</column>
-						<column class="game-date time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
-						</column>
-						<column class="game-time time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
-						</column>
-						<column class="game-home-team">
-							<renderLink view="club" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
-								<param value="#{game.homeTeam.clubId}"/>
-							</renderLink>
-							<renderLink view="games" value="#{game.homeTeamStr}" rendered="#{game.homeTeam.club.lanaken}" class="bold">
-								<param value="-"/>
-								<param value="#{game.homeTeam.teamId}"/>
-							</renderLink>
-						</column>
-						<column class="game-home-team-pts"><span></span></column>
-						<column class="game-dash">
-							<outputText value="-"/>
-						</column>
-						<column class="game-out-team-pts"><span></span></column>
-						<column class="game-out-team">
-							<renderLink view="club" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
-								<param value="#{game.outTeam.clubId}"/>
-							</renderLink>
-							<renderLink view="games" value="#{game.outTeamStr}" rendered="#{game.outTeam.club.lanaken}" class="bold">
-								<param value="-"/>
-								<param value="#{game.outTeam.teamId}"/>
-							</renderLink>
-						</column>
-						<column class="game-edit">
-							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
-								<param value="#{game.gameId}"/>
-								<param value="index"/>
-								<img alt="Aanpassen" src="edit.png"/>
-							</renderLink>
-						</column>
-					</dataTable>
-				</form>
+				<dataTable value="#{GamesBean.upcoming}" var="game">
+					<column class="game-day time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
+					</column>
+					<column class="game-date time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
+					</column>
+					<column class="game-time time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
+					</column>
+					<column class="game-home-team">
+						<renderLink view="club" value="#{game.homeTeamStr}" rendered="#{!game.homeTeam.club.lanaken}">
+							<param value="#{game.homeTeam.clubId}"/>
+						</renderLink>
+						<renderLink view="games" value="#{game.homeTeamStr}" rendered="#{game.homeTeam.club.lanaken}" class="bold">
+							<param value="-"/>
+							<param value="#{game.homeTeam.teamId}"/>
+						</renderLink>
+					</column>
+					<column class="game-home-team-pts"><span></span></column>
+					<column class="game-dash">
+						<outputText value="-"/>
+					</column>
+					<column class="game-out-team-pts"><span></span></column>
+					<column class="game-out-team">
+						<renderLink view="club" value="#{game.outTeamStr}" rendered="#{!game.outTeam.club.lanaken}">
+							<param value="#{game.outTeam.clubId}"/>
+						</renderLink>
+						<renderLink view="games" value="#{game.outTeamStr}" rendered="#{game.outTeam.club.lanaken}" class="bold">
+							<param value="-"/>
+							<param value="#{game.outTeam.teamId}"/>
+						</renderLink>
+					</column>
+					<column class="game-edit">
+						<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
+							<param value="#{game.gameId}"/>
+							<param value="home"/>
+							<img alt="Aanpassen" src="edit.png"/>
+						</renderLink>
+					</column>
+				</dataTable>
 			</div>
 		</div>
 		<div>
 			<h2>Afgelopen wedstrijden</h2>
 			<div>
-				<form>
-					<dataTable value="#{GamesBean.past}" var="game">
-						<column class="game-day time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
-						</column>
-						<column class="game-date time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
-						</column>
-						<column class="game-time time">
-							<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
-						</column>
-						<column class="game-home-team">
-							<outputText value="#{game.homeTeamStr}"/>
-						</column>
-						<column class="game-home-team-pts">
-							<outputText value="#{game.homeTeamPts}"/>
-						</column>
-						<column class="game-dash">
-							<outputText value="-"/>
-						</column>
-						<column class="game-out-team-pts">
-							<outputText value="#{game.outTeamPts}"/>
-						</column>
-						<column class="game-out-team">
-							<outputText value="#{game.outTeamStr}"/>
-						</column>
-						<column class="game-info">
-							<renderLink view="game" rendered="#{game.hasReview}">
+				<dataTable value="#{GamesBean.past}" var="game">
+					<column class="game-day time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.dayFormat}"/>
+					</column>
+					<column class="game-date time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.dateFormat}"/>
+					</column>
+					<column class="game-time time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.timeFormat}"/>
+					</column>
+					<column class="game-home-team">
+						<outputText value="#{game.homeTeamStr}"/>
+					</column>
+					<column class="game-home-team-pts">
+						<outputText value="#{game.homeTeamPts}"/>
+					</column>
+					<column class="game-dash">
+						<outputText value="-"/>
+					</column>
+					<column class="game-out-team-pts">
+						<outputText value="#{game.outTeamPts}"/>
+					</column>
+					<column class="game-out-team">
+						<outputText value="#{game.outTeamStr}"/>
+					</column>
+					<column class="game-info">
+						<renderLink view="game" rendered="#{game.hasReview}">
+							<param value="#{game.gameId}"/>
+							<img src="info.png" alt="Info" popup="Wedstrijdinfo"/>
+						</renderLink>
+					</column>
+					<column class="game-edit">
+						<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
+							<param value="#{game.gameId}"/>
+							<param value="home"/>
+							<img src="edit.png" alt="Aanpassen"/>
+						</renderLink>
+					</column>
+				</dataTable>
+			</div>
+		</div>
+	</define>
+	<define name="side">
+		<div>
+			<h2>Wedstrijdverslagen</h2>
+			<div>
+				<dataTable value="#{GamesBean.reviewed}" var="game">
+					<column class="game-small-time time">
+						<outputDate value="#{game.date}" format="#{ApplicationConstants.smallDateFormat}"/>
+					</column>
+					<column>
+						<column>
+							<renderLink view="game" value="#{game.reviewTeamStr}">
 								<param value="#{game.gameId}"/>
-								<img src="info.png" alt="Info" popup="Wedstrijdinfo"/>
 							</renderLink>
 						</column>
-						<column class="game-edit">
-							<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
-								<param value="#{game.gameId}"/>
-								<param value="index"/>
-								<img src="edit.png" alt="Aanpassen"/>
-							</renderLink>
-						</column>
-					</dataTable>
-				</form>
+					</column>
+				</dataTable>
 			</div>
 		</div>
 	</define>

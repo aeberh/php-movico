@@ -1,4 +1,4 @@
-<?
+<?php
 class BooleanCheckbox extends Component {
 	
 	private $value;

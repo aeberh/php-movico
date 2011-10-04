@@ -44,8 +44,11 @@
 				<p class="club-contact">
 					<outputText value="T #{ClubDetailsBean.club.phone}" rendered="#{ClubDetailsBean.club.hasPhone}"/>
 				</p>
-				<googleMap address="#{ClubDetailsBean.club.address}" height="300" width="400" zoomLevel="12"/>
+				<googleMap address="#{ClubDetailsBean.club.address}" height="400" width="500" zoomLevel="12"/>
 			</div>
 		</div>
+	</define>
+	<define name="side">
+	
 	</define>
 </composition>

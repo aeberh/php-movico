@@ -32,6 +32,12 @@
 		<finder name="Active">
 			<finder-column name="active"/>
 		</finder>
+		<finder name="Latest">
+			<finder-column name="active"/>
+			<order>
+				<order-column name="memberNo" order-by="desc"/>
+			</order>
+		</finder>
 		<order>
 			<order-column name="ranking" order-by="asc"/>
 			<order-column name="lastName" order-by="asc"/>

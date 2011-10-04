@@ -9,12 +9,7 @@
 				<li><renderLink view="home" value="Home"/></li>
 				<li><renderLink view="news" value="Nieuws"/></li>
 				<li><renderLink view="players" value="Leden"/></li>
-				<li>
-					<renderLink view="games" value="Wedstrijden" selectedPrefix="games">
-						<param value="#{GamesBean.currentWeekNo}"/>
-						<param value=""/>
-					</renderLink>
-				</li>
+				<li><renderLink view="games" value="Wedstrijden"/></li>
 				<panelGroup rendered="#{LoginBean.specialUser}">
 					<li><renderLink view="admin/index" value="Admin" selectedPrefix="admin"/></li>
 				</panelGroup>
@@ -26,6 +21,6 @@
 		<insert name="main"/>
 	</div>
 	<div id="footer">
-		<p>Jevota v1.3 - Laatste update: Oct 1 2011 - Ontwikkeld door Peter Mesotten.</p>
+		<p>Jevota v1.4 - Laatste update: Oct 4 2011 - Ontwikkeld door Peter Mesotten.</p>
 	</div>
 </template>

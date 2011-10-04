@@ -1,4 +1,4 @@
-<?
+<?php
 class PanelGridSeries extends PanelSeries {
 	
 	private $columns;

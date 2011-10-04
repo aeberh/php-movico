@@ -30,6 +30,18 @@ class PingpongPlayerPersistence extends Persistence {
 		return $result;
 	}
 
+	public function findByLatest($active, $from=-1, $limit=-1) {
+		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
+		$whereClause = "`active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `memberNo` desc".$limitStr;
+		if(parent::$dbCache->hasFinder('PingpongPlayer', $whereClause)) {
+			return parent::$dbCache->getFinder('PingpongPlayer', $whereClause);
+		}
+		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
+		$result = $this->getAsObjects($result->getResult());
+		parent::$dbCache->setFinder('PingpongPlayer', $whereClause, $result);
+		return $result;
+	}
+
 	public function findByPrimaryKey($playerId) {
 		if(parent::$dbCache->hasSingle("PingpongPlayer", $playerId)) {
 			return parent::$dbCache->getSingle("PingpongPlayer", $playerId);
