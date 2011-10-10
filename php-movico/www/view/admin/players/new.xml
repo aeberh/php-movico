@@ -40,6 +40,10 @@
 				<inputText maxLength="30" id="email" value="#{ManagePlayersBean.selected.emailAddress}"/>
 			</p>
 			<p>
+				<outputLabel for="password" value="Wachtwoord"/>
+				<inputSecret maxLength="20" id="password" value="#{ManagePlayersBean.selected.password}"/>
+			</p>
+			<p>
 				<outputLabel for="phone" value="Telefoonnummer (bv. 089/12.34.56)"/>
 				<inputText maxLength="20" id="phone" value="#{ManagePlayersBean.selected.phone}"/>
 			</p>

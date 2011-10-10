@@ -31,9 +31,5 @@ class PanelGrid extends Component {
 		return " class=\"".$this->columnClasses[$index]."\"";
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGroup", "div");
-	}
-	
 }
 ?>

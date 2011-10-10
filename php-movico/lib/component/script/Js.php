@@ -11,8 +11,4 @@ class Js extends Component {
 		return "<script language=\"Javascript\" type=\"text/javascript\" src=\"".$this->src."\"></script>";
 	}
 	
-	public function getValidParents() {
-		return array("View");
-	}
-	
 }

@@ -19,7 +19,7 @@ class View extends Component {
 			"<html>\n\t<head>\n\t\t<title>$title</title>\n".
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<meta name=\"description\" content=\"$description\">\n".
-			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.1.min.js\"></script>".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.4.min.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
 			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>";
 		if(parent::$settings->isGmapsEnabled()) {
@@ -79,10 +79,6 @@ class View extends Component {
 	
 	private function getPageDesc() {
 		return $this->getConvertedValue($this->description);
-	}
-	
-	public function getValidParents() {
-		return array();
 	}
 	
 	public function setDescription($description) {

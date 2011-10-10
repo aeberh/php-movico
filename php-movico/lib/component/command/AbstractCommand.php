@@ -26,10 +26,6 @@ abstract class AbstractCommand extends Component {
 		$this->popup = $popup;
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p", "div", "h1", "h2", "h3", "PanelGridSeries");
-	}
-	
 	public function getAction() {
 		return $this->action;
 	}

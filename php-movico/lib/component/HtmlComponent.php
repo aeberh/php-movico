@@ -35,15 +35,6 @@ class HtmlComponent extends Component {
 		return $result;
 	}
 	
-	public function getValidParents() {
-		switch($this->tagName) {
-			case "li":
-				return array("ul", "ol", "PanelGroup");
-			default:
-				return array_merge(array("View", "Form", "PanelGrid", "Column", "PanelGroup", "PanelSeries", "ColHeader", "PanelGridSeries", "HtmlComponent"), self::getPossibleTags());
-		}
-	}
-	
 	private function checkValidTag($tagName) {
 		if(!in_array($tagName, self::getPossibleTags())) {
 			throw new ComponentNotExistsException($tagName);

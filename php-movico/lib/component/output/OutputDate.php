@@ -19,9 +19,5 @@ class OutputDate extends Component {
 		return "<span>$value</span>";
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "PanelSeries", "PanelGridSeries", "div", "p", "h1", "h2", "h3", "h4", "h5", "h6");
-	}
-	
 }
 ?>

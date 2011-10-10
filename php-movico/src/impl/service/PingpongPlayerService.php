@@ -17,17 +17,17 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		return $result;
 	}
 	
-	public function create($firstName, $lastName, $memberNo, $ranking, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
+	public function create($firstName, $lastName, $memberNo, $ranking, $recreation, $street, $place, $emailAddress, $password, $phone, $mobile) {
 		$player = $this->createPingpongPlayer();
-		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, true, $recreation, $street, $place, $emailAddress, $phone, $mobile);
+		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, true, $recreation, $street, $place, $emailAddress, $password, $phone, $mobile);
 	}
 	
-	public function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
+	public function update($playerId, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $password, $phone, $mobile) {
 		$player = $this->getPingpongPlayer($playerId);
-		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile);
+		return $this->doUpdate($player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $password, $phone, $mobile);
 	}
 	
-	private function doUpdate(PingpongPlayer $player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $phone, $mobile) {
+	private function doUpdate(PingpongPlayer $player, $firstName, $lastName, $memberNo, $ranking, $active, $recreation, $street, $place, $emailAddress, $password, $phone, $mobile) {
 		if(empty($firstName) || empty($lastName)) {
 			throw new RequiredInformationException();
 		}
@@ -40,6 +40,7 @@ class PingpongPlayerService extends PingpongPlayerServiceBase {
 		$player->setStreet($street);
 		$player->setPlace($place);
 		$player->setEmailAddress($emailAddress);
+		$player->setPassword($password);
 		$player->setPhone($phone);
 		$player->setMobile($mobile);
 		return $this->updatePingpongPlayer($player);

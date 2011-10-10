@@ -18,9 +18,5 @@ class InputRichText extends Component {
 		return $editor->editor($this->value, $this->getConvertedValue($this->value, $index));
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "PanelSeries", "div");
-	}
-	
 }
 ?>

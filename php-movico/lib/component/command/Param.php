@@ -9,10 +9,6 @@ class Param extends Component {
 		return "<input type=\"hidden\" disabled name=\"".MovicoRequest::ACTION_PARAM."[{$action}_{$index}][]\" value=\"$value\"/>";
 	}
 	
-	public function getValidParents() {
-		return array("AbstractCommand");
-	}
-	
 	public function setValue($value) {
 		$this->value = $value;
 	}

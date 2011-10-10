@@ -26,9 +26,5 @@ class Img extends Component {
 		return "<img id=\"".$this->id."\" title=\"$popup\" alt=\"$alt\" src=\"".$ctx.self::PATH."/".$this->src."\">";
 	}
 	
-	public function getValidParents() {
-		return -1;
-	}
-	
 }
 ?>

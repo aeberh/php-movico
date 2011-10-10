@@ -53,6 +53,14 @@ class PingpongGameService extends PingpongGameServiceBase {
 	
 	public function getWeekIndexByNo($weekNo) {
 		$map = $this->getPlayingWeeksMap();
+		$waitForAmount = 5;
+		while(!isset($map[$weekNo])) {
+			$weekNo++;
+			$waitForAmount--;
+			if($waitForAmount == 0) {
+				return 1;
+			}
+		}
 		return $map[$weekNo];
 	}
 	

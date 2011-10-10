@@ -36,9 +36,5 @@ class BooleanCheckbox extends Component {
 		return $result;
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
-	}
-	
 }
 ?>

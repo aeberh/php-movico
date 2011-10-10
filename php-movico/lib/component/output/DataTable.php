@@ -102,9 +102,5 @@ class DataTable extends DataSeries {
 		return $result;
 	}
 	
-	public function getValidParents() {
-		return array("View", "PanelGrid", "Form", "PanelGroup", "div");
-	}
-	
 }
 ?>

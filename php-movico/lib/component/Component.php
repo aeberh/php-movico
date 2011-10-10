@@ -22,9 +22,6 @@ abstract class Component {
 		if(get_class($this) == "HtmlComponent") {
 			$parentClass = $this->getTagName();
 		}
-		if(!$component->getValidParents() == -1 && !in_array($parentClass, $component->getValidParents())) {
-			throw new InvalidComponentHierarchyException($parentClass, get_class($component));
-		}
 		$this->children[] = $component;
 		$component->setParent($this);
 	}
@@ -132,8 +129,6 @@ abstract class Component {
 	protected function hasChildren() {
 		return !empty($this->children);
 	}
-	
-	protected abstract function getValidParents();
 	
 	protected function getChildrenOfType($class) {
 		$result = array();

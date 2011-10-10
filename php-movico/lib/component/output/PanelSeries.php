@@ -18,9 +18,5 @@ class PanelSeries extends DataSeries {
 		return $this->getConvertedValue($this->value);
 	}
 	
-	public function getValidParents() {
-		return array("View", "PanelGrid", "Form", "PanelGroup", "div", "PanelSeries");
-	}
-	
 }
 ?>

@@ -5,9 +5,5 @@ class PanelGroup extends Component {
 		return $this->renderChildren(array(), array(), $rowIndex);
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div", "li", "ul");
-	}
-	
 }
 ?>

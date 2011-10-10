@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main" title="Account aanvragen">
+	<define name="body">
+		<div>
+			<h2><outputText value="Account aanvragen"/></h2>
+			<div>
+				<p>
+					<span>Stuur een mailtje naar </span>
+					<outputEmail value="info@jevota.be"/>
+					<span> om je account aan te vragen.</span>
+				</p>
+			</div>
+		</div>
+	</define>
+	<define name="side">
+	
+	</define>
+</composition>

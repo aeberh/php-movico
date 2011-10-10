@@ -13,9 +13,5 @@ class InputTextArea extends Component {
 		return "<textarea id=\"".$this->id."\" class=\"".$this->class."\" name=\"$name\">$val</textarea>";
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
-	}
-	
 }
 ?>

@@ -27,7 +27,7 @@ class ManagePlayersBean extends RequestBean {
 		try {
 			PingpongPlayerServiceUtil::create($this->selected->getFirstName(), $this->selected->getLastName(), $this->selected->getMemberNo(),
 				$this->selected->getRanking(), $this->selected->isRecreation(), $this->selected->getStreet(), $this->selected->getPlace(), 
-				$this->selected->getEmailAddress(), $this->selected->getPhone(), $this->selected->getMobile());
+				$this->selected->getEmailAddress(), $this->selected->getPassword(), $this->selected->getPhone(), $this->selected->getMobile());
 			MessageUtil::success("Lid werd succesvol toegevoegd!");
 			return "admin/players/overview";
 		} catch(RequiredInformationException $e) {
@@ -40,8 +40,8 @@ class ManagePlayersBean extends RequestBean {
 		try {
 			PingpongPlayerServiceUtil::update($this->selected->getPlayerId(), $this->selected->getFirstName(), $this->selected->getLastName(), 
 				$this->selected->getMemberNo(), $this->selected->getRanking(), $this->selected->isActive(), $this->selected->isRecreation(), 
-				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPhone(),
-				$this->selected->getMobile());
+				$this->selected->getStreet(), $this->selected->getPlace(), $this->selected->getEmailAddress(), $this->selected->getPassword(),
+				$this->selected->getPhone(), $this->selected->getMobile());
 			MessageUtil::success("Lid werd succesvol aangepast!");
 			return empty($this->redirectUrl) ? "admin/players/overview" : $this->redirectUrl;
 		} catch(RequiredInformationException $e) {

@@ -156,6 +156,15 @@
 	id CDATA #IMPLIED
 >
 
+<!ELEMENT outputEmail EMPTY>
+<!ATTLIST outputEmail
+	value CDATA #REQUIRED
+	link CDATA #IMPLIED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+	id CDATA #IMPLIED
+>
+
 <!ELEMENT outputDiv EMPTY>
 <!ATTLIST outputDiv
 	value CDATA #REQUIRED

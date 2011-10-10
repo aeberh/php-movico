@@ -5,9 +5,5 @@ class ColHeader extends Component {
 		return $this->renderChildren();
 	}
 	
-	public function getValidParents() {
-		return array("Column");
-	}
-	
 }
 ?>

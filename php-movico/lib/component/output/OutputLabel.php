@@ -16,9 +16,5 @@ class OutputLabel extends Component {
 		$this->for = $for;
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "p");
-	}
-	
 }
 ?>

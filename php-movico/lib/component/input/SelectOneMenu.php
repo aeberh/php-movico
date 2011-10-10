@@ -47,9 +47,5 @@ class SelectOneMenu extends Component {
 		$this->addEmptyOption = $addEmptyOption;
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
-	}
-	
 }
 ?>

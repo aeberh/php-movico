@@ -22,9 +22,5 @@ class Form extends Component {
 		return $this->getFirstAncestorOfType("View")->getUrl();
 	}
 	
-	public function getValidParents() {
-		return array("View", "PanelGrid", "PanelGroup", "div");
-	}
-		
 }
 ?>

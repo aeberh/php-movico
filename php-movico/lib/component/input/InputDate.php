@@ -78,9 +78,5 @@ class InputDate extends Component {
 		return $i<10 ? "0$i" : $i;
 	}
 	
-	public function getValidParents() {
-		return array("div", "Form");
-	}
-	
 }
 ?>

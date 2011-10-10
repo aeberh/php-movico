@@ -11,9 +11,5 @@ class FileUpload extends Component {
 		return "<input type=\"file\" name=\"".$this->value."\"/>";
 	}
 	
-	public function getValidParents() {
-		return array("Form", "p");
-	}
-
 }
 ?>

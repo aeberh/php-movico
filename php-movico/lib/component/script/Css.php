@@ -14,9 +14,5 @@ class Css extends Component {
 		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"$context".self::PATH."/".$this->src."\">";
 	}
 	
-	public function getValidParents() {
-		return array("View");
-	}
-	
 }
 ?>

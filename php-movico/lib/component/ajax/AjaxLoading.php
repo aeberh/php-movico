@@ -11,9 +11,5 @@ class AjaxLoading extends Component {
 		return "<img status=\"idle\" src=\"".parent::$settings->getContextPath()."/lib/component/ajax/img/connect_idle.gif\" class=\"".self::CLASS_NAME."\"/>";
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup");
-	}
-	
 }
 ?>

@@ -12,6 +12,11 @@
 					<message/>
 					<form rendered="#{!LoginBean.loggedIn}">
 						<p>
+							<div class="msg info">
+								<renderLink view="request" value="Zelf kunnen inloggen? Klik hier!"/>
+							</div>
+						</p>
+						<p>
 							<outputLabel for="login-email" value="E-mailadres"/>
 							<inputText id="login-email" value="#{LoginBean.emailAddress}" autoFocus="true"/>
 						</p>
@@ -46,8 +51,8 @@
 						<span>3620 Gellik</span>
 					</p>
 					<p class="club-contact">
-						<span>T 089/71.45.35</span>
-						<span>E info@jevota.be</span>
+						<span>089/71.45.35</span>
+						<outputEmail value="info@jevota.be"/>
 					</p>
 					<form>
 						<p id="contact-link">
