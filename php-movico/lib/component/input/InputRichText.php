@@ -15,6 +15,8 @@ class InputRichText extends Component {
 			array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike' ),
 			array( 'Image', 'Link', 'Unlink', 'Anchor' )
 		);
+		$finder = new CKFinder("$ctx/lib/component/input/ckfinder/");
+		$finder->SetupCKEditorObject($editor);
 		return $editor->editor($this->value, $this->getConvertedValue($this->value, $index));
 	}
 	
