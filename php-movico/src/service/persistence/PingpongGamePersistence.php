@@ -11,12 +11,24 @@ class PingpongGamePersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByAfterDate($date) {
+		$whereClause = "`date`>'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongGame");
+	}
+
 	public function findByBeforeDate($date, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`date`<'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'ORDER BY `date` desc".$limitStr;
 		$result = $this->db->selectQuery("SELECT * FROM ".self::TABLE." WHERE $whereClause");
 		$result = $this->getAsObjects($result->getResult());
 		return $result;
+	}
+
+	public function deleteByBeforeDate($date) {
+		$whereClause = "`date`<'".Singleton::create("DateConverter")->fromDOMtoDB($date)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongGame");
 	}
 
 	public function findByHomeTeam($homeTeamId, $from=-1, $limit=-1) {
@@ -31,6 +43,12 @@ class PingpongGamePersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByHomeTeam($homeTeamId) {
+		$whereClause = "`homeTeamId`='".Singleton::create("NullConverter")->fromDOMtoDB($homeTeamId)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongGame");
+	}
+
 	public function findByOutTeam($outTeamId, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`outTeamId`='".Singleton::create("NullConverter")->fromDOMtoDB($outTeamId)."'ORDER BY `date` asc".$limitStr;
@@ -41,6 +59,12 @@ class PingpongGamePersistence extends Persistence {
 		$result = $this->getAsObjects($result->getResult());
 		parent::$dbCache->setFinder('PingpongGame', $whereClause, $result);
 		return $result;
+	}
+
+	public function deleteByOutTeam($outTeamId) {
+		$whereClause = "`outTeamId`='".Singleton::create("NullConverter")->fromDOMtoDB($outTeamId)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongGame");
 	}
 
 	public function findByPrimaryKey($gameId) {

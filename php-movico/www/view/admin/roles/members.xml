@@ -14,7 +14,7 @@
 				Selecteer een speler die je wil toevoegen voor deze rol.
 			</p>
 			<p>
-				<selectOneMenu options="#{ManageRolesBean.allPlayers}" value="#{ManageRolesBean.selectedPlayerId}"/>
+				<selectOneMenu options="#{ApplicationConstants.playersMap}" value="#{ManageRolesBean.selectedPlayerId}"/>
 			</p>
 			<p>
 				<commandButton action="#{ManageRolesBean.addPlayer}" value="Toevoegen"/>

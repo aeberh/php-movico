@@ -45,6 +45,10 @@ class Finder {
 		return "findBy{$this->getName()}(".implode(", ", $this->getColumnVariables()).", \$from$v, \$limit$v)";
 	}
 	
+	public function getDeleteByMethodSignature() {
+		return "deleteBy{$this->getName()}(".implode(", ", $this->getColumnVariables()).")";
+	}
+	
 	public function getColumnVariables() {
 		$result = array();
 		foreach($this->getColumns() as $column) {

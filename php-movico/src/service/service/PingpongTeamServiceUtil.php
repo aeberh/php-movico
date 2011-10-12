@@ -5,8 +5,8 @@ class PingpongTeamServiceUtil {
 		return self::getService()->create($clubId, $teamNo, $recreation);
 	}
 
-	public static function getOrCreateClubId($clubId, $teamNo) {
-		return self::getService()->getOrCreateClubId($clubId, $teamNo);
+	public static function getOrCreateTeamId($clubId, $teamNo) {
+		return self::getService()->getOrCreateTeamId($clubId, $teamNo);
 	}
 
 	public static function getJevotaTeam($teamNo, $rec) {
@@ -17,8 +17,16 @@ class PingpongTeamServiceUtil {
 		return self::getService()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
 	}
 
+	public static function deleteByClubAndTeam($clubId, $teamNo, $recreation) {
+		self::getService()->deleteByClubAndTeam($clubId, $teamNo, $recreation);
+	}
+
 	public static function findByClub($clubId, $from=-1, $limit=-1) {
 		return self::getService()->findByClub($clubId, $from, $limit);
+	}
+
+	public static function deleteByClub($clubId) {
+		self::getService()->deleteByClub($clubId);
 	}
 
 	public static function createPingpongTeam($pk=0) {

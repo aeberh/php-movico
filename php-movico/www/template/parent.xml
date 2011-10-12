@@ -21,6 +21,6 @@
 		<insert name="main"/>
 	</div>
 	<div id="footer">
-		<p>Jevota v1.4 - Laatste update: Oct 4 2011 - Ontwikkeld door Peter Mesotten.</p>
+		<p>Jevota v1.5 - Laatste update: Oct 12 2011 - Ontwikkeld door Peter Mesotten.</p>
 	</div>
 </template>

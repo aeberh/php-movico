@@ -23,12 +23,15 @@ function setPageMetaInfo() {
 // Initialize TransferListBox component
 function setupTransferListBox() {
 	$(".MovicoTransferListBox").each(function() {
-		var leftListbox = $(this).children().first();
-		var buttonLL = leftListbox.next();
+		var div1 = $(this).children().first();
+		var leftListbox = div1.children().first();
+		var div2 = div1.next();
+		var buttonLL = div2.children().first();
 		var buttonL = buttonLL.next();
 		var buttonR = buttonL.next();
 		var buttonRR = buttonR.next();
-		var rightListbox = buttonRR.next();
+		var div3 = div2.next();
+		var rightListbox = div3.children().first();
 		var realListbox = rightListbox.next();
 		buttonRR.click(function() {
 			return doTransfer(leftListbox, rightListbox, true);
@@ -177,15 +180,20 @@ function setupPagination() {
 }
 
 function unloadHtmlAreas() {
+	if(typeof(CKEDITOR) === 'undefined') {
+		return;
+	}
 	for(var inst in CKEDITOR.instances) {
 		CKEDITOR.remove(inst);
 	}
 }
 
 function updateHtmlAreas() {
+	/*
 	for(var inst in CKEDITOR.instances) {
 		inst.updateElement();
 	}
+	*/
 }
 
 // Selected link add "selected" class

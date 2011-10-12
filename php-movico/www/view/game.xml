@@ -5,22 +5,29 @@
 		<div>
 			<h2>Wedstrijdinformatie</h2>
 			<div>
-				<p>
-					<h3>
-						<outputText value="#{GameDetailsBean.game.homeTeamStr}"/>
-						<outputText class="game-score" value="#{GameDetailsBean.game.homeTeamPts} - #{GameDetailsBean.game.outTeamPts}"/>
-						<outputText value="#{GameDetailsBean.game.outTeamStr}"/>
-					</h3>
-				</p>
-				<p>
-					<outputText class="label" value="Wedstrijdverslag: "/>
-					<outputText value="#{GameDetailsBean.game.review}" rendered="#{GameDetailsBean.game.hasReview}"/>
-					
-					<panelGroup rendered="#{!GameDetailsBean.game.hasReview}">
-						<outputText value="Er is nog geen verslag toegevoegd voor deze wedstrijd"/>
-						<renderLink view="admin/games/edit" value="Wees de eerste!" rendered="#{LoginBean.admin}"/>
+				<panelGrid columns="3">
+					<panelGroup>
+						<h3><outputText value="#{GameDetailsBean.game.homeTeamStr}"/></h3>
+						<dataTable var="player" value="#{GameDetailsBean.game.homeParticipants}" rendered="#{GameDetailsBean.game.homeTeamLanaken}">
+							<column>
+								<outputText value="#{player.fullName}"/>
+							</column>
+						</dataTable>
 					</panelGroup>
-				</p>
+					<h3><outputText class="game-score" value="#{GameDetailsBean.game.homeTeamPts} - #{GameDetailsBean.game.outTeamPts}"/></h3>
+					<panelGroup>
+						<h3><outputText value="#{GameDetailsBean.game.outTeamStr}"/></h3>
+						<dataTable var="player" value="#{GameDetailsBean.game.outParticipants}" rendered="#{GameDetailsBean.game.outTeamLanaken}">
+							<column>
+								<outputText value="#{player.fullName}"/>
+							</column>
+						</dataTable>
+					</panelGroup>
+				</panelGrid>
+				<panelGroup rendered="#{GameDetailsBean.game.hasReview}">
+					<h3>Wedstrijdverslag</h3>
+					<p><outputText value="#{GameDetailsBean.game.review}"/></p>
+				</panelGroup>
 				<panelGroup rendered="#{LoginBean.gameManager}">
 					<p>
 						<renderLink view="admin/games/edit" value="Aanpassen">

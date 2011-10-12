@@ -7,6 +7,7 @@ class EntityServiceUtilGenerator {
 		$content .= $this->generateCustomServices($entity);
 		foreach($entity->getFinders() as $finder) {
 			$content .= $this->generateFinder($finder->getMethodSignature());
+			$content .= $this->generateDeleteBy($finder->getDeleteByMethodSignature());
 		}
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
 			$content .= $this->generateFinder($property->getFinderSignature());
@@ -79,6 +80,12 @@ class EntityServiceUtilGenerator {
 	private function generateFinder($signature) {
 		return "\tpublic static function $signature {\n".
 			"\t\treturn self::getService()->".str_replace("=-1", "", $signature).";\n".
+			"\t}\n\n";
+	}
+	
+	private function generateDeleteBy($signature) {
+		return "\tpublic static function $signature {\n".
+			"\t\tself::getService()->".$signature.";\n".
 			"\t}\n\n";
 	}
 

@@ -5,12 +5,24 @@ class PingpongClubServiceBase {
 		return $this->getPersistence()->findByName($name, $from, $limit);
 	}
 
+	public function deleteByName($name) {
+		$this->getPersistence()->deleteByName($name);
+	}
+
 	public function findByShortName($shortName, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByShortName($shortName, $from, $limit);
 	}
 
+	public function deleteByShortName($shortName) {
+		$this->getPersistence()->deleteByShortName($shortName);
+	}
+
 	public function findByNumber($number, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByNumber($number, $from, $limit);
+	}
+
+	public function deleteByNumber($number) {
+		$this->getPersistence()->deleteByNumber($number);
 	}
 
 	public function createPingpongClub($pk=0) {

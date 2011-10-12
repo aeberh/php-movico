@@ -6,6 +6,7 @@ class EntityServiceBaseGenerator {
 		$content = "<?php\nclass $className {\n\n";
 		foreach($entity->getFinders() as $finder) {
 			$content .= $this->generateFinder($finder->getMethodSignature());
+			$content .= $this->generateDeleteBy($finder->getDeleteByMethodSignature());
 		}
 		$content .= $this->generateBaseServices($entity);
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
@@ -57,6 +58,10 @@ class EntityServiceBaseGenerator {
 	
 	private function generateFinder($signature) {
 		return "\tpublic function $signature {\n\t\treturn \$this->getPersistence()->".str_replace("=-1", "", $signature).";\n\t}\n\n";
+	}
+	
+	private function generateDeleteBy($signature) {
+		return "\tpublic function $signature {\n\t\t\$this->getPersistence()->".$signature.";\n\t}\n\n";
 	}
 
 }

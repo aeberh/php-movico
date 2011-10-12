@@ -17,6 +17,10 @@ class RoleServiceUtil {
 		return self::getService()->findByName($name, $from, $limit);
 	}
 
+	public static function deleteByName($name) {
+		self::getService()->deleteByName($name);
+	}
+
 	public static function findByPlayerId($playerId, $from, $limit) {
 		return self::getService()->findByPlayerId($playerId, $from, $limit);
 	}

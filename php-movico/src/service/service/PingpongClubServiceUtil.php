@@ -21,12 +21,24 @@ class PingpongClubServiceUtil {
 		return self::getService()->findByName($name, $from, $limit);
 	}
 
+	public static function deleteByName($name) {
+		self::getService()->deleteByName($name);
+	}
+
 	public static function findByShortName($shortName, $from=-1, $limit=-1) {
 		return self::getService()->findByShortName($shortName, $from, $limit);
 	}
 
+	public static function deleteByShortName($shortName) {
+		self::getService()->deleteByShortName($shortName);
+	}
+
 	public static function findByNumber($number, $from=-1, $limit=-1) {
 		return self::getService()->findByNumber($number, $from, $limit);
+	}
+
+	public static function deleteByNumber($number) {
+		self::getService()->deleteByNumber($number);
 	}
 
 	public static function createPingpongClub($pk=0) {

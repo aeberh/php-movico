@@ -41,12 +41,24 @@ class PingpongPlayerServiceUtil {
 		return self::getService()->findByEmailAddress($emailAddress, $from, $limit);
 	}
 
+	public static function deleteByEmailAddress($emailAddress) {
+		self::getService()->deleteByEmailAddress($emailAddress);
+	}
+
 	public static function findByActive($active, $from=-1, $limit=-1) {
 		return self::getService()->findByActive($active, $from, $limit);
 	}
 
+	public static function deleteByActive($active) {
+		self::getService()->deleteByActive($active);
+	}
+
 	public static function findByLatest($active, $from=-1, $limit=-1) {
 		return self::getService()->findByLatest($active, $from, $limit);
+	}
+
+	public static function deleteByLatest($active) {
+		self::getService()->deleteByLatest($active);
 	}
 
 	public static function findByRoleId($roleId, $from, $limit) {

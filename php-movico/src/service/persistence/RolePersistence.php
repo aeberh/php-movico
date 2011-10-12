@@ -18,6 +18,12 @@ class RolePersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByName($name) {
+		$whereClause = "`name`='".Singleton::create("NullConverter")->fromDOMtoDB($name)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("Role");
+	}
+
 	public function findByPrimaryKey($roleId) {
 		if(parent::$dbCache->hasSingle("Role", $roleId)) {
 			return parent::$dbCache->getSingle("Role", $roleId);

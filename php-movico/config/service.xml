@@ -107,6 +107,16 @@
 			<order-column name="date" order-by="asc"/>
 		</order>
 	</entity>
+	<entity name="GameParticipance">
+		<column name="partId" type="int" primary="true" auto-increment="true"/>
+		<column name="gameId" type="int"/>
+		<column name="teamId" type="int"/>
+		<column name="playerId" type="int"/>
+		<finder name="GameAndTeam">
+			<finder-column name="gameId"/>
+			<finder-column name="teamId"/>
+		</finder>
+	</entity>
 	<entity name="Role">
 		<column name="roleId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="30"/>

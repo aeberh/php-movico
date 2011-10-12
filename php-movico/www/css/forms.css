@@ -101,3 +101,23 @@ form.filter {
 input#news-title {
 	width: 200px;
 }
+
+select[multiple] {
+	height: 150px;
+	width: 150px;
+}
+
+.MovicoTransferListBox div {
+	display: inline-table;
+	vertical-align: middle;
+}
+
+.MovicoTransferListBox button {
+	display: block;
+	width: 40px;
+	margin: 10px;
+}
+
+.MovicoTransferListBoxControls {
+	text-align: center;
+}

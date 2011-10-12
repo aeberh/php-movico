@@ -9,7 +9,7 @@ class PingpongTeamService extends PingpongTeamServiceBase {
 		return $this->updatePingpongTeam($team);
 	}
 	
-	public function getOrCreateClubId($clubId, $teamNo) {
+	public function getOrCreateTeamId($clubId, $teamNo) {
 		$teamStr = String::create($teamNo);
 		$recreation = $teamStr->startsWith("REC");
 		$teamNo = $teamStr->getLastChar();

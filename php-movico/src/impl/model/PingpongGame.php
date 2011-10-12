@@ -63,6 +63,38 @@ class PingpongGame extends PingpongGameModel {
 		}
 	}
 	
+	public function getHomeParticipants() {
+		return $this->getParticipants($this->homeTeamId, "player");
+	}
+	
+	public function getOutParticipants() {
+		return $this->getParticipants($this->outTeamId, "player");
+	}
+	
+	public function getHomeParticipantIds() {
+		return $this->getParticipants($this->homeTeamId, "playerId", "playerId");
+	}
+	
+	public function getOutParticipantIds() {
+		return $this->getParticipants($this->outTeamId, "playerId", "playerId");
+	}
+	
+	private function getParticipants($teamId, $keyGetter, $valueGetter=null) {
+		$parts = GameParticipanceServiceUtil::findByGameAndTeam($this->gameId, $teamId);
+		if(is_null($valueGetter)) {
+			return ArrayUtil::toArray($parts, $keyGetter);
+		}
+		return ArrayUtil::toIndexedArray($parts, $keyGetter, $valueGetter);
+	}
+	
+	public function isHomeTeamLanaken() {
+		return $this->getHomeTeam()->isLanaken();
+	}
+	
+	public function isOutTeamLanaken() {
+		return $this->getOutTeam()->isLanaken();
+	}
+	
 	private function getTeamStr($teamId) {
 		return PingpongTeamServiceUtil::getPingpongTeam($teamId)->getTeamStr();
 	}

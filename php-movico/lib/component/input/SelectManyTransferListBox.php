@@ -8,15 +8,16 @@ class SelectManyTransferListBox extends SelectManyListBox {
 			$val = array();
 		}
 		$optionList = $this->getConvertedValue($this->options, $rowIndex);
-		$result = "<div class=\"MovicoTransferListBox\"><select id=\"{$this->id}left\" multiple=\"multiple\">";
+		$result = "<div class=\"MovicoTransferListBox\">".
+			"<div><select id=\"{$this->id}left\" multiple=\"multiple\">";
 		foreach($optionList as $oValue=>$oLabel) {
 			if(!in_array($oValue, $val)) {
 				$result .= "<option value=\"$oValue\">$oLabel</option>";
 			}
 		}
-		$result.="</select>".
-			"<button>&lt;&lt;</button><button>&lt;</button><button>&gt;</button><button>&gt;&gt;</button>".
-			"<select id=\"{$this->id}right\" multiple=\"multiple\">";
+		$result.="</select></div>".
+			"<div class=\"MovicoTransferListBoxControls\"><button>&lt;&lt;</button><button>&lt;</button><button>&gt;</button><button>&gt;&gt;</button></div>".
+			"<div><select id=\"{$this->id}right\" multiple=\"multiple\">";
 		reset($optionList);
 		foreach($optionList as $oValue=>$oLabel) {
 			if(in_array($oValue, $val)) {
@@ -30,7 +31,7 @@ class SelectManyTransferListBox extends SelectManyListBox {
 				$result .= "<option selected=\"selected\" value=\"$oValue\">$oLabel</option>";
 			}
 		}
-		$result .= "</select></div>";
+		$result .= "</select></div></div>";
 		return $result;
 	}
 	

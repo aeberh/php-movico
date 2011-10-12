@@ -104,7 +104,7 @@
 					<column class="game-info">
 						<renderLink view="game" rendered="#{game.hasReview}">
 							<param value="#{game.gameId}"/>
-							<img src="info.png" alt="Info" popup="Wedstrijdinfo"/>
+							<img src="info.png" alt="Info" tooltip="Wedstrijdinfo"/>
 						</renderLink>
 					</column>
 					<column class="game-edit">

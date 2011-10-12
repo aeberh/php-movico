@@ -140,6 +140,8 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT fileBrowser EMPTY>
+
 <!ELEMENT outputLabel EMPTY>
 <!ATTLIST outputLabel
 	value CDATA #REQUIRED

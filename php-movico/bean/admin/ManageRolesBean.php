@@ -25,11 +25,6 @@ class ManageRolesBean extends RequestBean {
 		return null;
 	}
 	
-	public function getAllPlayers() {
-		$players = PingpongPlayerServiceUtil::getUsersSortedByFirstName();
-		return ArrayUtil::toIndexedArray($players, "playerId", "fullName");
-	}
-	
 	public function getPlayersWithRole() {
 		return $this->selected->getUsers();
 	}

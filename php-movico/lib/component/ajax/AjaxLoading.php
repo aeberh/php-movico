@@ -7,7 +7,6 @@ class AjaxLoading extends Component {
 		if(!parent::$settings->isAjaxEnabled()) {
 			return "";
 		}
-		$src = isset($this->src) ? $this->src : "loading.gif";
 		return "<img status=\"idle\" src=\"".parent::$settings->getContextPath()."/lib/component/ajax/img/connect_idle.gif\" class=\"".self::CLASS_NAME."\"/>";
 	}
 	

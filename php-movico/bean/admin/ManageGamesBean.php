@@ -10,17 +10,23 @@ class ManageGamesBean extends RequestBean {
 	
 	private $redirectUrl;
 	
+	private $homeParticipants;
+	private $outParticipants;
+	
 	const GAMES_PER_PAGE = 20;
 	
 	// Constructor
 	
 	public function __construct() {
 		if(Context::hasParam(0)) {
-			$this->selected = PingpongGameServiceUtil::getPingpongGame(Context::getParam(0));
+			$gameId = Context::getParam(0);
+			$this->selected = PingpongGameServiceUtil::getPingpongGame($gameId);
 			$this->homeClubId = $this->selected->getHomeTeam()->getClubId();
 			$this->homeTeamNo = $this->selected->getHomeTeam()->getFullTeamNo();
 			$this->outClubId = $this->selected->getOutTeam()->getClubId();
 			$this->outTeamNo = $this->selected->getOutTeam()->getFullTeamNo();
+			$this->homeParticipants = $this->selected->getHomeParticipantIds();
+			$this->outParticipants = $this->selected->getOutParticipantIds();
 		} else {
 			$this->selected = new PingpongGame();
 		}
@@ -28,7 +34,7 @@ class ManageGamesBean extends RequestBean {
 			$this->redirectUrl = str_replace("_", "/", Context::getParam(1));
 		}
 	}
-	
+
 	// Action methods
 	
 	public function create() {
@@ -44,7 +50,7 @@ class ManageGamesBean extends RequestBean {
 	
 	public function save() {
 		PingpongGameServiceUtil::update($this->selected->getGameId(), $this->selected->getDate(), $this->homeClubId, $this->homeTeamNo, $this->outClubId, $this->outTeamNo,
-			$this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview());
+			$this->selected->getHomeTeamPts(), $this->selected->getOutTeamPts(), $this->selected->getReview(), $this->homeParticipants, $this->outParticipants);
 		MessageUtil::success("Wedstrijd werd succesvol aangepast!");
 		return empty($this->redirectUrl) ? "admin/games/overview" : $this->redirectUrl;
 	}
@@ -124,6 +130,22 @@ class ManageGamesBean extends RequestBean {
 	
 	public function setRedirectUrl($redirectUrl) {
 		$this->redirectUrl = $redirectUrl;
+	}
+	
+	public function getHomeParticipants() {
+		return $this->homeParticipants;
+	}
+	
+	public function setHomeParticipants($homeParticipants) {
+		$this->homeParticipants = $homeParticipants;
+	}
+	
+	public function setOutParticipants($outParticipants) {
+		$this->outParticipants = $outParticipants;
+	}
+	
+	public function getOutParticipants() {
+		return $this->outParticipants;
 	}
 	
 }

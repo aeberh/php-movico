@@ -2,10 +2,6 @@
 	display: block;
 }
 
-.club-contact span:first-letter {
-	font-weight: bold;
-}
-
 #contact-link a.selected {
 	display: none;
 }

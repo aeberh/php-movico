@@ -68,6 +68,15 @@ CREATE TABLE `PingpongGame` (
 	KEY `IX_OUTTEAM` (`outTeamId`)
 );
 
+CREATE TABLE `GameParticipance` (
+	`partId` INTEGER NOT NULL AUTO_INCREMENT,
+	`gameId` INTEGER NOT NULL,
+	`teamId` INTEGER NOT NULL,
+	`playerId` INTEGER NOT NULL,
+	PRIMARY KEY (`partId`),
+	KEY `IX_GAMEANDTEAM` (`gameId`, `teamId`)
+);
+
 CREATE TABLE `Role` (
 	`roleId` INTEGER NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(30) NOT NULL,

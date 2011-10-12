@@ -5,6 +5,10 @@ class RoleServiceBase {
 		return $this->getPersistence()->findByName($name, $from, $limit);
 	}
 
+	public function deleteByName($name) {
+		$this->getPersistence()->deleteByName($name);
+	}
+
 	public function createRole($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

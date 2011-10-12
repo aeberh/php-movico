@@ -7,6 +7,7 @@ class EntityPersistenceGenerator {
 			"\tconst TABLE = \"{$entity->getTable()}\";\n\n";
 		foreach($entity->getFinders() as $finder) {
 			$content .= $this->generateFinder($finder, $entity);
+			$content .= $this->generateDeleteBy($finder, $entity);
 		}
 		$content .= $this->generateFindByPrimaryKey($entity);
 		$content .= $this->generateCreate($entity);
@@ -95,6 +96,14 @@ class EntityPersistenceGenerator {
 			$result .= "\t\tparent::\$dbCache->setFinder('{$entity->getName()}', \$whereClause, \$result);\n";
 		}
 		return $result."\t\treturn \$result;\n\t}\n\n";
+	}
+	
+	private function generateDeleteBy(Finder $finder, Entity $entity) {
+		$result = "\tpublic function {$finder->getDeleteByMethodSignature()} {\n".
+			"\t\t\$whereClause = \"".implode(" AND ",$finder->getWhereClauses())."\";\n";
+		$result .= "\t\t\$this->db->updateQuery(\"DELETE FROM \".self::TABLE.\" WHERE \$whereClause\");\n".
+			"\t\tparent::\$dbCache->resetEntity(\"{$entity->getName()}\");\n\t}\n\n";
+		return $result;
 	}
 	
 	private function generateFindByPrimaryKey(Entity $entity) {

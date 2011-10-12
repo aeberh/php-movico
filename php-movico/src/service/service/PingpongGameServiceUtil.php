@@ -9,8 +9,8 @@ class PingpongGameServiceUtil {
 		return self::getService()->delete($game);
 	}
 
-	public static function update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review) {
-		return self::getService()->update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review);
+	public static function update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review, $homeParticipants, $outParticipants) {
+		return self::getService()->update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review, $homeParticipants, $outParticipants);
 	}
 
 	public static function filterByWeek($weekIndex) {
@@ -45,16 +45,32 @@ class PingpongGameServiceUtil {
 		return self::getService()->findByAfterDate($date, $from, $limit);
 	}
 
+	public static function deleteByAfterDate($date) {
+		self::getService()->deleteByAfterDate($date);
+	}
+
 	public static function findByBeforeDate($date, $from=-1, $limit=-1) {
 		return self::getService()->findByBeforeDate($date, $from, $limit);
+	}
+
+	public static function deleteByBeforeDate($date) {
+		self::getService()->deleteByBeforeDate($date);
 	}
 
 	public static function findByHomeTeam($homeTeamId, $from=-1, $limit=-1) {
 		return self::getService()->findByHomeTeam($homeTeamId, $from, $limit);
 	}
 
+	public static function deleteByHomeTeam($homeTeamId) {
+		self::getService()->deleteByHomeTeam($homeTeamId);
+	}
+
 	public static function findByOutTeam($outTeamId, $from=-1, $limit=-1) {
 		return self::getService()->findByOutTeam($outTeamId, $from, $limit);
+	}
+
+	public static function deleteByOutTeam($outTeamId) {
+		self::getService()->deleteByOutTeam($outTeamId);
 	}
 
 	public static function createPingpongGame($pk=0) {

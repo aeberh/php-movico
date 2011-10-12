@@ -5,8 +5,16 @@ class PingpongTeamServiceBase {
 		return $this->getPersistence()->findByClubAndTeam($clubId, $teamNo, $recreation, $from, $limit);
 	}
 
+	public function deleteByClubAndTeam($clubId, $teamNo, $recreation) {
+		$this->getPersistence()->deleteByClubAndTeam($clubId, $teamNo, $recreation);
+	}
+
 	public function findByClub($clubId, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByClub($clubId, $from, $limit);
+	}
+
+	public function deleteByClub($clubId) {
+		$this->getPersistence()->deleteByClub($clubId);
 	}
 
 	public function createPingpongTeam($pk=0) {

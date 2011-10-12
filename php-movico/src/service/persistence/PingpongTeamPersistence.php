@@ -18,6 +18,12 @@ class PingpongTeamPersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByClubAndTeam($clubId, $teamNo, $recreation) {
+		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."' AND `teamNo`='".Singleton::create("NullConverter")->fromDOMtoDB($teamNo)."' AND `recreation`='".Singleton::create("BooleanConverter")->fromDOMtoDB($recreation)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongTeam");
+	}
+
 	public function findByClub($clubId, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'".$limitStr;
@@ -28,6 +34,12 @@ class PingpongTeamPersistence extends Persistence {
 		$result = $this->getAsObjects($result->getResult());
 		parent::$dbCache->setFinder('PingpongTeam', $whereClause, $result);
 		return $result;
+	}
+
+	public function deleteByClub($clubId) {
+		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongTeam");
 	}
 
 	public function findByPrimaryKey($teamId) {

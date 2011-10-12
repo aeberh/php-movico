@@ -18,6 +18,12 @@ class PingpongClubPersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByName($name) {
+		$whereClause = "`name`='".Singleton::create("NullConverter")->fromDOMtoDB($name)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongClub");
+	}
+
 	public function findByShortName($shortName, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`shortName`='".Singleton::create("NullConverter")->fromDOMtoDB($shortName)."'ORDER BY `shortName` asc".$limitStr;
@@ -33,6 +39,12 @@ class PingpongClubPersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByShortName($shortName) {
+		$whereClause = "`shortName`='".Singleton::create("NullConverter")->fromDOMtoDB($shortName)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongClub");
+	}
+
 	public function findByNumber($number, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
 		$whereClause = "`number`='".Singleton::create("NullConverter")->fromDOMtoDB($number)."'ORDER BY `shortName` asc".$limitStr;
@@ -46,6 +58,12 @@ class PingpongClubPersistence extends Persistence {
 		$result = $this->getAsObject($result->getSingleRow());
 		parent::$dbCache->setFinder('PingpongClub', $whereClause, $result);
 		return $result;
+	}
+
+	public function deleteByNumber($number) {
+		$whereClause = "`number`='".Singleton::create("NullConverter")->fromDOMtoDB($number)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("PingpongClub");
 	}
 
 	public function findByPrimaryKey($clubId) {

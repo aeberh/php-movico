@@ -4,6 +4,8 @@ class Settings {
 	private $config;
 	private $title;
 	
+	private $fileUploadDir;
+	
 	private $environment;
 	private $ajaxEnabled;
 	private $ajaxTimeout;
@@ -46,6 +48,7 @@ class Settings {
 		$this->smtpDefaultFromEmail = $config->getParam("smtp_default_from_email", "")->getValue();
 		$this->smtpDefaultFromName = $config->getParam("smtp_default_from_name", "")->getValue();
 		$this->smtpAuth = $config->getParam("smtp_auth", "false")->getValue();
+		$this->fileUploadDir = $config->getParam("file_upload_dir", "/uploads")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -70,6 +73,10 @@ class Settings {
 	
 	public function setRootPath($rootPath) {
 		$this->rootPath = $rootPath;
+	}
+	
+	public function getFileUploadDir() {
+		return $this->fileUploadDir;
 	}
 	
 	public function getRootPath() {

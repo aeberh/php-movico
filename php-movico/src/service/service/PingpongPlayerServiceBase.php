@@ -5,12 +5,24 @@ class PingpongPlayerServiceBase {
 		return $this->getPersistence()->findByEmailAddress($emailAddress, $from, $limit);
 	}
 
+	public function deleteByEmailAddress($emailAddress) {
+		$this->getPersistence()->deleteByEmailAddress($emailAddress);
+	}
+
 	public function findByActive($active, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByActive($active, $from, $limit);
 	}
 
+	public function deleteByActive($active) {
+		$this->getPersistence()->deleteByActive($active);
+	}
+
 	public function findByLatest($active, $from=-1, $limit=-1) {
 		return $this->getPersistence()->findByLatest($active, $from, $limit);
+	}
+
+	public function deleteByLatest($active) {
+		$this->getPersistence()->deleteByLatest($active);
 	}
 
 	public function createPingpongPlayer($pk=0) {

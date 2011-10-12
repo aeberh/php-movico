@@ -3,22 +3,26 @@ class PingpongGameService extends PingpongGameServiceBase {
 
 	public function create($date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo) {
 		$game = $this->createPingpongGame();
-		return $this->doUpdate($game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, 0, 0, "");
+		return $this->doUpdate($game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, 0, 0, "", array(), array());
 	}
 	
 	public function delete(PingpongGame $game) {
 		$this->deletePingpongGame($game->getGameId());
 	}
 	
-	public function update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review) {
+	public function update($gameId, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review, $homeParticipants, $outParticipants) {
 		$game = $this->getPingpongGame($gameId);
-		return $this->doUpdate($game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review);
+		return $this->doUpdate($game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review, $homeParticipants, $outParticipants);
 	}
 	
-	private function doUpdate(PingpongGame $game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review) {
+	private function doUpdate(PingpongGame $game, $date, $homeClubId, $homeTeamNo, $outClubId, $outTeamNo, $homeTeamPts, $outTeamPts, $review, $homeParticipants, $outParticipants) {
+		$homeTeamId = PingpongTeamServiceUtil::getOrCreateTeamId($homeClubId, $homeTeamNo);
+		$outTeamId = PingpongTeamServiceUtil::getOrCreateTeamId($outClubId, $outTeamNo);
+		GameParticipanceServiceUtil::update($game->getGameId(), $homeTeamId, $homeParticipants);
+		GameParticipanceServiceUtil::update($game->getGameId(), $outTeamId, $outParticipants);
 		$game->setDate($date);
-		$game->setHomeTeamId(PingpongTeamServiceUtil::getOrCreateClubId($homeClubId, $homeTeamNo));
-		$game->setOutTeamId(PingpongTeamServiceUtil::getOrCreateClubId($outClubId, $outTeamNo));
+		$game->setHomeTeamId($homeTeamId);
+		$game->setOutTeamId($outTeamId);
 		$game->setHomeTeamPts($homeTeamPts);
 		$game->setOutTeamPts($outTeamPts);
 		$game->setReview($review);

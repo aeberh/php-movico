@@ -20,8 +20,7 @@ class View extends Component {
 			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<meta name=\"description\" content=\"$description\">\n".
 			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.4.min.js\"></script>".
-			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>".
-			"<script type=\"text/javascript\" src=\"$context/lib/component/input/ckeditor/ckeditor.js\"></script>";
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>";
 		if(parent::$settings->isGmapsEnabled()) {
 			$result .= "<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>";
 		}
@@ -35,6 +34,7 @@ class View extends Component {
 		$ajaxJs = $ajax ? "true" : "false";
 		$result .= "
 				startupActions('$ctx', $ajaxJs);
+				//unloadHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();

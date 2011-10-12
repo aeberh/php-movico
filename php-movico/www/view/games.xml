@@ -55,7 +55,7 @@
 						<renderLink view="admin/games/edit" rendered="#{LoginBean.gameManager}">
 							<param value="#{game.gameId}"/>
 							<param value="#{GamesBean.currentUrl}"/>
-							<img alt="Aanpassen" src="edit.png" popup="Aanpassen"/>
+							<img alt="Aanpassen" src="edit.png" tooltip="Aanpassen"/>
 						</renderLink>
 					</column>
 				</dataTable>

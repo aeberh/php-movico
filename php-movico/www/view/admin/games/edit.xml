@@ -18,11 +18,23 @@
 				<selectOneMenu value="#{ManageGamesBean.homeClubId}" options="#{ManageGamesBean.clubs}"/>
 				<selectOneMenu value="#{ManageGamesBean.homeTeamNo}" options="#{ApplicationConstants.teamNos}"/>
 			</p>
+			<panelGroup rendered="#{ManageGamesBean.selected.homeTeamLanaken}">
+				<p>
+					<outputLabel for="home-participants" value="Ploegopstelling (verplaats van links naar rechts)"/>
+					<selectManyTransferListBox options="#{ApplicationConstants.playersMap}" value="#{ManageGamesBean.homeParticipants}"/>
+				</p>
+			</panelGroup>
 			<p>
 				<outputLabel for="out" value="Uitploeg"/>
 				<selectOneMenu value="#{ManageGamesBean.outClubId}" options="#{ManageGamesBean.clubs}"/>
 				<selectOneMenu value="#{ManageGamesBean.outTeamNo}" options="#{ApplicationConstants.teamNos}"/>
 			</p>
+			<panelGroup rendered="#{ManageGamesBean.selected.outTeamLanaken}">
+				<p>
+					<outputLabel for="out-participants" value="Ploegopstelling (verplaats van links naar rechts)"/>
+					<selectManyTransferListBox options="#{ApplicationConstants.playersMap}" value="#{ManageGamesBean.outParticipants}"/>
+				</p>
+			</panelGroup>
 			<p>
 				<outputLabel for="score" value="Score"/>
 				<inputText class="game-admin-pts" value="#{ManageGamesBean.selected.homeTeamPts}"/>

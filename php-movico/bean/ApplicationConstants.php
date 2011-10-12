@@ -32,6 +32,11 @@ class ApplicationConstants extends ApplicationBean {
 		$this->roles = array(self::ROLE_GLOBAL_ADMIN, self::ROLE_NEWS_ADMIN, self::ROLE_CLUB_ADMIN, self::ROLE_GAME_ADMIN, self::ROLE_PLAYER_ADMIN);
 	}
 	
+	public function getPlayersMap() {
+		$players = PingpongPlayerServiceUtil::getUsersSortedByFirstName();
+		return ArrayUtil::toIndexedArray($players, "playerId", "fullName");
+	}
+	
 	public function getDayFormat() {
 		return self::DAY_FORMAT;
 	}
