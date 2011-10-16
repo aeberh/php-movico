@@ -16,6 +16,9 @@
 				<panelGroup rendered="#{LoginBean.gameManager}">
 					<li><renderLink view="admin/games/overview" value="Wedstrijden" selectedPrefix="admin/games"/></li>
 				</panelGroup>
+				<panelGroup rendered="#{LoginBean.pictureManager}">
+					<li><renderLink view="admin/albums/manage" value="Fotoalbums"/></li>
+				</panelGroup>
 				<panelGroup rendered="#{LoginBean.admin}">
 					<li><renderLink view="admin/roles/overview" value="Rollen" selectedPrefix="admin/roles"/></li>
 				</panelGroup>

@@ -34,7 +34,7 @@ class View extends Component {
 		$ajaxJs = $ajax ? "true" : "false";
 		$result .= "
 				startupActions('$ctx', $ajaxJs);
-				//unloadHtmlAreas();
+				updateHtmlAreas();
 			});
 		</script>";
 		$result .= $this->renderHeadChildren();

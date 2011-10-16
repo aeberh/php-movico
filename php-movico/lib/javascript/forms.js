@@ -136,7 +136,7 @@ function getCurrentView() {
 
 // Autofocus
 function autoFocus() {
-	$("input.autofocus").focus();
+	$("input[autofocus]").focus();
 }
 
 // Pagination
@@ -189,11 +189,12 @@ function unloadHtmlAreas() {
 }
 
 function updateHtmlAreas() {
-	/*
+	if(typeof(CKEDITOR) === 'undefined') {
+		return;
+	}
 	for(var inst in CKEDITOR.instances) {
 		inst.updateElement();
 	}
-	*/
 }
 
 // Selected link add "selected" class
@@ -234,7 +235,7 @@ function doAjaxRequest(url, data, type, ajaxTimeout, ctx, mustPushState) {
 	$("button").attr("disabled", "disabled");
 	$("input").attr("readonly", "readonly");
 	
-	updateHtmlAreas();
+	//updateHtmlAreas();
 	$.ajax({
 		url: url+"?jquery=1",
 		data: data,

@@ -27,7 +27,7 @@ abstract class AbstractInput extends Component {
 		}
 		$val = $this->getConvertedValue($this->value, $row);
 		$type = $this->getType();
-		$focus = $this->autoFocus === "true" ? " class=\"autofocus\"" : "";
+		$focus = $this->autoFocus === "true" ? " autoFocus=\"true\"" : "";
 		return "<input class=\"".$this->class."\" id=\"".$this->id."\" maxlength=\"".$this->maxLength."\" type=\"$type\" name=\"$name\" value=\"$val\"$focus/>";
 	}
 	

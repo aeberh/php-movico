@@ -41,6 +41,7 @@
 		<order>
 			<order-column name="ranking" order-by="asc"/>
 			<order-column name="lastName" order-by="asc"/>
+			<order-column name="firstName" order-by="asc"/>
 		</order>
 	</entity>
 	<entity name="PingpongClub">

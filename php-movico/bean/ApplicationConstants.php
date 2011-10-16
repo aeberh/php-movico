@@ -11,6 +11,7 @@ class ApplicationConstants extends ApplicationBean {
 	const ROLE_NEWS_ADMIN = "NewsManager";
 	const ROLE_CLUB_ADMIN = "ClubManager";
 	const ROLE_GAME_ADMIN = "GameManager";
+	const ROLE_PICTURE_ADMIN = "PictureManager";
 	
 	private $teamNos;
 	private $rankings;

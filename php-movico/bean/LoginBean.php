@@ -66,6 +66,10 @@ class LoginBean extends SessionBean {
 		return $this->hasRole(ApplicationConstants::ROLE_PLAYER_ADMIN);
 	}
 	
+	public function isPictureManager() {
+		return $this->hasRole(ApplicationConstants::ROLE_PICTURE_ADMIN);
+	}
+	
 	public function isSpecialUser() {
 		return $this->isLoggedIn() && count($this->player->getRoles())>0;
 	}

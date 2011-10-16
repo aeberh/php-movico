@@ -5,7 +5,7 @@ class PingpongPlayerPersistence extends Persistence {
 
 	public function findByEmailAddress($emailAddress, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$whereClause = "`emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'ORDER BY `ranking` asc, `lastName` asc".$limitStr;
+		$whereClause = "`emailAddress`='".Singleton::create("NullConverter")->fromDOMtoDB($emailAddress)."'ORDER BY `ranking` asc, `lastName` asc, `firstName` asc".$limitStr;
 		if(parent::$dbCache->hasFinder('PingpongPlayer', $whereClause)) {
 			return parent::$dbCache->getFinder('PingpongPlayer', $whereClause);
 		}
@@ -26,7 +26,7 @@ class PingpongPlayerPersistence extends Persistence {
 
 	public function findByActive($active, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$whereClause = "`active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `ranking` asc, `lastName` asc".$limitStr;
+		$whereClause = "`active`='".Singleton::create("BooleanConverter")->fromDOMtoDB($active)."'ORDER BY `ranking` asc, `lastName` asc, `firstName` asc".$limitStr;
 		if(parent::$dbCache->hasFinder('PingpongPlayer', $whereClause)) {
 			return parent::$dbCache->getFinder('PingpongPlayer', $whereClause);
 		}
@@ -111,7 +111,7 @@ class PingpongPlayerPersistence extends Persistence {
 		if(parent::$dbCache->hasAll('PingpongPlayer', $from, $limit)) {
 			return parent::$dbCache->getAll('PingpongPlayer', $from, $limit);
 		}
-		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `ranking` asc, `lastName` asc LIMIT $from,$limit")->getResult();
+		$rows = $this->db->selectQuery("SELECT * FROM ".self::TABLE." ORDER BY `ranking` asc, `lastName` asc, `firstName` asc LIMIT $from,$limit")->getResult();
 		$objects = $this->getAsObjects($rows);
 		parent::$dbCache->setAll('PingpongPlayer', $objects, $from, $limit);
 		return $objects;
