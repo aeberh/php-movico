@@ -1,9 +1,27 @@
 <?xml version="1.0"?>
-<composition xmlns="http://php-movi.co" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://php-movi.co view.xsd" template="main">
-	<define name="title">
-		<outputText value="Movico Examples"/>
-	</define>
-	<define name="body">
-		<outputText value="Please select an example on the left"/>
-	</define>
-</composition>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<view title="Wenslijstjes">
+	<css src="styles.css"/>
+	<h1>Kerstlijstjes Mesotten</h1>
+	<div id="wrapper">
+		<div class="left">
+			<img src="tree.png" alt="Kerstboom"/>
+		</div>
+		<div class="left">
+			<form>
+				<panelGroup rendered="#{!XmasBean.listVisible}">
+					<h2>Wiens lijstje wil je zien?</h2>
+				</panelGroup>
+				<selectOneMenu options="#{XmasBean.names}" value="#{XmasBean.name}" addEmptyOption="true" action="#{XmasBean.showList}"/>
+				<message/>
+				<panelGroup rendered="#{XmasBean.listVisible}">
+					<outputText value="Laatst bijgewerkt op "/>
+					<outputDate value="#{XmasBean.wishList.updateDate}"/>
+					<p><inputTextArea value="#{XmasBean.wishList.list}"/></p>
+					<p><commandButton action="#{XmasBean.saveList}" value="Opslaan"/></p>
+				</panelGroup>
+			</form>
+		</div>
+		<div class="clear"/>
+	</div>
+</view>

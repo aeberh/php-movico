@@ -1,0 +1,112 @@
+body, td, textarea, select {
+	font-family: 'Trebuchet MS',Tahoma,Arial;
+	font-size: 14px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #274783 url('../img/gradient.png') repeat-x;
+	cursor: default;
+}
+
+.left {
+	float: left;
+	vertical-align: top;
+}
+
+select {
+	margin-right: 15px;
+}
+
+span {
+	color: #aaa;
+	font-size: 11px;
+}
+
+label {
+	margin-right: 10px;
+	color: #ddd;
+	font-size: 1.2em;
+}
+
+textarea {
+	width: 400px;
+	height: 400px;
+	opacity: 0.8;
+	padding: 5px;
+}
+
+textarea, button, select {
+	border: 2px solid #aaa;
+}	
+
+select {
+	padding: 5px;
+	cursor: pointer;
+}
+
+option {
+	cursor: pointer;
+}
+
+button {
+	padding: 7px;
+	color: #444;
+	font-weight: bold;
+	border-radius: 5px;
+	background: #ccc;
+	font-size: 1.1em;
+	height: 35px;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button::-moz-focus-inner { border: 0; }
+
+.msg {
+	font-weight: bold;
+	font-size: 1em;
+	opacity: 0.5;
+	color: white;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	padding: 15px;
+	margin: 10px 0;
+}
+
+.info {
+	background: green;
+}
+
+h1 {
+	font-family: Trebuchet MS;
+	font-size: 5em;
+	color: #ddd;
+	text-shadow: 2px 2px 2px #000;
+	text-align: center;
+	padding: 0;
+	margin: 50px 0;
+}
+
+h2 {
+	text-align: center;
+	font-size: 1.2em;
+	color: #ddd;
+}
+
+#right {
+	margin: 0;
+	padding: 25px;
+	background: #223F75;
+	border-radius: 25px;
+	-moz-border-radius: 25px;
+	box-shadow: 2px 2px 2px #888;
+}
+
+.fm p {
+	text-align: center;
+	color: #ddd;
+}
