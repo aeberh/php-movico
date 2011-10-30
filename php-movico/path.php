@@ -1,4 +1,4 @@
-<?
+<?php
 ini_set("display_errors", 1);
 ini_set("error_reporting", E_ALL);
 
@@ -44,4 +44,5 @@ function buildDirectoryList($absRoot, $root, &$paths, &$classes) {
 $settings = Singleton::create("Settings");
 $settings->setRootPath($root);
 setlocale(LC_ALL, $settings->getLocale());
+date_default_timezone_set($settings->getTimeZone());
 ?>
