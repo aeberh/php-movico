@@ -73,12 +73,16 @@ button::-moz-focus-inner { border: 0; }
 	color: white;
 	border-radius: 20px;
 	-moz-border-radius: 20px;
-	padding: 15px;
+	padding: 10px 15px;
 	margin: 10px 0;
 }
 
 .info {
 	background: green;
+}
+
+.error {
+	background: red;
 }
 
 h1 {

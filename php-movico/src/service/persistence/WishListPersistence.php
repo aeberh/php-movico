@@ -65,10 +65,8 @@ class WishListPersistence extends Persistence {
 		if(empty($pk)) {
 			$pk = $this->db->selectQuery("SELECT id from ".self::TABLE." ORDER BY id DESC limit 1")->getSingleton();
 		}
-		$result = $this->findByPrimaryKey($pk);
 		parent::$dbCache->resetEntity("WishList");
-		parent::$dbCache->setSingle("WishList", $pk, $result);
-		return $result;
+		return $this->findByPrimaryKey($pk);
 	}
 
 	public function findAll($from, $limit) {

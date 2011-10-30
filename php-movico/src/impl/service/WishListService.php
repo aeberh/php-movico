@@ -16,7 +16,8 @@ class WishListService extends WishListServiceBase {
 		$wl = $this->findByName($name);
 		$wl->setList($list);
 		$wl->setUpdateDate(Date::createNow());
-		return $this->updateWishList($wl);
+		$this->updateWishList($wl);
+		return $this->getWishList($wl->getId());
 	}
 	
 }

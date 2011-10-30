@@ -180,10 +180,8 @@ class EntityPersistenceGenerator {
 			"\t\tif(empty(\$pk)) {\n".
 			"\t\t\t\$pk = \$this->db->selectQuery(\"SELECT {$pk->getName()} from \".self::TABLE.\" ORDER BY {$pk->getName()} DESC limit 1\")->getSingleton();\n".
 			"\t\t}\n".
-			"\t\t\$result = \$this->findByPrimaryKey(\$pk);\n".
 			"\t\tparent::\$dbCache->resetEntity(\"{$entity->getName()}\");\n".
-			"\t\tparent::\$dbCache->setSingle(\"{$entity->getName()}\", \$pk, \$result);\n".
-			"\t\treturn \$result;\n".
+			"\t\treturn \$this->findByPrimaryKey(\$pk);\n".
 			"\t}\n\n";
 		return $result;
 	}

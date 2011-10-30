@@ -13,10 +13,10 @@
 					<h2>Wiens lijstje wil je zien?</h2>
 				</panelGroup>
 				<selectOneMenu options="#{XmasBean.names}" value="#{XmasBean.name}" addEmptyOption="true" action="#{XmasBean.showList}"/>
-				<message/>
 				<panelGroup rendered="#{XmasBean.listVisible}">
 					<outputText value="Laatst bijgewerkt op "/>
 					<outputDate value="#{XmasBean.wishList.updateDate}"/>
+					<message/>
 					<p><inputTextArea value="#{XmasBean.wishList.list}"/></p>
 					<p><commandButton action="#{XmasBean.saveList}" value="Opslaan"/></p>
 				</panelGroup>
