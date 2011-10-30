@@ -21,10 +21,6 @@ class GoogleMap extends Component {
 		return "<div style=\"width: {$width}px; height: {$height}px\" class=\"googleMap\" id=\"".$this->id."\" address=\"$address\" zoom=\"$zoom\"></div>";
 	}
 	
-	public function getValidParents() {
-		return -1;
-	}
-	
 	public function setAddress($address) {
 		$this->address = $address;
 	}

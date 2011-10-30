@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class AbstractCommand extends Component {
 	
 	protected $action;
@@ -24,10 +24,6 @@ abstract class AbstractCommand extends Component {
 	
 	public function setPopup($popup) {
 		$this->popup = $popup;
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "li", "p", "div", "h1", "h2", "h3", "PanelGridSeries");
 	}
 	
 	public function getAction() {

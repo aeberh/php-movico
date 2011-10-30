@@ -1,4 +1,4 @@
-<?
+<?php
 class Date {
 	
 	private $time;
@@ -71,6 +71,10 @@ class Date {
 	
 	public function isBefore(Date $other) {
 		return $this->time < $other->time;
+	}
+	
+	public function getTime() {
+		return $this->time;
 	}
 	
 	public function __toString() {

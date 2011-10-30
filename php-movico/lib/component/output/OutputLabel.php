@@ -1,4 +1,4 @@
-<?
+<?php
 class OutputLabel extends Component {
 	
 	private $value;
@@ -14,10 +14,6 @@ class OutputLabel extends Component {
 
 	public function setFor($for) {
 		$this->for = $for;
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "p");
 	}
 	
 }

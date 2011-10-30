@@ -28,7 +28,7 @@
 				<li><renderLink view="components/datatable/pagination/countries" value="DataTable Pagination"/></li>
 				<li><renderLink view="components/listbox/normal" value="ListBox"/></li>
 				<li><renderLink view="components/listbox/transfer" value="Transfer ListBox"/></li>
-				<!--li><renderLink view="components/fileupload/upload_file" value="File Upload"/></li-->
+				<li><renderLink view="components/fileupload/upload_file" value="File Upload"/></li>
 				<li><renderLink view="components/panelseries/contacts" value="PanelSeries"/></li>
 			</ul>
 			<h2>Lib Examples</h2>

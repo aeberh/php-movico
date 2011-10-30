@@ -1,4 +1,4 @@
-<?
+<?php
 class Message extends Component {
 	
 	public function doRender($rowIndex=null) {
@@ -9,10 +9,6 @@ class Message extends Component {
 		$sev = $msgObj->getSeverity();
 		$msg = $msgObj->getMessage();
 		return "<div class=\"msg $sev\">$msg</div>";
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "ColHeader", "PanelGroup", "div");
 	}
 	
 }

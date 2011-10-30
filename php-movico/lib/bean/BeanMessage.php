@@ -1,4 +1,4 @@
-<?
+<?php
 class BeanMessage {
 	
 	const SEVERITY_INFO = "info";

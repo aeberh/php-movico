@@ -1,4 +1,4 @@
-<?
+<?php
 function handleException($e) {
 	$result = ExceptionPrinter::printException($e);
 	if(isset($_GET["jquery"])) {

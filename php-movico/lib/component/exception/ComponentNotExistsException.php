@@ -1,4 +1,4 @@
-<?
+<?php
 class ComponentNotExistsException extends Exception {
 	
 	public function __construct($component) {

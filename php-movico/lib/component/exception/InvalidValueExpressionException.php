@@ -1,4 +1,4 @@
-<?
+<?php
 class InvalidValueExpressionException extends Exception {
 	
 	public function __construct($expression, $reason) {

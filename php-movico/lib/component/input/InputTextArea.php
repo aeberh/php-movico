@@ -1,4 +1,4 @@
-<?
+<?php
 class InputTextArea extends Component {
 	
 	private $value;
@@ -11,10 +11,6 @@ class InputTextArea extends Component {
 		$name = $this->value;
 		$val = $this->getConvertedValue($name, $index);
 		return "<textarea id=\"".$this->id."\" class=\"".$this->class."\" name=\"$name\">$val</textarea>";
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
 	}
 	
 }

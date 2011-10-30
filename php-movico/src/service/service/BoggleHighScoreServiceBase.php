@@ -5,6 +5,10 @@ class BoggleHighScoreServiceBase {
 		return $this->getPersistence()->findByLang($lang, $from, $limit);
 	}
 
+	public function deleteByLang($lang) {
+		$this->getPersistence()->deleteByLang($lang);
+	}
+
 	public function createBoggleHighScore($pk=0) {
 		return $this->getPersistence()->create($pk);
 	}

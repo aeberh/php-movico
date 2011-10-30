@@ -1,4 +1,4 @@
-<?
+<?php
 class ClassUtil {
 	
 	public static function isSubclassOf($child, $parent) {

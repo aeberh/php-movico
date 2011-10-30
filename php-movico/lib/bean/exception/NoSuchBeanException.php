@@ -1,4 +1,4 @@
-<?
+<?php
 class NoSuchBeanException extends Exception {
 	
 	public function __construct($className) {

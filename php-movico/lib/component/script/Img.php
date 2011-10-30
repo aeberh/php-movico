@@ -1,18 +1,18 @@
-<?
+<?php
 class Img extends Component {
 	
 	const PATH = "/www/img";
 	
 	private $src;
-	private $popup;
+	private $tooltip;
 	private $alt;
 	
 	public function setSrc($src) {
 		$this->src = $src;
 	}
 	
-	public function setPopup($popup) {
-		$this->popup = $popup;
+	public function setTooltip($tooltip) {
+		$this->tooltip = $tooltip;
 	}
 	
 	public function setAlt($alt) {
@@ -20,14 +20,10 @@ class Img extends Component {
 	}
 	
 	public function doRender($index=null) {
-		$popup = $this->getConvertedValue($this->popup, $index);
+		$tooltip = $this->getConvertedValue($this->tooltip, $index);
 		$alt = $this->getConvertedValue($this->alt, $index);
 		$ctx = parent::$settings->getContextPath();
-		return "<img id=\"".$this->id."\" title=\"$popup\" alt=\"$alt\" src=\"".$ctx.self::PATH."/".$this->src."\">";
-	}
-	
-	public function getValidParents() {
-		return -1;
+		return "<img id=\"".$this->id."\" title=\"$tooltip\" alt=\"$alt\" src=\"".$ctx.self::PATH."/".$this->src."\">";
 	}
 	
 }

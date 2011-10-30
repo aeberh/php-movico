@@ -1,4 +1,4 @@
-<?
+<?php
 class CommandLink extends AbstractCommand {
 	
 	private $selectedPrefix;

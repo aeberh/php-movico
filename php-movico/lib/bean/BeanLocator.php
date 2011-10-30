@@ -1,4 +1,4 @@
-<?
+<?php
 class BeanLocator {
 	
 	private static $existingClasses = array();

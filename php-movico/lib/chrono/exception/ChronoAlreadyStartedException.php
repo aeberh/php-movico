@@ -1,4 +1,4 @@
-<?
+<?php
 class ChronoAlreadyStartedException extends Exception {
 	
 	public function __construct($time) {

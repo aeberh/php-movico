@@ -1,4 +1,4 @@
-<?
+<?php
 class ArrayList implements IteratorAggregate {
 	
 	protected $elements = array();

@@ -1,4 +1,4 @@
-<?
+<?php
 class BooleanCheckbox extends Component {
 	
 	private $value;
@@ -34,10 +34,6 @@ class BooleanCheckbox extends Component {
 			$result .= "<button id=\"$buttonId\" type=\"submit\" style=\"display:none\">Dummy</button>";
 		}
 		return $result;
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p");
 	}
 	
 }

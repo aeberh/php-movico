@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class DataSeries extends Component {
 	
 	protected $value;

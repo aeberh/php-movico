@@ -1,4 +1,4 @@
-<?
+<?php
 class TypeUtil {
 	
 	public static function getType($var) {

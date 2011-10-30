@@ -15,6 +15,12 @@ class BoggleHighScorePersistence extends Persistence {
 		return $result;
 	}
 
+	public function deleteByLang($lang) {
+		$whereClause = "`lang`='".Singleton::create("NullConverter")->fromDOMtoDB($lang)."'";
+		$this->db->updateQuery("DELETE FROM ".self::TABLE." WHERE $whereClause");
+		parent::$dbCache->resetEntity("BoggleHighScore");
+	}
+
 	public function findByPrimaryKey($hscoreId) {
 		if(parent::$dbCache->hasSingle("BoggleHighScore", $hscoreId)) {
 			return parent::$dbCache->getSingle("BoggleHighScore", $hscoreId);

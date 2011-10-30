@@ -1,4 +1,4 @@
-<?
+<?php
 class UploadedFile {
 	
 	private $originalClientName;

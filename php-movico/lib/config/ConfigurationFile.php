@@ -15,7 +15,7 @@ class ConfigurationFile {
     }
 
 	private function importItems() {
-		$settings = parse_ini_file($this->filename, true);
+		$settings = parse_ini_file($this->filename, true, INI_SCANNER_RAW);
 		foreach($settings as $key=>$val) {
             $item = null;
 			if(is_array($val) && ArrayUtil::isAssociative($val)) {

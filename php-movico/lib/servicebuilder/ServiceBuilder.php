@@ -91,6 +91,8 @@ class ServiceBuilder {
 				$autoIncrement = $property->getAttribute("auto-increment")=="true";
 				if($primary) {
 					$entity->addPKProperty(new PrimaryKeyProperty($propertyName, $type, $size, $autoIncrement));
+				} elseif($type == "Object") {
+					$entity->addOneToOneProperty(new OneToOneProperty($propertyName, $entityName));
 				} elseif($type == "Collection" && !$mappingTable) {
 					$entity->addOneManyProperty(new OneToManyProperty($propertyName, $entityName));
 				} elseif($mappingTable) {

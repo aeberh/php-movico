@@ -27,9 +27,5 @@ class SelectManyListBox extends Component {
 		$this->options = $options;
 	}
 	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "div");
-	}
-	
 }
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 class ArrayIterator implements Iterator {
 	
 	private $elements;

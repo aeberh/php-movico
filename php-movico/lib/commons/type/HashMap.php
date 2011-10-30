@@ -1,4 +1,4 @@
-<?
+<?php
 class HashMap implements IteratorAggregate {
 	
 	private $elements = array();

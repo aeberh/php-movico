@@ -1,4 +1,4 @@
-<?
+<?php
 class String implements IteratorAggregate {
 	
 	private $string;

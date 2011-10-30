@@ -1,4 +1,4 @@
-<?
+<?php
 class Css extends Component {
 	
 	const PATH = "/www/css";
@@ -12,10 +12,6 @@ class Css extends Component {
 	public function doRender($index=null) {
 		$context = parent::$settings->getContextPath();
 		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"$context".self::PATH."/".$this->src."\">";
-	}
-	
-	public function getValidParents() {
-		return array("View");
 	}
 	
 }

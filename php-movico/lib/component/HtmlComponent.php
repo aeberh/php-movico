@@ -1,4 +1,4 @@
-<?
+<?php
 class HtmlComponent extends Component {
 	
 	private $tagName;
@@ -33,15 +33,6 @@ class HtmlComponent extends Component {
 			$result .= " $key=\"$val\"";
 		}
 		return $result;
-	}
-	
-	public function getValidParents() {
-		switch($this->tagName) {
-			case "li":
-				return array("ul", "ol", "PanelGroup");
-			default:
-				return array_merge(array("View", "Form", "PanelGrid", "Column", "PanelGroup", "PanelSeries", "ColHeader", "PanelGridSeries", "HtmlComponent"), self::getPossibleTags());
-		}
 	}
 	
 	private function checkValidTag($tagName) {

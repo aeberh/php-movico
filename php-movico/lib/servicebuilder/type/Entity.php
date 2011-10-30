@@ -7,6 +7,7 @@ class Entity {
 	private $primaryKey;
 	private $finders = array();
 	private $orderCols = array();
+	private $oneToOneProperties = array();
 	private $oneToManyProperties = array();
 	private $manyToManyProperties = array();
 
@@ -39,6 +40,11 @@ class Entity {
 	public function addManyToManyProperty(ManyToManyProperty $property) {
 		$property->setEntity($this);
 		$this->manyToManyProperties[] = $property;
+	}
+	
+	public function addOneToOneProperty(OneToOneProperty $property) {
+		$property->setEntity($this);
+		$this->oneToOneProperties[] = $property;
 	}
 
 	public function addFinder(Finder $finder) {

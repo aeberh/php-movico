@@ -1,4 +1,4 @@
-<?
+<?php
 abstract class AbstractInput extends Component {
 	
 	private $value;
@@ -27,15 +27,11 @@ abstract class AbstractInput extends Component {
 		}
 		$val = $this->getConvertedValue($this->value, $row);
 		$type = $this->getType();
-		$focus = $this->autoFocus === "true" ? " class=\"autofocus\"" : "";
+		$focus = $this->autoFocus === "true" ? " autoFocus=\"true\"" : "";
 		return "<input class=\"".$this->class."\" id=\"".$this->id."\" maxlength=\"".$this->maxLength."\" type=\"$type\" name=\"$name\" value=\"$val\"$focus/>";
 	}
 	
 	public abstract function getType();
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGrid", "Column", "PanelGroup", "p", "PanelSeries", "div");
-	}
 	
 }
 ?>

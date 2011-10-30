@@ -7,6 +7,19 @@ CREATE TABLE `movico_user` (
 	PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `movico_building` (
+	`buildingId` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(25) NOT NULL,
+	PRIMARY KEY (`buildingId`)
+);
+
+CREATE TABLE `movico_address` (
+	`addressId` INTEGER NOT NULL AUTO_INCREMENT,
+	`street` VARCHAR(50) NOT NULL,
+	`location` VARCHAR(40) NOT NULL,
+	PRIMARY KEY (`addressId`)
+);
+
 CREATE TABLE `movico_team` (
 	`teamId` INTEGER NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(25) NOT NULL,

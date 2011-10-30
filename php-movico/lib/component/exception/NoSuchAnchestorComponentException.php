@@ -1,4 +1,4 @@
-<?
+<?php
 class NoSuchAnchestorComponentException extends Exception {
 	
 	public function __construct($child, $parent) {

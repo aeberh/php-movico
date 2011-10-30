@@ -1,4 +1,4 @@
-<?
+<?php
 class DataTable extends DataSeries {
 	
 	/*
@@ -100,10 +100,6 @@ class DataTable extends DataSeries {
 			$result .= "</tr>";
 		}
 		return $result;
-	}
-	
-	public function getValidParents() {
-		return array("View", "PanelGrid", "Form", "PanelGroup", "div");
 	}
 	
 }

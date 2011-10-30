@@ -1,4 +1,4 @@
-<?
+<?php
 class PanelSeries extends DataSeries {
 	
 	public function doRender($index=null) {
@@ -16,10 +16,6 @@ class PanelSeries extends DataSeries {
 	
 	public function getRows() {
 		return $this->getConvertedValue($this->value);
-	}
-	
-	public function getValidParents() {
-		return array("View", "PanelGrid", "Form", "PanelGroup", "div", "PanelSeries");
 	}
 	
 }

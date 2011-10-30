@@ -1,11 +1,11 @@
-<?
+<?php
 class PanelGrid extends Component {
 	
 	private $columns;
 	private $columnClasses = array();
 	
 	public function doRender($index=null) {
-		$result = "<table cellspacing=\"0\" cellpadding=\"0\" class=\"panelGrid\"><tr>";
+		$result = "<table cellspacing=\"0\" cellpadding=\"0\" class=\"panelGrid {$this->class}\"><tr>";
 		for($i=0; $i<count($this->children); $i++) {
 			$result .= "<td".$this->getColClass($i).">".$this->children[$i]->render()."</td>";
 			if(($i+1)%$this->columns === 0) {
@@ -29,10 +29,6 @@ class PanelGrid extends Component {
 		}
 		$index = $i % count($this->columnClasses);
 		return " class=\"".$this->columnClasses[$index]."\"";
-	}
-	
-	public function getValidParents() {
-		return array("View", "Form", "PanelGroup", "div");
 	}
 	
 }

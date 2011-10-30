@@ -39,6 +39,19 @@ class ArrayUtil {
 			unset($array[$index]);
 		}
 	}
+	
+	public static function toArray($objects, $value) {
+		self::checkTypes($objects);
+		StringUtil::checkTypes($value);
+		if(empty($objects))
+			return array();
+		$result = array();
+		foreach($objects as $object) {
+			$valueString = ReflectionUtil::callNestedGetter($object, $value);
+			$result[] = $valueString;
+		}
+		return $result;
+	}
 
 	public static function toIndexedArray($objects, $key, $value=null) {
 		self::checkTypes($objects);

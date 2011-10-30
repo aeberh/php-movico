@@ -9,6 +9,10 @@ class BoggleHighScoreServiceUtil {
 		return self::getService()->findByLang($lang, $from, $limit);
 	}
 
+	public static function deleteByLang($lang) {
+		self::getService()->deleteByLang($lang);
+	}
+
 	public static function createBoggleHighScore($pk=0) {
 		return self::getService()->createBoggleHighScore($pk);
 	}

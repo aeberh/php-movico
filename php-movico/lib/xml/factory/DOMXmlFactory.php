@@ -25,13 +25,13 @@ class DOMXmlFactory implements XmlFactory {
 	}
 	
 	public function fromString($string) {
-		$dom = new DOMDocument();
+		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->loadXml($string);
 		return $this->create($dom);
 	}
 	
 	public function fromFile($file) {
-		$dom = new DOMDocument();
+		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->load($file);
 		return $this->create($dom);
 	}

@@ -1,4 +1,4 @@
-<?
+<?php
 class Js extends Component {
 	
 	private $src;
@@ -9,10 +9,6 @@ class Js extends Component {
 	
 	public function doRender($index=null) {
 		return "<script language=\"Javascript\" type=\"text/javascript\" src=\"".$this->src."\"></script>";
-	}
-	
-	public function getValidParents() {
-		return array("View");
 	}
 	
 }

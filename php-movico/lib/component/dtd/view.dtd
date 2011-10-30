@@ -86,6 +86,7 @@
 <!ELEMENT booleanCheckbox EMPTY>
 <!ATTLIST booleanCheckbox
 	value CDATA #REQUIRED
+	action CDATA #IMPLIED
 	label CDATA #IMPLIED
 	class CDATA #IMPLIED
 >
@@ -139,6 +140,8 @@
 	class CDATA #IMPLIED
 >
 
+<!ELEMENT fileBrowser EMPTY>
+
 <!ELEMENT outputLabel EMPTY>
 <!ATTLIST outputLabel
 	value CDATA #REQUIRED
@@ -150,6 +153,15 @@
 <!ELEMENT outputText EMPTY>
 <!ATTLIST outputText
 	value CDATA #REQUIRED
+	rendered CDATA #IMPLIED
+	class CDATA #IMPLIED
+	id CDATA #IMPLIED
+>
+
+<!ELEMENT outputEmail EMPTY>
+<!ATTLIST outputEmail
+	value CDATA #REQUIRED
+	link CDATA #IMPLIED
 	rendered CDATA #IMPLIED
 	class CDATA #IMPLIED
 	id CDATA #IMPLIED
