@@ -1,5 +1,0 @@
-<?
-class InvalidFirstNameException extends Exception {
-	
-}
-?>

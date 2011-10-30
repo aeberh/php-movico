@@ -1,5 +1,0 @@
-<?
-class IllegalWordLengthException extends BoggleWordException {
-	
-}
-?>
