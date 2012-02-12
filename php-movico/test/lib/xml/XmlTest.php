@@ -1,4 +1,4 @@
-<?
+<?php
 class XmlTest extends UnitTestCase {
 	
 	function testXmlString() {

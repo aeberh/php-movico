@@ -1,4 +1,4 @@
-<?
+<?php
 class MapToStringTest extends UnitTestCase {
 		
 	function testEmptyMap() {

@@ -1,4 +1,4 @@
-<?
+<?php
 class PaginationBean extends RequestBean {
 	
 	private $countries;

@@ -1,4 +1,4 @@
-<?
+<?php
 class IsComparableTest extends UnitTestCase {
 	
 	function testSampleComparable() {

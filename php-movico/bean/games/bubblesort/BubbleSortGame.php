@@ -1,4 +1,4 @@
-<?
+<?php
 class BubbleSortGame {
 	
 	private $grid;

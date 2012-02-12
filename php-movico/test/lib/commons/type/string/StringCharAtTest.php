@@ -1,4 +1,4 @@
-<?
+<?php
 class StringCharAtTest extends UnitTestCase {
 	
 	function testEmptyString() {

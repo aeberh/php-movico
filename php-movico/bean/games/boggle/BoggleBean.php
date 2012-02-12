@@ -1,4 +1,4 @@
-<?
+<?php
 class BoggleBean extends SessionBean {
 	
 	private $name;

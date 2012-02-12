@@ -1,4 +1,4 @@
-<?
+<?php
 class BoggleConstants extends ApplicationBean {
 	
 	public function getLanguages() {

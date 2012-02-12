@@ -1,4 +1,4 @@
-<?
+<?php
 class ListIndexesOfTest extends UnitTestCase {
 	
 	private $list;

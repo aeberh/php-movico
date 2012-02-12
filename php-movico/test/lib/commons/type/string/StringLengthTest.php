@@ -1,4 +1,4 @@
-<?
+<?php
 class StringLengthTest extends UnitTestCase {
 	
 	function testEmptyStringHasZeroSize() {

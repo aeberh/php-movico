@@ -1,4 +1,4 @@
-<?
+<?php
 class BubbleSortGrid {
 	
 	private $fields;

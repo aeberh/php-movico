@@ -1,4 +1,4 @@
-<?
+<?php
 class StringCompareTest extends UnitTestCase {
 	
 	function testCompareDifferentStrings1() {

@@ -22,10 +22,10 @@ $duration = time()-$start;
 
 ?>
 <ul>
-	<?
+	<?php
 	foreach($words as $word) {
-		?><li><?=$word?></li><? 
+		?><li><?php echo $word?></li><?php
 	}
 	?>
 </ul>
-<p>Finished in <?=$duration?> seconds for all words in dictionary.</p>
+<p>Finished in <?php echo $duration?> seconds for all words in dictionary.</p>

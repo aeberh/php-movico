@@ -1,4 +1,4 @@
-<?
+<?php
 class StringRemoveTest extends UnitTestCase {
 	
 	private $input;

@@ -1,4 +1,4 @@
-<?
+<?php
 class ListJoinElementsTest extends UnitTestCase {
 	
 	private $list;

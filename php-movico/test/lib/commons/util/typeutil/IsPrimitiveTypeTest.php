@@ -1,4 +1,4 @@
-<?
+<?php
 class IsPrimitiveTypeTest extends UnitTestCase {
 	
 	function testIntegerIsPrimitive() {

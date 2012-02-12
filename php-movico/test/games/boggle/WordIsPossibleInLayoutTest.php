@@ -1,4 +1,4 @@
-<?
+<?php
 class WordIsPossibleInLayoutTest extends UnitTestCase {
 	
 	private $grid;

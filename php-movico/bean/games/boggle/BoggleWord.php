@@ -1,4 +1,4 @@
-<?
+<?php
 class BoggleWord implements Comparable {
 	
 	private $word;

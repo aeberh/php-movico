@@ -1,4 +1,4 @@
-<?
+<?php
 class StringStartsWithTest extends UnitTestCase {
 	
 	private $input;

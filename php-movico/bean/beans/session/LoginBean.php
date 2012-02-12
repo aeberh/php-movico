@@ -1,4 +1,4 @@
-<?
+<?php
 class LoginBean extends SessionBean {
 	
 	private $username;

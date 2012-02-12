@@ -10,6 +10,7 @@
 	</entity>
 	
 	<!-- 1 to 1 relationship -->
+	<!--  
 	<entity name="Building" table="movico_building">
 		<column name="buildingId" type="int" primary="true" auto-increment="true"/>
 		<column name="name" type="String" size="25"/>
@@ -20,6 +21,7 @@
 		<column name="street" type="String" size="50"/>
 		<column name="location" type="String" size="40"/>
 	</entity>
+	-->
 	
 	<!-- 1 to N relationship -->
 	<entity name="Team" table="movico_team">

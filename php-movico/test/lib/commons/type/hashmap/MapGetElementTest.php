@@ -1,4 +1,4 @@
-<?
+<?php
 class MapGetElementTest extends UnitTestCase {
 		
 	function testUnexistingKeyReturnsNull() {

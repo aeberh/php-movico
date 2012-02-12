@@ -1,4 +1,4 @@
-<?
+<?php
 class StringReplaceTest extends UnitTestCase {
 	
 	private $input;

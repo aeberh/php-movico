@@ -1,4 +1,4 @@
-<?
+<?php
 class BubbleSortField {
 	
 	private $value;

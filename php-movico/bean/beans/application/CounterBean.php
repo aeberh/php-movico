@@ -1,4 +1,4 @@
-<?
+<?php
 class CounterBean extends ApplicationBean {
 	
 	private $count = 0;

@@ -1,4 +1,4 @@
-<?
+<?php
 class IsObjectTypeTest extends UnitTestCase {
 	
 	function testNormalObjectType() {

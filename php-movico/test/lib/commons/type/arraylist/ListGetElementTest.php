@@ -1,4 +1,4 @@
-<?
+<?php
 class ListGetElementTest extends UnitTestCase {
 	
 	private $list;

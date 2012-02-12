@@ -1,4 +1,4 @@
-<?
+<?php
 class ListUpdateElementTest extends UnitTestCase {
 	
 	public function testUpdateElementCheckChanged() {

@@ -1,4 +1,4 @@
-<?
+<?php
 class MapIteratorTest extends UnitTestCase {
 	
 	private $map;

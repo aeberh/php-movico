@@ -1,4 +1,4 @@
-<?
+<?php
 class ListToStringTest extends UnitTestCase {
 	
 	function testEmptyList() {

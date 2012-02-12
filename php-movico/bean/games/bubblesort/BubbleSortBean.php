@@ -1,4 +1,4 @@
-<?
+<?php
 class BubbleSortBean extends SessionBean {
 	
 	private $game;

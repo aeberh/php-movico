@@ -1,4 +1,4 @@
-<?
+<?php
 class FileUploadBean extends RequestBean {
 	
 	private $file;

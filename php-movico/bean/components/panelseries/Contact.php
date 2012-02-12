@@ -1,4 +1,4 @@
-<?
+<?php
 class Contact {
 	
 	private $name;

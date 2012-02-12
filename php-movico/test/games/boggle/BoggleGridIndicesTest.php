@@ -1,4 +1,4 @@
-<?
+<?php
 class BoggleGridIndicesTest extends UnitTestCase {
 	
 	private $grid;

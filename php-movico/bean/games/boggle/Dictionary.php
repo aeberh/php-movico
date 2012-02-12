@@ -1,4 +1,4 @@
-<?
+<?php
 class Dictionary {
 	
 	private $words;

@@ -1,4 +1,4 @@
-<?
+<?php
 class SetAddElementTest extends UnitTestCase {
 	
 	function testAddValidElement() {

@@ -1,4 +1,4 @@
-<?
+<?php
 class BoggleGrid {
 	
 	private $layout;

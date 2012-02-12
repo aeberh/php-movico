@@ -1,4 +1,4 @@
-<?
+<?php
 class ListContainsTest extends UnitTestCase {
 	
 	private $list;

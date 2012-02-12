@@ -1,4 +1,4 @@
-<?
+<?php
 class ContactsBean extends RequestBean {
 	
 	private $contacts;

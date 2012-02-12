@@ -1,4 +1,4 @@
-<?
+<?php
 class StringMatchesTest extends UnitTestCase {
 	
 	private $input;

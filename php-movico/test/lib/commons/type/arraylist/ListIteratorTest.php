@@ -1,4 +1,4 @@
-<?
+<?php
 class ListIteratorTest extends UnitTestCase {
 	
 	private $list;

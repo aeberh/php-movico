@@ -1,4 +1,4 @@
-<?
+<?php
 class TeamBean extends RequestBean {
 	
 	private $teamId;

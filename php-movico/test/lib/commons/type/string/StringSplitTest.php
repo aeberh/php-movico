@@ -1,4 +1,4 @@
-<?
+<?php
 class StringSplitTest extends UnitTestCase {
 	
 	private $input;

@@ -1,4 +1,4 @@
-<?
+<?php
 class TeacherBean extends RequestBean {
 	
 	private $name;

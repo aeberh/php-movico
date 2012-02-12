@@ -1,4 +1,4 @@
-<?
+<?php
 class StringIndexOfTest extends UnitTestCase {
 	
 	private $input;

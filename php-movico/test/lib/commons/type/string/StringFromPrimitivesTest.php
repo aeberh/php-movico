@@ -1,4 +1,4 @@
-<?
+<?php
 class StringFromPrimitivesTest extends UnitTestCase {
 	
 	function testFromArrayToArrayList() {

@@ -1,4 +1,4 @@
-<?
+<?php
 class CountrySelectorBean extends RequestBean {
 	
 	private $message;

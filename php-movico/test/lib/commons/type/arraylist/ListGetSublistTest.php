@@ -1,4 +1,4 @@
-<?
+<?php
 class ListGetSublistTest extends UnitTestCase {
 	
 	private $list;
