@@ -9,7 +9,7 @@
 <!ELEMENT column EMPTY>
 <!ATTLIST column
 	name CDATA #REQUIRED
-	type (String|int|float|boolean|Date|Collection) #REQUIRED
+	type (String|int|float|boolean|Date|Collection|Object) #REQUIRED
 	primary CDATA #IMPLIED
 	auto-increment CDATA #IMPLIED
 	size CDATA #IMPLIED

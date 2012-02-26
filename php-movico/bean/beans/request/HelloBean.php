@@ -5,7 +5,7 @@ class HelloBean extends RequestBean {
     private $message;
 
     public function sayHello() {
-        $this->message = "Hello, ".$this->name;
+        $this->message = "Hello, ".$this->name."!";
         return null;
     }
     

@@ -4,7 +4,7 @@ class String implements IteratorAggregate {
 	private $string;
 	
 	public function __construct($string) {
-		$this->string = $string;
+		$this->string = (string)$string;
 	}
 	
 	public static function fromPrimitives(array $strings) {
@@ -50,8 +50,11 @@ class String implements IteratorAggregate {
 		return $this->charAt($this->length()-1);
 	}
 	
-	public function substring($start, $end=-1) {
-		$length = ($end === -1) ? $this->length()-$start : $end-$start;
+	public function substring($start, $end=null) {
+		if($start < 0 || (!is_null($end) && ($end < $start || $end > $this->length()))) {
+			throw new IndexOutOfBoundsException();
+		}
+		$length = (is_null($end)) ? $this->length()-$start : $end-$start;
 		return self::create(substr($this->string, $start, $length));
 	}
 	

@@ -7,7 +7,7 @@ class Property {
 	
 	private $entity;
 
-	private static $allowedTypes = array("String", "int", "float", "boolean", "Date", "Collection");
+	private static $allowedTypes = array("String", "int", "float", "boolean", "Date", "Collection", "Object");
 
 	public function __construct($name, $type, $size) {
 		$this->name = $name;

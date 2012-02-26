@@ -15,6 +15,9 @@
 			</ul>
 			<h2>Service Examples</h2>
 			<ul>
+				<!--  
+				<li><renderLink view="services/onetoone/buildings" value="One-to-one relationship"/></li>
+				-->
 				<li><renderLink view="services/onetomany/teams" value="One-to-many relationship"/></li>
 				<li><renderLink view="services/manytomany/classes" value="Many-to-many relationship"/></li>
 			</ul>
@@ -25,10 +28,14 @@
 				<li><renderLink view="components/onchangesubmit/onchange" value="OnChange Submit"/></li>
 				<li><renderLink view="components/datatable/normal/users" value="DataTable"/></li>
 				<li><renderLink view="components/datatable/editable/users" value="Editable DataTable"/></li>
+				<!--  
 				<li><renderLink view="components/datatable/pagination/countries" value="DataTable Pagination"/></li>
+				-->
 				<li><renderLink view="components/listbox/normal" value="ListBox"/></li>
 				<li><renderLink view="components/listbox/transfer" value="Transfer ListBox"/></li>
+				<!--  
 				<li><renderLink view="components/fileupload/upload_file" value="File Upload"/></li>
+				-->
 				<li><renderLink view="components/panelseries/contacts" value="PanelSeries"/></li>
 			</ul>
 			<h2>Lib Examples</h2>

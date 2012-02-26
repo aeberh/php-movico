@@ -14,6 +14,7 @@ class Settings {
 	private $rootPath;
 	private $contextPath;
 	private $locale;
+	private $timezone;
 	private $gmapsApiKey;
 	private $viewCacheEnabled;
 	private $dbCacheEnabled;
@@ -37,6 +38,7 @@ class Settings {
 		$this->errorPage = $config->getParam("error_page", "error")->getValue();
 		$this->contextPath = $config->getParam("context_path", "/")->getValue();
 		$this->locale = $config->getParam("locale", "en_US")->getValue();
+		$this->timezone = $config->getParam("timezone", "Europe/Brussels")->getValue();
 		$this->gmapsApiKey = $config->getParam("gmaps_api_key", "")->getValue();
 		$this->viewCacheEnabled = $config->getParam("view_cache_enabled", "true")->getValue();
 		$this->dbCacheEnabled = $config->getParam("db_cache_enabled", "true")->getValue();
@@ -89,6 +91,10 @@ class Settings {
 	
 	public function getLocale() {
 		return $this->locale;
+	}
+	
+	public function getTimezone() {
+		return $this->timezone;
 	}
 	
 	public function getGmapsApiKey() {

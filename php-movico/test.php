@@ -10,19 +10,20 @@ set_error_handler("handleError", E_ALL^E_NOTICE);
 require_once("lib/simpletest/autorun.php");
 
 // String tests
-new StringContainsTest();
-new StringStartsWithTest();
-new StringEndsWithTest();
-new StringLengthTest();
-new StringSplitTest();
-new StringMatchesTest();
-new StringCompareTest();
-new StringReplaceTest();
-new StringRemoveTest();
-new StringIndexOfTest();
-new StringIndexesOfTest();
 new StringCharAtTest();
+new StringCompareTest();
+new StringContainsTest();
+new StringEndsWithTest();
 new StringFromPrimitivesTest();
+new StringIndexesOfTest();
+new StringIndexOfTest();
+new StringLengthTest();
+new StringMatchesTest();
+new StringRemoveTest();
+new StringReplaceTest();
+new StringSplitTest();
+new StringStartsWithTest();
+new StringSubstringTest();
 
 // ArrayList tests
 new ListAddElementTest();

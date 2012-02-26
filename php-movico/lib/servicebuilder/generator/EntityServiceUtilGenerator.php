@@ -88,6 +88,6 @@ class EntityServiceUtilGenerator {
 			"\t\tself::getService()->".$signature.";\n".
 			"\t}\n\n";
 	}
-
+	
 }
 ?>

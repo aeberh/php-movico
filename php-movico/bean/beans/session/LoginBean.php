@@ -3,15 +3,24 @@ class LoginBean extends SessionBean {
 	
 	private $username;
 	private $password;
-	
+	private $loggedIn = false;
 	
 	public function login() {
 		if($this->username == $this->password) {
-			return "beans/session/logged-in";
+			$this->loggedIn = true;
 		}
+		return null;
+	}
+	
+	public function logout() {
+		$this->loggedIn = false;
 		$this->username = "";
 		$this->password = "";
 		return null;
+	}
+	
+	public function isLoggedIn() {
+		return $this->loggedIn;
 	}
 	
 	public function setUsername($username) {

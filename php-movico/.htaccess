@@ -2,4 +2,4 @@ Options +FollowSymlinks
 RewriteEngine on
 
 RewriteRule ^(.*)\.(.*)$ $1.$2 [L,QSA]
-RewriteRule ^(.*)$ index.php?u=$1 [L,QSA]
+RewriteRule ^(.*)$ /~peter/movico/index.php?u=$1 [L,QSA]

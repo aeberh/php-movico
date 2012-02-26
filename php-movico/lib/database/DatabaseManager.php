@@ -78,11 +78,11 @@ class DatabaseManager {
 		$this->connect();
 		$ok = @mysql_query($query, $this->conn);
 		if(!$ok) {
-			$error = mysql_error($this->conn);
+			$error = String::create(mysql_error($this->conn));
 			$this->disconnect();
-			if(StringUtil::contains($error, "Duplicate entry")) {
+			if($error->contains("Duplicate entry")) {
 				throw new UniqueConstraintViolationException($error);
-			} elseif(StringUtil::contains($error, "Table") && StringUtil::contains($error, "doesn't exist")) {
+			} elseif($error->contains("Table") && $error->contains("doesn't exist")) {
 				throw new DatabaseTableNotExistsException($error);
 			} else {
 				throw new DatabaseException("Unknown error while executing query: ".$error);

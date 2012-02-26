@@ -138,6 +138,9 @@
 	value CDATA #REQUIRED
 	id CDATA #IMPLIED
 	class CDATA #IMPLIED
+	toolbar (tiny|compact|normal|complete|maxi) "normal"
+	height CDATA #IMPLIED
+	width CDATA #IMPLIED
 >
 
 <!ELEMENT fileBrowser EMPTY>
@@ -213,6 +216,7 @@
 <!ATTLIST panelGrid 
 	columns CDATA #REQUIRED
 	id CDATA #IMPLIED
+	rendered CDATA #IMPLIED
 	columnClasses CDATA #IMPLIED
 	class CDATA #IMPLIED
 >

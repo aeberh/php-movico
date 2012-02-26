@@ -13,6 +13,28 @@ function startupActions(ctx, ajax) {
 	setupPagination();
 	initMaps();
 	setupTransferListBox();
+	initHtmlAreas();
+}
+
+function initHtmlAreas() {
+	$(".inputRichText").each(function() {
+		var id = "#"+$(this).attr("id");
+		var toolbar = $(this).attr("toolbar");
+		var lang = $(this).attr("lang");
+		var height = $(this).attr("height");
+		var width = $(this).attr("width");
+		var opts = {
+			lang: lang,
+			height: height,
+			width: width,
+			toolbar: toolbar
+		}
+		$(id).elrte(opts);
+	});
+}
+
+function beforeSubmit() {
+	$(".inputRichText").elrte("updateSource");
 }
 
 function setPageMetaInfo() {
@@ -179,24 +201,6 @@ function setupPagination() {
 	});
 }
 
-function unloadHtmlAreas() {
-	if(typeof(CKEDITOR) === 'undefined') {
-		return;
-	}
-	for(var inst in CKEDITOR.instances) {
-		CKEDITOR.remove(inst);
-	}
-}
-
-function updateHtmlAreas() {
-	if(typeof(CKEDITOR) === 'undefined') {
-		return;
-	}
-	for(var inst in CKEDITOR.instances) {
-		inst.updateElement();
-	}
-}
-
 // Selected link add "selected" class
 function setSelectedLink(ctx) {
 	var currentView = getCurrentView();
@@ -225,6 +229,7 @@ function registerForms(ajaxTimeout, ctx) {
 	})
 }
 function doAjaxPostRequest(formEl, ajaxTimeout, ctx) {
+	beforeSubmit();
 	doAjaxRequest(ctx+"/index.php", formEl.serialize(), "POST", ajaxTimeout, ctx, true);
 }
 function doAjaxGetRequest(linkEl, ajaxTimeout, ctx) {
@@ -234,22 +239,19 @@ function doAjaxRequest(url, data, type, ajaxTimeout, ctx, mustPushState) {
 	showLoading("active", ctx);
 	$("button").attr("disabled", "disabled");
 	$("input").attr("readonly", "readonly");
-	
-	//updateHtmlAreas();
 	$.ajax({
-		url: url+"?jquery=1",
+		url: url+"?ajax=1",
 		data: data,
 		type: type,
 		dataType: "json",
 		timeout: ajaxTimeout,
 		success: function(data) {
-			unloadHtmlAreas();
 			$("body").html(data.body);
 			registerForms(ajaxTimeout, ctx);
-			showLoading("idle", ctx);
 			startupActions(ctx, mustPushState);
 			setPageMetaInfo();
 			setOnPopState(ajaxTimeout, ctx);
+			showLoading("idle", ctx);
 		},
 		error: function(request, errorType, errorThrown) {
 			$("button").removeAttr("disabled");
@@ -257,8 +259,9 @@ function doAjaxRequest(url, data, type, ajaxTimeout, ctx, mustPushState) {
 			if(errorType == "timeout") {
 				showLoading("caution", ctx);
 			} else {
-				alert(errorType+": "+errorThrown);
 				showLoading("disconnected", ctx);
+				$("body").html(request.responseText);
+				setOnPopState(ajaxTimeout, ctx);
 			}
 		}
 	});

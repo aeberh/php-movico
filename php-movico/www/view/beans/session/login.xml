@@ -5,15 +5,20 @@
 		<outputText value="LoginBean (session scope)"/>
 	</define>
 	<define name="body">
-		<p>
-			Enter the same value in both fields to have a succesful login. Next,
-			follow the flow to see how the session-scoped bean stores its values.
-		</p>
 		<form>
-			<panelGrid columns="1">
+			<panelGrid columns="1" rendered="#{!LoginBean.loggedIn}">
+				<p>
+					Enter the same value in both fields to have a succesful login. Next,
+					follow the flow to see how the session-scoped bean stores its values.
+				</p>
 				<inputText value="#{LoginBean.username}"/>
 				<inputSecret value="#{LoginBean.password}"/>
 				<commandButton action="#{LoginBean.login}" value="Login"/>
+			</panelGrid>
+			<panelGrid columns="1" rendered="#{LoginBean.loggedIn}">
+				<p><outputText value="You're successfully logged in as #{LoginBean.username}!"/></p>
+				<p>If you move to another page and come back, you will still be logged in.</p>
+				<commandButton action="#{LoginBean.logout}" value="Logout"/>
 			</panelGrid>
 		</form>
 	</define>

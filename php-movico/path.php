@@ -30,12 +30,12 @@ function __autoload($className) {
 function buildDirectoryList($absRoot, $root, &$paths, &$classes) {
 	$dirs = scandir($root);
 	foreach($dirs as $dir) {
-		$absDir = $root."/".$dir;
+		$absDir = $root == "." ? $dir : $root."/".$dir;
 		$endOfClassName = strpos($dir, ".php");
 		if(is_file($absDir) && $endOfClassName !== -1 && ucfirst($dir) === $dir) {
 			$classes[] = substr($dir, 0, $endOfClassName);
 		}
-		if($dir != "." && $dir != ".." && is_dir($absDir)) {
+		if(strpos($dir, ".") !== 0 && is_dir($absDir)) {
 			$paths[] = $absRoot."/".$absDir;
 			buildDirectoryList($absRoot, $absDir, $paths, $classes);
 		}
@@ -44,4 +44,5 @@ function buildDirectoryList($absRoot, $root, &$paths, &$classes) {
 $settings = Singleton::create("Settings");
 $settings->setRootPath($root);
 setlocale(LC_ALL, $settings->getLocale());
+date_default_timezone_set($settings->getTimezone());
 ?>

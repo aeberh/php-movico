@@ -6,11 +6,11 @@
 	</define>
 	<define name="body">
 	    <form>
-	        <inputRichText value="#{RichTextBean.text}"/>
+	        <inputRichText value="#{RichTextBean.value}" height="150" width="400" toolbar="tiny"/>
 	        <p><commandButton action="#{RichTextBean.submit}" value="Submit"/></p>
 	    </form>
 	    <div>
-	    	<outputText value="#{RichTextBean.text}"/>
+	    	<outputText value="#{RichTextBean.value}"/>
 	    </div>
 	</define>
 </composition>

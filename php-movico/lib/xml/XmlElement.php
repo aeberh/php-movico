@@ -11,6 +11,7 @@ class XmlElement {
 		$this->name = $name;
 		$this->children = new ArrayList("XmlElement");
 		$this->attributes = new HashMap("string", "string");
+		$this->text = String::BLANK();
 	}
 	
 	public function getParent() {
@@ -68,11 +69,11 @@ class XmlElement {
 		foreach($this->getAttributes() as $key=>$value) {
 			$result .= " $key=\"$value\"";
 		}
-		if(!$this->hasChildren() && !isset($this->text)) {
+		if(!$this->hasChildren() && $this->text->isEmpty()) {
 			return $result."/>";
 		}
 		$result .= ">";
-		if(isset($this->text)) {
+		if(!$this->text->isEmpty()) {
 			$result .= $this->text;
 		}
 		$result .= $this->asXmlChildren();

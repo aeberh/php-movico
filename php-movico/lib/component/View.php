@@ -13,36 +13,44 @@ class View extends Component {
 		$ajax = parent::$settings->isAjaxEnabled();
 		$gmapsApiKey = parent::$settings->getGmapsApiKey();
 		$context = parent::$settings->getContextPath();
+		$locale = parent::$settings->getLocale();
 		$title = $this->getPageTitle();
 		$description = $this->getPageDesc();
-		$result = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">".
+		$result = "<!DOCTYPE HTML>".
 			"<html>\n\t<head>\n\t\t<title>$title</title>\n".
-			"<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\" />\n".
+			"<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n".
 			"<meta name=\"description\" content=\"$description\">\n".
-			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.6.4.min.js\"></script>".
-			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>";
+			"<link rel=\"stylesheet\" href=\"$context/lib/javascript/ui-lightness/jquery-ui-1.8.18.custom.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\">\n".
+			"<link rel=\"stylesheet\" href=\"$context/lib/component/input/elrte-1.3/css/elrte.min.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\">\n".
+			"<link rel=\"stylesheet\" href=\"$context/lib/component/input/elfinder-1.2/css/elfinder.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\">\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-1.7.1.min.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/jquery-ui-1.8.18.custom.min.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/elrte-1.3/js/elrte.min.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/elrte-1.3/js/i18n/elrte.$locale.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/elfinder-1.2/js/elfinder.min.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/component/input/elfinder-1.2/js/i18n/elfinder.$locale.js\"></script>\n".
+			"<script type=\"text/javascript\" src=\"$context/lib/javascript/forms.js\"></script>\n";
 		if(parent::$settings->isGmapsEnabled()) {
-			$result .= "<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>";
+			$result .= "<script src=\"http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=$gmapsApiKey&amp;hl=nl\" type=\"text/javascript\"></script>\n";
 		}
-		$result .= "<script type=\"text/javascript\">".
-			"$(function() {";
+		$result .= "<script type=\"text/javascript\">\n".
+			"$(function() {\n";
 		$ajaxTimeout = parent::$settings->getAjaxTimeout();
 		$ctx = parent::$settings->getContextPath();
 		if($ajax) {
-			$result .= "registerForms('$ajaxTimeout', '$ctx');";
+			$result .= "registerForms('$ajaxTimeout', '$ctx');\n";
 		}
 		$ajaxJs = $ajax ? "true" : "false";
 		$result .= "
-				startupActions('$ctx', $ajaxJs);
-				updateHtmlAreas();
-			});
-		</script>";
+				startupActions('$ctx', $ajaxJs);\n
+			});\n
+		</script>\n";
 		$result .= $this->renderHeadChildren();
 		$result .= "\t</head>\n\t<body>\n\n".$this->renderBodyChildren($title);
 		if($ajax) {
 			$result .= $this->renderIframeReplace();
 		}
-		return $result."\t</body></html>";
+		return $result."\t</body>\n</html>";
 	}
 	
 	private function renderHeadChildren() {

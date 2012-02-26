@@ -17,7 +17,7 @@ class BeanUtil {
 	}
 	
 	public static function isBeanReference($beanString) {
-		return StringUtil::contains($beanString, self::DELIM);
+		return String::create($beanString)->contains(self::DELIM);
 	}
 	
 }

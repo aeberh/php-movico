@@ -8,5 +8,9 @@ class OneToOneProperty extends Property {
 		$this->entityName = $entityName;
 	}
 	
+	public function getEntityName() {
+		return $this->entityName;
+	}
+	
 }
 ?>

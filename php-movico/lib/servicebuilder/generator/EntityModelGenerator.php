@@ -47,13 +47,26 @@ class EntityModelGenerator {
 		return $result;
 	}
 	
+	private function getOneToOneGetters(Entity $entity) {
+		$result = "";
+		foreach($entity->getOneToOneProperties() as $property) {
+			$name = $property->getName();
+			$mappedEntity = $property->getEntityName();
+			$functionName = $property->getFinderSignature(true);
+			$result .= "\tpublic function get".ucfirst($name)."() {\n".
+				"\t\treturn {$mappedEntity}ServiceUtil::get{$mappedEntity}(\$this->$name);\n\t}\n\n";
+		}
+		return $result;
+	}
+	
 	private function getOneToManyMappedGettersSetters(Entity $entity) {
 		$result = "";
 		foreach(Singleton::create("ServiceBuilder")->getOneToManyMappedProperties($entity) as $property) {
+			$entityName = $property->getEntity()->getName();
 			$name = $property->getMappingKey();
 			$result .= "\tprivate \${$name};\n\n".
 				"\tpublic function get".ucfirst($name)."() {\n\t\treturn \$this->{$name};\n\t}\n\n".
-				"\tpublic function get".$property->getEntity()->getName()."() {\n\t\treturn TeamServiceUtil::getTeam(\$this->teamId);\n\t}\n\n".
+				"\tpublic function get".$entityName."() {\n\t\treturn ${entityName}ServiceUtil::get${entityName}(\$this->${name});\n\t}\n\n".
 				"\tpublic function set".ucfirst($name)."(\${$name}) {\n\t\t\$this->{$name} = \${$name};\n\t}\n\n";
 		}
 		return $result;

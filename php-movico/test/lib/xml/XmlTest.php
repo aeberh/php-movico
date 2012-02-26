@@ -1,10 +1,18 @@
 <?php
 class XmlTest extends UnitTestCase {
 	
-	function testXmlString() {
+	public function testDOMXmlFactory() {
+		$this->verifyXmlContents(Singleton::create("DOMXmlFactory"));
+	}
+	
+	public function testSimpleXmlFactory() {
+		$this->verifyXmlContents(Singleton::create("SimpleXmlFactory"));
+	}
+	
+	private function verifyXmlContents(XmlFactory $xmlFactory) {
 		$xmlString = "<root><element1 attribute1=\"value1\" attribute2=\"value2\"/><element2><child>bla</child></element2></root>";
 		
-		$file = Singleton::create("DOMXmlFactory")->fromString(String::create($xmlString));
+		$file = $xmlFactory->fromString(String::create($xmlString));
 		$this->assertEqual("root", $file->getRootElement()->getName());
 		$root = $file->getRootElement();
 		$this->assertEqual(2, $root->getNbChildren());

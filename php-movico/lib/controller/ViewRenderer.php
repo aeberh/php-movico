@@ -67,7 +67,7 @@ class ViewRenderer extends ApplicationBean {
 	}
 	
 	private function renderComponent(Component $viewComp) {
-		if(isset($_GET["jquery"])) {
+		if(isset($_GET["ajax"])) {
 			return StringUtil::getJson("body", $viewComp->renderBodyChildren());
 		}
 		$view = $viewComp->render();

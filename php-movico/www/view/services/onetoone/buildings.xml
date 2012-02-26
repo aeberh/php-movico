@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE view SYSTEM "http://php-movico.googlecode.com/svn/trunk/php-movico/lib/component/dtd/view.dtd">
+<composition template="main">
+	<define name="title">
+		<outputText value="One to one relationship"/>
+	</define>
+	<define name="body">
+		<dataTable var="building" value="#{BuildingBean.buildings}">
+			<column>
+				<colHeader>
+					<outputText value="Name"/>
+				</colHeader>
+				<outputText value="${building.name}"/>
+			</column>
+			<column>
+				<colHeader>
+					<outputText value="Street"/>
+				</colHeader>
+				<outputText value="${building.address.street}"/>
+			</column>
+			<column>
+				<colHeader>
+					<outputText value="Location"/>
+				</colHeader>
+				<outputText value="${building.address.location}"/>
+			</column>
+		</dataTable>
+		<form>
+			<panelGrid columns="2">
+				<outputLabel for="name" value="Name"/>
+				<inputText id="name" value="#{BuildingBean.building.name}"/>
+				
+				<outputLabel for="street" value="Street"/>
+				<inputText id="street" value="#{BuildingBean.building.address.street}"/>
+				
+				<outputLabel for="location" value="Location"/>
+				<inputText id="location" value="#{BuildingBean.building.address.location}"/>
+			</panelGrid>
+			<p>
+				<commandButton action="#{BuildingBean.create}" value="Create Building"/>
+			</p>
+		</form>
+	</define>
+</composition>

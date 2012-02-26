@@ -174,8 +174,9 @@ abstract class Component {
 	}
 	
 	public function shouldBeRendered($index) {
-		if(StringUtil::contains($this->rendered, "!")) {
-			return !$this->getConvertedValue(StringUtil::replaceWith($this->rendered, "!", ""), $index);
+		$renderedStr = String::create($this->rendered);
+		if($renderedStr->contains("!")) {
+			return !$this->getConvertedValue($renderedStr->replace("!", "")->__toString(), $index);
 		} else {
 			return $this->getConvertedValue($this->rendered, $index);
 		}

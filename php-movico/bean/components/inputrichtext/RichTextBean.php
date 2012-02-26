@@ -1,14 +1,14 @@
 <?php
 class RichTextBean extends RequestBean {
 	
-	private $text;
+	private $value;
 	
-	public function setText($text) {
-		$this->text = $text;
+	public function setValue($value) {
+		$this->value = $value;
 	}
 	
-	public function getText() {
-		return $this->text;
+	public function getValue() {
+		return $this->value;
 	}
 	
 	public function submit() {

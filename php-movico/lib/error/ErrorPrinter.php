@@ -2,6 +2,7 @@
 class ErrorPrinter {
 	
 	public static function printError($type, $msg, $file, $line, $context) {
+		ini_set("display_errors", 0);
 		$errorType = self::getErrorType($type);
 		return <<<ERR
 <html>
