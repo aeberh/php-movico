@@ -95,6 +95,18 @@ class PingpongGame extends PingpongGameModel {
 		return $this->getOutTeam()->isLanaken();
 	}
 	
+	public function getSeasonYear() {
+		return $this->getSeason($this->getDate());
+	}
+	
+	public function isInCurrentSeason() {
+		return $this->getSeasonYear() == $this->getSeason(Date::createNow());
+	}
+	
+	private function getSeason(Date $date) {
+		return $date->getWeek() > 30 ? $date->getYear() : $date->getYear()+1;
+	}
+	
 	private function getTeamStr($teamId) {
 		return PingpongTeamServiceUtil::getPingpongTeam($teamId)->getTeamStr();
 	}

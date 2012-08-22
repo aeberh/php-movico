@@ -33,7 +33,7 @@ class PingpongGameService extends PingpongGameServiceBase {
 		$weekNo = $this->getWeekByIndex($weekIndex);
 		$result = array();
 		foreach($this->getPingpongGames() as $game) {
-			if($game->getDate()->getWeek() == $weekNo) {
+			if(!is_null($weekNo) && $game->getDate()->getWeek() == $weekNo && $game->isInCurrentSeason()) {
 				$result[] = $game;
 			}
 		}
@@ -43,7 +43,7 @@ class PingpongGameService extends PingpongGameServiceBase {
 	public function filterByTeam($teamId) {
 		$result = array();
 		foreach($this->getPingpongGames() as $game) {
-			if($game->isTeamParticipating($teamId)) {
+			if($game->isTeamParticipating($teamId) && $game->isInCurrentSeason()) {
 				$result[$game->getGameId()] = $game;
 			}
 		}
@@ -52,7 +52,10 @@ class PingpongGameService extends PingpongGameServiceBase {
 	
 	private function getWeekByIndex($i) {
 		$reverse = array_flip($this->getPlayingWeeksMap());
-		return $reverse[$i];
+		if(!empty($reverse)) {
+			return $reverse[$i];
+		}
+		return null;
 	}
 	
 	public function getWeekIndexByNo($weekNo) {
@@ -85,6 +88,9 @@ class PingpongGameService extends PingpongGameServiceBase {
 	
 	public function getPlayingWeeks() {
 		$values = array_values($this->getPlayingWeeksMap());
+		if(empty($values)) {
+			return array();
+		}
 		return array_combine($values, $values);
 	}
 	

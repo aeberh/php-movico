@@ -8,17 +8,26 @@
 				<p class="left">Filter op</p>
 				<form class="left filter">
 					<p>
-						<outputLabel id="filterByWeek" value="week"/>
+						<outputLabel for="filterByWeek" value="week"/>
 						<selectOneMenu id="filterByWeek" value="#{GamesBean.filterByWeek}" options="#{GamesBean.weeks}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
 				<p class="left">of</p>
 				<form class="left filter">
 					<p>
-						<outputLabel id="filterByTeam" value="team"/>
+						<outputLabel for="filterByTeam" value="team"/>
 						<selectOneMenu id="filterByTeam" value="#{GamesBean.filterByTeam}" options="#{GamesBean.teams}" action="#{GamesBean.filter}" addEmptyOption="true"/>
 					</p>
 				</form>
+				<!--  
+				<p class="left">voor</p>
+				<form class="left filter">
+					<p>
+						<outputLabel for="filterBySeason" value="seizoen"/>
+						<selectOneMenu id="filterBySeason" value="#{GamesBean.filterBySeason}" options="#{GamesBean.seasons}" action="#{GamesBean.filter}" addEmptyOption="false"/>
+					</p>
+				</form>
+				-->
 				<div class="clear"/>
 				<dataTable value="#{GamesBean.filteredGames}" var="game">
 					<column class="game-day time">

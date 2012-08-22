@@ -44,4 +44,5 @@ function buildDirectoryList($absRoot, $root, &$paths, &$classes) {
 $settings = Singleton::create("Settings");
 $settings->setRootPath($root);
 setlocale(LC_ALL, $settings->getLocale());
+date_default_timezone_set($settings->getTimeZone());
 ?>

@@ -79,6 +79,10 @@
 		</finder>
 		<finder name="Club">
 			<finder-column name="clubId"/>
+			<order>
+				<order-column name="recreation" order-by="asc"/>
+				<order-column name="teamNo" order-by="asc"/>
+			</order>
 		</finder>
 	</entity>
 	<entity name="PingpongGame">

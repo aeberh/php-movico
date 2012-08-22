@@ -14,6 +14,7 @@ class Settings {
 	private $rootPath;
 	private $contextPath;
 	private $locale;
+	private $timeZone;
 	private $gmapsApiKey;
 	private $viewCacheEnabled;
 	private $dbCacheEnabled;
@@ -49,6 +50,7 @@ class Settings {
 		$this->smtpDefaultFromName = $config->getParam("smtp_default_from_name", "")->getValue();
 		$this->smtpAuth = $config->getParam("smtp_auth", "false")->getValue();
 		$this->fileUploadDir = $config->getParam("file_upload_dir", "/uploads")->getValue();
+		$this->timeZone = $config->getParam("time_zone", "GMT")->getValue();
 	}
 	
 	public function getEnvironment() {
@@ -141,6 +143,10 @@ class Settings {
 	
 	public function getTitle() {
 		return $this->title;
+	}
+	
+	public function getTimeZone() {
+		return $this->timeZone;
 	}
 	
 }

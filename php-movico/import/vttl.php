@@ -3,7 +3,7 @@ ini_set("display_errors", 1);
 ini_set("error_reporting", E_ALL);
 
 for($i=2; $i<=49; $i++) {
-	if(in_array($i, array(37, 38, 39, 40, 42, 44, 45, 46, 47, 48, 49, 2, 3, 4, 5, 7, 9, 10, 11, 12, 15, 16))) {
+	if(in_array($i, array(37, 38, 39, 40, 41, 42, 44, 45, 46, 48, 49, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16))) {
 		importWeek($i);
 	}
 }

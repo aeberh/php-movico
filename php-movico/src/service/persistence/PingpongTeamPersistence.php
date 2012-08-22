@@ -26,7 +26,7 @@ class PingpongTeamPersistence extends Persistence {
 
 	public function findByClub($clubId, $from=-1, $limit=-1) {
 		$limitStr = ($from == -1 && $limit == -1) ? "" : " LIMIT $from,$limit";
-		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'".$limitStr;
+		$whereClause = "`clubId`='".Singleton::create("NullConverter")->fromDOMtoDB($clubId)."'ORDER BY `recreation` asc, `teamNo` asc".$limitStr;
 		if(parent::$dbCache->hasFinder('PingpongTeam', $whereClause)) {
 			return parent::$dbCache->getFinder('PingpongTeam', $whereClause);
 		}
